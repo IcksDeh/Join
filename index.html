@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./styles/fonts.css" />
+    <link rel="stylesheet" href="./styles/log_in.css" />
+  </head>
+  <body onload="startAnimation()">
+    <!-- Splash logo -->
+    <div id="splash">
+      <img id="splash_logo" src="./assets/img/logo_version_1.svg" alt="logo" />
+    </div>
+
+    <!--Header  -->
+    <div id="main_content">
+      <header id="login_header">
+        <img
+          id="header_logo"
+          src="./assets/img/logo_version_1.svg"
+          alt="logo image"
+        />
+        <div class="sign_up">
+          <span class="login_span">Not a join User?</span>
+          <button class="signup_btn" onclick="signup()">Sign up</button>
+        </div>
+      </header>
+
+      <!-- Main content -->
+      <main class="login_main">
+        <div class="login_main_content">
+          <div class="log_in_title">
+            <h1>Log in</h1>
+            <div class="underline"></div>
+          </div>
+          <form class="log_in_form">
+            <input
+              id="login_input_mail"
+              class="icon-input"
+              type="email"
+              placeholder="Email"
+              required
+            />
+            <input
+              id="login_password_input"
+              class="icon-input"
+              type="password"
+              placeholder="Password"
+              required
+            />
+            <div class="login_btns">
+              <button class="login_btn" onclick="login()">Login</button>
+              <button class="guest_log_in_btn" onclick="guestLogin()">
+                Guest Log in
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
+      <!-- Footer -->
+      <footer>
+        <a href="">Privacy Policy</a>
+        <a href="">Legal notice</a>
+      </footer>
+    </div>
+    <script src="login.js"></script>
+  </body>
+</html>
