@@ -25,3 +25,8 @@
 #auth_input_name {
   background: url("../assets/img/person_icon.svg") no-repeat right 8px center;
 }
+
+
+#auth_password_confirmation_input {
+  background: url("../assets/img/lock_icon.svg") no-repeat right 8px center;
+}
