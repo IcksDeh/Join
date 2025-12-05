@@ -3,7 +3,7 @@ function sidebarLoginTemplate(){
             <img class = "logo_invert" src="./assets/img/logo_version2.svg" alt="Join Logo">
             <div class="order_selection_privacy_legal_sidebar">
                 <div class="sidebar_selection">
-                    <div class="order_icon_selection">
+                    <div class="order_icon_selection ">
                         <img class="icon_sidebar" src="./assets/img/summary_noneactivated.svg" alt="">
                         <a href="#">Summary</a>
                     </div>
@@ -21,8 +21,12 @@ function sidebarLoginTemplate(){
                     </div>
                 </div>   
                 <div class="sidebar_privacy_legal">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Legal Notice</a>
+                    <div class="design_privacy_legal">
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                    <div class="design_privacy_legal">
+                        <a href="#">Legal Notice</a>
+                    </div>
                 </div>
     `
 }
