@@ -1,10 +1,32 @@
-main {
-    max-width: 1440px;
-}
-
-body {
+body{
+    margin: 0px;
+    display: flex;
+    justify-content: start;
     background-color: rgb(246, 247, 248);
     font-family: "Inter", sans-serif;
+    width: 100vw;
+}
+
+.content_wrapper{
+    max-width: 1440px;
+    width: 100%;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    color: #CDCDCD;
+    font-family: 'latin_400';
+    font-size: 16px;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+p{
+    font-family: 'latin_400';
+    color: #2a3647;
 }
 
 h1 {
@@ -14,8 +36,4 @@ h1 {
     padding-top: 48px;
     padding-bottom: 16px;
     color: #000000;
-}
-
-p {
-    color: #2a3647;
 }

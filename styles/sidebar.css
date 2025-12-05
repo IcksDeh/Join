@@ -1,0 +1,74 @@
+
+.sidebar{
+    background-color: #2a3647;
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.logo_invert{
+    height: 120px;
+    width: 100px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar_selection{
+    margin-top: 90px;
+    display: flex;
+    flex-direction: column;
+}
+
+.order_icon_selection{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 85px;
+    height: 60px;
+    gap: 10px;
+}
+
+.order_icon_selection:hover{
+    background-color: #2b60b1;
+    cursor: pointer;
+}
+
+.icon_sidebar{
+    height: 25px;
+    width: 25px;
+    text-align: left;
+}
+
+.sidebar_privacy_legal{
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: 60px;
+}
+
+.order_selection_privacy_legal_sidebar{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.design_selections{
+    padding-left: 85px;
+    height: 60px;
+    gap: 10px;
+}
+
+
+.design_privacy_legal{
+    padding-left: 90px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.design_privacy_legal:hover{
+    background-color: #2b60b1;
+    cursor: pointer;
+    
+}
