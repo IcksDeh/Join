@@ -2,6 +2,8 @@ body{
     margin: 0px;
     display: flex;
     justify-content: center;
+    background-color: rgb(246, 247, 248);
+    font-family: "Inter", sans-serif;
 }
 
 .content_restriction{
@@ -23,4 +25,14 @@ a:hover{
 
 p{
     font-family: 'latin_400';
+    color: #2a3647;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: 700;
+    margin: 0;
+    padding-top: 48px;
+    padding-bottom: 16px;
+    color: #000000;
 }
