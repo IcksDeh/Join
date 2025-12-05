@@ -29,11 +29,14 @@ function sidebarLoginTemplate(){
 
 function navbarTemplate(){
     return `
+            <div class = "content_wrapper order_content_navbar">    
                 <p class="text_navbar">Kanban Projekt Management Tool</p>
                 <div class="help_user_icon">
                     <img src="./assets/img/help.svg" alt="Help">
                     <div class="user_circle">AM</div>
                 </div>
+            </div>
+
     `
 
 }

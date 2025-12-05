@@ -4,9 +4,10 @@ body{
     justify-content: start;
     background-color: rgb(246, 247, 248);
     font-family: "Inter", sans-serif;
+    width: 100vw;
 }
 
-.content_restriction{
+.content_wrapper{
     max-width: 1440px;
     width: 100%;
 }
