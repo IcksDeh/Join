@@ -4,38 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
-    <link rel="stylesheet" href="./styles/log_in.css" />
+    <link rel="stylesheet" href="./styles/auth.css" />
   </head>
-  <body onload="startAnimation()">
+  <body class="auth_body ">
     <!-- Splash logo -->
     <div id="splash">
       <img id="splash_logo" src="./assets/img/logo_version_1.svg" alt="logo" />
     </div>
 
     <!--Header  -->
-    <div id="main_content">
-      <header id="login_header">
+    <div id="auth_content">
+      <header id="auth_header">
         <img
           id="header_logo"
           src="./assets/img/logo_version_1.svg"
           alt="logo image"
         />
         <div class="sign_up">
-          <span class="login_span">Not a join User?</span>
-          <button class="signup_btn" onclick="signup()">Sign up</button>
+          <span class="auth_span">Not a join User?</span>
+          <button class="signup_btn" onclick="goToSignup()">Sign up</button>
         </div>
       </header>
 
       <!-- Main content -->
-      <main class="login_main">
-        <div class="login_main_content">
-          <div class="log_in_title">
+      <main class="auth_main">
+        <div class="auth_main_content">
+          <div class="auth_in_title">
             <h1>Log in</h1>
             <div class="underline"></div>
           </div>
-          <form class="log_in_form">
+          <form class="auth_form">
             <input
               id="login_input_mail"
               class="icon-input"
@@ -50,8 +50,8 @@
               placeholder="Password"
               required
             />
-            <div class="login_btns">
-              <button class="login_btn" onclick="login()">Login</button>
+            <div class="auth_btns">
+              <button class="auth_btn" onclick="login()">Login</button>
               <button class="guest_log_in_btn" onclick="guestLogin()">
                 Guest Log in
               </button>
@@ -60,9 +60,9 @@
         </div>
       </main>
       <!-- Footer -->
-      <footer>
-        <a href="">Privacy Policy</a>
-        <a href="">Legal notice</a>
+      <footer class="auth_footer">
+        <a class="auth_link" href="">Privacy Policy</a>
+        <a class="auth_link" href="">Legal notice</a>
       </footer>
     </div>
     <script src="./assets/scripts/login.js"></script>
