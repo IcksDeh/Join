@@ -1,0 +1,10 @@
+.order_sidebar_main{
+    display: flex;
+}
+
+.nav_main_content{
+    display: flex;
+    flex-direction: column;
+    width: 84%;
+}
+

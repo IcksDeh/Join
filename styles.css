@@ -1,0 +1,26 @@
+body{
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.content_restriction{
+    max-width: 1440px;
+    width: 100%;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    color: #CDCDCD;
+    font-family: 'latin_400';
+    font-size: 16px;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+p{
+    font-family: 'latin_400';
+}

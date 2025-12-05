@@ -1,0 +1,32 @@
+.nav_bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 95px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.help_user_icon{
+    display: flex;
+    flex-direction: row;
+    margin-right: 50px;
+    gap: 20px;
+}
+
+.text_navbar{
+    margin-left: 100px;
+}
+
+.user_circle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 2px solid #2a3647;
+    border-radius: 50%; 
+    color: #29abe2;
+}
