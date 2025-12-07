@@ -1,3 +1,24 @@
+/* =========================================
+    SIGNUP – HEADER
+========================================= */
+.signup_header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 111px;
+  width: 516px;
+}
+
+.arrow_icon {
+  width: 32px;
+  height: 32px;
+}
+
+
+
+/* =========================================
+   SIGNUP – MAIN CONTENΤ
+========================================= */
 .signup_main_content {
   max-width: 598px;
   width: 100%;
@@ -12,11 +33,14 @@
 }
 
 .sign_up_main {
-    padding-top: 0;
+  padding-top: 0;
 }
 
+/* =========================================
+    SIGNUP – FORM 
+========================================= */
 .signup_in_form {
-     display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
@@ -26,7 +50,18 @@
   background: url("../assets/img/person_icon.svg") no-repeat right 8px center;
 }
 
-
 #auth_password_confirmation_input {
   background: url("../assets/img/lock_icon.svg") no-repeat right 8px center;
 }
+
+/* =========================================
+   SIGNUP – CHECKBOX
+========================================= */
+.checkbox_text {
+  color: #a8a8a8;
+}
+
+.checkbox_link {
+  color: #29abe2;
+}
+
