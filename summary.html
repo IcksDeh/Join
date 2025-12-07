@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./assets/img/summary_noneactivated.svg">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="./styles/sidebar.css">
     <link rel="stylesheet" href="./styles/sidebar_nav_main.css">
     <link rel="stylesheet" href="./styles/fonts.css">
     <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="./styles/summary.css">
     <script src="./script.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
     <title>Summary</title>
@@ -20,8 +22,65 @@
         <div class = "nav_main_content">
             <nav class="nav_bar" id = "id_navbar">
             </nav>
-            <main>
-                <p>Hier befindet sich der Main Teil</p>
+
+            <main >
+                <section class = "summary_header margin_left">
+                    <h1>Join 360</h1>
+                    <div class="divider_header" > </div>
+                     <p class="text_header">Key Metrics at a Glance</p>
+                </section>
+                <div class="order_summary_information">
+                    <div>
+                        <section class="order_todo_done_box margin_left">
+                            <div class="style_todo_done_box style_boxes">
+                                <img class="img_summary_edit_check_icon" src="./assets/img/summary_edit_icon.svg" alt="edit">
+                                <div class="order_number_text">
+                                    <p class="summary_number">1</p>
+                                    <p>To-do</p>
+                                </div>
+                            </div>
+                            <div class="style_todo_done_box style_boxes">
+                                <img class="img_summary_edit_check_icon" src="./assets/img/summary_check_icon.svg" alt="check">
+                                <div class="order_number_text">
+                                    <p class="summary_number">2</p>
+                                    <p>Done</p>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="box_prio_tickets  margin_left style_boxes">
+                            <div class="counter_prio_tickets">
+                                <img src="./assets/img/summary_prio_icon.svg" alt="prio">
+                                <div class="order_number_text">
+                                    <p class="summary_number">3</p>
+                                    <p>Urgent</p>
+                                </div>
+                            </div>
+                            <div class="divider_prio_box "></div>
+                            <div class="deadline_information">
+                                <p class="date_of_deadline">October 16, 2022</p>
+                                <p>Upcoming Deadline</p>
+                            </div>
+                        </section>
+                        <section class="order_ticket_box_below margin_left">
+                                <div class="order_number_text style_boxes boxes_last_row">
+                                    <p class="summary_number">4</p>
+                                    <p>Tasks in Board</p>
+                                </div>
+                                <div class="order_number_text style_boxes boxes_last_row">
+                                    <p class="summary_number">5</p>
+                                    <p>Tasks in Progress</p>
+                                </div>
+                                <div class="order_number_text style_boxes boxes_last_row">
+                                    <p class="summary_number">6</p>
+                                    <p>Awaiting Feedback</p>
+                                </div>
+                        </section>
+                    </div>
+                    <div class="order_greeting_username">
+                        <p class="style_greeting_text">Good morning,</p>
+                        <h1 class="style_username">Sofia Müller</h1>
+                    </div>
+                </div>
             </main>
         </div>
     </div>

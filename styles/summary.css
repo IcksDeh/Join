@@ -1,0 +1,111 @@
+.order_summary_information{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
+}
+
+.style_boxes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    margin-top: 30px;
+    height: 170px; 
+}
+
+
+.summary_header{
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    gap: 20px;
+}
+
+.divider_header{
+    border-right: 2px solid #29abe2;
+    height: 40px;
+}
+
+.text_header{
+    font-size: 27px;
+}
+
+.order_todo_done_box{
+    display: flex;
+    gap: 20px;
+}
+
+.style_todo_done_box{
+    width: 264px;
+    gap: 30px;
+    
+}
+
+.img_summary_edit_check_icon{
+    height: 70px;
+    width: 70px;
+}
+
+.order_number_text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.summary_number{
+    font-size: 64px;
+    font-family: 'latin_600';
+}
+
+.box_prio_tickets{
+    gap: 20px;
+    width: 548px;
+}
+
+.counter_prio_tickets{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.divider_prio_box{
+    border-right: 2px solid #d1d1d1;
+    height: 100px;
+}
+
+.deadline_information{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.date_of_deadline{
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.order_ticket_box_below{
+    display: flex;
+    gap: 20px;
+}
+
+.boxes_last_row{
+    width: 170px;
+}
+
+.style_greeting_text{
+    font-family: 'latin_500';
+    font-size: 48px;
+}
+
+.style_username{
+    color: #29abe2;
+}
