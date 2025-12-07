@@ -29,6 +29,11 @@
     color: #29abe2;
 }
 
+.user_circle:hover{
+    background-color: lightgrey;
+     cursor: pointer;
+}
+
 .order_content_navbar{
     display: flex;
     flex-direction: row;
