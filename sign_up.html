@@ -1,73 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="./styles/auth.css">
-    <link rel="stylesheet" href="./styles/signup.css">
-</head>
-<body class="auth_body">
-
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./styles/auth.css" />
+    <link rel="stylesheet" href="./styles/signup.css" />
+  </head>
+  <body class="auth_body">
     <header id="auth_header">
-        <img
-          id="header_logo"
-          src="./assets/img/logo_version_1.svg"
-          alt="logo image"
-        />
+      <img
+        id="header_logo"
+        src="./assets/img/logo_version_1.svg"
+        alt="logo image"
+      />
+    </header>
 
-      </header>
-
-       <main class="auth_main sign_up_main">
-        <div class="signup_main_content">
-          <div class="auth_title">
-            <a href="index.html"><img src="./assets/img" alt=""></a>
+    <main class="auth_main sign_up_main">
+      <div class="signup_main_content">
+        <div class="auth_title">
+          <div class="signup_header">
+            <a href="index.html"
+              ><img class="arrow_icon" src="./assets/img/arrow-left-line.svg" alt="arrow left icon"
+            /></a>
             <h1>Sign up</h1>
-            <div class="underline"></div>
           </div>
-          <form class="signup_in_form">
-             <input
-              id="auth_input_name"
-              class="icon-input"
-              type="text"
-              placeholder="Name"
-              required
-            />
-            <input
-              id="auth_input_mail"
-              class="icon-input"
-              type="email"
-              placeholder="Email"
-              required
-            />
-            <input
-              id="auth_password_input"
-              class="icon-input"
-              type="password"
-              placeholder="Password"
-              required
-            />
-             <input
-              id="auth_password_confirmation_input"
-              class="icon-input"
-              type="password"
-              placeholder="Confirm Password"
-              required
-            />
-            
-            <div class="auth_btns">
-              <button class="auth_btn" onclick="signup()">Sign up</button>
-            </div>
-          </form>
+        <div class="underline"></div>
         </div>
-      </main>
-      <!-- Footer -->
-      <footer class="auth_footer">
-        <a class="auth_link" href="">Privacy Policy</a>
-        <a class="auth_link" href="">Legal notice</a>
-      </footer>
-
-    
-</body>
+        <form class="signup_in_form">
+          <input
+            id="auth_input_name"
+            class="icon-input"
+            type="text"
+            placeholder="Name"
+            required
+          />
+          <input
+            id="auth_input_mail"
+            class="icon-input"
+            type="email"
+            placeholder="Email"
+            required
+          />
+          <input
+            id="auth_password_input"
+            class="icon-input"
+            type="password"
+            placeholder="Password"
+            required
+          />
+          <input
+            id="auth_password_confirmation_input"
+            class="icon-input"
+            type="password"
+            placeholder="Confirm Password"
+            required
+          />
+          <label class="checkbox-row">
+            <input type="checkbox" />
+            <span class="checkbox_text"
+              >I accept the
+              <a class="checkbox_link" href="">Privacy policy</a></span
+            >
+          </label>
+          <div class="auth_btns">
+            <button class="auth_btn" onclick="signup()">Sign up</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="auth_footer">
+      <a class="auth_link" href="">Privacy Policy</a>
+      <a class="auth_link" href="">Legal notice</a>
+    </footer>
+  </body>
 </html>
