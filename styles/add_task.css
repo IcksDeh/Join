@@ -1,8 +1,8 @@
 /* ---------- FORM AREA ---------- */
 
 .add_task_main_content {
-    padding-top: 80px;
-    padding-left: 80px;
+    padding-top: 100px;
+    padding-left: 100px;
     width: 90%;
 }
 
@@ -83,8 +83,8 @@ sup {
 }
 
 #due-date {
-  background: url("../assets/img/event.svg") no-repeat right 8px center;
-  background-color: white;
+    background: url("../assets/img/event.svg") no-repeat right 8px center;
+    background-color: white;
 }
 
 /* ---------- PRIORITY BOTTON AREA ---------- */
@@ -93,77 +93,70 @@ sup {
     display: flex;
     width: 100%;
     margin-bottom: 24px;
+    gap: 8px;
 }
 
-.urgent_btn {
+.urgent_btn_default,
+.medium_btn_default,
+.low_btn_default {
+    flex: 1;
     background-color: white;
     color: #000000;
     border: none;
     border-radius: 8px;
-    width: 35%;
     height: 48px;
     font-size: 20px;
     font-weight: 400;
     cursor: pointer;
-    margin-right: 16px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 8px;
 }
 
-.urgent_btn:hover {
+.urgent_btn_default:hover,
+.medium_btn_default:hover,
+.low_btn_default:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.urgent_btn_filled {
+    flex: 1;
     background-color: #FF3D00;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
     color: white;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.medium_btn {
-    background-color: white;
-    color: #000000;
     border: none;
     border-radius: 8px;
-    width: 35%;
     height: 48px;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 600;
     cursor: pointer;
-    margin-right: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    gap: 8px;
 }
 
-.medium_btn:hover {
+.medium_btn_filled {
+    flex: 1;
     background-color: #FFA800;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
     color: white;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.low_btn {
-    background-color: white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    color: #000000;
     border: none;
     border-radius: 8px;
-    width: 35%;
     height: 48px;
     font-size: 20px;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.low_btn:hover {
-    background-color: #7Ae229;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
-    color: white;
     font-weight: 600;
     cursor: pointer;
+    gap: 8px;
+}
+
+.low_btn_filled {
+    flex: 1;
+    background-color: #7Ae229;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    height: 48px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    gap: 8px;
 }
 
 /* ---------- BOTTOM AREA ---------- */

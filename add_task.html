@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./styles/add_task.css" />
     <script src="./templates/sidebar_navbar_template.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="./assets/scripts/add_task.js" defer></script>
 
   </head>
   <body onload="init()">
@@ -25,7 +26,7 @@
             <nav class="nav_bar" id = "id_navbar">
             </nav>
 
-            <main class="add_task_main_content">
+            <main class="add_task_main_content content_wrapper">
                 <div>
                     <h1>Add Task</h1>
                 </div>
@@ -38,8 +39,8 @@
                         <label for="description" class="label_text">Description</label><br>
                         <textarea class="add_task_description" id="description" placeholder="Enter a description"></textarea><br>
 
-                        <label for="due-date" class="label_text">Due date<sup>*</sup></label><br>
-                        <input type="text" id="due-date" class="add_task_input" placeholder="dd/mm/yyyy"><br>
+                        <label for="due_date" class="label_text">Due date<sup>*</sup></label><br>
+                        <input type="text" id="due_date" class="add_task_input" placeholder="dd/mm/yyyy"><br>
                     </div>
 
                     <div class="vertical_line"></div>
@@ -47,22 +48,29 @@
                     <div class="formfield_right">
                         <label class="label_text">Priority</label><br>
                         <div class="priority_options">
-                            <button class="btn urgent_btn">Urgent
+                            <button class="urgent_btn_default" id="urgent_btn_default" onclick="setPriority('urgent')">Urgent
                                 <img class="icon default" src="./assets/img/prio_urgent_red.svg" alt="Priority Urgent">
-                                <img class="icon hover" src="./assets/img/prio_urgent_white.svg" alt="Priority Urgent Hover">
                             </button>
-                            <button class="btn medium_btn">Medium
+                            <button class="urgent_btn_filled d_none" id="urgent_btn_filled" onclick="setPriority('urgent')">Urgent
+                                <img class="icon hover" src="./assets/img/prio_urgent_white.svg" alt="Priority Urgent Hover">
+                            </button>                    
+                            <button class="medium_btn_default d_none" id="medium_btn_default" onclick="setPriority('medium')">Medium
                                 <img class="icon default" src="./assets/img/prio_medium_yellow.svg" alt="Priority Medium">
+                            </button>
+                            <button class="medium_btn_filled" id="medium_btn_filled" onclick="setPriority('medium')">Medium
                                 <img class="icon hover" src="./assets/img/prio_medium_white.svg" alt="Priority Medium Hover">
                             </button>
-                            <button class="btn low_btn">Low
+                            <button class="low_btn_default" id="low_btn_default" onclick="setPriority('low')">Low
                                 <img class="icon default" src="./assets/img/prio_low_green.svg" alt="Priority Low">
+                            </button>
+                            <button class="low_btn_filled d_none" id="low_btn_filled" onclick="setPriority('low')">Low
                                 <img class="icon hover" src="./assets/img/prio_low_white.svg" alt="Priority Low Hover">
-                            </button><br>
+                            </button>
+                            <br>
                         </div>
 
-                        <label for="assigned-to" class="label_text">Assigned to</label><br>
-                        <select class="add_task_input" id="assigned-to">
+                        <label for="assigned_to" class="label_text">Assigned to</label><br>
+                        <select class="add_task_input" id="assigned_to">
                             <option>Select contacts to assign</option>
                         </select><br>
 
