@@ -1,8 +1,8 @@
 /* ---------- FORM AREA ---------- */
 
 .add_task_main_content {
-    padding-top: 100px;
-    padding-left: 100px;
+    padding-top: 80px;
+    padding-left: 80px;
     width: 90%;
 }
 
@@ -156,70 +156,77 @@ sup {
     display: flex;
     width: 100%;
     margin-bottom: 24px;
-    gap: 8px;
 }
 
-.urgent_btn_default,
-.medium_btn_default,
-.low_btn_default {
-    flex: 1;
+.urgent_btn {
     background-color: white;
     color: #2a3647;
     border: none;
     border-radius: 8px;
+    width: 35%;
     height: 48px;
     font-size: 20px;
     font-weight: 400;
     cursor: pointer;
+    margin-right: 16px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    justify-content: space-evenly;
 }
 
-.urgent_btn_default:hover,
-.medium_btn_default:hover,
-.low_btn_default:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-}
-
-.urgent_btn_filled {
-    flex: 1;
+.urgent_btn:hover {
     background-color: #FF3D00;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
     color: white;
-    border: none;
-    border-radius: 8px;
-    height: 48px;
-    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
-    gap: 8px;
 }
 
-.medium_btn_filled {
-    flex: 1;
+.medium_btn {
+    background-color: white;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    width: 35%;
+    height: 48px;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.medium_btn:hover {
     background-color: #FFA800;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
     color: white;
-    border: none;
-    border-radius: 8px;
-    height: 48px;
-    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
-    gap: 8px;
 }
 
-.low_btn_filled {
-    flex: 1;
-    background-color: #7Ae229;
-    color: white;
+.low_btn {
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    color: #000000;
     border: none;
     border-radius: 8px;
+    width: 35%;
     height: 48px;
     font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.low_btn:hover {
+    background-color: #7Ae229;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
+    color: white;
     font-weight: 600;
     cursor: pointer;
-    gap: 8px;
 }
 
 /* ---------- BOTTOM AREA ---------- */

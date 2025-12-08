@@ -178,38 +178,6 @@ button {
   background: url("../assets/img/lock_icon.svg") no-repeat right 8px center;
 }
 
-
-/* =========================================
-   SPLASH SCREEN & ANIMATIONS
-========================================= */
-
-#splash {
-  position: fixed;
-  inset: 0;
-  background: rgb(246, 247, 248);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-
-  /* Fade out automatically */
-  animation: hideSplash 0.7s forwards 0.8s;
-}
-
-#splash_logo {
-  width: 274px;
-  height: 335px;
-
-  /* Move & shrink into header position */
-  animation: logoMove 0.7s forwards 0.8s ease;
-}
-
-.auth_opacity {
-  opacity: 0;
-  animation: fadeIn 0.5s forwards 1.1s;
-}
-
-
 /* =========================================
    FOOTER
 ========================================= */
@@ -225,6 +193,41 @@ button {
 }
 
 
+
+
+
+/* =========================================
+   SPLASH SCREEN & ANIMATIONS
+========================================= */
+
+#splash {
+  position: fixed;
+  inset: 0;
+  background: rgb(246, 247, 248);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: hideSplash 0.7s forwards 1.5s; 
+}
+
+#splash_logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 274px;
+  height: 335px;
+  transform: translate(-50%, -50%);
+  animation: logoMove 0.8s forwards 0.8s ease-in-out;
+}
+
+.auth_opacity {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards 1.1s;
+}
+
+
+
 /* =========================================
    KEYFRAMES
 ========================================= */
@@ -232,15 +235,18 @@ button {
   0% {
     width: 274px;
     height: 335px;
-    transform: translate(0, 0);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   100% {
-    width: 100px;
+    width: 100px; 
     height: 120px;
-    transform: translate(-600px, -350px); /* adjust if needed */
+    top: 5%;    
+    left: 5%;   
+    transform: translate(0, 0);
   }
 }
-
 @keyframes hideSplash {
   to {
     opacity: 0;
@@ -248,8 +254,63 @@ button {
   }
 }
 
+
+.auth_opacity {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards 1.5s;
+}
+
 @keyframes fadeIn {
   to {
     opacity: 1;
+  }
+}
+
+
+@media (max-width: 768px) {
+  #splash_logo {
+    width: 200px;
+    height: 245px;
+  }
+
+  @keyframes logoMove {
+    0% {
+      width: 200px;
+      height: 245px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      width: 80px;
+      height: 95px;
+      top: 5%;
+      left: 5%;
+      transform: translate(0, 0);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  #splash_logo {
+    width: 160px;
+    height: 196px;
+  }
+
+  @keyframes logoMove {
+    0% {
+      width: 160px;
+      height: 196px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      width: 60px;
+      height: 72px;
+      top: 5%;
+      left: 5%;
+      transform: translate(0, 0);
+    }
   }
 }
