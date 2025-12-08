@@ -144,10 +144,15 @@ sup {
 
 .dropdown_item {
     padding-left: 20px;
-    padding-top: 8px;
+    padding-top: 10px;
     padding-bottom: 12px;
     cursor: pointer;
     font-size: 20px;
+}
+
+.dropdown_item:hover {
+    background-color: #f3f3f3;
+    border-radius: 10px;
 }
 
 /* ---------- PRIORITY BOTTON AREA ---------- */
