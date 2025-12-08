@@ -58,7 +58,6 @@ sup {
     font-size: 20px;
     font-family: "inter", sans-serif;
     font-weight: 400;
-    padding-left: 10px;
 }
 
 .add_task_description {
@@ -66,7 +65,7 @@ sup {
     border-radius: 8px;
     width: 100%;
     height: 144px;
-    padding-left: 8px;
+    padding-left: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 20px;
@@ -78,13 +77,77 @@ sup {
     font-size: 20px;
     font-family: "inter", sans-serif;
     font-weight: 400;
-    padding-left: 10px;
     padding-top: 8px;
 }
 
-#due-date {
+.styled_input {
+    font-family: "inter", sans-serif;
+    font-size: 20px;           
+    color: #2a3647;            
+    padding-left: 20px;
+}
+
+.styled_input_description {
+    font-family: "inter", sans-serif;
+    font-size: 20px;           
+    color: #2a3647;            
+    padding-left: 20px;
+    padding-top: 8px;
+}
+
+#due_date {
     background: url("../assets/img/event.svg") no-repeat right 8px center;
     background-color: white;
+}
+
+/* ---------- DROPDOWN INPUTS ---------- */
+
+.dropdown {
+    position: relative;
+    width: 100%; 
+}
+ 
+.dropdown_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 12px;
+}
+
+.dropdown_icon {
+    width: 20px;
+    height: 20px;
+    background-image: url("../assets/img/drop_down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity 0.2s ease;
+}
+
+.dropdown_input:hover .dropdown_icon {
+    background-image: url("../assets/img/drop_down_hover.svg");
+}
+
+.dropdown_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    border: none;
+    z-index: 100;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown_item {
+    padding-left: 20px;
+    padding-top: 8px;
+    padding-bottom: 12px;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 /* ---------- PRIORITY BOTTON AREA ---------- */
@@ -101,7 +164,7 @@ sup {
 .low_btn_default {
     flex: 1;
     background-color: white;
-    color: #000000;
+    color: #2a3647;
     border: none;
     border-radius: 8px;
     height: 48px;

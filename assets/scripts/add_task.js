@@ -20,3 +20,20 @@ function setPriority(level) {
 }
 
 setPriority("medium");
+
+
+/**
+ * Toggles the visibility of the category dropdown list.
+ *
+ * @function toggleCategoryList
+ * @returns {void} - This function does not return a value. 
+ */
+function toggleCategoryList() {
+  let list = document.getElementById("dropdown_list");
+    
+  if (list.style.display === "none") {
+    list.style.display = "block";
+  } else {
+    list.style.display = "none";
+  }
+}

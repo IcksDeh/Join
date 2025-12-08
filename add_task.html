@@ -34,13 +34,13 @@
                 <div class="add_task_form_container">
                     <div class="formfield_left">
                         <label for="title" class="label_text">Title<sup>*</sup></label><br>
-                        <input type="text" class="add_task_input" id="title" placeholder="Enter a title"><br>
+                        <input type="text" class="add_task_input styled_input" id="title" placeholder="Enter a title"><br>
 
                         <label for="description" class="label_text">Description</label><br>
-                        <textarea class="add_task_description" id="description" placeholder="Enter a description"></textarea><br>
+                        <textarea class="add_task_description styled_input_description" id="description" placeholder="Enter a description"></textarea><br>
 
                         <label for="due_date" class="label_text">Due date<sup>*</sup></label><br>
-                        <input type="text" id="due_date" class="add_task_input" placeholder="dd/mm/yyyy"><br>
+                        <input type="text" id="due_date" class="add_task_input styled_input" placeholder="dd/mm/yyyy"><br>
                     </div>
 
                     <div class="vertical_line"></div>
@@ -69,18 +69,28 @@
                             <br>
                         </div>
 
-                        <label for="assigned_to" class="label_text">Assigned to</label><br>
-                        <select class="add_task_input" id="assigned_to">
-                            <option>Select contacts to assign</option>
-                        </select><br>
+                        <label class="label_text">Assigned to</label><br>
+                        <div class="dropdown">
+                            <div class="dropdown_input add_task_input styled_input">
+                                <span class="dropdown_text">Select contacts to assign</span>
+                                <div class="dropdown_icon"></div>
+                            </div>
+                        </div>
 
-                        <label for="category" class="label_text">Category<sup>*</sup></label><br>
-                        <select class="add_task_input" id="category">
-                            <option>Select task category</option>
-                        </select><br>
+                        <label class="label_text">Category<sup>*</sup></label><br>
+                        <div class="dropdown">
+                            <div class="dropdown_input add_task_input styled_input">
+                                <span class="dropdown_text">Select task category</span>
+                                <div class="dropdown_icon" onclick="toggleCategoryList()"></div>
+                            </div>
+                            <ul class="dropdown_list" id="dropdown_list" style="display:none;">
+                                <li class="dropdown_item">Technical Task</li>
+                                <li class="dropdown_item">User Story</li>
+                            </ul>
+                        </div>
 
                         <label for="subtasks" class="label_text">Subtasks</label><br>
-                        <input type="text" class="add_task_input" id="subtasks" placeholder="Add new subtask"><br>
+                        <input type="text" class="add_task_input styled_input" id="subtasks" placeholder="Add new subtask"><br>
                     </div>
                 </div>
 
