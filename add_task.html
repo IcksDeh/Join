@@ -4,75 +4,99 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
+    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/standard.css" />
-    <link rel="stylesheet" href="./styles/log_in.css" />
+    <link rel="stylesheet" href="./styles/sidebar.css">
+    <link rel="stylesheet" href="./styles/sidebar_nav_main.css">
+    <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/add_task.css" />
+    <script src="./templates/sidebar_navbar_template.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="./assets/scripts/add_task.js" defer></script>
+
   </head>
-  <body>
-    <main class="add_task_main_content">
-        <div>
-            <h1>Add Task</h1>
-        </div>
+  <body onload="init()">
+    <div class="order_sidebar_main">
+        <aside class="sidebar" id = "id_sidebar">
+        </aside>
 
-        <div class="add_task_form_container">
-            <div class="formfield_left">
-                <label for="title" class="label_text">Title<sup>*</sup></label><br>
-                <input type="text" class="add_task_input" id="title" placeholder="Enter a title"><br>
+        <div class = "nav_main_content">
+            <nav class="nav_bar" id = "id_navbar">
+            </nav>
 
-                <label for="description" class="label_text">Description</label><br>
-                <textarea class="add_task_description" id="description" placeholder="Enter a description"></textarea><br>
-
-                <label for="due-date" class="label_text">Due date<sup>*</sup></label><br>
-                <input type="text" id="due-date" class="add_task_input" placeholder="dd/mm/yyyy"><br>
-            </div>
-
-            <div class="vertical_line"></div>
-
-            <div class="formfield_right">
-                <label class="label_text">Priority</label><br>
-                <div class="priority_options">
-                    <button class="btn urgent_btn">Urgent
-                        <img class="icon default" src="./assets/img/prio_urgent_red.svg" alt="Priority Urgent">
-                        <img class="icon hover" src="./assets/img/prio_urgent_white.svg" alt="Priority Urgent Hover">
-                    </button>
-                    <button class="btn medium_btn">Medium
-                        <img class="icon default" src="./assets/img/prio_medium_yellow.svg" alt="Priority Medium">
-                        <img class="icon hover" src="./assets/img/prio_medium_white.svg" alt="Priority Medium Hover">
-                    </button>
-                    <button class="btn low_btn">Low
-                        <img class="icon default" src="./assets/img/prio_low_green.svg" alt="Priority Low">
-                        <img class="icon hover" src="./assets/img/prio_low_white.svg" alt="Priority Low Hover">
-                    </button><br>
+            <main class="add_task_main_content content_wrapper">
+                <div>
+                    <h1>Add Task</h1>
                 </div>
 
-                <label for="assigned-to" class="label_text">Assigned to</label><br>
-                <select class="add_task_input" id="assigned-to">
-                    <option>Select contacts to assign</option>
-                </select><br>
+                <div class="add_task_form_container">
+                    <div class="formfield_left">
+                        <label for="title" class="label_text">Title<sup>*</sup></label><br>
+                        <input type="text" class="add_task_input" id="title" placeholder="Enter a title"><br>
 
-                <label for="category" class="label_text">Category<sup>*</sup></label><br>
-                <select class="add_task_input" id="category">
-                    <option>Select task category</option>
-                </select><br>
+                        <label for="description" class="label_text">Description</label><br>
+                        <textarea class="add_task_description" id="description" placeholder="Enter a description"></textarea><br>
 
-                <label for="subtasks" class="label_text">Subtasks</label><br>
-                <input type="text" class="add_task_input" id="subtasks" placeholder="Add new subtask"><br>
-            </div>
+                        <label for="due_date" class="label_text">Due date<sup>*</sup></label><br>
+                        <input type="text" id="due_date" class="add_task_input" placeholder="dd/mm/yyyy"><br>
+                    </div>
+
+                    <div class="vertical_line"></div>
+
+                    <div class="formfield_right">
+                        <label class="label_text">Priority</label><br>
+                        <div class="priority_options">
+                            <button class="urgent_btn_default" id="urgent_btn_default" onclick="setPriority('urgent')">Urgent
+                                <img class="icon default" src="./assets/img/prio_urgent_red.svg" alt="Priority Urgent">
+                            </button>
+                            <button class="urgent_btn_filled d_none" id="urgent_btn_filled" onclick="setPriority('urgent')">Urgent
+                                <img class="icon hover" src="./assets/img/prio_urgent_white.svg" alt="Priority Urgent Hover">
+                            </button>                    
+                            <button class="medium_btn_default d_none" id="medium_btn_default" onclick="setPriority('medium')">Medium
+                                <img class="icon default" src="./assets/img/prio_medium_yellow.svg" alt="Priority Medium">
+                            </button>
+                            <button class="medium_btn_filled" id="medium_btn_filled" onclick="setPriority('medium')">Medium
+                                <img class="icon hover" src="./assets/img/prio_medium_white.svg" alt="Priority Medium Hover">
+                            </button>
+                            <button class="low_btn_default" id="low_btn_default" onclick="setPriority('low')">Low
+                                <img class="icon default" src="./assets/img/prio_low_green.svg" alt="Priority Low">
+                            </button>
+                            <button class="low_btn_filled d_none" id="low_btn_filled" onclick="setPriority('low')">Low
+                                <img class="icon hover" src="./assets/img/prio_low_white.svg" alt="Priority Low Hover">
+                            </button>
+                            <br>
+                        </div>
+
+                        <label for="assigned_to" class="label_text">Assigned to</label><br>
+                        <select class="add_task_input" id="assigned_to">
+                            <option>Select contacts to assign</option>
+                        </select><br>
+
+                        <label for="category" class="label_text">Category<sup>*</sup></label><br>
+                        <select class="add_task_input" id="category">
+                            <option>Select task category</option>
+                        </select><br>
+
+                        <label for="subtasks" class="label_text">Subtasks</label><br>
+                        <input type="text" class="add_task_input" id="subtasks" placeholder="Add new subtask"><br>
+                    </div>
+                </div>
+
+                <div class="add_task_bottom_area">
+                    <div>
+                        <p><sup>*</sup>This field is required</p>
+                    </div>
+                    <div class="add_task_btn_area">
+                        <button class="clear_btn">Clear
+                            <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
+                            <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
+                        </button>
+                        <button class="create_task_btn">Create Task<img src="./assets/img/check_white.svg" alt="Create Task"></button>
+                    </div>
+                </div>
+            </main>
         </div>
-
-        <div class="add_task_bottom_area">
-            <div>
-                <p><sup>*</sup>This field is required</p>
-            </div>
-            <div class="add_task_btn_area">
-                <button class="clear_btn">Clear
-                    <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
-                    <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
-                </button>
-                <button class="create_task_btn">Create Task<img src="./assets/img/check_white.svg" alt="Create Task"></button>
-            </div>
-        </div>
-    </main>
+    </div>
   </body>

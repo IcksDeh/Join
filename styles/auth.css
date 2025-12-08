@@ -178,22 +178,6 @@ button {
   background: url("../assets/img/lock_icon.svg") no-repeat right 8px center;
 }
 
-/* =========================================
-   FOOTER
-========================================= */
-
-.auth_footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  position: absolute;
-  bottom: 35px;
-  width: 100%;
-}
-
-
-
 
 
 /* =========================================
