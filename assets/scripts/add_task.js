@@ -4,7 +4,6 @@
  * and then the selected level's button is set to the filled (active) state.
  * 
  * @param {string} level - The priority level to activate ("urgent", "medium", or "low").
- * 
  * @returns {void} - This function does not return a value; it updates the UI only.
  */
 function setPriority(level) {
@@ -36,4 +35,30 @@ function toggleCategoryList() {
   } else {
     list.style.display = "none";
   }
+}
+
+
+/**
+ * Clears specific input fields and resets the priority to "Medium".
+ * After clearing the fields, the function automatically sets the priority button
+ * to "Medium" by calling `setPriority("medium")`.
+ * 
+ * @function clearInputs
+ * @returns {void} - This function does not return a value.
+ */
+function clearInputs() {
+  const inputIds = ["title", "description", "due_date", "subtasks"];
+
+  inputIds.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+        element.value = "";
+      } else {
+        element.innerHTML = "";
+      }
+    }
+  });
+
+  setPriority("medium");
 }
