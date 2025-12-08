@@ -72,3 +72,21 @@
     cursor: pointer;
     
 }
+
+.style_login_icon_text{
+    display: flex;
+    align-items: center;
+    padding-left: 85px;
+    margin-top: 90px;
+    gap: 10px;
+    height: 60px;
+}
+
+.style_login_icon_text:hover{
+    background-color:#2b60b1;
+    cursor: pointer;
+}
+
+.p_text{
+    color: #CDCDCD;
+}

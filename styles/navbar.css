@@ -9,8 +9,19 @@
 .help_user_icon{
     display: flex;
     flex-direction: row;
+    align-items: center;
     margin-right: 50px;
     gap: 20px;
+}
+
+.help_icon{
+    height: 40px ;
+}
+
+.help_icon:hover{
+    background-color: lightgray;
+    cursor: pointer;
+    border-radius: 30px;
 }
 
 .text_navbar{
@@ -31,7 +42,8 @@
 
 .user_circle:hover{
     background-color: lightgrey;
-     cursor: pointer;
+    cursor: pointer;
+    
 }
 
 .order_content_navbar{

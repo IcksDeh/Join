@@ -38,10 +38,13 @@ h3{
     color: #000000;
 }
 
-p,
-tr,
-td,
-ul,
+p{
+    font-family: 'latin_400';
+    margin: 0;
+}
+tr
+td
+ul
 li{
     font-family: "Inter", sans-serif;
     font-weight: 400;
