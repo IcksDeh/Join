@@ -16,8 +16,7 @@ a{
     color: white;
     text-decoration: none;
     color: #CDCDCD;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
+    font-family: 'latin_400';
     font-size: 16px;
 }
 
@@ -25,37 +24,17 @@ a:hover{
     cursor: pointer;
 }
 
-h1{
-    font-size: 60px;
-    font-weight: 700;
-    margin: 0;
-    color: #000000;
-}
-
-h2,
-h3{
-    margin: 0;
-    color: #000000;
-}
-
-p,
-tr,
-td,
-ul,
-li{
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
+p{
+    font-family: 'latin_400';
     color: #2a3647;
     margin: 0;
 }
 
-button {
-  height: 49px;
-  border-radius: 8px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  transition: all 125ms ease-in-out;
+h1 {
+    font-size: 60px;
+    font-weight: 700;
+    margin: 0;
+    color: #000000;
 }
 
 .margin_left{
