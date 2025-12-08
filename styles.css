@@ -16,7 +16,8 @@ a{
     color: white;
     text-decoration: none;
     color: #CDCDCD;
-    font-family: 'latin_400';
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
     font-size: 16px;
 }
 
@@ -24,23 +25,15 @@ a:hover{
     cursor: pointer;
 }
 
-p{
-    font-family: 'latin_400';
-    color: #2a3647;
-    margin: 0;
-}
-
-h1 {
+h1{
     font-size: 60px;
     font-weight: 700;
     margin: 0;
     color: #000000;
 }
 
-
 h2,
 h3{
-
     margin: 0;
     color: #000000;
 }
@@ -64,8 +57,6 @@ button {
   cursor: pointer;
   transition: all 125ms ease-in-out;
 }
-
-
 
 .margin_left{
     margin-left: 100px;
