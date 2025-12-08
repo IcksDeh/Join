@@ -1,5 +1,5 @@
 function init(){
-    // loadSidebar();
+    loadSidebar();
     loadNavbar();
     loadSummary();
 }
