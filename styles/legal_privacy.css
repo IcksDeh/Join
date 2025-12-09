@@ -2,6 +2,10 @@
   margin-bottom: 24px;
 }
 
+.pp_ul {
+  padding-left: 20px;
+}
+
 h3 {
   font-size: 20px;
   margin: 0;
@@ -9,7 +13,7 @@ h3 {
 
 .legal_notice_span {
   color: #29abe2;
-  line-height: 19.2px;
+  line-height: 20px;
 }
 
 .legal_notice_ul {
@@ -22,6 +26,15 @@ h3 {
   padding-top: 8px;
   font-size: 27px;
   font-weight: 700;
+  padding-bottom: 8px;
+}
+
+.legal_notice_h3 {
+  padding-bottom: 20px;
+}
+
+.pp_h4 {
+ padding-bottom: 20px;
 }
 
 
