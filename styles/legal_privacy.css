@@ -13,12 +13,13 @@ h3 {
   line-height: 20px;
 }
 .legal_privacy_h2 {
-  margin: 0 0 16px 0;
+  margin: 0 0 24px 0;
+  padding: 8px 0;
   font-size: 27px;
   font-weight: 700;
 }
 .legal_privacy_h3 {
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 .pp_h4 {
   padding-bottom: 20px;
@@ -39,7 +40,7 @@ h3 {
    Page Titles / Headers
 ------------------------------*/
 .legal_privacy_title {
-  padding: 100px 0 20px;
+  padding: 50px 0 20px;
 }
 .ln_pp_hp_section {
   padding-bottom: 10px;
