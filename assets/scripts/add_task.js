@@ -22,13 +22,30 @@ setPriority("medium");
 
 
 /**
+ * Toggles the visibility of the contacts to assign.
+ *
+ * @function toggleContactsList
+ * @returns {void} - This function does not return a value. 
+ */
+function toggleContactsList() {
+  let list = document.getElementById("contacts_list");
+    
+  if (list.style.display === "none") {
+    list.style.display = "block";
+  } else {
+    list.style.display = "none";
+  }
+}
+
+
+/**
  * Toggles the visibility of the category dropdown list.
  *
  * @function toggleCategoryList
  * @returns {void} - This function does not return a value. 
  */
 function toggleCategoryList() {
-  let list = document.getElementById("dropdown_list");
+  let list = document.getElementById("category_list");
     
   if (list.style.display === "none") {
     list.style.display = "block";
