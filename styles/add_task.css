@@ -167,15 +167,33 @@ sup {
     border-radius: 10px;
 }
 
+/* .dropdown_item_user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+} */
+
+.input_spacer {
+    height: 24px;
+    width: 100%;
+}
+
 .dropdown_item_user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.user_info {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-.input_spacer {
-    height: 24px;
-    width: 100%;
+.checkbox_icon {
+    cursor: pointer;
+    padding-right: 36px;
 }
 
 /* ---------- PRIORITY BOTTON AREA ---------- */
