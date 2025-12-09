@@ -1,0 +1,99 @@
+.dialog_add_contact_container {
+    width: 1100px;
+    height: 520px;
+    background-color: #fff;
+    border-radius: 25px; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
+    position: relative;
+}
+
+.dialog_add_contact_container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100%;
+    background-color: #2a3647;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.add_contact_overlay_wrapper {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    z-index: 2;
+}
+
+#addContactDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%; 
+    transform: translate(calc(100vw + 50%), -50%);  
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    border: none;
+}
+
+#addContactDialog[open] {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.add_contact_left_container {
+    width: 400px;
+    height: 500px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 50px;
+}
+
+.add_contact_right_container {
+    margin-left: 80px;
+}
+
+.right_container_wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo_overlay {
+    width: 50px;
+    margin-bottom: 16px;
+}
+
+.headline_overlay {
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.subhead_overlay {
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.hr_overlay {
+    border: none;           
+    height: 3px;
+    background-color: #29abe2;
+    margin: 16px 0;
+    width: 80px;
+}
