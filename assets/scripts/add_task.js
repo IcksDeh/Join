@@ -79,3 +79,18 @@ function clearInputs() {
 
   setPriority("medium");
 }
+
+
+/**
+ * Opens the "Add Task" dialog if it is not already open.
+ * 
+ * @function openAddTaskDialog
+ * @returns {void} - This function does not return a value.
+ */
+function openAddTaskDialog() {
+  const dialog = document.getElementById('addTaskDialog');
+    
+  if (!dialog.open) {
+    dialog.showModal();
+  }
+}

@@ -1,0 +1,33 @@
+.dialog_add_task_container {
+    width: 1000px;
+    height: 800px;
+    background-color: rgb(246, 247, 248);
+    border-radius: 25px; 
+    border: 1px solid #e2e2e2;
+    padding: 50px;      
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.add_task_overlay_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+#addTaskDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%; 
+    transform: translate(calc(100vw + 50%), -50%);  
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    border: none;
+}
+
+#addTaskDialog[open] {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
