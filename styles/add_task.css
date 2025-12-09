@@ -154,6 +154,18 @@ sup {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+.dropdown_list_contacts {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-height: 190px;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
 .dropdown_item {
     padding-left: 20px;
     padding-top: 10px;
@@ -167,21 +179,15 @@ sup {
     border-radius: 10px;
 }
 
-/* .dropdown_item_user {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-} */
-
-.input_spacer {
-    height: 24px;
-    width: 100%;
-}
-
 .dropdown_item_user {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+.input_spacer {
+    height: 24px;
     width: 100%;
 }
 
@@ -194,6 +200,30 @@ sup {
 .checkbox_icon {
     cursor: pointer;
     padding-right: 36px;
+}
+
+.checkbox_icon:hover {
+    content: url("../assets/img/checkbox_unchecked_hover.svg");
+}
+
+/* ---------- SCROLL BAR ---------- */
+
+.dropdown_list_contacts::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dropdown_list_contacts::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+.dropdown_list_contacts::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.dropdown_list_contacts::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
 }
 
 /* ---------- PRIORITY BOTTON AREA ---------- */

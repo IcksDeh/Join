@@ -3,5 +3,5 @@ function goToSignup() {
 }
 
 function guestLogin() {
-   window.location.href="summary.html";
+  window.location.href="summary.html";
 }
