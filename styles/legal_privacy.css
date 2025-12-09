@@ -1,62 +1,34 @@
-.legal_notice_p {
-  margin-bottom: 24px;
-}
-
-h3 {
-  font-size: 20px;
-  margin: 0;
-}
-
-.legal_notice_span {
-  color: #29abe2;
-  line-height: 19.2px;
-}
-
-.legal_notice_ul {
-  padding-left: 24px;
-  margin-bottom: 24px;
-}
-
-.legal_notice_h2 {
+/* -----------------------------
+   Text & Typography
+------------------------------*/
+.legal_privacy_p { margin-bottom: 24px; }
+h3 { font-size: 20px; margin: 0; }
+.legal_notice_span { color: #29abe2; line-height: 20px; }
+.legal_privacy_h2 {
   margin: 0 0 24px 0;
-  padding-top: 8px;
+  padding: 8px 0;
   font-size: 27px;
   font-weight: 700;
 }
+.legal_privacy_h3 { padding-bottom: 20px; }
+.pp_h4 { padding-bottom: 20px; }
 
+/* -----------------------------
+   Lists
+------------------------------*/
+.pp_ul { padding-left: 20px; }
+.legal_notice_ul { padding-left: 24px; margin-bottom: 24px; }
 
+/* -----------------------------
+   Page Titles / Headers
+------------------------------*/
+.legal_privacy_title { padding: 50px 0 20px; }
+.ln_pp_hp_section { padding-bottom: 10px; background-color: #f6f7f8; }
+.ln_pp_hp_content { max-width: 1014px; padding: 206px 97px 0 328px; cursor: default; }
+.ln_pp_hp_headline { height: 73px; display: flex; align-items: center; justify-content: space-between; padding-bottom: 32px; }
 
-.legal_notice_title {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-.nav_main_content {
-    height: 100vh;      
-    overflow-y: auto;   
-    overflow-x: hidden; 
-}
-
-.ln_pp_hp_section {
-  padding-bottom: 10px;
-  background-color: #f6f7f8;
-}
-
-.ln_pp_hp_content {
-  max-width: 1014px;
-  padding: 206px 97px 0 328px;
-  cursor: default;
-}
-
-.ln_pp_hp_headline {
-  height: 73px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 32px;
-}
-
-.pp_content {
-  max-width: 950px;
-  padding-bottom: 50px;
-}
+/* -----------------------------
+   Page Layout / Containers
+------------------------------*/
+.nav_main_content { height: 100vh; overflow-y: auto; overflow-x: hidden; }
+.pp_content { max-width: 950px; padding-bottom: 50px; }
