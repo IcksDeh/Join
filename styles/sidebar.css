@@ -2,7 +2,7 @@
 .sidebar{
     background-color: #2a3647;
     width: 300px;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -43,8 +43,7 @@
 .sidebar_privacy_legal{
     display: flex;
     flex-direction: column;
-    margin-top: auto;
-    margin-bottom: 60px;
+    margin-top: 550px;
 }
 
 .order_selection_privacy_legal_sidebar{
