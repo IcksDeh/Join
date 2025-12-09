@@ -47,8 +47,10 @@
                       <p class="text_section">To do</p>
                       <img src="./assets/img/add_square_default.svg" alt="">
                     </div>
-                    <div>
-                      <p>No tasks in ToDo</p>
+                    <div class="width_section">
+                      <div class="no_task_availabe">
+                        <p>No tasks in ToDo</p>
+                      </div>
                     </div>
                   </div>
 
@@ -57,9 +59,25 @@
                       <p class="text_section">In Progress</p>
                       <img src="./assets/img/add_square_default.svg" alt="">
                     </div>
-                    <div>
-                      <p>No tasks in Progress</p>
-                    </div>
+                    <div class="width_section">
+                      <!-- Task_card -->
+                      <div class="style_task_card">
+                        <div class="label_task_card">
+                            <p class="text_label_task_card">User Story</p>
+                        </div>
+                        <p class="style_text_titel_card"> Hier steht der Titel des Tickets in fett gedruckt</p>
+                        <p class="style_text_description_card">Anschließend ist die Description. Maximal 2-zeilig...</p>
+                        <div class="order_progressbar_counter">
+                          <div class="style_progress_bar"></div>
+                          <div class="order_counter_progress">
+                            <p>1</p>
+                            <p>/</p>
+                            <p>2</p>
+                            <p>Subtasks</p>                      
+                          </div>
+                        </div>
+                      </div>
+                    </div>                                   
                   </div>
 
                   <div class="order_elements_in_section">
@@ -67,12 +85,20 @@
                       <p class="text_section">Await Feedback</p>
                       <img src="./assets/img/add_square_default.svg" alt="">
                     </div>
-                    <div>
+                   <div class="width_section">
+                      <div class="no_task_availabe">
                       <p>No tasks in Await Feedback</p>
                     </div>
+                   </div>
+                    
                   </div>
                   <div class="order_elements_in_section">
-                    <p class="text_section">Done</p>          
+                    <p class="text_section">Done</p>
+                    <div class="width_section">
+                      <div class="no_task_availabe">
+                      <p>No tasks in Done</p>
+                      </div>  
+                    </div>                           
                   </div>
             </section>
             </main>

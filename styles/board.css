@@ -79,11 +79,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .order_elements_in_section{
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: flex-start;
     flex-direction: column;
     width: 25%;
@@ -91,4 +92,75 @@
 
 .text_section{
     font-weight: bold;
+}
+.width_section{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.no_task_availabe{
+    background-color: #d7d6d6;
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4f4f4fe3;
+    border: 2px dashed #4f4f4fe3;
+}
+
+.style_task_card{
+    background-color: white;
+    height: 200px;
+    border-radius: 20px ;
+}
+
+.label_task_card{
+    background-color: #0038ff;
+    height: 20px;
+    border-radius: 10px;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+.text_label_task_card{
+    color: white;
+    padding: 5px;
+}
+
+.style_text_titel_card{
+    font-weight: bold;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.style_text_description_card{
+    color: #a8a8a8;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.order_progressbar_counter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+}
+
+.style_progress_bar{
+    width: 150px;
+    height: 5px;
+    background-color: #4589ff;
+    border-radius: 20px;
+}
+
+.order_counter_progress{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
