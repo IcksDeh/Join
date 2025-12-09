@@ -46,14 +46,6 @@
   gap: 24px;
 }
 
-#auth_input_name {
-  background: url("../assets/img/person_icon.svg") no-repeat right 8px center;
-}
-
-#auth_password_confirmation_input {
-  background: url("../assets/img/lock_icon.svg") no-repeat right 8px center;
-}
-
 /* =========================================
    SIGNUP – CHECKBOX
 ========================================= */
@@ -65,3 +57,9 @@
   color: #29abe2;
 }
 
+
+.auth_btn:disabled {
+  background-color: #999; /* πιο θαμπό γκρι */
+  cursor: not-allowed;
+  color: #eee;
+}

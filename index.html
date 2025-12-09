@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="./assets/img/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/auth.css" />
@@ -37,23 +37,47 @@
             <div class="underline"></div>
           </div>
           <form class="auth_form">
-            <input
-              id="auth_input_mail"
-              class="icon-input"
-              type="email"
-              placeholder="Email"
-              required
-            />
-            <input
-              id="auth_password_input"
-              class="icon-input"
-              type="password"
-              placeholder="Password"
-              required
-            />
+            <!-- Email input wrapper -->
+            <div class="input-wrapper">
+              <input
+                id="auth_input_mail"
+                class="icon-input"
+                type="email"
+                placeholder="Email"
+                required
+              />
+              <img
+                class="input-icon"
+                src="./assets/img/mail_icon.svg"
+                alt="Email Icon"
+              />
+            </div>
+
+            <!-- Password input wrapper -->
+            <div class="input-wrapper">
+              <input
+                id="auth_password_input"
+                class="icon-input"
+                type="password"
+                placeholder="Password"
+                required
+              />
+              <img
+                id="toggle_password_icon"
+                class="input-icon toggle-password"
+                src="./assets/img/lock_icon.svg"
+                alt="Toggle Password Visibility"
+              />
+            </div>
             <div class="auth_btns">
-              <button class="auth_btn" onclick="login()">Login</button>
-              <button class="guest_log_in_btn" onclick="guestLogin()">
+              <button class="auth_btn" type="button" onclick="login()">
+                Login
+              </button>
+              <button
+                class="guest_log_in_btn"
+                type="button"
+                onclick="guestLogin()"
+              >
                 Guest Log in
               </button>
             </div>
