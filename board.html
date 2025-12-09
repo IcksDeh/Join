@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./styles/fonts.css">
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/summary.css">
+    <link rel="stylesheet" href="./styles/board.css">
     <script src="./script.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
     <script src="./templates/summary_content.js" defer></script>
@@ -24,8 +25,56 @@
             <nav class="nav_bar" id = "id_navbar">
             </nav>
 
-            <main>
-                Hier steht der Inhalt
+            <main class="margin_left margin_top content_wrapper_sidebar">
+              <section class="order_header_board">
+                <h1>Board</h1>
+                <div class="order_header_right_side">
+                  
+                  <div class="style_searchbar_board">
+                    <input class="style_input_searchbar" type="text" placeholder="Find Task">
+                    <div class="border_searchbar"></div>
+                    <div class="style_search_icon_box">
+                      <img class="style_search_icon" src="./assets/img/search.svg" alt="">
+                    </div>
+                  </div>
+                  <button class="btn_add_task_board">Add Task <img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
+                </div>
+              </section> 
+              <section class="order_board_sections">
+                
+                  <div class="order_elements_in_section">
+                    <div class="order_elements_in_section_header">
+                      <p class="text_section">To do</p>
+                      <img src="./assets/img/add_square_default.svg" alt="">
+                    </div>
+                    <div>
+                      <p>No tasks in ToDo</p>
+                    </div>
+                  </div>
+
+                  <div class="order_elements_in_section">
+                    <div class="order_elements_in_section_header">
+                      <p class="text_section">In Progress</p>
+                      <img src="./assets/img/add_square_default.svg" alt="">
+                    </div>
+                    <div>
+                      <p>No tasks in Progress</p>
+                    </div>
+                  </div>
+
+                  <div class="order_elements_in_section">
+                    <div class="order_elements_in_section_header">
+                      <p class="text_section">Await Feedback</p>
+                      <img src="./assets/img/add_square_default.svg" alt="">
+                    </div>
+                    <div>
+                      <p>No tasks in Await Feedback</p>
+                    </div>
+                  </div>
+                  <div class="order_elements_in_section">
+                    <p class="text_section">Done</p>          
+                  </div>
+            </section>
             </main>
         </div>
     </div>

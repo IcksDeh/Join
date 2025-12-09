@@ -1,0 +1,94 @@
+.order_header_board{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order_header_right_side{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.style_searchbar_board{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 230px;
+    border-radius: 10px;
+    border: 1px solid #ABABAB;
+    background-color: white;
+}
+
+.style_search_icon_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.style_input_searchbar{
+    border: none;
+    outline: none;
+    height: 38px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 82%;
+    font-family: 'latin_400';
+}
+
+.style_search_icon{
+    height: 32px;
+    background-color: white;
+    margin: auto;
+    
+}
+
+.border_searchbar{
+    border: 0.5px solid rgb(240, 238, 238);
+    height: 32px;
+}
+
+.btn_add_task_board{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    height: 40px;
+    background-color: #2a3647;
+    color: white;
+    font-family: 'latin_400';
+    width: 120px;
+}
+
+.icon_add_btn{
+    height: 24px;
+
+}
+
+.order_board_sections{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.order_elements_in_section_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order_elements_in_section{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 25%;
+}
+
+.text_section{
+    font-weight: bold;
+}
