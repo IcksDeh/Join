@@ -37,6 +37,7 @@ h2{
     font-size: 27px;
     font-weight: bold;
 }
+
 h3{
     margin: 0;
     color: #000000;
@@ -46,13 +47,16 @@ p{
     font-family: 'latin_400';
     margin: 0;
 }
-tr {
+
+tr{
     width: fit-content;
 }
+
 td{
     width: fit-content;
     font-family: 'latin_400';
 }
+
 ul
 li{
     font-family: "Inter", sans-serif;
@@ -61,7 +65,7 @@ li{
     margin: 0;
 }
 
-button {
+button{
   height: 49px;
   border-radius: 8px;
   font-weight: 700;

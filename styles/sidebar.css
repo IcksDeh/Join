@@ -30,7 +30,7 @@
 }
 
 .order_icon_selection:hover{
-    background-color: #2b60b1;
+    background-color: #2e3d57;
     cursor: pointer;
 }
 
@@ -59,7 +59,6 @@
     gap: 10px;
 }
 
-
 .design_privacy_legal{
     padding-left: 90px;
     height: 60px;
@@ -69,9 +68,9 @@
 }
 
 .design_privacy_legal:hover{
-    background-color: #2b60b1;
+    color: #29abe2;
     cursor: pointer;
-    
+    font-family: 'latin_600';
 }
 
 .style_login_icon_text{
@@ -84,7 +83,7 @@
 }
 
 .style_login_icon_text:hover{
-    background-color:#2b60b1;
+    background-color: #29abe2;
     cursor: pointer;
 }
 
