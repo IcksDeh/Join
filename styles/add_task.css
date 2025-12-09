@@ -352,8 +352,7 @@ sup {
 }
 
 .create_task_btn {
-    font-weight: 600;
-    font-family: "inter";
+    font-family: "latin_400", sans-serif;
     padding: 8px 18px;
     color: white;
     background-color: #2a3647;
