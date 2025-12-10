@@ -37,7 +37,7 @@
           </div>
           <div class="underline"></div>
         </div>
-        <form class="signup_in_form">
+        <form class="signup_in_form" onsubmit="signup(event)">
           <div class="input-wrapper">
             <input
               id="auth_input_name"
@@ -110,7 +110,7 @@
             >
           </label>
           <div class="auth_btns">
-             <button id="signup_btn" class="auth_btn" onclick="signup()" disabled>Sign up</button>
+             <button id="signup_btn" class="auth_btn" type="submit" disabled>Sign up</button>
           </div>
         </form>
       </div>
@@ -122,5 +122,6 @@
     </footer>
 
     <script src="./assets/scripts/login.js"></script>
+    <script src="./assets/scripts/signup.js"></script>
   </body>
 </html>
