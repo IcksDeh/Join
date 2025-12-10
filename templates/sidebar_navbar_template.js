@@ -57,13 +57,3 @@ function navbarTemplate(){
     `
 }
 
-function navbarLogOffTemplate(){
-    return `
-        <div class = "content_wrapper order_content_navbar">    
-            <p class="text_navbar">Kanban Projekt Management Tool</p>
-            <div class="help_user_icon">
-                <a href="./help.html"><img class="help_icon" src="./assets/img/help.svg" alt="Help"></a>
-            </div>
-        </div>
-    `
-}
