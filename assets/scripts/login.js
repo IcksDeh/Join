@@ -1,3 +1,6 @@
+// ----------------------
+// Navigation Functions
+// ----------------------
 function goToSignup() {
   window.location.href = "sign_up.html";
 }
@@ -6,21 +9,27 @@ function guestLogin() {
   window.location.href = "summary.html";
 }
 
-// Icon paths
+// ----------------------
+// Password Icon Paths
+// ----------------------
 const lockIconPath = './assets/img/lock_icon.svg';
 const noVisibilityIconPath = './assets/img/visibility_off.svg';
 const visibilityIconPath = './assets/img/visibility.svg';
 
+// ----------------------
+// Generic Password Toggle Function
+// ----------------------
 /**
- * Generic function to handle password visibility toggles
- * @param {string} passwordId - The ID of the password input field
- * @param {string} toggleIconId - The ID of the toggle icon
+ * Toggle password visibility for input fields
+ * @param {string} passwordId - ID of the password input
+ * @param {string} toggleIconId - ID of the icon that toggles visibility
  */
 function setupPasswordToggle(passwordId, toggleIconId) {
   const passwordInput = document.getElementById(passwordId);
   const toggleIcon = document.getElementById(toggleIconId);
 
-  if (!passwordInput || !toggleIcon) return; // element not present on this page
+  // Exit if elements are not found (prevents errors on other pages)
+  if (!passwordInput || !toggleIcon) return;
 
   let hasTyped = false;
 
@@ -49,7 +58,7 @@ function setupPasswordToggle(passwordId, toggleIconId) {
     }
   });
 
-  // Toggle password visibility when icon is clicked
+  // Toggle visibility when icon is clicked
   toggleIcon.addEventListener('click', (event) => {
     event.preventDefault();
     if (passwordInput.value.length > 0) {
@@ -58,24 +67,26 @@ function setupPasswordToggle(passwordId, toggleIconId) {
   });
 }
 
-// Initialize toggles for all password fields
+// Initialize password toggles
 setupPasswordToggle('auth_password_input', 'toggle_password_icon');
 setupPasswordToggle('auth_confirm_password_input', 'toggle_confirm_password_icon');
 
-// Enable or disable signup button based on checkbox
+// ----------------------
+// Checkbox & Signup Button
+// ----------------------
 const checkbox = document.querySelector('.checkbox-row input[type="checkbox"]');
 const signupBtn = document.getElementById('signup_btn');
 
 if (checkbox && signupBtn) {
+  // Enable/disable signup button based on checkbox state
   checkbox.addEventListener('change', () => {
     signupBtn.disabled = !checkbox.checked;
 
-    // Change button color based on checkbox state
     if (checkbox.checked) {
-      signupBtn.style.backgroundColor = '#2a3647'; // normal color
+      signupBtn.style.backgroundColor = '#2a3647';
       signupBtn.style.color = 'white';
     } else {
-      signupBtn.style.backgroundColor = '#999'; // faded color
+      signupBtn.style.backgroundColor = '#999';
       signupBtn.style.color = '#eee';
     }
   });
@@ -88,3 +99,56 @@ if (checkbox && signupBtn) {
   }
 }
 
+// ----------------------
+// Password & Confirm Password Match Validation
+// ----------------------
+const passwordInput = document.getElementById('auth_password_input');
+const confirmPasswordInput = document.getElementById('auth_confirm_password_input');
+const confirmPasswordError = document.getElementById('confirm_password_error');
+
+// Only execute this block if all elements exist (prevents errors on other pages)
+if (passwordInput && confirmPasswordInput && confirmPasswordError) {
+  let confirmPasswordTouched = false;
+
+  // When typing in confirm password, hide error
+  confirmPasswordInput.addEventListener('input', () => {
+    confirmPasswordTouched = true;
+    confirmPasswordInput.classList.remove('error');
+    confirmPasswordError.style.display = 'none';
+  });
+
+  // Check passwords on blur (when user leaves the field)
+  confirmPasswordInput.addEventListener('blur', () => {
+    if (confirmPasswordTouched) {
+      checkPasswordsMatch();
+    }
+  });
+
+  // Also check passwords if main password changes
+  passwordInput.addEventListener('input', () => {
+    if (confirmPasswordTouched) {
+      checkPasswordsMatch();
+    }
+  });
+
+  // Function to check if passwords match
+  function checkPasswordsMatch() {
+    if (confirmPasswordInput.value.length === 0) {
+      confirmPasswordInput.classList.remove('error');
+      confirmPasswordError.style.display = 'none';
+      signupBtn.disabled = !checkbox.checked;
+      return;
+    }
+
+    if (passwordInput.value !== confirmPasswordInput.value) {
+      confirmPasswordInput.classList.add('error');
+      confirmPasswordError.style.display = 'block';
+      confirmPasswordError.textContent = "Your passwords don't match. Please try again.";
+      signupBtn.disabled = true;
+    } else {
+      confirmPasswordInput.classList.remove('error');
+      confirmPasswordError.style.display = 'none';
+      signupBtn.disabled = !checkbox.checked;
+    }
+  }
+}

@@ -193,7 +193,18 @@ button {
 }
 
 .input-error {
-  border: 2px solid #ff7a00 !important; /* Χρησιμοποιώ το !important για να παρακάμψω το default focus/hover */
+  border: 2px solid red !important; 
+}
+
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: none; 
+}
+
+.input-wrapper input.error {
+  border: 1px solid red;
 }
 
 /* =========================================
