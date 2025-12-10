@@ -28,7 +28,6 @@ function setupPasswordToggle(passwordId, toggleIconId) {
   const passwordInput = document.getElementById(passwordId);
   const toggleIcon = document.getElementById(toggleIconId);
 
-  // Exit if elements are not found (prevents errors on other pages)
   if (!passwordInput || !toggleIcon) return;
 
   let hasTyped = false;
@@ -43,7 +42,6 @@ function setupPasswordToggle(passwordId, toggleIconId) {
     }
   }
 
-  // Update icon and state based on input
   passwordInput.addEventListener('input', () => {
     if (passwordInput.value.length > 0) {
       if (!hasTyped) {
@@ -56,9 +54,9 @@ function setupPasswordToggle(passwordId, toggleIconId) {
       toggleIcon.src = lockIconPath;
       passwordInput.type = 'password';
     }
+    updateSignupButtonState(); // Έλεγχος για κουμπί
   });
 
-  // Toggle visibility when icon is clicked
   toggleIcon.addEventListener('click', (event) => {
     event.preventDefault();
     if (passwordInput.value.length > 0) {
@@ -72,71 +70,43 @@ setupPasswordToggle('auth_password_input', 'toggle_password_icon');
 setupPasswordToggle('auth_confirm_password_input', 'toggle_confirm_password_icon');
 
 // ----------------------
-// Checkbox & Signup Button
+// Elements
 // ----------------------
 const checkbox = document.querySelector('.checkbox-row input[type="checkbox"]');
 const signupBtn = document.getElementById('signup_btn');
 
-if (checkbox && signupBtn) {
-  // Enable/disable signup button based on checkbox state
-  checkbox.addEventListener('change', () => {
-    signupBtn.disabled = !checkbox.checked;
-
-    if (checkbox.checked) {
-      signupBtn.style.backgroundColor = '#2a3647';
-      signupBtn.style.color = 'white';
-    } else {
-      signupBtn.style.backgroundColor = '#999';
-      signupBtn.style.color = '#eee';
-    }
-  });
-
-  // Initialize button state on page load
-  signupBtn.disabled = !checkbox.checked;
-  if (!checkbox.checked) {
-    signupBtn.style.backgroundColor = '#999';
-    signupBtn.style.color = '#eee';
-  }
-}
-
-// ----------------------
-// Password & Confirm Password Match Validation
-// ----------------------
+const nameInput = document.getElementById('auth_input_name');
+const emailInput = document.getElementById('auth_input_mail');
 const passwordInput = document.getElementById('auth_password_input');
 const confirmPasswordInput = document.getElementById('auth_confirm_password_input');
 const confirmPasswordError = document.getElementById('confirm_password_error');
 
-// Only execute this block if all elements exist (prevents errors on other pages)
-if (passwordInput && confirmPasswordInput && confirmPasswordError) {
-  let confirmPasswordTouched = false;
+// ----------------------
+// Password Match Validation
+// ----------------------
+let confirmPasswordTouched = false;
 
-  // When typing in confirm password, hide error
+if (passwordInput && confirmPasswordInput && confirmPasswordError) {
   confirmPasswordInput.addEventListener('input', () => {
     confirmPasswordTouched = true;
     confirmPasswordInput.classList.remove('error');
     confirmPasswordError.style.display = 'none';
+    updateSignupButtonState();
   });
 
-  // Check passwords on blur (when user leaves the field)
   confirmPasswordInput.addEventListener('blur', () => {
-    if (confirmPasswordTouched) {
-      checkPasswordsMatch();
-    }
+    if (confirmPasswordTouched) checkPasswordsMatch();
   });
 
-  // Also check passwords if main password changes
   passwordInput.addEventListener('input', () => {
-    if (confirmPasswordTouched) {
-      checkPasswordsMatch();
-    }
+    if (confirmPasswordTouched) checkPasswordsMatch();
   });
 
-  // Function to check if passwords match
   function checkPasswordsMatch() {
     if (confirmPasswordInput.value.length === 0) {
       confirmPasswordInput.classList.remove('error');
       confirmPasswordError.style.display = 'none';
-      signupBtn.disabled = !checkbox.checked;
+      updateSignupButtonState();
       return;
     }
 
@@ -144,11 +114,47 @@ if (passwordInput && confirmPasswordInput && confirmPasswordError) {
       confirmPasswordInput.classList.add('error');
       confirmPasswordError.style.display = 'block';
       confirmPasswordError.textContent = "Your passwords don't match. Please try again.";
-      signupBtn.disabled = true;
     } else {
       confirmPasswordInput.classList.remove('error');
       confirmPasswordError.style.display = 'none';
-      signupBtn.disabled = !checkbox.checked;
+    }
+    updateSignupButtonState();
+  }
+}
+
+// ----------------------
+// Checkbox listener
+// ----------------------
+if (checkbox) {
+  checkbox.addEventListener('change', updateSignupButtonState);
+}
+
+// ----------------------
+// Enable/Disable Sign Up Button
+// ----------------------
+function updateSignupButtonState() {
+  const isNameValid = nameInput && nameInput.value.trim() !== '';
+  const isEmailValid = emailInput && emailInput.validity.valid;
+  const isPasswordMatch = passwordInput && confirmPasswordInput &&
+                          passwordInput.value === confirmPasswordInput.value &&
+                          passwordInput.value.length > 0;
+  const isCheckboxChecked = checkbox && checkbox.checked;
+
+  const allValid = isNameValid && isEmailValid && isPasswordMatch && isCheckboxChecked;
+
+  if (signupBtn) {
+    signupBtn.disabled = !allValid;
+    if (allValid) {
+      signupBtn.style.backgroundColor = '#2a3647';
+      signupBtn.style.color = 'white';
+    } else {
+      signupBtn.style.backgroundColor = '#999';
+      signupBtn.style.color = '#eee';
     }
   }
 }
+
+// ----------------------
+// Initialize state on load
+// ----------------------
+updateSignupButtonState();
