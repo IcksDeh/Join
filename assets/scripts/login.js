@@ -88,7 +88,3 @@ if (checkbox && signupBtn) {
   }
 }
 
-function login_oninit() {
-  loadLogOffSidebar();
-  loadLogOffNavbar();
-}

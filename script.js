@@ -28,8 +28,3 @@ function loadLogOffSidebar() {
     sidebar.innerHTML = sidebarLogOffTemplate();
 }
 
-function loadLogOffNavbar(){
-    const navbar = document.getElementById('id_navbar');
-    navbar.innerHTML = "";
-    navbar.innerHTML = navbarLogOffTemplate();
-}
