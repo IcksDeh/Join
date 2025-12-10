@@ -56,7 +56,7 @@ sup {
 .add_task_input::placeholder {
     color: #d1d1d1;
     font-size: 20px;
-    font-family: "inter", sans-serif;
+    font-family: "latin_400", sans-serif;
     font-weight: 400;
 }
 
@@ -74,7 +74,7 @@ sup {
 .add_task_input_dropdown::placeholder {
     color: #d1d1d1;
     font-size: 20px;
-    font-family: "inter", sans-serif;
+    font-family: "latin_400", sans-serif;
     font-weight: 400;
 }
 
@@ -93,20 +93,20 @@ sup {
 .add_task_description::placeholder {
     color: #d1d1d1;
     font-size: 20px;
-    font-family: "inter", sans-serif;
+    font-family: "latin_400", sans-serif;
     font-weight: 400;
     padding-top: 8px;
 }
 
 .styled_input {
-    font-family: "inter", sans-serif;
+    font-family: "latin_400", sans-serif;
     font-size: 20px;           
     color: #2a3647;            
     padding-left: 20px;
 }
 
 .styled_input_description {
-    font-family: "inter", sans-serif;
+    font-family: "latin_400", sans-serif;
     font-size: 20px;           
     color: #2a3647;            
     padding-left: 20px;
@@ -314,7 +314,7 @@ sup {
 
 .clear_btn {
     font-weight: 400;
-    font-family: "inter", sans-serif;
+    font-family: "latin_400", sans-serif;
     padding: 8px 18px;
     color: #2a3647;
     background-color: rgb(246, 247, 248);
@@ -352,7 +352,7 @@ sup {
 }
 
 .create_task_btn {
-    font-family: "latin_400", sans-serif;
+    font-family: "latin_600", sans-serif;
     padding: 8px 18px;
     color: white;
     background-color: #2a3647;

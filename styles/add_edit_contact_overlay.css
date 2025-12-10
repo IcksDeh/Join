@@ -1,0 +1,218 @@
+/* ---------- FORM AREA ---------- */
+
+.dialog_add_contact_container {
+    width: 1100px;
+    height: 520px;
+    background-color: #fff;
+    border-radius: 25px; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
+    position: relative;
+}
+
+.dialog_add_contact_container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100%;
+    background-color: #2a3647;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.add_contact_overlay_wrapper {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    z-index: 2;
+}
+
+#addContactDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%; 
+    transform: translate(calc(100vw + 50%), -50%);  
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    border: none;
+}
+
+#addContactDialog[open] {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+/* ---------- LEFT CONTAINER ---------- */
+
+.add_contact_left_container {
+    width: 400px;
+    height: 500px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 50px;
+}
+
+.logo_overlay {
+    width: 50px;
+    margin-bottom: 16px;
+}
+
+.headline_overlay {
+    color: #fff;
+    font-family: "latin_700", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    /* margin-bottom: 5px; */
+}
+
+.subhead_overlay {
+    color: #fff;
+    font-family: "latin_400", sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.hr_overlay {
+    border: none;           
+    height: 3px;
+    background-color: #29abe2;
+    margin: 22px 0;
+    width: 80px;
+}
+
+/* ---------- RIGHT CONTAINER ---------- */
+
+.add_contact_right_container {
+    margin-left: 80px;
+}
+
+.right_container_wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.close_btn_container {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+}
+
+.close_btn {
+    cursor: pointer;
+}
+
+.close_btn:hover {
+    content: url("../assets/img/x_hover.svg");
+}
+
+/* ---------- INPUT AREA ---------- */
+
+.input_fields_container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact_input {
+    background-color: white;
+    border-radius: 8px;
+    width: 100%;
+    height: 48px;
+    padding-left: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+
+.contact_input::placeholder {
+    color: #d1d1d1;
+    font-size: 20px;
+    font-family: "latin_400", sans-serif;
+    font-weight: 400;
+}
+
+.styled_input {
+    font-family: "latin_400", sans-serif;
+    font-size: 20px;           
+    color: #2a3647;            
+    padding-left: 20px;
+}
+
+/* ---------- BOTTOM BOTTON AREA ---------- */
+
+.contact_btn_area {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.outline_btn {
+    font-weight: 400;
+    font-family: "latin_400", sans-serif;
+    padding: 8px 18px;
+    color: #2a3647;
+    background-color: #fff;
+    font-size: 20px;
+    border: 2px solid #2a3647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.outline_btn .icon {
+    width: 24px;  
+    height: 24px;  
+    object-fit: contain;
+}
+
+.outline_btn img.hover {
+    display: none;
+}
+
+.outline_btn:hover {
+    color: #29abe2;
+    border-color: #29abe2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.outline_btn:hover img.default {
+    display: none;
+}
+
+.outline_btn:hover img.hover {
+    display: inline;
+}
+
+.filled_btn {
+    font-family: "latin_600", sans-serif;
+    padding: 8px 18px;
+    color: white;
+    background-color: #2a3647;
+    font-size: 20px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 6px; 
+}
+
+.filled_btn:hover {
+    color: white;
+    background-color: #29abe2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
