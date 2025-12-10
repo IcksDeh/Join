@@ -54,7 +54,7 @@ function setupPasswordToggle(passwordId, toggleIconId) {
       toggleIcon.src = lockIconPath;
       passwordInput.type = 'password';
     }
-    updateSignupButtonState(); // Έλεγχος για κουμπί
+    updateSignupButtonState(); 
   });
 
   toggleIcon.addEventListener('click', (event) => {
