@@ -38,8 +38,8 @@ function sidebarLogOffTemplate(){
                 <p class="p_text">Log In</p>
             </a>
             <div class="sidebar_privacy_legal">
-                <a class="design_privacy_legal" href="./privacy_policy.html">Privacy Policy</a>
-                <a class="design_privacy_legal" href="./legal_notice.html">Legal Notice</a>
+                <a class="design_privacy_legal" href="./privacy_policy_login.html">Privacy Policy</a>
+                <a class="design_privacy_legal" href="./legal_notice_login.html">Legal Notice</a>
             </div>
         </div>
     `
