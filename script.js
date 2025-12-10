@@ -21,3 +21,15 @@ function loadSummary(){
     summaryContent.innerHTML = "";
     summaryContent.innerHTML = summaryContentTemplate();
 }
+
+function loadLogOffSidebar() {
+    const sidebar = document.getElementById('id_sidebar');
+    sidebar.innerHTML = "";
+    sidebar.innerHTML = sidebarLogOffTemplate();
+}
+
+function loadLogOffNavbar(){
+    const navbar = document.getElementById('id_navbar');
+    navbar.innerHTML = "";
+    navbar.innerHTML = navbarLogOffTemplate();
+}

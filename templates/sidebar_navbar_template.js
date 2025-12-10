@@ -38,8 +38,8 @@ function sidebarLogOffTemplate(){
                 <p class="p_text">Log In</p>
             </a>
             <div class="sidebar_privacy_legal">
-                <a class="design_privacy_legal" href="./privacy_policy.html">Privacy Policy</a>
-                <a class="design_privacy_legal" href="./legal_notice.html">Legal Notice</a>
+                <a class="design_privacy_legal" href="./privacy_policy_login.html">Privacy Policy</a>
+                <a class="design_privacy_legal" href="./legal_notice_login.html">Legal Notice</a>
             </div>
         </div>
     `
@@ -52,6 +52,17 @@ function navbarTemplate(){
             <div class="help_user_icon">
                 <a href="./help.html"><img class="help_icon" src="./assets/img/help.svg" alt="Help"></a>
             <div class="user_circle">AM</div>
+            </div>
+        </div>
+    `
+}
+
+function navbarLogOffTemplate(){
+    return `
+        <div class = "content_wrapper order_content_navbar">    
+            <p class="text_navbar">Kanban Projekt Management Tool</p>
+            <div class="help_user_icon">
+                <a href="./help.html"><img class="help_icon" src="./assets/img/help.svg" alt="Help"></a>
             </div>
         </div>
     `
