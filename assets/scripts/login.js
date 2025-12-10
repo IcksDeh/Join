@@ -2,6 +2,10 @@ function goToSignup() {
   window.location.href = "sign_up.html";
 }
 
+function guestLogin() {
+  window.location.href = "summary.html";
+}
+
 // Icon paths
 const lockIconPath = './assets/img/lock_icon.svg';
 const noVisibilityIconPath = './assets/img/visibility_off.svg';
@@ -82,4 +86,9 @@ if (checkbox && signupBtn) {
     signupBtn.style.backgroundColor = '#999';
     signupBtn.style.color = '#eee';
   }
+}
+
+function login_oninit() {
+  loadLogOffSidebar();
+  loadLogOffNavbar();
 }
