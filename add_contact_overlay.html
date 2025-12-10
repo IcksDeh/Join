@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-        <link rel="stylesheet" href="styles.css" />
-        <link rel="stylesheet" href="./styles/fonts.css" />
-        <link rel="stylesheet" href="./styles/standard.css" />
-        <link rel="stylesheet" href="./styles/add_task.css" />
-        <link rel="stylesheet" href="./styles/add_edit_contact_overlay.css" />
-        <script src="script.js" defer></script>
-        <script src="./assets/scripts/add_edit_contact.js" defer></script>
-        <title>Add Contact</title>
-    </head>
-    <body>
-        <button class="outline_btn" onclick="openAddContactDialog()">Klicke für Overlay</button>
-        <dialog class="dialog_contact_container" id="addContactDialog">
-            <main class="contact_overlay_wrapper">
-                <div class="contact_left_container">
-                    <img class="logo_overlay" src="./assets/img/logo_version2.svg" alt="Join Logo">
-                    <span class="headline_overlay">Add Contact</span>
-                    <span class="subhead_overlay">Tasks are better with a team!</span>
-                    <hr class="hr_overlay">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./styles/fonts.css" />
+    <link rel="stylesheet" href="./styles/standard.css" />
+    <link rel="stylesheet" href="./styles/add_task.css" />
+    <link rel="stylesheet" href="./styles/add_edit_contact_overlay.css" />
+    <script src="script.js" defer></script>
+    <script src="./assets/scripts/add_edit_contact.js" defer></script>
+    <title>Add Contact</title>
+</head>
+<body>
+    <button class="outline_btn" onclick="openAddContactDialog()">Klicke für Overlay</button>
+    <dialog class="dialog_contact_container" id="addContactDialog">
+        <main class="contact_overlay_wrapper">
+            <div class="contact_left_container">
+                <img class="logo_overlay" src="./assets/img/logo_version2.svg" alt="Join Logo">
+                <span class="headline_overlay">Add Contact</span>
+                <span class="subhead_overlay">Tasks are better with a team!</span>
+                <hr class="hr_overlay">
+            </div>
+            <div class="contact_right_container">
+                <div class="close_btn_container">
+                    <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddContactDialog()">
                 </div>
-                <div class="contact_right_container">
-                    <div class="close_btn_container">
-                        <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddContactDialog()">
+                <div class="right_container_wrapper">
+                    <div>
+                        <img class="contact_user_icon" src="./assets/img/person_grey_circle.svg" alt="User Icon">
                     </div>
-                    <div class="right_container_wrapper">
-                        <div>
-                            <img class="contact_user_icon" src="./assets/img/person_grey_circle.svg" alt="User Icon">
+                    <div>
+                        <div class="input_fields_container">
+                            <input type="text" id="name" class="contact_input styled_input" placeholder="Name"><br>
+                            <input type="text" id="email" class="contact_input styled_input" placeholder="Email"><br>
+                            <input type="text" id="phone" class="contact_input styled_input" placeholder="Phone"><br>
                         </div>
-                        <div>
-                            <div class="input_fields_container">
-                                <input type="text" id="name" class="contact_input styled_input" placeholder="Name"><br>
-                                <input type="text" id="email" class="contact_input styled_input" placeholder="Email"><br>
-                                <input type="text" id="phone" class="contact_input styled_input" placeholder="Phone"><br>
-                            </div>
-                            <div class="contact_btn_area">
-                                <button class="outline_btn" onclick="clearContactInputs()">Cancel
-                                    <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
-                                    <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
-                                </button>
-                                <button class="filled_btn">Create Contact<img src="./assets/img/check_white.svg" alt="Create Task"></button>
-                            </div>
+                        <div class="contact_btn_area">
+                            <button class="outline_btn" onclick="clearContactInputs()">Cancel
+                                <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
+                                <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
+                            </button>
+                            <button class="filled_btn">Create Contact<img src="./assets/img/check_white.svg" alt="Create Task"></button>
                         </div>
-                    </div>    
-                </div>
-            </main>
-        </dialog>
-    </body>
+                    </div>
+                </div>    
+            </div>
+        </main>
+    </dialog>
+</body>

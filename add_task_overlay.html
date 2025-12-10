@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-        <link rel="stylesheet" href="styles.css" />
-        <link rel="stylesheet" href="./styles/fonts.css" />
-        <link rel="stylesheet" href="./styles/standard.css" />
-        <link rel="stylesheet" href="./styles/add_task.css" />
-        <link rel="stylesheet" href="./styles/add_task_overlay.css" />
-        <script src="script.js" defer></script>
-        <script src="./assets/scripts/add_task.js" defer></script>
-        <title>Add Task</title>
-    </head>
-    <body>
-        <button class="clear_btn" onclick="openAddTaskDialog()">Klicke für Overlay</button>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./styles/fonts.css" />
+    <link rel="stylesheet" href="./styles/standard.css" />
+    <link rel="stylesheet" href="./styles/add_task.css" />
+    <link rel="stylesheet" href="./styles/add_task_overlay.css" />
+    <script src="script.js" defer></script>
+    <script src="./assets/scripts/add_task.js" defer></script>
+    <title>Add Task</title>
+</head>
+<body>
+    <button class="clear_btn" onclick="openAddTaskDialog()">Klicke für Overlay</button>
         <dialog class="dialog_add_task_container" id="addTaskDialog">
             <main class="add_task_overlay_wrapper">
                 <div>
@@ -25,117 +25,117 @@
                     <div class="formfield_left">
                         <label for="title" class="label_text">Title<sup>*</sup></label><br>
                         <input type="text" class="add_task_input styled_input" id="title" placeholder="Enter a title"><br>
-
                         <label for="description" class="label_text">Description</label><br>
                         <textarea class="add_task_description styled_input_description" id="description" placeholder="Enter a description"></textarea><br>
-
                         <label for="due_date" class="label_text">Due date<sup>*</sup></label><br>
                         <input type="text" id="due_date" class="add_task_input styled_input" placeholder="dd/mm/yyyy"><br>
                     </div>
+                </div>  
 
-                    <div class="vertical_line"></div>
+                <div class="vertical_line"></div>
 
-                    <div class="formfield_right">
-                        <label class="label_text">Priority</label><br>
-                        <div class="priority_options">
-                            <button class="urgent_btn_default" id="urgent_btn_default" onclick="setPriority('urgent')">Urgent
-                                <img class="icon default" src="./assets/img/prio_urgent_red.svg" alt="Priority Urgent">
-                            </button>
-                            <button class="urgent_btn_filled d_none" id="urgent_btn_filled" onclick="setPriority('urgent')">Urgent
-                                <img class="icon hover" src="./assets/img/prio_urgent_white.svg" alt="Priority Urgent Hover">
-                            </button>                    
-                            <button class="medium_btn_default" id="medium_btn_default" onclick="setPriority('medium')">Medium
-                                <img class="icon default" src="./assets/img/prio_medium_yellow.svg" alt="Priority Medium">
-                            </button>
-                            <button class="medium_btn_filled d_none" id="medium_btn_filled" onclick="setPriority('medium')">Medium
-                                <img class="icon hover" src="./assets/img/prio_medium_white.svg" alt="Priority Medium Hover">
-                            </button>
-                            <button class="low_btn_default" id="low_btn_default" onclick="setPriority('low')">Low
-                                <img class="icon default" src="./assets/img/prio_low_green.svg" alt="Priority Low">
-                            </button>
-                            <button class="low_btn_filled d_none" id="low_btn_filled" onclick="setPriority('low')">Low
-                                <img class="icon hover" src="./assets/img/prio_low_white.svg" alt="Priority Low Hover">
-                            </button>
-                            <br>
-                        </div>
-
-                        <label class="label_text">Assigned to</label><br>
-                        <div class="dropdown">
-                            <div class="dropdown_input add_task_input_dropdown styled_input">
-                                <span class="dropdown_text">Select contacts to assign</span>
-                                <div class="dropdown_icon" onclick="toggleContactsList()"></div>
-                            </div>
-                            <ul class="dropdown_list_contacts" id="contacts_list" style="display:none;">
-                                <li class="dropdown_item">
-                                    <div class="dropdown_item_user">
-                                        <div class="user_info">
-                                            <img src="./assets/img/user-am.svg" alt="">
-                                            <p>Anton Mayer</p>
-                                        </div>
-                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                                    </div>
-                                </li>
-                                <li class="dropdown_item">
-                                    <div class="dropdown_item_user">
-                                        <div class="user_info">
-                                            <img src="./assets/img/user-de.svg" alt="">
-                                            <p>David Eisenberg</p>
-                                        </div>
-                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                                    </div>
-                                </li>
-                                <li class="dropdown_item">
-                                    <div class="dropdown_item_user">
-                                        <div class="user_info">
-                                            <img src="./assets/img/user-ef.svg" alt="">
-                                            <p>Eva Fischer</p>
-                                        </div>
-                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                                    </div>
-                                </li>
-                                <li class="dropdown_item">
-                                    <div class="dropdown_item_user">
-                                        <div class="user_info">
-                                            <img src="./assets/img/user-em.svg" alt="">
-                                            <p>Emmanuel Mauer</p>
-                                        </div>
-                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="input_spacer"></div>
-
-                        <label class="label_text">Category<sup>*</sup></label><br>
-                        <div class="dropdown">
-                            <div class="dropdown_input add_task_input_dropdown styled_input">
-                                <span class="dropdown_text">Select task category</span>
-                                <div class="dropdown_icon" onclick="toggleCategoryList()"></div>
-                            </div>
-                            <ul class="dropdown_list" id="category_list" style="display:none;">
-                                <li class="dropdown_item">Technical Task</li>
-                                <li class="dropdown_item">User Story</li>
-                            </ul>
-                        </div>
-                        <div class="input_spacer"></div>
-
-                        <label for="subtasks" class="label_text">Subtasks</label><br>
-                        <input type="text" class="add_task_input styled_input" id="subtasks" placeholder="Add new subtask"><br>
-                    </div>
-                </div>
-
-                <div class="add_task_bottom_area">
-                    <div>
-                        <p><sup>*</sup>This field is required</p>
-                    </div>
-                    <div class="add_task_btn_area">
-                        <button class="clear_btn" onclick="clearInputs()">Clear
-                            <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
-                            <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
+                <div class="formfield_right">
+                    <label class="label_text">Priority</label><br>
+                    <div class="priority_options">
+                        <button class="urgent_btn_default" id="urgent_btn_default" onclick="setPriority('urgent')">Urgent
+                            <img class="icon default" src="./assets/img/prio_urgent_red.svg" alt="Priority Urgent">
                         </button>
-                        <button class="create_task_btn">Create Task<img src="./assets/img/check_white.svg" alt="Create Task"></button>
+                        <button class="urgent_btn_filled d_none" id="urgent_btn_filled" onclick="setPriority('urgent')">Urgent
+                            <img class="icon hover" src="./assets/img/prio_urgent_white.svg" alt="Priority Urgent Hover">
+                        </button>                    
+                        <button class="medium_btn_default" id="medium_btn_default" onclick="setPriority('medium')">Medium
+                            <img class="icon default" src="./assets/img/prio_medium_yellow.svg" alt="Priority Medium">
+                        </button>
+                        <button class="medium_btn_filled d_none" id="medium_btn_filled" onclick="setPriority('medium')">Medium
+                            <img class="icon hover" src="./assets/img/prio_medium_white.svg" alt="Priority Medium Hover">
+                        </button>
+                        <button class="low_btn_default" id="low_btn_default" onclick="setPriority('low')">Low
+                            <img class="icon default" src="./assets/img/prio_low_green.svg" alt="Priority Low">
+                        </button>
+                        <button class="low_btn_filled d_none" id="low_btn_filled" onclick="setPriority('low')">Low
+                            <img class="icon hover" src="./assets/img/prio_low_white.svg" alt="Priority Low Hover">
+                        </button>
+                        <br>
                     </div>
+
+                    <label class="label_text">Assigned to</label><br>
+                    <div class="dropdown">
+                        <div class="dropdown_input add_task_input_dropdown styled_input">
+                            <span class="dropdown_text">Select contacts to assign</span>
+                            <div class="dropdown_icon" onclick="toggleContactsList()"></div>
+                        </div>
+                        <ul class="dropdown_list_contacts" id="contacts_list" style="display:none;">
+                            <li class="dropdown_item">
+                                <div class="dropdown_item_user">
+                                    <div class="user_info">
+                                        <img src="./assets/img/user-am.svg" alt="">
+                                        <p>Anton Mayer</p>
+                                    </div>
+                                    <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                </div>
+                            </li>
+                            <li class="dropdown_item">
+                                <div class="dropdown_item_user">
+                                    <div class="user_info">
+                                        <img src="./assets/img/user-de.svg" alt="">
+                                        <p>David Eisenberg</p>
+                                    </div>
+                                    <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                </div>
+                            </li>
+                            <li class="dropdown_item">
+                                <div class="dropdown_item_user">
+                                    <div class="user_info">
+                                        <img src="./assets/img/user-ef.svg" alt="">
+                                        <p>Eva Fischer</p>
+                                    </div>
+                                    <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                </div>
+                            </li>
+                            <li class="dropdown_item">
+                                <div class="dropdown_item_user">
+                                    <div class="user_info">
+                                        <img src="./assets/img/user-em.svg" alt="">
+                                        <p>Emmanuel Mauer</p>
+                                    </div>
+                                    <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="input_spacer"></div>
+
+                    <label class="label_text">Category<sup>*</sup></label><br>
+                    <div class="dropdown">
+                        <div class="dropdown_input add_task_input_dropdown styled_input">
+                            <span class="dropdown_text">Select task category</span>
+                            <div class="dropdown_icon" onclick="toggleCategoryList()"></div>
+                        </div>
+                        <ul class="dropdown_list" id="category_list" style="display:none;">
+                            <li class="dropdown_item">Technical Task</li>
+                            <li class="dropdown_item">User Story</li>
+                        </ul>
+                    </div>
+                    <div class="input_spacer"></div>
+                    
+                    <label for="subtasks" class="label_text">Subtasks</label><br>
+                    <input type="text" class="add_task_input styled_input" id="subtasks" placeholder="Add new subtask"><br>
                 </div>
-            </main>
-        </dialog>
-    </body>
+            </div>
+
+            <div class="add_task_bottom_area">
+                <div>
+                    <p><sup>*</sup>This field is required</p>
+                </div>
+                <div class="add_task_btn_area">
+                    <button class="clear_btn" onclick="clearInputs()">Clear
+                        <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
+                        <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
+                    </button>
+                    <button class="create_task_btn">Create Task<img src="./assets/img/check_white.svg" alt="Create Task"></button>
+                </div>
+            </div>
+
+        </main>
+    </dialog>
+</body>
