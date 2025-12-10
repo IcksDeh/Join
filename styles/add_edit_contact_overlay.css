@@ -1,7 +1,7 @@
 /* ---------- FORM AREA ---------- */
 
-.dialog_add_contact_container {
-    width: 1100px;
+.dialog_contact_container {
+    width: 1150px;
     height: 520px;
     background-color: #fff;
     border-radius: 25px; 
@@ -15,7 +15,7 @@
     position: relative;
 }
 
-.dialog_add_contact_container::after {
+.dialog_contact_container::after {
     content: "";
     position: absolute;
     top: 0;
@@ -27,7 +27,7 @@
     border-bottom-left-radius: 25px;
 }
 
-.add_contact_overlay_wrapper {
+.contact_overlay_wrapper {
     display: flex;
     flex-direction: row;
     position: relative;
@@ -49,9 +49,24 @@
     opacity: 1;
 }
 
+#editContactDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%; 
+    transform: translate(calc(100vw + 50%), -50%);  
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    border: none;
+}
+
+#editContactDialog[open] {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
 /* ---------- LEFT CONTAINER ---------- */
 
-.add_contact_left_container {
+.contact_left_container {
     width: 400px;
     height: 500px; 
     display: flex;
@@ -72,7 +87,6 @@
     font-family: "latin_700", sans-serif;
     font-size: 50px;
     font-weight: 700;
-    /* margin-bottom: 5px; */
 }
 
 .subhead_overlay {
@@ -93,15 +107,17 @@
 
 /* ---------- RIGHT CONTAINER ---------- */
 
-.add_contact_right_container {
+.contact_right_container {
     margin-left: 80px;
 }
 
 .right_container_wrapper {
-    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
+    gap: 50px;
+    padding-top: 110px;
 }
 
 .close_btn_container {
@@ -118,15 +134,26 @@
     content: url("../assets/img/x_hover.svg");
 }
 
+.contact_user_icon {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+}
+
 /* ---------- INPUT AREA ---------- */
 
 .input_fields_container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    justify-content: flex-start;
+    width: 445px;
+    margin-right: 32px;
 }
 
-.contact_input {
+.contact_input,
+.user_input {
     background-color: white;
     border-radius: 8px;
     width: 100%;
@@ -135,11 +162,18 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 20px;
-    margin-bottom: 24px;
+    margin-bottom: 10px;
 }
 
 .contact_input::placeholder {
     color: #d1d1d1;
+    font-size: 20px;
+    font-family: "latin_400", sans-serif;
+    font-weight: 400;
+}
+
+.user_input::placeholder {
+    color: #2a3647; 
     font-size: 20px;
     font-family: "latin_400", sans-serif;
     font-weight: 400;
@@ -152,10 +186,26 @@
     padding-left: 20px;
 }
 
+#name {
+    background: url("../assets/img/person.svg") no-repeat right 16px center;
+    background-color: white;
+}
+
+#email {
+    background: url("../assets/img/mail.svg") no-repeat right 16px center;
+    background-color: white;
+}
+
+#phone {
+    background: url("../assets/img/phone.svg") no-repeat right 16px center;
+    background-color: white;
+}
+
 /* ---------- BOTTOM BOTTON AREA ---------- */
 
 .contact_btn_area {
     display: flex;
+    justify-content: flex-start;
     gap: 12px;
     margin-top: 24px;
 }

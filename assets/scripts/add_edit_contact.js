@@ -22,6 +22,8 @@ function openAddContactDialog() {
 function closeAddContactDialog() {
   const dialog = document.getElementById('addContactDialog');
   dialog.close();
+
+  clearContactInputs()
 }
 
 
@@ -49,6 +51,8 @@ function openEditContactDialog() {
 function closeEditContactDialog() {
   const dialog = document.getElementById('editContactDialog');
   dialog.close();
+
+  clearContactInputs()
 }
 
 

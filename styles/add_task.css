@@ -114,7 +114,7 @@ sup {
 }
 
 #due_date {
-    background: url("../assets/img/event.svg") no-repeat right 8px center;
+    background: url("../assets/img/event.svg") no-repeat right 16px center;
     background-color: white;
 }
 
