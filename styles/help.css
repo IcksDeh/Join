@@ -3,18 +3,24 @@
 }
 
 .style_text{
+    font-family: 'latin_400';
+    font-weight: 400;
     margin-top: 20px;
     text-align: start;
 }
 
 .style_h2{
+    font-family: 'latin_700';
+    font-weight: 700;
     margin-top: 40px;
 }
 
 .style_td_help{
-    font-weight: bold;
+    font-family: 'latin_700';
+    font-weight: 700;
     font-size: 20px;
-    padding-top: 30px;
+    padding-top: 20px;
+    padding-right: 20px;
 }
 
 .style_table_help{
