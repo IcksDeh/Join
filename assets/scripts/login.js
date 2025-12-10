@@ -62,15 +62,24 @@ setupPasswordToggle('auth_confirm_password_input', 'toggle_confirm_password_icon
 const checkbox = document.querySelector('.checkbox-row input[type="checkbox"]');
 const signupBtn = document.getElementById('signup_btn');
 
-checkbox.addEventListener('change', () => {
-  signupBtn.disabled = !checkbox.checked;
+if (checkbox && signupBtn) {
+  checkbox.addEventListener('change', () => {
+    signupBtn.disabled = !checkbox.checked;
 
-  // Change button color based on checkbox state
-  if (checkbox.checked) {
-    signupBtn.style.backgroundColor = '#2a3647'; // normal color
-    signupBtn.style.color = 'white';
-  } else {
-    signupBtn.style.backgroundColor = '#999'; // faded color
+    // Change button color based on checkbox state
+    if (checkbox.checked) {
+      signupBtn.style.backgroundColor = '#2a3647'; // normal color
+      signupBtn.style.color = 'white';
+    } else {
+      signupBtn.style.backgroundColor = '#999'; // faded color
+      signupBtn.style.color = '#eee';
+    }
+  });
+
+  // Initialize button state on page load
+  signupBtn.disabled = !checkbox.checked;
+  if (!checkbox.checked) {
+    signupBtn.style.backgroundColor = '#999';
     signupBtn.style.color = '#eee';
   }
-});
+}
