@@ -62,7 +62,8 @@
 
 .menu_navbar{
     position: absolute;
-    top: 95px;
+    right: 0;
+    top: 67.5px;
     right: 0; 
     background-color: #2a3647;
     width: 170px;

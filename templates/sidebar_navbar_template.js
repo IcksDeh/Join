@@ -53,12 +53,12 @@ function navbarTemplate(){
                 <a href="./help.html"><img class="help_icon" src="./assets/img/questionmark_small.svg" alt="Help Button"></a>
                 <div class="user_circle" onclick="toggleMenu()">AM</div>
             </div>
-        </div>
 
-        <div id="menu_navbar" class="menu_navbar d_none content_wrapper">
-            <a href="./legal_notice.html">Legal Notice</a>
-            <a href="./privacy_policy.html">Privacy Policy</a>
-            <a href="#">Log out</a>
+            <div id="menu_navbar" class="menu_navbar d_none content_wrapper">
+                <a href="./legal_notice.html">Legal Notice</a>
+                <a href="./privacy_policy.html">Privacy Policy</a>
+                <a href="#">Log out</a>
+            </div>
         </div>
     `
 }
