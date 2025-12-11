@@ -35,6 +35,20 @@
     opacity: 1;
 }
 
+.close_btn_container {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+.close_btn {
+    cursor: pointer;
+}
+
+.close_btn:hover {
+    content: url("../assets/img/x_hover.svg");
+}
+
 /* ---------- SCROLL BAR ---------- */
 
 .dialog_add_task_container::-webkit-scrollbar {

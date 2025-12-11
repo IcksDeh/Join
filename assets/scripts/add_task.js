@@ -94,3 +94,17 @@ function openAddTaskDialog() {
     dialog.showModal();
   }
 }
+
+
+/**
+ * Closes the "Add Task" dialog.
+ * 
+ * @function closeAddTaskDialog
+ * @returns {void} - This function does not return a value.
+ */
+function closeAddTaskDialog() {
+  const dialog = document.getElementById('addTaskDialog');
+  dialog.close();
+
+  clearContactInputs()
+}
