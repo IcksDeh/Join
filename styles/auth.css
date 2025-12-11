@@ -4,6 +4,7 @@
 
 .auth_body {
   display: block;
+  width: 100%;
 }
 
 button {
@@ -136,7 +137,7 @@ button {
 
 .auth_link:hover {
   color: #29abe2;
-  font-family: 'latin-700', sans-serif;
+  font-family: "latin-700", sans-serif;
   font-weight: 600;
 }
 
@@ -195,14 +196,14 @@ button {
 }
 
 .input-error {
-  border: 2px solid red !important; 
+  border: 2px solid red !important;
 }
 
 .error-message {
   color: red;
   font-size: 0.85rem;
   margin-top: 4px;
-  display: none; 
+  display: none;
 }
 
 .input-wrapper input.error {

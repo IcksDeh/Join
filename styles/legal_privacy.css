@@ -14,7 +14,6 @@ h3 {
 }
 .legal_privacy_h2 {
   margin: 0 0 24px 0;
-  padding: 8px 0;
   font-size: 27px;
   font-weight: 700;
 }
@@ -40,7 +39,10 @@ h3 {
    Page Titles / Headers
 ------------------------------*/
 .legal_privacy_title {
-  padding: 50px 0 20px;
+  padding-bottom: 30px;
+}
+.legal_privacy_main {
+  margin: 100px 40px 10px 100px;
 }
 .ln_pp_hp_section {
   padding-bottom: 10px;
@@ -60,13 +62,28 @@ h3 {
 }
 
 /* -----------------------------
+   Lists
+------------------------------*/
+.pp_ul {
+  padding-left: 20px;
+}
+.legal_notice_ul {
+  padding-left: 24px;
+  margin-bottom: 24px;
+}
+/* -----------------------------
    Page Layout / Containers
 ------------------------------*/
+
 .nav_main_content {
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
+  height: auto;
+  overflow: visible;
 }
+.pp_content {
+  max-width: 950px;
+  padding-bottom: 50px;
+}
+
 .pp_content {
   max-width: 950px;
   padding-bottom: 50px;
