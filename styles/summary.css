@@ -54,11 +54,11 @@
 }
 
 .style_todo_box_hover:hover img{
-    filter: invert(1);
+    content: url("../assets/img/check_hover.svg");
 }
 
 .style_done_box_hover:hover img{
-    filter: invert(1);
+    content: url("../assets/img/edit_hover.svg");
 }
 
 .img_summary_edit_check_icon{
