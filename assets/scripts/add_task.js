@@ -106,5 +106,5 @@ function closeAddTaskDialog() {
   const dialog = document.getElementById('addTaskDialog');
   dialog.close();
 
-  clearContactInputs()
+  clearInputs()
 }
