@@ -58,18 +58,18 @@
     height: 40px;
     background-color: #2a3647;
     color: white;
-    font-family: 'latin_400';
+    font-family: 'latin_600';
     width: 120px;
+    padding-left:15px;
 }
-
-.icon_add_btn{
-    height: 24px;
-
+.img_add_btn:hover{
+    cursor: pointer;
+    content: url("../assets/img/add_square_blue.svg");
 }
 
 .order_board_sections{
     display: flex;
-    align-items: center;
+    align-items: start;
     width: 100%;
     gap: 30px;
     margin-top: 50px;
@@ -114,6 +114,10 @@
     background-color: white;
     height: fit-content;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
 }
 
 .label_task_card{
@@ -121,13 +125,13 @@
     height: auto;
     border-radius: 10px;
     width: fit-content;
+    padding: 1px 15px;
     margin-top: 20px;
-    padding-top: 20px;
-    padding-left: 20px;
+    margin-left: 20px;
 }
 
 .text_label_task_card{
-    color: aqua;
+    color: white;
     padding: 5px;
 }
 
