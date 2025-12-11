@@ -63,6 +63,7 @@
 .menu_navbar{
     position: absolute;
     right: 0;
+    z-index: 9999;
     top: 67.5px;
     right: 0; 
     background-color: #2a3647;
