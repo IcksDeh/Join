@@ -112,20 +112,22 @@
 
 .style_task_card{
     background-color: white;
-    height: 200px;
-    border-radius: 20px ;
+    height: fit-content;
+    border-radius: 20px;
 }
 
 .label_task_card{
     background-color: #0038ff;
-    height: 20px;
+    height: auto;
     border-radius: 10px;
     width: fit-content;
     margin-top: 20px;
+    padding-top: 20px;
+    padding-left: 20px;
 }
 
 .text_label_task_card{
-    color: white;
+    color: aqua;
     padding: 5px;
 }
 
@@ -163,4 +165,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.user_circle_task_card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-family: 'latin_400';
+}
+
+.order_elements_user_icon_priolable{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.order_user_icons_task_card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
