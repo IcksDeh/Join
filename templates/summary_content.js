@@ -2,14 +2,15 @@ function summaryContentTemplate(){
     return `
         <div>
             <section class="order_todo_done_box margin_left">
-                <div class="style_todo_done_box style_boxes">
+                <div class="style_todo_done_box style_boxes style_done_box_hover">
                     <img class="img_summary_edit_check_icon" src="./assets/img/summary_edit_icon.svg" alt="edit">
                     <div class="order_number_text">
                         <p class="summary_number">1</p>
                         <p>To-do</p>
                     </div>
                 </div>
-                <div class="style_todo_done_box style_boxes">
+
+                <div class="style_todo_done_box style_boxes style_todo_box_hover">
                     <img class="img_summary_edit_check_icon" src="./assets/img/summary_check_icon.svg" alt="check">
                     <div class="order_number_text">
                         <p class="summary_number">2</p>
