@@ -28,3 +28,7 @@ function loadLogOffSidebar() {
     sidebar.innerHTML = sidebarLogOffTemplate();
 }
 
+function toggleMenu() {
+  document.getElementById("menu_navbar").classList.toggle("d_none");
+}
+

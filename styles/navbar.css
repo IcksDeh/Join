@@ -57,3 +57,28 @@
     justify-content: space-between;
     align-items: center;
 }
+
+/* ---------- MENU NAVBAR ---------- */
+
+.menu_navbar {
+    position: absolute;
+    top: 80px;
+    right: 0; 
+    background-color: #2a3647;
+    width: 170px;
+    padding: 16px 0;
+    border-radius: 14px 0 14px 14px;
+    font-family: 'latin_400';
+}
+
+.menu_navbar a {
+    display: block;
+    padding: 16px 20px;
+    color: #cdcdcd;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.menu_navbar a:hover {
+    background-color: #2e3d57;
+}
