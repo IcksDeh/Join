@@ -136,6 +136,8 @@ button {
 
 .auth_link:hover {
   color: #29abe2;
+  font-family: 'latin-700', sans-serif;
+  font-weight: 600;
 }
 
 /* =========================================
@@ -215,7 +217,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 20px;
   bottom: 35px;
   width: 100%;
   padding-top: 110px;
@@ -255,6 +257,7 @@ button {
 /* =========================================
    KEYFRAMES
 ========================================= */
+
 @keyframes logoMove {
   0% {
     width: 274px;
@@ -271,6 +274,7 @@ button {
     transform: translate(0, 0);
   }
 }
+
 @keyframes hideSplash {
   to {
     opacity: 0;

@@ -17,7 +17,7 @@ function summaryContentTemplate(){
                     </div>
                 </div>
             </section>
-            <section class="box_prio_tickets  margin_left style_boxes">
+            <section class="box_prio_tickets margin_left style_boxes">
                 <div class="counter_prio_tickets">
                     <img src="./assets/img/summary_prio_icon.svg" alt="prio">
                     <div class="order_number_text">
@@ -25,7 +25,7 @@ function summaryContentTemplate(){
                         <p>Urgent</p>
                     </div>
                 </div>
-                <div class="divider_prio_box "></div>
+                <div class="divider_prio_box"></div>
                 <div class="deadline_information">
                     <p class="date_of_deadline">October 16, 2022</p>
                     <p>Upcoming Deadline</p>
