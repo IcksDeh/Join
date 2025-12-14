@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./styles/standard.css" />
     <link rel="stylesheet" href="./styles/auth.css" />
     <link rel="stylesheet" href="./styles/signup.css" />
+    <script src="./assets/scripts/firebase.js" defer></script>
+    <script src="./assets/scripts/signup.js"defer></script>
     <title>Sign Up</title>
   </head>
   <body class="auth_body">
@@ -107,7 +109,7 @@
             >
           </label>
           <div class="auth_btns">
-             <button id="signup_btn" class="auth_btn" type="submit" disabled>Sign up</button>
+             <button id="signup_btn" class="auth_btn" type="submit" onclick="getUserData()" disabled>Sign up</button>
           </div>
         </form>
       </div>

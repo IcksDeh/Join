@@ -87,3 +87,12 @@ function updateSignupButtonState() {
 // Initialize state on load
 // ----------------------
 updateSignupButtonState();
+
+function getUserData(){
+  let userID = newUserID + 1;
+  newUserID = userID;
+  let userName = nameInput.value;
+  let userEmail = emailInput.value;
+  let userPassword = passwordInput.value;
+  pushToUserData(newUserID, userName, userEmail, userPassword);
+}
