@@ -132,22 +132,6 @@
     white-space: nowrap;
 }
 
-.assigned_user {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: start;
-    width: 100%;
-    margin: 12px 8px;
-}
-
-.user_info {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding-bottom: 10px;
-}
-
 .subtasks_container {
     display: flex;
     justify-content: start;
@@ -155,7 +139,7 @@
     width: 100%;
     gap: 12px;
     margin-top: 12px;
-    padding: 2px 8px;
+    padding: 8px 8px;
     transition: background 0.3s ease;
     cursor: pointer;
 }
@@ -182,7 +166,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-top: 12px;
+    margin-top: 20px;
 }
 
 .user_story_btn_area {
@@ -190,7 +174,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 12px;
-    margin-top: 12px;
+    margin-top: 24px;
 }
 
 .delete_edit_btn {
@@ -234,6 +218,6 @@
 
 .bottom_divider {
     width: 2px;          
-    height: 35px;
+    height: 40px;
     background-color: #e0e0e0; 
 }
