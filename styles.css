@@ -4,7 +4,7 @@ body{
     justify-content: start;
     background-color: rgb(246, 247, 248);
     font-family: "Inter", sans-serif;
-    width: 100vw;
+    width: 100%;
 }
 
 .content_wrapper{

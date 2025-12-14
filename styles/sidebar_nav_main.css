@@ -1,11 +1,11 @@
 .order_sidebar_main{
     display: flex;
-    width: 100vw;
+    width: 100%;
 }
 
 .nav_main_content{
     display: flex;
     flex-direction: column;
-    width: calc(100vw - 300px);
+    width: calc(100% - 300px);
 }
 
