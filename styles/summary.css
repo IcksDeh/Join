@@ -17,17 +17,18 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-
 .summary_header{
     display: flex;
     align-items: center;
     margin-top: 100px;
+    margin-bottom: 35px;
     gap: 20px;
 }
 
 .divider_header{
-    border-right: 2px solid #29abe2;
-    height: 40px;
+    border-right: 2.5px solid #29abe2;
+    height: 55px;
+    margin: 12px;
 }
 
 .text_header{
@@ -42,23 +43,22 @@
 .style_todo_done_box{
     width: 264px;
     gap: 30px;
-    
 }
 
 .style_todo_done_box:hover{
-    background-color: #2e3d57;
+    background-color: #2a3647;
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: transform 0.1s ease ;
     cursor: pointer;
 }
 
 .style_todo_box_hover:hover img{
-    content: url("../assets/img/check_hover.svg");
+    content: url("../assets/img/check_white_circle.svg");
 }
 
 .style_done_box_hover:hover img{
-    content: url("../assets/img/edit_hover.svg");
+    content: url("../assets/img/edit_white_circle.svg");
 }
 
 .img_summary_edit_check_icon{
@@ -71,7 +71,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .summary_number{
@@ -85,9 +84,9 @@
 }
 
 .box_prio_tickets:hover{
-    background-color: #2e3d57;
+    background-color: #2a3647;
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.02);
     transition: transform 0.1s ease ;
     cursor: pointer;
 }
@@ -102,13 +101,14 @@
 .divider_prio_box{
     border-right: 2px solid #d1d1d1;
     height: 100px;
+    margin: 12px;
 }
 
 .deadline_information{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     gap: 10px;
 }
 
@@ -127,9 +127,9 @@
 }
 
 .boxes_last_row:hover{
-    background-color: #2e3d57;
+    background-color: #2a3647;
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: transform 0.1s ease ;
     cursor: pointer;
 }
