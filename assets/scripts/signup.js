@@ -1,89 +1,139 @@
-// ----------------------
-// Elements
-// ----------------------
-const checkbox = document.querySelector('.checkbox-row input[type="checkbox"]');
-const signupBtn = document.getElementById('signup_btn');
+const ICONS = {
+  LOCK: './assets/img/lock_icon.svg',
+  OFF: './assets/img/visibility_off.svg',
+  ON: './assets/img/visibility.svg'
+};
 
-const nameInput = document.getElementById('auth_input_name');
-const emailInput = document.getElementById('auth_input_mail');
-const passwordInput = document.getElementById('auth_password_input');
-const confirmPasswordInput = document.getElementById('auth_confirm_password_input');
-const confirmPasswordError = document.getElementById('confirm_password_error');
+function goToSignup() { window.location.href = "sign_up.html"; }
+function guestLogin() { window.location.href = "summary.html"; }
 
-// ----------------------
-// Password Match Validation
-// ----------------------
-let confirmPasswordTouched = false;
+// ---------------- Element Selectors ----------------
+function getElements() {
+  return {
+    checkbox: document.querySelector('.checkbox-row input[type="checkbox"]'),
+    btn: document.getElementById('signup_btn'),
+    name: document.getElementById('auth_input_name'),
+    email: document.getElementById('auth_input_mail'),
+    pass: document.getElementById('auth_password_input'),
+    confirm: document.getElementById('auth_confirm_password_input'),
+    errorMsg: document.getElementById('confirm_password_error')
+  };
+}
 
-if (passwordInput && confirmPasswordInput && confirmPasswordError) {
-  confirmPasswordInput.addEventListener('input', () => {
-    confirmPasswordTouched = true;
-    confirmPasswordInput.classList.remove('error');
-    confirmPasswordError.style.display = 'none';
-    updateSignupButtonState();
-  });
+// ---------------- Password Icon Logic (Visuals Only) ----------------
+function toggleIconState(input, icon) {
+  if (input.value.length === 0) return;
+  
+  const isPass = input.type === 'password';
+  input.type = isPass ? 'text' : 'password';
+  icon.src = isPass ? ICONS.ON : ICONS.OFF;
+}
 
-  confirmPasswordInput.addEventListener('blur', () => {
-    if (confirmPasswordTouched) checkPasswordsMatch();
-  });
-
-  passwordInput.addEventListener('input', () => {
-    if (confirmPasswordTouched) checkPasswordsMatch();
-  });
-
-  function checkPasswordsMatch() {
-    if (confirmPasswordInput.value.length === 0) {
-      confirmPasswordInput.classList.remove('error');
-      confirmPasswordError.style.display = 'none';
-      updateSignupButtonState();
-      return;
+function updateIconOnInput(input, icon) {
+  if (input.value.length > 0) {
+    if (icon.src.includes('lock_icon')) {
+      icon.src = ICONS.OFF;
+      input.type = 'password';
     }
-
-    if (passwordInput.value !== confirmPasswordInput.value) {
-      confirmPasswordInput.classList.add('error');
-      confirmPasswordError.style.display = 'block';
-      confirmPasswordError.textContent = "Your passwords don't match. Please try again.";
-    } else {
-      confirmPasswordInput.classList.remove('error');
-      confirmPasswordError.style.display = 'none';
-    }
-    updateSignupButtonState();
+  } else {
+    icon.src = ICONS.LOCK;
+    input.type = 'password';
   }
 }
 
-// ----------------------
-// Checkbox listener
-// ----------------------
-if (checkbox) {
-  checkbox.addEventListener('change', updateSignupButtonState);
+function setupToggle(inputId, iconId) {
+  const input = document.getElementById(inputId);
+  const icon = document.getElementById(iconId);
+  if (!input || !icon) return;
+
+  input.addEventListener('input', () => updateIconOnInput(input, icon));
+  icon.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleIconState(input, icon);
+  });
 }
 
-// ----------------------
-// Enable/Disable Sign Up Button
-// ----------------------
-function updateSignupButtonState() {
-  const isNameValid = nameInput && nameInput.value.trim() !== '';
-  const isEmailValid = emailInput && emailInput.validity.valid;
-  const isPasswordMatch = passwordInput && confirmPasswordInput &&
-                          passwordInput.value === confirmPasswordInput.value &&
-                          passwordInput.value.length > 0;
-  const isCheckboxChecked = checkbox && checkbox.checked;
+// ---------------- Validation Logic ----------------
+function isValid(els) {
+  return (
+    els.name.value.trim() !== '' &&
+    els.email.validity.valid &&
+    els.pass.value.length > 0 &&
+    els.pass.value === els.confirm.value &&
+    els.checkbox.checked
+  );
+}
 
-  const allValid = isNameValid && isEmailValid && isPasswordMatch && isCheckboxChecked;
-
-  if (signupBtn) {
-    signupBtn.disabled = !allValid;
-    if (allValid) {
-      signupBtn.style.backgroundColor = '#2a3647';
-      signupBtn.style.color = 'white';
-    } else {
-      signupBtn.style.backgroundColor = '#999';
-      signupBtn.style.color = '#eee';
-    }
+function updateBtn(els) {
+  const valid = isValid(els);
+  els.btn.disabled = !valid;
+  
+  if (valid) {
+    els.btn.style.backgroundColor = '#2a3647';
+    els.btn.style.color = 'white';
+    els.btn.style.cursor = 'pointer';
+  } else {
+    els.btn.style.backgroundColor = '#999';
+    els.btn.style.color = '#eee';
+    els.btn.style.cursor = 'not-allowed';
   }
 }
 
-// ----------------------
-// Initialize state on load
-// ----------------------
-updateSignupButtonState();
+function handlePasswordMatch(els) {
+  const match = els.pass.value === els.confirm.value;
+  
+  if (!match && els.confirm.value.length > 0) {
+    els.confirm.classList.add('error');
+    els.errorMsg.style.display = 'block';
+    els.errorMsg.textContent = "Your passwords don't match.Please try again";
+  } else {
+    els.confirm.classList.remove('error');
+    els.errorMsg.style.display = 'none';
+  }
+  updateBtn(els);
+}
+
+// ---------------- Event Listeners ----------------
+function addBasicListeners(els) {
+  const check = () => updateBtn(els);
+  
+  els.name.addEventListener('input', check);
+  els.email.addEventListener('input', check);
+  els.checkbox.addEventListener('change', check);
+}
+
+function addPasswordListeners(els) {
+  let touched = false; // Local state to track interaction
+
+  els.confirm.addEventListener('input', () => {
+    touched = true;
+    els.confirm.classList.remove('error'); // Clear error while typing
+    els.errorMsg.style.display = 'none';
+    updateBtn(els);
+  });
+
+  els.confirm.addEventListener('blur', () => {
+    if (touched) handlePasswordMatch(els);
+  });
+
+  els.pass.addEventListener('input', () => {
+    touched ? handlePasswordMatch(els) : updateBtn(els);
+  });
+}
+
+// ---------------- Initialization ----------------
+function initSignupForm() {
+  const els = getElements();
+  if (!els.btn || !els.pass) return;
+
+  setupToggle('auth_password_input', 'toggle_password_icon');
+  setupToggle('auth_confirm_password_input', 'toggle_confirm_password_icon');
+  
+  addBasicListeners(els);
+  addPasswordListeners(els);
+  
+  // Run once on load to check initial state (e.g. browser autofill)
+  updateBtn(els);
+}
+
+initSignupForm();

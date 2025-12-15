@@ -159,10 +159,10 @@
 .input-icon {
   position: absolute;
   top: 50%;
-  right: 8px;
+  right: 16px;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 }
 
@@ -178,10 +178,10 @@
 #toggle_password_icon {
   position: absolute;
   top: 50%;
-  right: 8px;
+  right: 16px;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
   transition: opacity 125ms ease-in-out;
 }
@@ -204,6 +204,14 @@
 
 .input-wrapper input.error {
   border: 1px solid #FF3D00;
+}
+
+#confirm_password_error {
+    position: absolute;
+    bottom: -20px; 
+    left: 0;
+    color: #ff3d00; 
+    display: none; 
 }
 
 /* =========================================
