@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    gap: 50px;
+    gap: 60px;
 }
 
 .style_boxes{
@@ -85,10 +85,19 @@
 
 .box_prio_tickets:hover{
     background-color: #2a3647;
-    color: white;
     transform: scale(1.02);
     transition: transform 0.1s ease ;
     cursor: pointer;
+}
+
+.style_boxes:hover p,
+.style_boxes:hover span,
+.style_boxes:hover .summary_number,
+.style_boxes:hover .style_text,
+.style_boxes:hover .style_prio_area,
+.style_boxes:hover .date_of_deadline,
+.style_boxes:hover .style_username{
+    color: white;
 }
 
 .counter_prio_tickets{
@@ -101,7 +110,11 @@
 .divider_prio_box{
     border-right: 2px solid #d1d1d1;
     height: 100px;
-    margin: 12px;
+    margin: 20px;
+}
+
+.box_prio_tickets:hover .divider_prio_box{
+    border-color: white;
 }
 
 .deadline_information{
@@ -113,8 +126,10 @@
 }
 
 .date_of_deadline{
-    font-weight: bold;
+    font-family: 'latin_700';;
+    font-weight: 700;
     font-size: 21px;
+    color: #2a3647;
 }
 
 .order_ticket_box_below{
@@ -130,7 +145,7 @@
     background-color: #2a3647;
     color: white;
     transform: scale(1.05);
-    transition: transform 0.1s ease ;
+    transition: transform 0.1s ease;
     cursor: pointer;
 }
 
@@ -145,4 +160,17 @@
 
 .style_text{
     text-align: center;
+    font-family: 'latin_400';
+    font-weight: 400;
+    font-size: 20px;
+    color: #2a3647;
 }
+
+.style_prio_area{
+    text-align: center;
+    font-family: 'latin_400';
+    font-weight: 400;
+    font-size: 18px;
+    color: #2a3647;
+}
+
