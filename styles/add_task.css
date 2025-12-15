@@ -38,7 +38,7 @@
 }
 
 sup {
-    color: #FF8190;
+    color: #FF3D00;
 }
 
 .add_task_input {
@@ -138,6 +138,12 @@ sup {
     background-size: contain;
     background-repeat: no-repeat;
     transition: opacity 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 2px solid #29abe2;
 }
 
 .dropdown_input:hover .dropdown_icon {
