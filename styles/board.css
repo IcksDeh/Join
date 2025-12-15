@@ -15,11 +15,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
-    width: 230px;
+    height: 45px;
+    width: 250px;
     border-radius: 10px;
-    border: 1px solid #ABABAB;
+    border: 1px solid #ccc;
     background-color: white;
+    padding-left: 8px;
 }
 
 .style_search_icon_box{
@@ -36,6 +37,11 @@
     border-bottom-left-radius: 10px;
     width: 82%;
     font-family: 'latin_400';
+    font-size: 20px;
+}
+
+.style_input_searchbar::placeholder{
+    color: #d1d1d1;
 }
 
 .style_search_icon{
@@ -51,15 +57,15 @@
 
 .btn_add_task_board{
     display: flex;
-    justify-content: space-around;
     align-items: center;
     gap: 5px;
-    height: 40px;
+    height: 45px;
     background-color: #2a3647;
     color: white;
     font-family: 'latin_600';
-    width: 120px;
-    padding-left:15px;
+    font-size: 21px;
+    width: 165px;
+    padding-left: 20px;
 }
 
 .img_add_btn:hover{
@@ -91,7 +97,10 @@
 }
 
 .text_section{
-    font-weight: bold;
+    font-family: 'latin_700';
+    font-weight: 700;
+    font-size: 20px;
+    color: #2a3647;
 }
 
 .width_section{
@@ -100,15 +109,18 @@
 }
 
 .no_task_availabe{
-    background-color: #d7d6d6;
+    background-color: #ececec;
     height: 50px;
     width: 100%;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #4f4f4fe3;
-    border: 2px dashed #4f4f4fe3;
+    color: #acacac;
+    border: 1.5px dashed #acacac;
+    font-family: 'latin_400';
+    font-weight: 400;
+    font-size: 18px;
 }
 
 .style_task_card{
@@ -129,6 +141,9 @@
     padding: 1px 15px;
     margin-top: 20px;
     margin-left: 20px;
+    font-family: 'latin_400';
+    font-weight: 400;
+    font-size: 18px;
 }
 
 .text_label_task_card{
@@ -141,13 +156,19 @@
     margin-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
+    font-family: 'latin_700';
+    font-weight: 700;
+    font-size: 18px;
 }
 
 .style_text_description_card{
-    color: #a8a8a8;
+    color: #acacac;
     margin-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
+    font-family: 'latin_400';
+    font-weight: 400;
+    font-size: 16px;
 }
 
 .order_progressbar_counter{
@@ -195,5 +216,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
