@@ -4,6 +4,7 @@
 
 .legal_privacy_p {
   margin-bottom: 24px;
+  color: #2a3647;
 }
 
 h3 {
@@ -13,7 +14,6 @@ h3 {
 
 .legal_notice_span {
   color: #29abe2;
-  line-height: 20px;
 }
 
 .legal_privacy_h2 {
@@ -44,7 +44,7 @@ h3 {
 }
 
 .list_items {
-  color: #000;
+  color: #2a3647;
 }
 
 /* -----------------------------
@@ -63,8 +63,8 @@ h3 {
   padding-bottom: 10px;
   background-color: #f6f7f8;
 }
+
 .ln_pp_hp_content {
-  max-width: 1014px;
   padding: 206px 97px 0 328px;
   cursor: default;
 }
@@ -84,6 +84,7 @@ h3 {
 .pp_ul {
   padding-left: 20px;
 }
+
 .legal_notice_ul {
   padding-left: 24px;
   margin-bottom: 24px;
@@ -97,6 +98,7 @@ h3 {
   height: auto;
   overflow: visible;
 }
+
 .pp_content {
   padding-bottom: 50px;
 }
