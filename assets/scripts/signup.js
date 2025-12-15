@@ -88,6 +88,7 @@ function updateSignupButtonState() {
 // ----------------------
 updateSignupButtonState();
 
+
 function getUserData(){
   let userID = newUserID + 1;
   newUserID = userID;
