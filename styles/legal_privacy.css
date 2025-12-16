@@ -23,11 +23,23 @@ h3 {
 }
 
 .legal_privacy_h3 {
+  font-family: 'latin_700';
+  font-weight: 700;
+  font-size: 20px;
   padding-bottom: 20px;
 }
 
 .pp_h4 {
+  font-family: 'latin_700';
+  font-weight: 700;
+  font-size: 18px;
   padding-bottom: 20px;
+}
+
+.bold_list_elements {
+  font-family: 'latin_700';
+  font-weight: 700;
+  font-size: 16px;
 }
 
 /* -----------------------------
@@ -75,19 +87,6 @@ h3 {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 32px;
-}
-
-/* -----------------------------
-  Lists
-------------------------------*/
-
-.pp_ul {
-  padding-left: 20px;
-}
-
-.legal_notice_ul {
-  padding-left: 24px;
-  margin-bottom: 24px;
 }
 
 /* -----------------------------
