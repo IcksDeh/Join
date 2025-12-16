@@ -17,15 +17,15 @@
     <button class="outline_btn" onclick="openAddContactDialog()">Klicke für Overlay</button>
     <dialog class="dialog_contact_container" id="addContactDialog">
         <main class="contact_overlay_wrapper">
-            <div class="contact_left_container">
+            <section class="contact_left_container">
                 <img class="logo_overlay" src="./assets/img/logo_version2.svg" alt="Join Logo">
                 <span class="headline_overlay">Add Contact</span>
                 <span class="subhead_overlay">Tasks are better with a team!</span>
                 <hr class="hr_overlay">
-            </div>
-            <div class="contact_right_container">
+            </section>
+            <section class="contact_right_container">
                 <div class="close_btn_container">
-                    <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddContactDialog()">
+                    <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddContactDialog()" role="button" aria-label="Schließen">
                 </div>
                 <div class="right_container_wrapper">
                     <div>
@@ -38,7 +38,7 @@
                             <input type="text" id="phone" class="contact_input styled_input" placeholder="Phone"><br>
                         </div>
                         <div class="contact_btn_area">
-                            <button class="outline_btn" onclick="clearContactInputs()">Cancel
+                            <button class="outline_btn" onclick="closeAddContactDialog()">Cancel
                                 <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                 <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                             </button>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                 </div>    
-            </div>
+            </section>
         </main>
     </dialog>
 </body>
