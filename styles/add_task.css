@@ -326,7 +326,7 @@ textarea:focus {
 }
 
 .low_btn_filled {
-    flex: 1;
+    flex: 2;
     background-color: #7Ae229;
     color: white;
     border: none;
@@ -361,7 +361,7 @@ textarea:focus {
     font-size: 20px;
     border: 2px solid #2a3647;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     gap: 6px;
     cursor: pointer;
@@ -378,7 +378,7 @@ textarea:focus {
 }
 
 .clear_btn:hover {
-    color: #29abe2;
+    color: #e2299b;
     border-color: #29abe2;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
@@ -395,7 +395,7 @@ textarea:focus {
     font-family: "latin_600", sans-serif;
     padding: 8px 18px;
     color: white;
-    background-color: #2a3647;
+    background-color: #3dcf19;
     font-size: 21px;
     display: flex;
     align-items: center; 
