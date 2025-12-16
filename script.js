@@ -61,6 +61,7 @@ function toggleMenu() {
 /**
  *  Adds a click listener to all <dialog> elements on the page.
  *  When a user clicks on the dialog background, the dialog will be closed.
+ *  clearContactInputs() clears all input fields.
  * 
  */
 document.querySelectorAll('dialog').forEach(dialog => {
@@ -68,7 +69,10 @@ document.querySelectorAll('dialog').forEach(dialog => {
 
         if (event.target === dialog) {
         dialog.close();
+        clearContactInputs();
         }
     });
 });
+
+
 
