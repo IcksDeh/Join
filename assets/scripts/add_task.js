@@ -115,3 +115,16 @@ function closeAddTaskDialog() {
 
   clearInputs()
 }
+
+
+/**
+ * Choses a date.
+ * 
+ */
+window.addEventListener('DOMContentLoaded', () => {
+  const dueDateInput = document.getElementById('due_date');
+  if (dueDateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dueDateInput.setAttribute('min', today);
+  }
+});
