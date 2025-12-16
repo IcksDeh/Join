@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="add_task_form_container">
-                    <div class="formfield_left">
+                    <section class="formfield_left">
                         <label for="title" class="label_text">Title<sup>*</sup></label><br>
                         <input type="text" class="add_task_input styled_input" id="title" placeholder="Enter a title"><br>
 
@@ -39,12 +39,12 @@
                         <textarea class="add_task_description styled_input_description" id="description" placeholder="Enter a description"></textarea><br>
 
                         <label for="due_date" class="label_text">Due date<sup>*</sup></label><br>
-                        <input type="text" id="due_date" class="add_task_input styled_input" placeholder="dd/mm/yyyy"><br>
-                    </div>
+                        <input type="date" id="due_date" class="add_task_input styled_input" min="2025-12-16" max="2030-12-16"><br>
+                    </section>
 
                     <div class="vertical_line"></div>
 
-                    <div class="formfield_right">
+                    <section class="formfield_right">
                         <label class="label_text">Priority</label><br>
                         <div class="priority_options">
                             <button class="urgent_btn_default" id="urgent_btn_default" onclick="setPriority('urgent')">Urgent
@@ -130,7 +130,7 @@
 
                         <label for="subtasks" class="label_text">Subtasks</label><br>
                         <input type="text" class="add_task_input styled_input" id="subtasks" placeholder="Add new subtask"><br>
-                    </div>
+                    </section>
                 </div>
 
                 <div class="add_task_bottom_area">

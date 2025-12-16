@@ -83,6 +83,7 @@ function clearInputs() {
 
 /**
  * Opens the "Add Task" dialog if it is not already open.
+ * setTimeout removes focus from any active element.
  * 
  * @function openAddTaskDialog
  * @returns {void} - This function does not return a value.
@@ -92,6 +93,12 @@ function openAddTaskDialog() {
     
   if (!dialog.open) {
     dialog.showModal();
+
+    setTimeout(() => {
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+    }, 0);
   }
 }
 
@@ -108,3 +115,16 @@ function closeAddTaskDialog() {
 
   clearInputs()
 }
+
+
+/**
+ * Choses a date.
+ * 
+ */
+window.addEventListener('DOMContentLoaded', () => {
+  const dueDateInput = document.getElementById('due_date');
+  if (dueDateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dueDateInput.setAttribute('min', today);
+  }
+});

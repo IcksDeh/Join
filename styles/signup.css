@@ -1,6 +1,7 @@
 /* =========================================
-    SIGNUP – HEADER
+  SIGNUP – HEADER
 ========================================= */
+
 .signup_header {
   display: flex;
   justify-content: flex-start;
@@ -14,11 +15,10 @@
   height: 32px;
 }
 
-
-
 /* =========================================
-   SIGNUP – MAIN CONTENΤ
+  SIGNUP – MAIN CONTENΤ
 ========================================= */
+
 .signup_main_content {
   max-width: 598px;
   width: 100%;
@@ -37,18 +37,20 @@
 }
 
 /* =========================================
-    SIGNUP – FORM 
+  SIGNUP – FORM 
 ========================================= */
+
 .signup_in_form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 27px;
 }
 
 /* =========================================
-   SIGNUP – CHECKBOX
+  SIGNUP – CHECKBOX
 ========================================= */
+
 .checkbox_text {
   color: #a8a8a8;
 }
@@ -56,7 +58,6 @@
 .checkbox_link {
   color: #29abe2;
 }
-
 
 .auth_btn:disabled {
   background-color: #999; /* πιο θαμπό γκρι */

@@ -38,7 +38,7 @@
 }
 
 sup {
-    color: #FF8190;
+    color: #FF3D00;
 }
 
 .add_task_input {
@@ -118,6 +118,34 @@ sup {
     background-color: white;
 }
 
+/* Removes the standard browser icon for date picker */
+/* Chrome, Safari, Edge */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/* Firefox */
+input[type="date"]::-moz-calendar-picker-indicator {
+    display: none;
+}
+
+/* Older Browser */
+input[type="date"]::-ms-input-placeholder {
+    display: none;
+}
+
+input[type="date"]::placeholder,
+input[type="date"]::-webkit-input-placeholder,
+input[type="date"]::-moz-placeholder,
+input[type="date"]:-ms-input-placeholder {
+    color: #d1d1d1;
+    font-size: 20px;
+    font-family: "latin_400", sans-serif;
+    font-weight: 400;
+    padding-top: 8px;
+}
+
 /* ---------- DROPDOWN INPUTS ---------- */
 
 .dropdown {
@@ -138,6 +166,12 @@ sup {
     background-size: contain;
     background-repeat: no-repeat;
     transition: opacity 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 2px solid #29abe2;
 }
 
 .dropdown_input:hover .dropdown_icon {
@@ -359,7 +393,7 @@ sup {
     padding: 8px 18px;
     color: white;
     background-color: #2a3647;
-    font-size: 20px;
+    font-size: 21px;
     display: flex;
     align-items: center; 
     justify-content: center;

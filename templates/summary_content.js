@@ -3,33 +3,33 @@ function summaryContentTemplate(){
         <div>
             <section class="order_todo_done_box margin_left">
                 <div class="style_todo_done_box style_boxes style_done_box_hover">
-                    <img class="img_summary_edit_check_icon" src="./assets/img/summary_edit_icon.svg" alt="edit">
+                    <img class="img_summary_edit_check_icon" src="./assets/img/summary_edit_icon.svg" alt="Edit Icon">
                     <div class="order_number_text">
                         <p class="summary_number">1</p>
-                        <p>To-do</p>
+                        <p class="style_text">To Do</p>
                     </div>
                 </div>
 
                 <div class="style_todo_done_box style_boxes style_todo_box_hover">
-                    <img class="img_summary_edit_check_icon" src="./assets/img/summary_check_icon.svg" alt="check">
+                    <img class="img_summary_edit_check_icon" src="./assets/img/summary_check_icon.svg" alt="Check Icon">
                     <div class="order_number_text">
                         <p class="summary_number">2</p>
-                        <p>Done</p>
+                        <p class="style_text">Done</p>
                     </div>
                 </div>
             </section>
             <section class="box_prio_tickets margin_left style_boxes">
                 <div class="counter_prio_tickets">
-                    <img src="./assets/img/summary_prio_icon.svg" alt="prio">
+                    <img src="./assets/img/summary_prio_icon.svg" alt="Priority Icon">
                     <div class="order_number_text">
                         <p class="summary_number">3</p>
-                        <p>Urgent</p>
+                        <p class="style_prio_area">Urgent</p>
                     </div>
                 </div>
                 <div class="divider_prio_box"></div>
                 <div class="deadline_information">
                     <p class="date_of_deadline">October 16, 2022</p>
-                    <p>Upcoming Deadline</p>
+                    <p class="style_prio_area">Upcoming Deadline</p>
                 </div>
             </section>
             <section class="order_ticket_box_below margin_left">

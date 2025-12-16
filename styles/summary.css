@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    gap: 50px;
+    gap: 60px;
 }
 
 .style_boxes{
@@ -17,17 +17,18 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-
 .summary_header{
     display: flex;
     align-items: center;
     margin-top: 100px;
+    margin-bottom: 35px;
     gap: 20px;
 }
 
 .divider_header{
-    border-right: 2px solid #29abe2;
-    height: 40px;
+    border-right: 2.5px solid #29abe2;
+    height: 55px;
+    margin: 12px;
 }
 
 .text_header{
@@ -42,23 +43,22 @@
 .style_todo_done_box{
     width: 264px;
     gap: 30px;
-    
 }
 
 .style_todo_done_box:hover{
-    background-color: #2e3d57;
+    background-color: #2a3647;
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: transform 0.1s ease ;
     cursor: pointer;
 }
 
 .style_todo_box_hover:hover img{
-    content: url("../assets/img/check_hover.svg");
+    content: url("../assets/img/check_white_circle.svg");
 }
 
 .style_done_box_hover:hover img{
-    content: url("../assets/img/edit_hover.svg");
+    content: url("../assets/img/edit_white_circle.svg");
 }
 
 .img_summary_edit_check_icon{
@@ -71,7 +71,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .summary_number{
@@ -85,11 +84,20 @@
 }
 
 .box_prio_tickets:hover{
-    background-color: #2e3d57;
-    color: white;
-    transform: scale(1.1);
+    background-color: #2a3647;
+    transform: scale(1.02);
     transition: transform 0.1s ease ;
     cursor: pointer;
+}
+
+.style_boxes:hover p,
+.style_boxes:hover span,
+.style_boxes:hover .summary_number,
+.style_boxes:hover .style_text,
+.style_boxes:hover .style_prio_area,
+.style_boxes:hover .date_of_deadline,
+.style_boxes:hover .style_username{
+    color: white;
 }
 
 .counter_prio_tickets{
@@ -102,19 +110,26 @@
 .divider_prio_box{
     border-right: 2px solid #d1d1d1;
     height: 100px;
+    margin: 20px;
+}
+
+.box_prio_tickets:hover .divider_prio_box{
+    border-color: white;
 }
 
 .deadline_information{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     gap: 10px;
 }
 
 .date_of_deadline{
-    font-weight: bold;
+    font-family: 'latin_700';;
+    font-weight: 700;
     font-size: 21px;
+    color: #2a3647;
 }
 
 .order_ticket_box_below{
@@ -127,10 +142,10 @@
 }
 
 .boxes_last_row:hover{
-    background-color: #2e3d57;
+    background-color: #2a3647;
     color: white;
-    transform: scale(1.1);
-    transition: transform 0.1s ease ;
+    transform: scale(1.05);
+    transition: transform 0.1s ease;
     cursor: pointer;
 }
 
@@ -145,4 +160,16 @@
 
 .style_text{
     text-align: center;
+    font-family: 'latin_400';
+    font-weight: 400;
+    font-size: 20px;
+    color: #2a3647;
+}
+
+.style_prio_area{
+    text-align: center;
+    font-family: 'latin_400';
+    font-weight: 400;
+    font-size: 18px;
+    color: #2a3647;
 }

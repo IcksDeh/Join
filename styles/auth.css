@@ -1,5 +1,5 @@
 /* =========================================
-   BASE STYLES
+  BASE STYLES
 ========================================= */
 
 .auth_body {
@@ -7,17 +7,8 @@
   width: 100%;
 }
 
-button {
-  height: 49px;
-  border-radius: 8px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  transition: all 125ms ease-in-out;
-}
-
 /* =========================================
-   HEADER
+  HEADER
 ========================================= */
 
 #auth_header {
@@ -54,7 +45,7 @@ button {
 }
 
 /* =========================================
-   BUTTONS
+  BUTTONS
 ========================================= */
 
 .signup_btn {
@@ -97,7 +88,7 @@ button {
 }
 
 /* =========================================
-   MAIN CONTENT
+  MAIN CONTENT
 ========================================= */
 
 .auth_main {
@@ -142,7 +133,7 @@ button {
 }
 
 /* =========================================
-   INPUTS
+  INPUTS
 ========================================= */
 
 .input-wrapper {
@@ -153,20 +144,25 @@ button {
 .icon-input {
   width: 100%;
   height: 48px;
-  padding-left: 8px;
+  padding-left: 16px;
   border: 1px solid #ccc;
   border-radius: 10px;
   font-size: 20px;
-  color: #333;
+  font-family: 'latin_400';
+  font-weight: 400;
+}
+
+.icon-input::placeholder {
+  color: #d1d1d1;
 }
 
 .input-icon {
   position: absolute;
   top: 50%;
-  right: 8px;
+  right: 16px;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
 }
 
@@ -176,16 +172,16 @@ button {
 }
 
 #auth_password_input {
-  color: #333;
+  color: #2a3647;
 }
 
 #toggle_password_icon {
   position: absolute;
   top: 50%;
-  right: 8px;
+  right: 16px;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
   transition: opacity 125ms ease-in-out;
 }
@@ -196,22 +192,30 @@ button {
 }
 
 .input-error {
-  border: 2px solid red !important;
+  border: 2px solid #FF3D00 !important;
 }
 
 .error-message {
-  color: red;
+  color: #FF3D00;
   font-size: 0.85rem;
   margin-top: 4px;
   display: none;
 }
 
 .input-wrapper input.error {
-  border: 1px solid red;
+  border: 1px solid #FF3D00;
+}
+
+#confirm_password_error {
+    position: absolute;
+    bottom: -20px; 
+    left: 0;
+    color: #ff3d00; 
+    display: none; 
 }
 
 /* =========================================
-   FOOTER
+  FOOTER
 ========================================= */
 
 .auth_footer {
@@ -226,7 +230,7 @@ button {
 }
 
 /* =========================================
-   SPLASH SCREEN & ANIMATIONS
+  SPLASH SCREEN & ANIMATIONS
 ========================================= */
 
 #splash {
@@ -256,7 +260,7 @@ button {
 }
 
 /* =========================================
-   KEYFRAMES
+  KEYFRAMES
 ========================================= */
 
 @keyframes logoMove {
@@ -270,8 +274,10 @@ button {
   100% {
     width: 100px;
     height: 120px;
-    top: 5%;
-    left: 5%;
+    top: 50px;
+
+    left: max(77px, calc(50vw - 720px + 77px));
+
     transform: translate(0, 0);
   }
 }
@@ -311,8 +317,8 @@ button {
     100% {
       width: 80px;
       height: 95px;
-      top: 5%;
-      left: 5%;
+      top: 50px;
+      left: 77px;
       transform: translate(0, 0);
     }
   }
@@ -335,8 +341,8 @@ button {
     100% {
       width: 60px;
       height: 72px;
-      top: 5%;
-      left: 5%;
+      top: 30px;
+      left: 30px;
       transform: translate(0, 0);
     }
   }

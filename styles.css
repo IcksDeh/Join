@@ -69,9 +69,15 @@ li{
     margin: 0;
 }
 
+input,
+textarea{
+    cursor: pointer;
+}
+
 button{
     height: 49px;
     border-radius: 8px;
+    font-weight: 700;
     border: none;
     cursor: pointer;
     transition: all 125ms ease-in-out;
