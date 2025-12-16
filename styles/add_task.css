@@ -340,13 +340,13 @@ textarea:focus {
 .add_task_bottom_area {
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: center;
 }
 
 .add_task_btn_area {
     display: flex;
     gap: 12px;
-    margin-top: 50px;
+    margin-top: 24px;
 }
 
 .clear_btn {
@@ -362,6 +362,12 @@ textarea:focus {
     justify-content: center;
     gap: 6px;
     cursor: pointer;
+}
+
+.clear_btn .icon {
+    width: 24px;  
+    height: 24px;  
+    object-fit: contain;
 }
 
 .clear_btn img.hover {
