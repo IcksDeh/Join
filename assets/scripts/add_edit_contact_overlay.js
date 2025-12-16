@@ -1,5 +1,6 @@
 /**
  * Opens the "Add Contact" dialog if it is not already open.
+ * setTimeout removes focus from any active element.
  * 
  * @function openAddContactDialog
  * @returns {void} - This function does not return a value.
@@ -9,6 +10,12 @@ function openAddContactDialog() {
     
   if (!dialog.open) {
     dialog.showModal();
+
+    setTimeout(() => {
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+    }, 0);
   }
 }
 
@@ -29,6 +36,7 @@ function closeAddContactDialog() {
 
 /**
  * Opens the "Edit Contact" dialog if it is not already open.
+ * setTimeout removes focus from any active element.
  * 
  * @function openEditContactDialog
  * @returns {void} - This function does not return a value.
@@ -38,6 +46,12 @@ function openEditContactDialog() {
     
   if (!dialog.open) {
     dialog.showModal();
+
+    setTimeout(() => {
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+    }, 0);
   }
 }
 
@@ -52,7 +66,7 @@ function closeEditContactDialog() {
   const dialog = document.getElementById('editContactDialog');
   dialog.close();
 
-  clearContactInputs()
+  clearContactInputs();
 }
 
 
