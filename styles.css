@@ -69,6 +69,11 @@ li{
     margin: 0;
 }
 
+input,
+textarea{
+    cursor: pointer;
+}
+
 button{
     height: 49px;
     border-radius: 8px;
