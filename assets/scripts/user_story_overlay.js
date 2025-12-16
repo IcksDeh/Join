@@ -1,5 +1,6 @@
 /**
  * Opens the "User Story" dialog if it is not already open.
+ * setTimeout removes focus from any active element.
  * 
  * @function openUserStoryDialog
  * @returns {void} - This function does not return a value.
@@ -9,6 +10,12 @@ function openUserStoryDialog() {
     
   if (!dialog.open) {
     dialog.showModal();
+
+    setTimeout(() => {
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+    }, 0);
   }
 }
 
