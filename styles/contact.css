@@ -70,6 +70,7 @@
     width: 352px;
     border-radius: 3px;
     border: 1px solid #d1d1d1;
+    margin-bottom: 8px;
 }
 
 .contact-person {
@@ -85,10 +86,9 @@
     background-color: #2A3647;
 }
 
-.contact-person:hover {
+.contact-person:not(.active-contact):hover {
     color: white;
-    /* background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%); */
-    background-color: #f3f3f3;
+    background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
 }
 
 .initals {
@@ -195,10 +195,15 @@
     }
 }
 
+.edit_btn,
+.delete_btn {
+    width: 70px;
+    transition: none;
+}
+
 .edit_btn:hover,
-.delete_btn:hover{
+.delete_btn:hover {
     color: #29ABE2;
-    font-family: 'latin_700';
     font-weight: 700;
 }
 
@@ -207,7 +212,7 @@
 }
 
 .delete_btn:hover img {
-    content: url("../assets/img/delete_blue.svg"); 
+    content: url("../assets/img/delete_blue.svg");
 }
 
 .contact-big-information {
@@ -250,4 +255,12 @@
 
 .contact-mail a {
     color: #29ABE2;
+}
+
+.active-contact {
+    background-color: #2A3647;
+
+    h3 {
+        color: white;
+    }
 }
