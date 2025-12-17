@@ -39,24 +39,64 @@ function closeUserStoryDialog() {
 }
 
 
+/**
+ * Opens the "User Story" dialog if it is not already open and loads the template.
+ * setTimeout removes focus from any active element.
+ * 
+ * @function openUserStoryEditDialog
+ * @returns {void} - This function does not return a value.
+ */
+function openUserStoryEditDialog() {
+  const dialog = document.getElementById('userStoryEditDialog');
+    
+  if (!dialog.open) {
+    dialog.innerHTML = userStoryEditTemplate();
+    dialog.showModal();
+
+    setTimeout(() => {
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+    }, 0);
+  }
+}
 
 
+/**
+ * Closes the "User Story" dialog.
+ * Removes its content and resets all contact input fields.
+ * 
+ * @function closeUserStoryEditDialog
+ * @returns {void} - This function does not return a value.
+ */
+function closeUserStoryEditDialog() {
+  const dialog = document.getElementById('userStoryEditDialog');
+  if (!dialog) return;
+
+  dialog.close();
+  dialog.innerHTML = "";
+
+  clearUserStoryInputs();
+}
 
 
+/**
+ * Clears input fields.
+ * 
+ * @function clearUserStoryInputs
+ * @returns {void} - This function does not return a value.
+ */
+function clearUserStoryInputs() {
+  const inputIds = ["name", "email", "phone"];  // To be proofed!
 
-// /**
-//  * Closes the "Add Contact" dialog.
-//  * Removes its content and resets all contact input fields.
-//  * 
-//  * @function closeAddContactDialog
-//  * @returns {void} - This function does not return a value.
-//  */
-// function closeAddContactDialog() {
-//   const dialog = document.getElementById('addContactDialog');
-//   if (!dialog) return;
-
-//   dialog.close();
-//   dialog.innerHTML = "";
-
-//   clearContactInputs();
-// }
+  inputIds.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+        element.value = "";
+      } else {
+        element.innerHTML = "";
+      }
+    }
+  });
+}
