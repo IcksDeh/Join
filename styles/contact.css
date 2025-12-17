@@ -176,7 +176,7 @@
 .changebtns {
     display: flex;
     flex-direction: row;
-    gap: 16px;
+    gap: 30px;
 }
 
 .name-big button {
@@ -195,12 +195,19 @@
     }
 }
 
-.name-big button:hover {
+.edit_btn:hover,
+.delete_btn:hover{
     color: #29ABE2;
+    font-family: 'latin_700';
+    font-weight: 700;
+}
 
-    img {
-        filter: invert(35%) sepia(99%) saturate(3301%) hue-rotate(194deg) brightness(98%) contrast(101%);
-    }
+.edit_btn:hover img {
+    content: url("../assets/img/edit_blue.svg");
+}
+
+.delete_btn:hover img {
+    content: url("../assets/img/delete_blue.svg"); 
 }
 
 .contact-big-information {
