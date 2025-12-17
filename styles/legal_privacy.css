@@ -101,3 +101,46 @@ h3 {
 .pp_content {
   padding-bottom: 50px;
 }
+
+.mobile_footer{
+  display: none;
+}
+
+
+.mobile_footer {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.mobile_link_icon {
+  width: 24px;
+  height: 24px;
+}
+
+.mobile_footer_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80px;
+  height: 76px;
+}
+  
+
+
+@media (max-width:600px) {
+  .sidebar_desktop {
+    display: none;
+  }
+  .nav_main_content{
+    width: 100%;
+  }
+
+   .mobile_footer {
+  display: flex;
+  height: 80px;
+  background-color:#2a3647;
+}
+}

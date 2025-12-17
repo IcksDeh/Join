@@ -92,7 +92,7 @@ button{
 }
 
 .content_wrapper_sidebar{
-    width: calc(1440px - 100px);
+    max-width: 1340px;
 }
 
 
