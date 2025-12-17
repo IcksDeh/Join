@@ -123,8 +123,14 @@ function closeAddTaskDialog() {
  */
 window.addEventListener('DOMContentLoaded', () => {
   const dueDateInput = document.getElementById('due_date');
-  if (dueDateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    dueDateInput.setAttribute('min', today);
-  }
+  if (!dueDateInput) return;
+
+  const today = new Date();
+  const isoToday = today.toISOString().split('T')[0];
+
+  const maxDate = new Date();
+  maxDate.setFullYear(today.getFullYear() + 5);
+
+  dueDateInput.min = isoToday;
+  dueDateInput.max = maxDate.toISOString().split('T')[0];
 });

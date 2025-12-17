@@ -76,27 +76,5 @@ function closeUserStoryEditDialog() {
   dialog.close();
   dialog.innerHTML = "";
 
-  clearUserStoryInputs();
-}
-
-
-/**
- * Clears input fields.
- * 
- * @function clearUserStoryInputs
- * @returns {void} - This function does not return a value.
- */
-function clearUserStoryInputs() {
-  const inputIds = ["name", "email", "phone"];  // To be proofed!
-
-  inputIds.forEach(id => {
-    const element = document.getElementById(id);
-    if (element) {
-      if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
-        element.value = "";
-      } else {
-        element.innerHTML = "";
-      }
-    }
-  });
+  clearInputs();
 }
