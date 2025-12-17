@@ -17,10 +17,9 @@ async function putToStorage(path, userData){
     let userStorage = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         header: {
-            "content-type": "application/json"},
+            "Content-Type": "application/json"},
         body: JSON.stringify(userData),    
         }
     );
-    let responseToJson = await userStorage.json();
-    console.log(responseToJson);
+   return responseToJson = await userStorage.json();
 }
