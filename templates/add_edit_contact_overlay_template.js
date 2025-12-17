@@ -10,7 +10,7 @@ function addContactTemplate(){
             <form id="addContactForm" novalidate>
                 <section class="contact_right_container">
                     <div class="close_btn_container">
-                        <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddContactDialog()" role="button" aria-label="Schließen">
+                        <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddContactDialog()" role="button" aria-label="Close Dialog">
                     </div>
                     <div class="right_container_wrapper">
                         <div>
@@ -49,7 +49,7 @@ function editContactTemplate(){
             <form id="editContactForm" novalidate>
                 <section class="contact_right_container">
                     <div class="close_btn_container">
-                        <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeEditContactDialog()" role="button" aria-label="Schließen">
+                        <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeEditContactDialog()" role="button" aria-label="Close Dialog">
                     </div>
                     <div class="right_container_wrapper">
                         <div>
