@@ -2,7 +2,7 @@ const BASE_URL = "https://join-f5da0-default-rtdb.europe-west1.firebasedatabase.
 let newUserID = 0;
 let users = [];
 
-function pushToUserData(newUserID, userName, userEmail, userPassword){
+async function pushToUserData(newUserID, userName, userEmail, userPassword){
    let userData = {
         "id" : newUserID,
         "name" : userName,
@@ -10,7 +10,7 @@ function pushToUserData(newUserID, userName, userEmail, userPassword){
         "password" : userPassword,
         }
     console.log(userData);
-    putToStorage("user", userData);
+    await putToStorage("user", userData);
 }
 
 async function putToStorage(path, userData){
@@ -21,5 +21,12 @@ async function putToStorage(path, userData){
         body: JSON.stringify(userData),    
         }
     );
-   return responseToJson = await userStorage.json();
+   clearElements();
+}
+
+function clearElements(){
+    const elements = getElements();
+    Object.values(elements).forEach(element =>{
+        element.value = ""
+    })
 }

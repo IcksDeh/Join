@@ -138,24 +138,19 @@ function initSignupForm() {
 
 initSignupForm();
 
-function getUserData(){
+document.getElementById('signup_btn').addEventListener("click", async function(event){
+    event.preventDefault();
+    await getUserData();
+    }
+
+)
+
+async function getUserData(){
   let userID = newUserID + 1;
   newUserID = userID;
-  const{name, email, pass}= getElements();
+  const elements = getElements();
  
-  let userName = name.value;
-  let userEmail = email.value;
-  let userPassword = pass.value;
-  pushToUserData(newUserID, userName, userEmail, userPassword);
-}
-
-// Alternativ
-// function getUserData(){
-//   let userID = newUserID + 1;
-//   newUserID = userID;
-//   const elements = getElements();
- 
-//   let userName = elements.name.value;
-//   let userEmail = elements.email.value;
-//   let userPassword = elements.pass.value;
-//   pushToUserData(newUserID, userName, userEmail, userPassword);}
+  let userName = elements.name.value;
+  let userEmail = elements.email.value;
+  let userPassword = elements.pass.value;
+  await pushToUserData(newUserID, userName, userEmail, userPassword);}
