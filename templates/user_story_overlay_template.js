@@ -55,13 +55,13 @@ function userStoryTemplate(){
 
             <div class="bottom_area">
                 <div class="user_story_btn_area">
-                    <button class="delete_edit_btn" onclick="clearInputs()">
+                    <button class="delete_edit_btn" onclick="">
                         <img class="icon default" src="./assets/img/delete.svg" alt="Clear Formular">
                         <img class="icon hover" src="./assets/img/delete_blue.svg" alt="Clear Formular Hover">
                         Delete
                     </button>
                     <div class="bottom_divider"></div>
-                    <button class="delete_edit_btn" onclick="clearInputs()">
+                    <button class="delete_edit_btn" onclick="userStoryEditTemplate()">
                         <img class="icon default" src="./assets/img/edit.svg" alt="Clear Formular">
                         <img class="icon hover" src="./assets/img/edit_blue.svg" alt="Clear Formular Hover">
                         Edit
