@@ -27,3 +27,17 @@
 .style_table_help{
     margin-top: 20px;
 }
+
+.headline_area{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.headline_area img{
+    cursor: pointer;
+}
+
+.headline_area:hover img{
+    content: url("../assets/img/arrow_backwards_blue_hover.svg");
+}

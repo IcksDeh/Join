@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="./assets/img/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/standard.css" />
     <link rel="stylesheet" href="./styles/auth.css" />
+    <link rel="stylesheet" href="./styles/animation.css">
     <title>Join</title>
-</head>
-<body class="auth_body">
+  </head>
+  <body class="auth_body">
     <!-- Splash logo -->
     <div id="splash">
       <img id="splash_logo" src="./assets/img/logo_version_1.svg" alt="logo" />
@@ -24,7 +25,7 @@
           src="./assets/img/logo_version_1.svg"
           alt="logo image"
         />
-        <div class="sign_up">
+        <div class="sign_up auth_desktop">
           <span class="auth_span">Not a Join user?</span>
           <button class="signup_btn" onclick="goToSignup()">Sign up</button>
         </div>
@@ -84,14 +85,20 @@
             </div>
           </form>
         </div>
+
+        <div class="sign_up auth_mobile">
+          <span class="auth_span">Not a Join user?</span>
+          <button class="signup_btn" onclick="goToSignup()">Sign up</button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="auth_footer login_footer">
+          <a class="auth_link" href="privacy_policy.html">Privacy Policy</a>
+          <a class="auth_link" href="legal_notice.html">Legal Notice</a>
+        </footer>
       </main>
-      <!-- Footer -->
-      <footer class="auth_footer">
-        <a class="auth_link" href="privacy_policy.html">Privacy Policy</a>
-        <a class="auth_link" href="legal_notice.html">Legal Notice</a>
-      </footer>
     </div>
     <script src="./assets/scripts/login.js"></script>
     <script src="./assets/scripts/signup.js"></script>
-</body>
+  </body>
 </html>

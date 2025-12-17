@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="./styles/fonts.css" />
-    <link rel="stylesheet" href="./styles/standard.css" />
-    <link rel="stylesheet" href="./styles/user_story_overlay.css" />
-    <script src="script.js" defer></script>
-    <script src="./assets/scripts/user_story_overlay.js" defer></script>
-    <title>User Story</title>
-</head>
-<body>
-    <button class="outline_btn" onclick="openUserStoryDialog()">Klicke für Overlay</button>
-    <dialog class="dialog_user_story_container" id="userStoryDialog">
+function userStoryTemplate(){
+    return `
         <main class="user_story_wrapper">
             <div class="close_btn_container">
                 <button class="story_task_btn">User Story</button>
@@ -70,13 +55,13 @@
 
             <div class="bottom_area">
                 <div class="user_story_btn_area">
-                    <button class="delete_edit_btn" onclick="clearInputs()">
+                    <button class="delete_edit_btn" onclick="">
                         <img class="icon default" src="./assets/img/delete.svg" alt="Clear Formular">
                         <img class="icon hover" src="./assets/img/delete_blue.svg" alt="Clear Formular Hover">
                         Delete
                     </button>
                     <div class="bottom_divider"></div>
-                    <button class="delete_edit_btn" onclick="clearInputs()">
+                    <button class="delete_edit_btn" onclick="userStoryEditTemplate()">
                         <img class="icon default" src="./assets/img/edit.svg" alt="Clear Formular">
                         <img class="icon hover" src="./assets/img/edit_blue.svg" alt="Clear Formular Hover">
                         Edit
@@ -84,5 +69,12 @@
                 </div>
             </div>
         </main>
-    </dialog>
-</body>
+    `
+}
+
+
+function userStoryEditTemplate(){
+    return `
+
+    `
+}
