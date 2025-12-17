@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +17,13 @@
     <script src="./templates/summary_content.js" defer></script>
     <title>Summary</title>
 </head>
-<body onload="init()">
+
+<body onload="init(), loadSummary()">
     <div class="order_sidebar_main">
-        <aside class="sidebar" id="id_sidebar"> 
+        <aside class="sidebar" id="id_sidebar">
         </aside>
 
-        <div class = "nav_main_content">
+        <div class="nav_main_content">
             <nav class="nav_bar" id="id_navbar">
             </nav>
 
@@ -37,4 +39,5 @@
         </div>
     </div>
 </body>
+
 </html>
