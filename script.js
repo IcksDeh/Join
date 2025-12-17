@@ -75,4 +75,13 @@ document.querySelectorAll('dialog').forEach(dialog => {
 });
 
 
+/**
+ *  Leads to the last clicked page in browser history.
+ * 
+ */
+function goBack() {
+  window.history.back();
+}
+
+
 
