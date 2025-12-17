@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,11 +20,12 @@
     <script src="./templates/summary_content.js" defer></script>
     <script src="./scripts/add_edit_contact_overlay.js" defer></script>
     <script src="./scripts/contacts.js" defer></script>
+    <script src="./templates/contact_content.js"></script>
     <script src="./scripts/firebase.js" defer></script>
     <title>Contacts</title>
 </head>
 
-<body onload="init()">
+<body onload="init(), cList()">
     <div class="order_sidebar_main">
         <aside class="sidebar" id="id_sidebar">
         </aside>
@@ -31,7 +33,7 @@
         <div class="nav_main_content">
             <nav class="nav_bar" id="id_navbar">
             </nav>
-            
+
             <main class="contact-page">
                 <div id="contact-list" class="contact_list">
                     <button class="contact-btn" id="addNewContactBtn" onclick="openAddContactDialog()">
@@ -41,78 +43,16 @@
 
                     <p class="beginning-letter">A</p>
                     <div class="contact-seperator"></div>
-                    <div class="contact-person">
-                        <div class="initals">AM</div>
-                        <div class="small-info">
-                            <h3>Anton Mayer</h3>
-                            <a href="mailto:antonm@gmail.com">antonm@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-person">
-                        <div class="initals">AM</div>
-                        <div class="small-info">
-                            <h3>Anton Mayer</h3>
-                            <a href="mailto:antonm@gmail.com">antonm@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-person">
-                        <div class="initals">AM</div>
-                        <div class="small-info">
-                            <h3>Anton Mayer</h3>
-                            <a href="mailto:antonm@gmail.com">antonm@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-person">
-                        <div class="initals">AM</div>
-                        <div class="small-info">
-                            <h3>Anton Mayer</h3>
-                            <a href="mailto:antonm@gmail.com">antonm@gmail.com</a>
-                        </div>
-                    </div>
-                    <p class="beginning-letter">B</p>
-                    <div class="contact-seperator"></div>
-                    <div class="contact-person">
-                        <div class="initals">BM</div>
-                        <div class="small-info">
-                            <h3>Bernd Mayer</h3>
-                            <a href="mailto:antonm@gmail.com">antonm@gmail.com</a>
-                        </div>
-                    </div>
+
                 </div>
 
-                <div class="contact-info">
+                <div class="contact-info" id="contact-info">
                     <div class="contact-headline">
                         <h3>Contacts</h3>
                         <div class="headline-seperator"></div>
                         <span>Better with a team</span>
                     </div>
-                    <div class="contact-big">
-                        <div class="initals-big">BM</div>
-                        <div class="name-big">
-                            <span id="contactDetailName">Bernd Mayer</span>
-                            <div class="changebtns">
-                                <button class="edit_btn" id="editContactBtn" onclick="openEditContactDialog()">
-                                    <img src="./assets/img/edit.svg" alt="Edit">Edit
-                                </button>
-                                <button class="delete_btn" id="deleteContactBtn">
-                                    <img src="./assets/img/delete.svg" alt="Delete">Delete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-big-information">
-                        <span>Contact Information</span>
-                        <div class="contact-deep-info">
-                            <div class="contact-mail">
-                                <span>E-Mail</span>
-                                <a id="contactDetailMail" href="mailto:antonm@gmail.com">antonm@gmail.com</a>
-                            </div>
-                            <div class="contact-phone">
-                                <span>Phone</span>
-                                <a id="contactDetailPhone" href="tel:+491111111111">+49 111 111 1111</a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </main>
 
