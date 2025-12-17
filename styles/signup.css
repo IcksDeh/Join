@@ -60,7 +60,52 @@
 }
 
 .auth_btn:disabled {
-  background-color: #999; /* πιο θαμπό γκρι */
+  background-color: #999;
   cursor: not-allowed;
   color: #eee;
+}
+
+/* =========================================
+  CUSTOM CHECKBOX STYLING
+========================================= */
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-row input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  background-image: url("../assets/img/checkbox_unchecked.svg");
+}
+
+.checkbox-row input[type="checkbox"]:checked {
+  background-image: url("../assets/img/checkbox_checked.svg");
+}
+
+.checkbox-row input[type="checkbox"]:hover {
+  transform: scale(1.05);
+  transition: transform 0.1s ease-in-out;
+}
+
+@media (max-width: 600px) {
+  .signup_header {
+    gap: 22px;
+    width: 280px;
+  }
+
+  .signup_main_content {
+    max-width: 396px;
+    height: 587px;
+  }
 }
