@@ -24,7 +24,7 @@
 
 .contact-btn {
     display: flex;
-    font-family: "latin_500";
+    font-family: "latin_700";
     font-weight: 700;
     font-size: 21px;
     color: white;
@@ -87,7 +87,8 @@
 
 .contact-person:hover {
     color: white;
-    background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
+    /* background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%); */
+    background-color: #f3f3f3;
 }
 
 .initals {
@@ -121,7 +122,7 @@
 }
 
 .small-info a {
-    color: #007cee;
+    color: #29ABE2;
 }
 
 .contact-headline {
@@ -143,16 +144,15 @@
 }
 
 .headline-seperator {
-    height: 59px;
-    width: 0;
-    border: 3px solid #29abe2;
+    border-right: 3px solid #29abe2;
+    height: 55px;
+    margin: 8px;
 }
 
 .contact-info {
     display: flex;
     flex-direction: column;
     padding-left: 55px;
-
     gap: 32px;
 }
 
@@ -196,7 +196,7 @@
 }
 
 .name-big button:hover {
-    color: #007cee;
+    color: #29ABE2;
 
     img {
         filter: invert(35%) sepia(99%) saturate(3301%) hue-rotate(194deg) brightness(98%) contrast(101%);
@@ -242,5 +242,5 @@
 }
 
 .contact-mail a {
-    color: #007cee;
+    color: #29ABE2;
 }

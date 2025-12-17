@@ -1,5 +1,5 @@
 /**
- * Opens the "Add Contact" dialog if it is not already open.
+ * Opens the "Add Contact" dialog if it is not already open and loads the template.
  * setTimeout removes focus from any active element.
  * 
  * @function openAddContactDialog
@@ -9,6 +9,7 @@ function openAddContactDialog() {
   const dialog = document.getElementById('addContactDialog');
     
   if (!dialog.open) {
+    dialog.innerHTML = addContactTemplate();
     dialog.showModal();
 
     setTimeout(() => {
@@ -22,20 +23,24 @@ function openAddContactDialog() {
 
 /**
  * Closes the "Add Contact" dialog.
+ * Removes its content and resets all contact input fields.
  * 
  * @function closeAddContactDialog
  * @returns {void} - This function does not return a value.
  */
 function closeAddContactDialog() {
   const dialog = document.getElementById('addContactDialog');
-  dialog.close();
+  if (!dialog) return;
 
-  clearContactInputs()
+  dialog.close();
+  dialog.innerHTML = "";
+
+  clearContactInputs();
 }
 
 
 /**
- * Opens the "Edit Contact" dialog if it is not already open.
+ * Opens the "Edit Contact" dialog if it is not already open and loads the template.
  * setTimeout removes focus from any active element.
  * 
  * @function openEditContactDialog
@@ -45,6 +50,7 @@ function openEditContactDialog() {
   const dialog = document.getElementById('editContactDialog');
     
   if (!dialog.open) {
+    dialog.innerHTML = editContactTemplate();
     dialog.showModal();
 
     setTimeout(() => {
@@ -58,13 +64,17 @@ function openEditContactDialog() {
 
 /**
  * Closes the "Edit Contact" dialog.
+ * Removes its content and resets all contact input fields.
  * 
  * @function closeEditContactDialog
  * @returns {void} - This function does not return a value.
  */
 function closeEditContactDialog() {
   const dialog = document.getElementById('editContactDialog');
+  if (!dialog) return;
+
   dialog.close();
+  dialog.innerHTML = "";
 
   clearContactInputs();
 }

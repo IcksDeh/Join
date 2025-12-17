@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="./styles/sidebar_nav_main.css">
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/contact.css">
+    <link rel="stylesheet" href="./styles/add_task.css" />
+    <link rel="stylesheet" href="./styles/add_edit_contact_overlay.css" />
     <script src="./script.js" defer></script>
+    <script src="./assets/scripts/add_edit_contact_overlay.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
+    <script src="./templates/add_edit_contact_template.js" defer></script>
     <script src="./templates/summary_content.js" defer></script>
     <title>Contacts</title>
 </head>
@@ -28,7 +32,7 @@
             
             <main class="contact-page">
                 <div id="contact-list" class="contact_list">
-                    <button class="contact-btn" id="addNewContactBtn">
+                    <button class="contact-btn" id="addNewContactBtn" onclick="openAddContactDialog()">
                         <span>Add new Contact</span>
                         <img src="./assets/img/person_add_white.svg" alt="add Person" />
                     </button>
@@ -85,7 +89,7 @@
                         <div class="name-big">
                             <span id="contactDetailName">Bernd Mayer</span>
                             <div class="changebtns">
-                                <button id="editContactBtn">
+                                <button id="editContactBtn" onclick="openEditContactDialog()">
                                     <img src="./assets/img/edit.svg" alt="Edit" />Edit
                                 </button>
                                 <button id="deleteContactBtn">
@@ -108,9 +112,12 @@
                         </div>
                     </div>
                 </div>
+            </main>
+
+            <dialog class="dialog_contact_container" id="addContactDialog"></dialog>
+
+            <dialog class="dialog_contact_container" id="editContactDialog"></dialog>
         </div>
-        </main>
-    </div>
     </div>
 </body>
 
