@@ -141,8 +141,21 @@ initSignupForm();
 function getUserData(){
   let userID = newUserID + 1;
   newUserID = userID;
-  let userName = nameInput.value;
-  let userEmail = emailInput.value;
-  let userPassword = passwordInput.value;
+  const{name, email, pass}= getElements();
+ 
+  let userName = name.value;
+  let userEmail = email.value;
+  let userPassword = pass.value;
   pushToUserData(newUserID, userName, userEmail, userPassword);
 }
+
+// Alternativ
+// function getUserData(){
+//   let userID = newUserID + 1;
+//   newUserID = userID;
+//   const elements = getElements();
+ 
+//   let userName = elements.name.value;
+//   let userEmail = elements.email.value;
+//   let userPassword = elements.pass.value;
+//   pushToUserData(newUserID, userName, userEmail, userPassword);}
