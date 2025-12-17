@@ -12,9 +12,12 @@
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/summary.css">
     <link rel="stylesheet" href="./styles/board.css">
+    <link rel="stylesheet" href="./styles/user_story_overlay.css" />
     <script src="./script.js" defer></script>
+    <script src="./assets/scripts/user_story_overlay.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
     <script src="./templates/summary_content.js" defer></script>
+    <script src="./templates/user_story_overlay_template.js" defer></script>
     <title>Board</title>
   </head>
   <body onload="init()">
@@ -62,7 +65,7 @@
                     </div>
                     <div class="width_section">
                       <!-- Task_card -->
-                      <div class="style_task_card">
+                      <div class="style_task_card" onclick="openUserStoryDialog()">
                         <div class="label_task_card">
                             <p class="text_label_task_card">User Story</p>
                         </div>
@@ -113,6 +116,8 @@
                   </div>
             </section>
             </main>
+
+            <dialog class="dialog_user_story_container" id="userStoryDialog"></dialog>
         </div>
     </div>
   </body>
