@@ -18,7 +18,7 @@ function setPriority(level) {
   document.getElementById(`${level}_btn_filled`).classList.remove("d_none");
 }
 
-setPriority("medium");
+// setPriority("medium");
 
 
 /**
@@ -82,7 +82,7 @@ function clearInputs() {
 
 
 /**
- * Opens the "Add Task" dialog if it is not already open.
+ * Opens the "Add Task" dialog if it is not already open and loads the template.
  * setTimeout removes focus from any active element.
  * 
  * @function openAddTaskDialog
@@ -92,6 +92,7 @@ function openAddTaskDialog() {
   const dialog = document.getElementById('addTaskDialog');
     
   if (!dialog.open) {
+    dialog.innerHTML = addTaskTemplate();
     dialog.showModal();
 
     setTimeout(() => {
@@ -100,20 +101,26 @@ function openAddTaskDialog() {
       }
     }, 0);
   }
+
+  setPriority("medium");
 }
 
 
 /**
  * Closes the "Add Task" dialog.
+ * Removes its content and resets all contact input fields.
  * 
  * @function closeAddTaskDialog
  * @returns {void} - This function does not return a value.
  */
 function closeAddTaskDialog() {
   const dialog = document.getElementById('addTaskDialog');
-  dialog.close();
+  if (!dialog) return;
 
-  clearInputs()
+  dialog.close();
+  dialog.innerHTML = "";
+
+  clearInputs();
 }
 
 

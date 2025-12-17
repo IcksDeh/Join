@@ -13,12 +13,16 @@
     <link rel="stylesheet" href="./styles/summary.css">
     <link rel="stylesheet" href="./styles/board.css">
     <link rel="stylesheet" href="./styles/user_story_overlay.css" />
+    <link rel="stylesheet" href="./styles/add_task.css" />
+    <link rel="stylesheet" href="./styles/add_task_overlay.css" />
     <script src="./script.js" defer></script>
+    <script src="./assets/scripts/add_task.js" defer></script>
     <script src="./assets/scripts/user_story_overlay.js" defer></script>
     <script src="./assets/scripts/add_edit_contact_overlay.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
     <script src="./templates/summary_content.js" defer></script>
     <script src="./templates/user_story_overlay_template.js" defer></script>
+    <script src="./templates/add_task_overlay.js" defer></script>
     <title>Board</title>
   </head>
   <body onload="init()">
@@ -42,7 +46,7 @@
                       <img class="style_search_icon" src="./assets/img/search.svg" alt="">
                     </div>
                   </div>
-                  <button class="btn_add_task_board button">Add Task<img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
+                  <button class="btn_add_task_board button" onclick="openAddTaskDialog()">Add Task<img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
                 </div>
               </section> 
               <section class="order_board_sections">
@@ -118,6 +122,7 @@
             </section>
             </main>
 
+            <dialog class="dialog_add_task_container" id="addTaskDialog"></dialog>
             <dialog class="dialog_user_story_container" id="userStoryDialog"></dialog>
         </div>
     </div>
