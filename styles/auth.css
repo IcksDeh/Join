@@ -74,7 +74,7 @@
 }
 
 .guest_log_in_btn {
-  width: 177px;
+  width: 180px;
   font-size: 20px;
   background: white;
   color: #2a3647;
@@ -252,9 +252,17 @@
  MEDIA QUERIES
 ========================================= */
 @media (max-width: 600px) {
+  .auth_title {
+    padding-top: 32px;
+  }
   .auth_mobile {
     display: flex;
     padding-top: 87px;
+  }
+
+  .auth_main {
+    margin-top: 65px;
+    padding: 65px 16px;
   }
 
   #auth_header {
@@ -283,10 +291,6 @@
 
   .guest_log_in_btn {
     font-size: 16px;
-  }
-
-  h1 {
-    font-size: 40px;
   }
 
   .underline {

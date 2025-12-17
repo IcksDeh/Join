@@ -94,3 +94,10 @@ button{
 .content_wrapper_sidebar{
     width: calc(1440px - 100px);
 }
+
+
+@media (max-width:600px) {
+   h1 {
+    font-size: 47px;
+   }
+}
