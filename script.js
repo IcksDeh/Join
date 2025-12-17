@@ -1,7 +1,6 @@
-function init(){
+function init() {
     loadSidebar();
     loadNavbar();
-    loadSummary();
 }
 
 
@@ -9,7 +8,7 @@ function init(){
  *  Loads the sidebar template. 
  * 
  */
-function loadSidebar(){
+function loadSidebar() {
     const sidebar = document.getElementById('id_sidebar');
     sidebar.innerHTML = "";
     sidebar.innerHTML = sidebarLoginTemplate();
@@ -20,7 +19,7 @@ function loadSidebar(){
  *  Loads the navbar template. 
  * 
  */
-function loadNavbar(){
+function loadNavbar() {
     const navbar = document.getElementById('id_navbar');
     navbar.innerHTML = "";
     navbar.innerHTML = navbarTemplate();
@@ -31,7 +30,7 @@ function loadNavbar(){
  *  Loads the summary template. 
  * 
  */
-function loadSummary(){
+function loadSummary() {
     const summaryContent = document.getElementById('id_content_summary');
     summaryContent.innerHTML = "";
     summaryContent.innerHTML = summaryContentTemplate();
@@ -68,8 +67,8 @@ document.querySelectorAll('dialog').forEach(dialog => {
     dialog.addEventListener('click', event => {
 
         if (event.target === dialog) {
-        dialog.close();
-        clearContactInputs();
+            dialog.close();
+            clearContactInputs();
         }
     });
 });
@@ -80,7 +79,7 @@ document.querySelectorAll('dialog').forEach(dialog => {
  * 
  */
 function goBack() {
-  window.history.back();
+    window.history.back();
 }
 
 
