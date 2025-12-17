@@ -8,7 +8,7 @@ function goToSignup() { window.location.href = "sign_up.html"; }
 function guestLogin() { window.location.href = "summary.html"; }
 
 // ---------------- Element Selectors ----------------
-function getElements() {
+function getElementsUser() {
   return {
     checkbox: document.querySelector('.checkbox-row input[type="checkbox"]'),
     btn: document.getElementById('signup_btn'),
@@ -123,7 +123,7 @@ function addPasswordListeners(els) {
 
 // ---------------- Initialization ----------------
 function initSignupForm() {
-  const els = getElements();
+  const els = getElementsUser();
   if (!els.btn || !els.pass) return;
 
   setupToggle('auth_password_input', 'toggle_password_icon');
@@ -146,11 +146,20 @@ document.getElementById('signup_btn').addEventListener("click", async function(e
 )
 
 async function getUserData(){
-  let userID = newUserID + 1;
-  newUserID = userID;
-  const elements = getElements();
+  const elements = getElementsUser();
  
   let userName = elements.name.value;
   let userEmail = elements.email.value;
   let userPassword = elements.pass.value;
-  await pushToUserData(newUserID, userName, userEmail, userPassword);}
+  await switchUserData(userName, userEmail, userPassword);}
+
+  async function switchUserData(userName, userEmail, userPassword){
+   let userData = {
+        "name" : userName,
+        "eMail" : userEmail,
+        "password" : userPassword,
+        }
+
+    let idHMTL = 'user'    
+    await putToStorage("user", userData, idHMTL);
+}

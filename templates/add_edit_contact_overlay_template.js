@@ -18,16 +18,16 @@ function addContactTemplate(){
                         </div>
                         <div>
                             <div class="input_fields_container">
-                                <input type="text" id="name" class="contact_input styled_input" placeholder="Name"><br>
-                                <input type="text" id="email" class="contact_input styled_input" placeholder="Email"><br>
-                                <input type="text" id="phone" class="contact_input styled_input" placeholder="Phone"><br>
+                                <input type="text" id="id_contact_name" class="contact_input styled_input" placeholder="Name"><br>
+                                <input type="text" id="id_contact_email" class="contact_input styled_input" placeholder="Email"><br>
+                                <input type="text" id="id_contact_phone" class="contact_input styled_input" placeholder="Phone"><br>
                             </div>
                             <div class="contact_btn_area">
                                 <button type="button" class="outline_btn" onclick="closeAddContactDialog()">Cancel
                                     <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                     <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                                 </button>
-                                <button type="submit" class="filled_btn">Create Contact<img src="./assets/img/check_white.svg" alt="Create Task"></button>
+                                <button type="submit" id="createContactBtn" class="filled_btn">Create Contact<img src="./assets/img/check_white.svg" alt="Create Task"></button>
                             </div>
                         </div>
                     </div>    
