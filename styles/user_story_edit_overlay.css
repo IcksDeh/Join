@@ -1,0 +1,407 @@
+.outline_btn {
+    font-weight: 400;
+    font-family: "latin_400", sans-serif;
+    padding: 8px 18px;
+    color: #2a3647;
+    background-color: #fff;
+    font-size: 20px;
+    border: 2px solid #2a3647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.outline_btn:hover {
+    color: #29abe2;
+    border-color: #29abe2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- USER STORY PAGE 1 ---------- */
+/* ------------- DIALOG FORM ------------- */
+
+.dialog_user_story_container {
+    width: 500px;
+    height: 840px;
+    background-color: #fff;
+    border-radius: 25px; 
+    border: none;
+    padding: 35px;      
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
+}
+
+.user_story_wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+    width: 100%;
+}
+
+#userStoryDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%; 
+    transform: translate(calc(100vw + 50%), -50%);  
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    border: none;
+}
+
+#userStoryDialog[open] {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.close_btn_container_user_story_edit {
+    position: absolute;
+    top: 28px;
+    right: 32px;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding-left: 70px;
+    margin-top: 16px;
+}
+
+.form_content {
+    width: 100%;
+    margin-top: -45px;
+    margin-bottom: 40px;
+}
+
+.form_wrapper {
+    width: 100%;
+}
+
+.label_text_edit {
+    font-size: 20px;
+    font-weight: 400;
+    color: #2a3647;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+sup {
+    color: #FF3D00;
+}
+
+.user_story_edit_input {
+    background-color: white;
+    border-radius: 8px;
+    width: 100%;
+    height: 48px;
+    padding-left: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+
+.user_story_edit_input::placeholder {
+    color: #d1d1d1;
+    font-size: 20px;
+    font-family: "latin_400", sans-serif;
+    font-weight: 400;
+}
+
+.user_story_edit_input_dropdown {
+    background-color: white;
+    border-radius: 8px;
+    width: 100%;
+    height: 48px;
+    padding-left: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.user_story_edit_input_dropdown::placeholder {
+    color: #d1d1d1;
+    font-size: 20px;
+    font-family: "latin_400", sans-serif;
+    font-weight: 400;
+}
+
+.user_story_edit_description {
+    background-color: white;
+    border-radius: 8px;
+    width: 100%;
+    height: 144px;
+    padding-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 18px;
+}
+
+.user_story_edit_description::placeholder {
+    color: #d1d1d1;
+    font-size: 20px;
+    font-family: "latin_400", sans-serif;
+    font-weight: 400;
+    padding-top: 8px;
+}
+
+.styled_input_edit {
+    font-family: "latin_400", sans-serif;
+    font-size: 20px;           
+    color: #2a3647;            
+    padding-left: 20px;
+}
+
+.styled_input_edit_description {
+    font-family: "latin_400", sans-serif;
+    font-size: 20px;           
+    color: #2a3647;            
+    padding-left: 20px;
+    padding-top: 8px;
+}
+
+#due_date {
+    background: url("../assets/img/event.svg") no-repeat right 16px center;
+    background-color: white;
+}
+
+/* Removes the standard browser icon for date picker */
+/* Chrome, Safari, Edge */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/* Firefox */
+input[type="date"]::-moz-calendar-picker-indicator {
+    display: none;
+}
+
+/* Older Browser */
+input[type="date"]::-ms-input-placeholder {
+    display: none;
+}
+
+input[type="date"]::placeholder,
+input[type="date"]::-webkit-input-placeholder,
+input[type="date"]::-moz-placeholder,
+input[type="date"]:-ms-input-placeholder {
+    color: #d1d1d1;
+    font-size: 20px;
+    font-family: "latin_400", sans-serif;
+    font-weight: 400;
+    padding-top: 8px;
+}
+
+/* ---------- PRIORITY BOTTON AREA ---------- */
+
+.priority_options_edit {
+    display: flex;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+
+.priority_options_edit button + button {
+    margin-left: 8px;
+}
+
+.urgent_btn_default,
+.medium_btn_default,
+.low_btn_default {
+    flex: 1;
+    background-color: white;
+    color: #2a3647;
+    border: none;
+    border-radius: 8px;
+    height: 48px;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.07);
+}
+
+.urgent_btn_default:hover,
+.medium_btn_default:hover,
+.low_btn_default:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.urgent_btn_filled {
+    flex: 1;
+    background-color: #FF3D00;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    height: 48px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.medium_btn_filled {
+    flex: 1;
+    background-color: #FFA800;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    height: 48px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.low_btn_filled {
+    flex: 1;
+    background-color: #7Ae229;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    height: 48px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    gap: 8px;
+}
+
+/* ---------- DROPDOWN INPUTS ---------- */
+
+.dropdown {
+    width: 100%; 
+}
+ 
+.dropdown_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 12px;
+}
+
+.dropdown_icon {
+    width: 20px;
+    height: 20px;
+    background-image: url("../assets/img/drop_down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 2px solid #29abe2;
+}
+
+.dropdown_input:hover .dropdown_icon {
+    background-image: url("../assets/img/drop_down_hover.svg");
+}
+
+.dropdown_list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown_list_contacts {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-height: 190px;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown_item {
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.dropdown_item:hover {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+}
+
+.dropdown_item_user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.input_spacer {
+    height: 24px;
+    width: 100%;
+}
+
+.user_info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.checkbox_icon {
+    cursor: pointer;
+    padding-right: 30px;
+}
+
+.checkbox_icon:hover {
+    content: url("../assets/img/checkbox_unchecked_hover.svg");
+}
+
+/* ---------- SCROLL BAR SMALL ---------- */
+
+.dropdown_list_contacts::-webkit-scrollbar {
+    width: 8px;
+    background: transparent; 
+}
+
+.dropdown_list_contacts::-webkit-scrollbar-track {
+    border-radius: 4px;
+}
+
+.dropdown_list_contacts::-webkit-scrollbar-thumb {
+    background: #d5d5d5;
+    border-radius: 4px;
+}
+
+.dropdown_list_contacts::-webkit-scrollbar-thumb:hover {
+    background: #c8c8c8;
+}
+
+/* ---------- SCROLL BAR BIG ---------- */
+
+.dialog_user_story_container::-webkit-scrollbar {
+    width: 8px;
+    background: transparent; 
+}
+
+.dialog_user_story_container::-webkit-scrollbar-thumb {
+    background: #d5d5d5;
+    border-radius: 6px;
+}
+
+.dialog_user_story_container::-webkit-scrollbar-thumb:hover {
+    background: #c8c8c8;
+}

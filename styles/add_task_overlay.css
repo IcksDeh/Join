@@ -49,7 +49,7 @@
     content: url("../assets/img/x_hover.svg");
 }
 
-/* ---------- SCROLL BAR ---------- */
+/* ---------- SCROLL BAR BIG ---------- */
 
 .dialog_add_task_container::-webkit-scrollbar {
     width: 8px;

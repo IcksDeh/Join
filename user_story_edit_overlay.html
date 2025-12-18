@@ -8,81 +8,104 @@
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/standard.css" />
     <link rel="stylesheet" href="./styles/user_story_overlay.css" />
+    <link rel="stylesheet" href="./styles/user_story_edit_overlay.css" />
     <script src="script.js" defer></script>
     <script src="./scripts/user_story_overlay.js" defer></script>
+    <script src="./scripts/add_task.js" defer></script>
     <title>User Story</title>
 </head>
 <body>
     <button class="outline_btn" onclick="openUserStoryEditDialog()">Klicke für Overlay</button>
     <dialog class="dialog_user_story_container" id="userStoryEditDialog">
         <main class="user_story_wrapper">
-            <div class="close_btn_container">
-                <button class="story_task_btn">User Story</button>
+            <div class="close_btn_container_user_story_edit">
                 <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeUserStoryEditDialog()" role="button" aria-label="Schließen">
             </div>
 
-            <span class="user_story_title">Page and Recipe Recommender</span>
-            <p class="user_story_description">It provides users with personalized suggestions for pages and recipes based on their preferences.</p>
-            
-            <table class="recommender_table" aria-label="Page and Recipe Recommender details">
-                <tbody>
-                    <tr>
-                    <th scope="row" class="user_story_description table_spacer">Due Date:</th>
-                    <td class="user_story_description table_spacer">10/01/2026</td>
-                    </tr>
-                    <tr>
-                    <th scope="row" class="user_story_description table_spacer">Priority:</th>
-                    <td class="user_story_description table_spacer icon_gap">Urgent
-                        <img src="./assets/img/prio_urgent_red.svg" alt="Prio Urgent">
-                    </td>
-                    </tr>
-                    <tr>
-                    <th scope="row" class="user_story_description table_spacer">Assigned To:</th>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="assigned_user">
-                <div class="user_info">
-                    <img src="./assets/img/user-de.svg" alt="">
-                    <p>David Eisenberg</p>
-                </div>
-                <div class="user_info">
-                    <img src="./assets/img/user-am.svg" alt="">
-                    <p>Anton Mayer</p>
-                </div>
-                <div class="user_info">
-                    <img src="./assets/img/user-ef.svg" alt="">
-                    <p>Eva Fischer</p>
-                </div>
-            </div>
+            <form class="form_content" id="userStoryEditForm" novalidate>
+                <section class="form_wrapper">
+                    <label for="title" class="label_text_edit">Title<sup>*</sup></label><br>
+                    <input type="text" class="user_story_edit_input styled_input_edit" id="title" placeholder="Title"><br>
 
-            <p class="user_story_description">Subtasks</p>
-            <div>
-                <div class="subtasks_container">
-                    <img class="checkbox_icon" src="./assets/img/checkbox_checked_contact_form.svg" alt="Checkbox Button">
-                    <p class="user_story_description">Implement Recipe Recommendation</p>
-                </div>
-                <div class="subtasks_container">
-                    <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                    <p class="user_story_description">Implement Recipe Recommendation</p>
-                </div>
-            </div>
+                    <label for="description" class="label_text_edit">Description</label><br>
+                    <textarea class="user_story_edit_description styled_input_edit_description" id="description" placeholder="Description"></textarea><br>
 
-            <div class="bottom_area">
-                <div class="user_story_btn_area">
-                    <button class="delete_edit_btn" onclick="clearInputs()">
-                        <img class="icon default" src="./assets/img/delete.svg" alt="Clear Formular">
-                        <img class="icon hover" src="./assets/img/delete_blue.svg" alt="Clear Formular Hover">
-                        Delete
-                    </button>
-                    <div class="bottom_divider"></div>
-                    <button class="delete_edit_btn" onclick="clearInputs()">
-                        <img class="icon default" src="./assets/img/edit.svg" alt="Clear Formular">
-                        <img class="icon hover" src="./assets/img/edit_blue.svg" alt="Clear Formular Hover">
-                        Edit
-                    </button>
-                </div>
-            </div>
+                    <label for="due_date" class="label_text_edit">Due date<sup>*</sup></label><br>
+                    <input type="date" id="due_date" class="user_story_edit_input styled_input_edit"><br>
+
+                    <label for="title" class="label_text_edit">Priority</label><br>
+                    <div class="priority_options_edit">
+                        <button type="button" class="urgent_btn_default" id="urgent_btn_default" onclick="setPriority('urgent')">Urgent
+                            <img class="icon default" src="./assets/img/prio_urgent_red.svg" alt="Priority Urgent">
+                        </button>
+                        <button type="button" class="urgent_btn_filled d_none" id="urgent_btn_filled" onclick="setPriority('urgent')">Urgent
+                            <img class="icon hover" src="./assets/img/prio_urgent_white.svg" alt="Priority Urgent Hover">
+                        </button>                    
+                        <button type="button" class="medium_btn_default" id="medium_btn_default" onclick="setPriority('medium')">Medium
+                            <img class="icon default" src="./assets/img/prio_medium_yellow.svg" alt="Priority Medium">
+                        </button>
+                        <button type="button" class="medium_btn_filled d_none" id="medium_btn_filled" onclick="setPriority('medium')">Medium
+                            <img class="icon hover" src="./assets/img/prio_medium_white.svg" alt="Priority Medium Hover">
+                        </button>
+                        <button type="button" class="low_btn_default" id="low_btn_default" onclick="setPriority('low')">Low
+                            <img class="icon default" src="./assets/img/prio_low_green.svg" alt="Priority Low">
+                        </button>
+                        <button type="button" class="low_btn_filled d_none" id="low_btn_filled" onclick="setPriority('low')">Low
+                            <img class="icon hover" src="./assets/img/prio_low_white.svg" alt="Priority Low Hover">
+                        </button>
+                        <br>
+                    </div>
+
+                    <label class="label_text_edit">Assigned to</label><br>
+                        <div class="dropdown">
+                            <div class="dropdown_input user_story_edit_input_dropdown styled_input_edit">
+                                <span class="dropdown_text">Select contacts to assign</span>
+                                <div class="dropdown_icon" onclick="toggleContactsList()"></div>
+                            </div>
+                            <ul class="dropdown_list_contacts" id="contacts_list" style="display:none;">
+                                <li class="dropdown_item">
+                                    <div class="dropdown_item_user">
+                                        <div class="user_info">
+                                            <img src="./assets/img/user-am.svg" alt="">
+                                            <p>Anton Mayer</p>
+                                        </div>
+                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                    </div>
+                                </li>
+                                <li class="dropdown_item">
+                                    <div class="dropdown_item_user">
+                                        <div class="user_info">
+                                            <img src="./assets/img/user-de.svg" alt="">
+                                            <p>David Eisenberg</p>
+                                        </div>
+                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                    </div>
+                                </li>
+                                <li class="dropdown_item">
+                                    <div class="dropdown_item_user">
+                                        <div class="user_info">
+                                            <img src="./assets/img/user-ef.svg" alt="">
+                                            <p>Eva Fischer</p>
+                                        </div>
+                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                    </div>
+                                </li>
+                                <li class="dropdown_item">
+                                    <div class="dropdown_item_user">
+                                        <div class="user_info">
+                                            <img src="./assets/img/user-em.svg" alt="">
+                                            <p>Emmanuel Mauer</p>
+                                        </div>
+                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="input_spacer"></div>
+
+                </section>
+            </form>
+
         </main>
     </dialog>
 </body>
