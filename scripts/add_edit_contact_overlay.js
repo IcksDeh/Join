@@ -100,3 +100,10 @@ function clearContactInputs() {
     }
   });
 }
+
+document.addEventListener("submit", async function (event) {
+  if (event.target && event.target.id === "addContactForm") {
+    event.preventDefault();
+    await getContactData();
+  }
+});

@@ -1,8 +1,3 @@
-document.getElementById('createContactBtn').addEventListener("click", async function (event) {
-    event.preventDefault();
-    await getContactData();
-})
-
 function getElementsContacts() {
     return {
         name: document.getElementById('id_contact_name'),
