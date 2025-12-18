@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./styles/user_story_overlay.css" />
     <link rel="stylesheet" href="./styles/add_task.css" />
     <link rel="stylesheet" href="./styles/add_task_overlay.css" />
+    <link rel="stylesheet" href="./styles/mobile_footer.css">
     <script src="./script.js" defer></script>
     <script src="./scripts/add_task.js" defer></script>
     <script src="./scripts/user_story_overlay.js" defer></script>
@@ -27,7 +28,7 @@
   </head>
   <body onload="init()">
     <div class="order_sidebar_main">
-        <aside class="sidebar" id="id_sidebar">    
+        <aside class="sidebar sidebar_desktop" id="id_sidebar">    
         </aside>
 
         <div class = "nav_main_content">
@@ -121,6 +122,7 @@
                   </div>
             </section>
             </main>
+            <footer id="mobile_footer"></footer>
 
             <dialog class="dialog_add_task_container" id="addTaskDialog"></dialog>
             <dialog class="dialog_user_story_container" id="userStoryDialog"></dialog>

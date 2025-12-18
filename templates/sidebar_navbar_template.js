@@ -63,3 +63,38 @@ function navbarTemplate(){
     `
 }
 
+function mobileFooterTemplate() {
+    return `<a class="mobile_footer_link" href="summary.html">
+            <img
+              class="mobile_link_icon"
+              src="assets/img/summary_noneactivated.svg"
+              alt="summary icon"
+            />
+            <p>Summary</p>
+          </a>
+          <a class="mobile_footer_link" href="add_task.html">
+            <img
+              class="mobile_link_icon"
+              src="assets/img/add_task_icon.svg"
+              alt="add task icon"
+            />
+            <p>Add Task</p>
+          </a>
+          <a class="mobile_footer_link" href="board.html">
+            <img
+              class="mobile_link_icon"
+              src="assets/img/board_icon.svg"
+              alt="board icon"
+            />
+            <p>Board</p>
+          </a>
+          <a class="mobile_footer_link" href="contacts.html">
+            <img
+              class="mobile_link_icon"
+              src="assets/img/contacts_icon.svg"
+              alt="contacts icon"
+            />
+            <p>Contacts</p>
+          </a>`
+}
+

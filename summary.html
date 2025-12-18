@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./styles/sidebar_nav_main.css">
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/summary.css">
+    <link rel="stylesheet" href="./styles/mobile_footer.css">
     <script src="./script.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
     <script src="./templates/summary_content.js" defer></script>
@@ -20,7 +21,7 @@
 
 <body onload="init(), loadSummary()">
     <div class="order_sidebar_main">
-        <aside class="sidebar" id="id_sidebar">
+        <aside class="sidebar sidebar_desktop" id="id_sidebar">
         </aside>
 
         <div class="nav_main_content">
@@ -36,6 +37,7 @@
                 <div class="order_summary_information" id="id_content_summary">
                 </div>
             </main>
+            <footer id="mobile_footer"></footer>
         </div>
     </div>
 </body>
