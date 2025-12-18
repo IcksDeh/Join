@@ -103,6 +103,12 @@ h3 {
 }
 
 
+@media (max-width:700px) {
+  .legal_privacy_main {
+  margin: 100px 40px 10px 50px;
+ }
+}
+
 
 @media (max-width:600px) {
  .legal_privacy_main {

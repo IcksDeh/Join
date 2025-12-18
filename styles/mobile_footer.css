@@ -1,16 +1,17 @@
 #mobile_footer {
   display: none;
-  justify-content: center;
+  background-color: #2a3647;
+  position: fixed;
+  bottom: 0;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  gap: 10px;
   height: 80px;
-  background-color:#2a3647;
+  width: 100%;
 }
 
 .mobile_link_icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .mobile_footer_link {
@@ -22,11 +23,25 @@
   height: 76px;
 }
 
-@media (max-width:600px) {
-    #mobile_footer {
+.logout_footer {
   display: flex;
-}
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
 }
 
+.footer_link {
+  font-family: "Inter", sans-serif;
+  font-weight: 100;
+}
 
-  
+.footer_link_padding {
+  padding-right: 10px;
+}
+
+@media (max-width: 600px) {
+  #mobile_footer {
+    display: flex;
+    padding: 8px 5px;
+  }
+}

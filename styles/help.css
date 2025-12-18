@@ -42,6 +42,10 @@
   content: url("../assets/img/arrow_backwards_blue_hover.svg");
 }
 
+.help_margin_right {
+  margin-right: 40px;
+}
+
 @media (max-width: 600px) {
   .style_content_help {
     margin-top: 50px;

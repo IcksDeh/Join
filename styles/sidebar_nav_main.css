@@ -10,12 +10,10 @@
 }
 
 @media (max-width:600px) {
-  .sidebar_desktop {
-    display: none;
-  }
   .nav_main_content{
     width: 100%;
   }
-
-
+.desktop {
+    display: none;
+}
 }
