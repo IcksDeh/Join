@@ -59,9 +59,9 @@
 
 /* ---------- CONTENT AREA ---------- */
 
-.close_btn_container {
+.close_btn_container_user_story {
     position: absolute;
-    top: 32px;
+    top: 28px;
     right: 32px;
     height: 30px;
     display: flex;

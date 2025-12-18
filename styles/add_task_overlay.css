@@ -18,7 +18,6 @@
 .add_task_overlay_wrapper {
     display: flex;
     flex-direction: column;
-    position: relative;
 }
 
 #addTaskDialog {
@@ -37,11 +36,9 @@
 }
 
 .close_btn_container {
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 20px;
-    padding-top: 20px;
-    z-index: 999;
+    position: absolute;
+    top: 55px;
+    right: 48px;
 }
 
 .close_btn {

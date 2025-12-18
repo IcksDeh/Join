@@ -1,11 +1,10 @@
 function addTaskTemplate(){
     return `
         <main>
-            <div class="close_btn_container">
-                <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddTaskDialog()" role="button" aria-label="Close Dialog">
-            </div>
-            
             <form class="add_task_overlay_wrapper" id="addTaskForm" novalidate>
+                <div class="close_btn_container">
+                    <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddTaskDialog()" role="button" aria-label="Close Dialog">
+                </div>    
                 <div>
                     <h1>Add Task</h1>
                 </div>

@@ -6,7 +6,6 @@ function init() {
 
 /**
  *  Loads the sidebar template. 
- * 
  */
 function loadSidebar() {
     const sidebar = document.getElementById('id_sidebar');
@@ -17,7 +16,6 @@ function loadSidebar() {
 
 /**
  *  Loads the navbar template. 
- * 
  */
 function loadNavbar() {
     const navbar = document.getElementById('id_navbar');
@@ -28,7 +26,6 @@ function loadNavbar() {
 
 /**
  *  Loads the summary template. 
- * 
  */
 function loadSummary() {
     const summaryContent = document.getElementById('id_content_summary');
@@ -39,7 +36,6 @@ function loadSummary() {
 
 /**
  *  Loads the log off sidebar template. 
- * 
  */
 function loadLogOffSidebar() {
     const sidebar = document.getElementById('id_sidebar');
@@ -50,7 +46,6 @@ function loadLogOffSidebar() {
 
 /**
  *  Toggles the menu in navbar. 
- * 
  */
 function toggleMenu() {
     document.getElementById("menu_navbar").classList.toggle("d_none");
@@ -61,7 +56,6 @@ function toggleMenu() {
  *  Adds a click listener to all <dialog> elements on the page.
  *  When a user clicks on the dialog background, the dialog will be closed.
  *  clearContactInputs() clears all input fields.
- * 
  */
 document.querySelectorAll('dialog').forEach(dialog => {
     dialog.addEventListener('click', event => {
@@ -76,11 +70,7 @@ document.querySelectorAll('dialog').forEach(dialog => {
 
 /**
  *  Leads to the last clicked page in browser history.
- * 
  */
 function goBack() {
     window.history.back();
 }
-
-
-

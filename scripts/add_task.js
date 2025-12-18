@@ -1,24 +1,33 @@
 /**
- * Sets the active priority level in the UI by updating button visibility.
- * All priority buttons are first reset to the default (white) state,
- * and then the selected level's button is set to the filled (active) state.
- * 
- * @param {string} level - The priority level to activate ("urgent", "medium", or "low").
+ * Sets the priority indicator and updates the corresponding button states.
+ * * Shows the “filled” button for the selected priority and displays the “default” buttons for all other priorities.
+ *
+ * @param {"urgent"|"medium"|"low"} level - The priority to activate.
+ * @param {Document|HTMLElement} [root=document] - Root element used for DOM queries.
  * @returns {void} - This function does not return a value; it updates the UI only.
  */
-function setPriority(level) {
+function setPriority(level, root = document) {
   const priorities = ["urgent", "medium", "low"];
 
-  priorities.forEach(prio => {
-    document.getElementById(`${prio}_btn_default`).classList.remove("d_none");
-    document.getElementById(`${prio}_btn_filled`).classList.add("d_none");
-  });
+  const toggle = (prio, active) => {
+    const def = root.querySelector(`#${prio}_btn_default`);
+    const fill = root.querySelector(`#${prio}_btn_filled`);
+    if (!def || !fill) return;
 
-  document.getElementById(`${level}_btn_default`).classList.add("d_none");
-  document.getElementById(`${level}_btn_filled`).classList.remove("d_none");
+    def.classList.toggle("d_none", active);
+    fill.classList.toggle("d_none", !active);
+  };
+
+  priorities.forEach(prio => toggle(prio, prio === level));
 }
 
-// setPriority("medium");
+
+/**
+ * Calls setPriority("medium") after the DOM is loaded.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  setPriority("medium");
+});
 
 
 /**
@@ -90,19 +99,17 @@ function clearInputs() {
  */
 function openAddTaskDialog() {
   const dialog = document.getElementById('addTaskDialog');
-    
+
   if (!dialog.open) {
     dialog.innerHTML = addTaskTemplate();
     dialog.showModal();
 
+    setPriority("medium", dialog);
+
     setTimeout(() => {
-      if (document.activeElement) {
-        document.activeElement.blur();
-      }
+      document.activeElement?.blur();
     }, 0);
   }
-
-  setPriority("medium");
 }
 
 
@@ -125,8 +132,7 @@ function closeAddTaskDialog() {
 
 
 /**
- * Choses a date.
- * 
+ * Sets min and max values for the due date input after DOMContentLoaded.
  */
 window.addEventListener('DOMContentLoaded', () => {
   const dueDateInput = document.getElementById('due_date');

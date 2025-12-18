@@ -1,7 +1,7 @@
 function userStoryTemplate(){
     return `
         <main class="user_story_wrapper">
-            <div class="close_btn_container">
+            <div class="close_btn_container_user_story">
                 <button class="story_task_btn">User Story</button>
                 <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeUserStoryDialog()" role="button" aria-label="Schließen">
             </div>

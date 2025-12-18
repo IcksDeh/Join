@@ -117,13 +117,13 @@
     align-items: center;
     width: 100%;
     gap: 50px;
-    padding-top: 110px;
+    padding-top: 115px;
 }
 
-.close_btn_container {
+.close_btn_container_contact_overlay {
     position: absolute;
-    top: 32px;
-    right: 32px;
+    top: 52px;
+    right: 52px;
 }
 
 .close_btn {
