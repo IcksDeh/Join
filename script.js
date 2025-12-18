@@ -22,6 +22,8 @@ let colorIndex = 0;
 function init() {
     loadSidebar();
     loadNavbar();
+    loadFirebaseData("user", user);
+    loadFirebaseData("contacts", contacts);
 }
 
 
