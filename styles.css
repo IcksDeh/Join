@@ -5,6 +5,11 @@ body{
     background-color: rgb(246, 247, 248);
     font-family: "Inter", sans-serif;
     width: 100%;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }
 
 .content_wrapper{
@@ -100,4 +105,12 @@ button{
    h1 {
     font-size: 47px;
    }
+
+   .margin_top{
+    margin-top: 50px;
+}
+
+  .margin_left {
+    margin-left: 16px;
+  }
 }

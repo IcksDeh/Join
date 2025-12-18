@@ -9,3 +9,13 @@
     width: calc(100% - 300px);
 }
 
+@media (max-width:600px) {
+  .sidebar_desktop {
+    display: none;
+  }
+  .nav_main_content{
+    width: 100%;
+  }
+
+
+}

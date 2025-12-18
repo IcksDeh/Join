@@ -22,6 +22,7 @@ let colorIndex = 0;
 function init() {
     loadSidebar();
     loadNavbar();
+    loadMobileFooter();
     loadFirebaseData("user", user);
     loadFirebaseData("contacts", contacts);
 }
@@ -44,6 +45,16 @@ function loadNavbar() {
     const navbar = document.getElementById('id_navbar');
     navbar.innerHTML = "";
     navbar.innerHTML = navbarTemplate();
+}
+
+/**
+ *  Loads mobile Footer. 
+ */
+
+function loadMobileFooter() {
+    const footer = document.getElementById('mobile_footer');
+    footer.innerHTML = "";
+    footer.innerHTML = mobileFooterTemplate();
 }
 
 

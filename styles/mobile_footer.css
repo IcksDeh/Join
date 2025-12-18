@@ -1,0 +1,32 @@
+#mobile_footer {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  height: 80px;
+  background-color:#2a3647;
+}
+
+.mobile_link_icon {
+  width: 24px;
+  height: 24px;
+}
+
+.mobile_footer_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80px;
+  height: 76px;
+}
+
+@media (max-width:600px) {
+    #mobile_footer {
+  display: flex;
+}
+}
+
+
+  
