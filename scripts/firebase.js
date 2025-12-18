@@ -1,6 +1,7 @@
 const BASE_URL = "https://join-f5da0-default-rtdb.europe-west1.firebasedatabase.app/";
 let newUserID = 0;
-let users = [];
+let user = [];
+let contacts = [];
 
 async function putToStorage(path, userData, elements){
     let userStorage = await fetch(BASE_URL + path + ".json", {
@@ -19,7 +20,18 @@ function clearElements(elements){
     })
 }
 
-async function getUserData(path = "user"){
-    let userData = await fetch(BASE_URL + path + ".json");
-    
+async function loadFirebaseData(path, array){
+    let responseFirebaseData = await fetch(BASE_URL + path + ".json");
+    let responseFirebaseDataToJSON = await responseFirebaseData.json();
+    let firebaseKeys = Object.keys(responseFirebaseDataToJSON);
+
+    for (let index = 0; index < firebaseKeys.length; index++) {
+        array.push(
+            {
+                "id" : firebaseKeys[index],
+                "user": responseFirebaseDataToJSON[firebaseKeys[index]],
+            }
+        )
+    }
 }
+    
