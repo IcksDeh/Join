@@ -54,7 +54,7 @@ function loadNavbar() {
 function loadMobileFooter() {
     const footer = document.getElementById('mobile_footer');
     footer.innerHTML = "";
-    footer.innerHTML = mobileFooterTemplate();
+    footer.innerHTML = mobileFooterLoginTemplate();
 }
 
 
