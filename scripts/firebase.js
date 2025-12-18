@@ -24,7 +24,6 @@ async function loadFirebaseData(path, array){
     let responseFirebaseData = await fetch(BASE_URL + path + ".json");
     let responseFirebaseDataToJSON = await responseFirebaseData.json();
     let firebaseKeys = Object.keys(responseFirebaseDataToJSON);
-
     for (let index = 0; index < firebaseKeys.length; index++) {
         array.push(
             {
@@ -33,5 +32,6 @@ async function loadFirebaseData(path, array){
             }
         )
     }
+    console.log(array);
 }
     
