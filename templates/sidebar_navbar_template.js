@@ -1,5 +1,5 @@
-function sidebarLoginTemplate(){
-    return `
+function sidebarLoginTemplate() {
+  return `
         <img class = "logo_invert" src="./assets/img/logo_version2.svg" alt="Join Logo">
         <div class="order_selection_privacy_legal_sidebar">
             <div class="sidebar_selection">
@@ -26,11 +26,11 @@ function sidebarLoginTemplate(){
                 <a class="design_privacy_legal" href="./legal_notice.html">Legal Notice</a>
             </div>
         </div> 
-    `
+    `;
 }
 
-function sidebarLogOffTemplate(){
-    return `
+function sidebarLogOffTemplate() {
+  return `
         <img class = "logo_invert" src="./assets/img/logo_version2.svg" alt="Join Logo">
         <div class="order_selection_privacy_legal_sidebar">
             <a class="style_login_icon_text" href="./index.html">
@@ -42,15 +42,16 @@ function sidebarLogOffTemplate(){
                 <a class="design_privacy_legal" href="./legal_notice_login.html">Legal Notice</a>
             </div>
         </div>
-    `
+    `;
 }
 
-function navbarTemplate(){
-    return `
-        <div class = "content_wrapper order_content_navbar">    
-            <p class="text_navbar">Kanban Projekt Management Tool</p>
+function navbarTemplate() {
+  return `
+        <div class = "content_wrapper order_content_navbar">  
+        <img class="mobile_logo" id="header_logo" src="./assets/img/logo_version_1.svg" alt="logo image"/>  
+            <p class="text_navbar desktop">Kanban Projekt Management Tool</p>
             <div class="help_user_icon">
-                <a href="./help.html"><img class="help_icon" src="./assets/img/questionmark_small.svg" alt="Help Button"></a>
+                <a href="./help.html"><img class="help_icon desktop" src="./assets/img/questionmark_small.svg" alt="Help Button"></a>
                 <div class="user_circle" onclick="toggleMenu()">AM</div>
             </div>
 
@@ -60,11 +61,11 @@ function navbarTemplate(){
                 <a href="#">Log out</a>
             </div>
         </div>
-    `
+    `;
 }
 
-function mobileFooterTemplate() {
-    return `<a class="mobile_footer_link" href="summary.html">
+function mobileFooterLoginTemplate() {
+  return `<a class="mobile_footer_link" href="summary.html">
             <img
               class="mobile_link_icon"
               src="assets/img/summary_noneactivated.svg"
@@ -95,6 +96,20 @@ function mobileFooterTemplate() {
               alt="contacts icon"
             />
             <p>Contacts</p>
-          </a>`
+          </a>`;
 }
 
+function mobileFooterLogoffTemplate() {
+    return `
+            <div class="logout_footer">
+                <a href="./index.html">
+                    <img src="./assets/img/log_in.svg" alt="Login">
+                    <p class="p_text">Log In</p>
+                </a>
+                <div  >
+                    <a class="footer_link footer_link_padding" href="./privacy_policy_login.html">Privacy Policy</a>
+                    <a class="footer_link" href="./legal_notice_login.html">Legal Notice</a>
+                </div>
+            </div>
+            `
+}
