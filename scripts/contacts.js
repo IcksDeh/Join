@@ -11,17 +11,19 @@ async function getContactData() {
     let contactName = elements.name.value;
     let contactEmail = elements.email.value;
     let contactPhonenumber = elements.phonenumber.value;
+    let contactColor = getRandomColor();
 
-    await switchContactsData(contactName, contactEmail, contactPhonenumber)
+    await switchContactsData(contactName, contactEmail, contactColor, elements, contactPhonenumber)
 }
 
-async function switchContactsData(contactName, contactEmail, contactPhonenumber) {
+async function switchContactsData(contactName, contactEmail, contactColor, elements = "", contactPhonenumber = "") {
     let contactData = {
         "name": contactName,
         "eMail": contactEmail,
         "phoneNumber": contactPhonenumber,
+        "color": contactColor,
     }
-    await putToStorage("contacts", contactData)
+    await putToStorage("contacts", contactData, elements)
 }
 
 function contactActive(element) {

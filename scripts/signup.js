@@ -142,7 +142,6 @@ document.getElementById('signup_btn').addEventListener("click", async function(e
     event.preventDefault();
     await getUserData();
     }
-
 )
 
 async function getUserData(){
@@ -151,15 +150,19 @@ async function getUserData(){
   let userName = elements.name.value;
   let userEmail = elements.email.value;
   let userPassword = elements.pass.value;
-  await switchUserData(userName, userEmail, userPassword);}
+  let userColor = getRandomColor();
+  await switchUserData(userName, userEmail, userColor, elements, userPassword);
+  await switchContactsData(userName, userEmail, userColor);
+}
 
-  async function switchUserData(userName, userEmail, userPassword){
+
+  // sinnvoll zusammenfassen? 
+  async function switchUserData(userName, userEmail, userColor, elements, userPassword){
    let userData = {
         "name" : userName,
         "eMail" : userEmail,
         "password" : userPassword,
-        }
-
-    let idHMTL = 'user'    
-    await putToStorage("user", userData, idHMTL);
+        "color" : userColor,
+        }   
+    await putToStorage("user", userData, elements);
 }

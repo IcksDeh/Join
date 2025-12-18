@@ -1,3 +1,24 @@
+const colors = [
+    "#ff7a00",
+    "#ff5eb3",
+    "#6e52ff",
+    "#9327ff",
+    "#00bee8",
+    "#1fd7c1",
+    "#ff745e",
+    "#ffa35e",
+    "#fc71ff",
+    "#ffc701",
+    "#0038ff",
+    "#c3ff2b",
+    "#ffe62b",
+    "#ff4646",
+    "#ffbb2b", 
+]
+
+let colorIndex = 0;
+
+
 function init() {
     loadSidebar();
     loadNavbar();
@@ -73,4 +94,10 @@ document.querySelectorAll('dialog').forEach(dialog => {
  */
 function goBack() {
     window.history.back();
+}
+
+function getRandomColor(){
+    const color = colors[colorIndex];
+    colorIndex = (colorIndex + 1) % colors.length;
+    return color;
 }
