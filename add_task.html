@@ -35,10 +35,10 @@
                     <div class="add_task_form_container">
                         <section class="formfield_left">
                             <label for="title" class="label_text">Title<sup>*</sup></label><br>
-                            <input type="text" class="add_task_input styled_input" id="title" placeholder="Enter a title"><br>
+                            <input type="text" class="add_task_input styled_input" id="title" placeholder="Enter a title" oninput="limitInputLength(this, 30)"><br>
 
                             <label for="description" class="label_text">Description</label><br>
-                            <textarea class="add_task_description styled_input_description" id="description" placeholder="Enter a description"></textarea><br>
+                            <textarea class="add_task_description styled_input_description" id="description" placeholder="Enter a description" oninput="limitInputLength(this, 120)"></textarea><br>
 
                             <label for="due_date" class="label_text">Due Date<sup>*</sup></label><br>
                             <input type="date" id="due_date" class="add_task_input styled_input"><br>
@@ -130,8 +130,23 @@
                             </div>
                             <div class="input_spacer"></div>
 
-                            <label for="subtasks" class="label_text">Subtasks</label><br>
-                            <input type="text" class="add_task_input styled_input" id="subtasks" placeholder="Add new subtask"><br>
+                            <section class="subtask_wrapper">
+                                <label for="subtasks" class="label_text">Subtasks</label><br>
+                                <div class="input_container">
+                                    <input type="text" id="subtasks" class="add_task_input styled_input" placeholder="Add new subtask" oninput="limitInputLength(this, 25)">
+                                    <div class="subtask_actions">
+                                        <button class="subtask_btn" type="button" onclick="cancelSubtask()">
+                                            <img class="cancel_subtask" src="./assets/img/close.svg" alt="Cancel Subtask">
+                                        </button>
+                                        <div class="subtask_divider"></div>
+                                        <button class="subtask_btn" type="button" onclick="addSubtask()">
+                                            <img class="submit_subtask" src="./assets/img/check.svg" alt="Submit Subtask">
+                                        </button>
+                                    </div>
+                                </div>
+                                <ul id="subtaskList"></ul>
+                            </section>
+
                         </section>
                     </div>
 
