@@ -1,6 +1,7 @@
 .nav_bar {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   height: 95px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -17,7 +18,7 @@
   gap: 20px;
 }
 
-.help_user_icon > * {
+.help_user_icon>* {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,7 +100,7 @@
     height: 80px;
   }
 
-  .mobile_logo{
+  .mobile_logo {
     display: flex;
   }
 }
