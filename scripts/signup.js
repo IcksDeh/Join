@@ -80,16 +80,22 @@ function updateBtn(els) {
 }
 
 function handlePasswordMatch(els) {
-  const match = els.pass.value === els.confirm.value;
+  const password = els.pass.value;
+  const confirm = els.confirm.value;
+  const isMatchStarting = password.startsWith(confirm);
+  const isFullMatch = password === confirm;
   
-  if (!match && els.confirm.value.length > 0) {
-    els.confirm.classList.add('error');
-    els.errorMsg.style.display = 'block';
-    els.errorMsg.textContent = "Your passwords don't match.Please try again";
+  if (!isMatchStarting || (password.length === confirm.length && !isFullMatch)) {
+    if (confirm.length > 0) {
+      els.confirm.classList.add('error');
+      els.errorMsg.style.display = 'block';
+      els.errorMsg.textContent = "Your passwords don't match.";
+    }
   } else {
     els.confirm.classList.remove('error');
     els.errorMsg.style.display = 'none';
   }
+  
   updateBtn(els);
 }
 
@@ -103,21 +109,11 @@ function addBasicListeners(els) {
 }
 
 function addPasswordListeners(els) {
-  let touched = false; // Local state to track interaction
-
   els.confirm.addEventListener('input', () => {
-    touched = true;
-    els.confirm.classList.remove('error'); // Clear error while typing
-    els.errorMsg.style.display = 'none';
-    updateBtn(els);
+    handlePasswordMatch(els);
   });
-
-  els.confirm.addEventListener('blur', () => {
-    if (touched) handlePasswordMatch(els);
-  });
-
   els.pass.addEventListener('input', () => {
-    touched ? handlePasswordMatch(els) : updateBtn(els);
+    handlePasswordMatch(els);
   });
 }
 
