@@ -26,34 +26,41 @@ async function switchContactsData(contactName, contactEmail, contactColor, eleme
     await putToStorage("contacts", contactData, elements)
 }
 
-function contactActive(element) {
+function setContactActive(email, element) {
+
+
     const isActive = element.classList.contains("active-contact");
     const cInfo = document.getElementById('contact-info')
     const contacts = document.getElementsByClassName("contact-person");
+
     for (let i = 0; i < contacts.length; i++) {
         contacts[i].classList.remove("active-contact");
     }
     if (isActive) {
-        cInfo.innerHTML = contactHeadline();
+        cInfo.innerHTML = contactHeadlineTemplate();
         return;
     }
-    element.classList.add("active-contact");
 
-    const index = Number(element.id.replace("contact-", ""));
-    const selectedContact = contact[index];
-    cInfo.innerHTML = contactHeadline() + contactInfo(selectedContact) + moreContactInfo(selectedContact)
+    element.classList.add("active-contact");
+    const selectedContact = contact.find(entry => entry.email === email);
+    cInfo.innerHTML = contactHeadlineTemplate() + contactInitialsTemplate(selectedContact) + contactInfoTemplate(selectedContact)
+
     slideContactInfo()
 }
 
 function slideContactInfo() {
-    const bigContact = document.getElementById('contact-big')
-    const bigContactInfo = document.getElementById('contact-big-information')
-    const toggle = () => {
+    /**
+     * Wait for dom element to be ready
+     * otherwise the transition wont be
+     * played.
+     */
+    requestAnimationFrame(() => {
+        const bigContact = document.getElementById('contact-big')
+        const bigContactInfo = document.getElementById('contact-big-information')
+
         bigContact.classList.toggle('slideactive')
         bigContactInfo.classList.toggle('slideactive')
-    }
-    const myTimeout = setTimeout(toggle, 1)
-    return myTimeout
+    })
 }
 
 function sortContactsByFirstName(contacts) {
@@ -64,22 +71,22 @@ function sortContactsByFirstName(contacts) {
     });
 }
 
-function renderContactList(contacts) {
+function renderContactList() {
+    const contacts = sortContactsByFirstName(contact);
     const container = document.getElementById('contact-list');
+
     container.innerHTML = addContactButtonTemplate();
     let currentLetter = "";
-    contacts.forEach((contact, index) => {
+
+    contacts.forEach((contact) => {
         const firstName = contact.name.split(" ")[0];
         const firstLetter = firstName[0].toUpperCase();
+
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
-            container.innerHTML += contactSeperator(currentLetter);
+            container.innerHTML += contactSeperatorTemplate(currentLetter);
         }
-        container.innerHTML += loadContactList(contact, index);
-    });
-}
 
-function cList() {
-    const sortedContacts = sortContactsByFirstName(contact);
-    renderContactList(sortedContacts);
+        container.innerHTML += loadContactListItem(contact);
+    });
 }
