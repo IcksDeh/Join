@@ -129,21 +129,3 @@ function closeAddTaskDialog() {
 
   clearInputs();
 }
-
-
-/**
- * Sets min and max values for the due date input after DOMContentLoaded.
- */
-window.addEventListener('DOMContentLoaded', () => {
-  const dueDateInput = document.getElementById('due_date');
-  if (!dueDateInput) return;
-
-  const today = new Date();
-  const isoToday = today.toISOString().split('T')[0];
-
-  const maxDate = new Date();
-  maxDate.setFullYear(today.getFullYear() + 5);
-
-  dueDateInput.min = isoToday;
-  dueDateInput.max = maxDate.toISOString().split('T')[0];
-});
