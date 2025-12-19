@@ -1,12 +1,12 @@
 const contact = [
-{ name: "Anton Mayer", email: "antonm@gmail.com", phone: "+491111111111" },
-{ name: "Anja Schulz", email: "schulz@hotmail.com", phone: "+491111111112" },
-{ name: "Benedikt Ziegler", email: "benedikt@gmail.com", phone: "+491111111113" },
-{ name: "David Eisenberg", email: "davidberg@gmail.com", phone: "+491111111114" },
-{ name: "Eva Fischer", email: "eva@gmail.com", phone: "+491111111115" },
-{ name: "Emmauel Mauer", email: "emmanuelma@gmail.com", phone: "+491111111116" },
-{ name: "Marcel Bauer", email: "bauer@gmail.com", phone: "+491111111117" },
-{ name: "Tatjana Wolf", email: "wolf@gmail.com", phone: "+491111111118" }
+    { name: "Anton Mayer", email: "antonm@gmail.com", phone: "+491111111111" },
+    { name: "Anja Schulz", email: "schulz@hotmail.com", phone: "+491111111112" },
+    { name: "Benedikt Ziegler", email: "benedikt@gmail.com", phone: "+491111111113" },
+    { name: "David Eisenberg", email: "davidberg@gmail.com", phone: "+491111111114" },
+    { name: "Eva Fischer", email: "eva@gmail.com", phone: "+491111111115" },
+    { name: "Emmauel Mauer", email: "emmanuelma@gmail.com", phone: "+491111111116" },
+    { name: "Marcel Bauer", email: "bauer@gmail.com", phone: "+491111111117" },
+    { name: "Tatjana Wolf", email: "wolf@gmail.com", phone: "+491111111118" }
 ]
 
 
@@ -22,6 +22,12 @@ function loadContactList(c, i) {
     `
 }
 
+function addContactButtonTemplate() {
+    return `<button class="contact-btn" id="addNewContactBtn" onclick="openAddContactDialog()">
+                <span>Add new Contact</span>
+                <img src="./assets/img/person_add_white.svg" alt="add Person" />
+            </button>`
+}
 
 function contactHeadline() {
     return `
@@ -70,4 +76,11 @@ function moreContactInfo(c) {
             </div>
         </div>
     `
+}
+
+function contactSeperator(currentLetter) {
+    return `<div>
+                <p class="beginning-letter">${currentLetter}</p>
+                <div class="contact-seperator"></div>
+            </div>`
 }
