@@ -137,6 +137,7 @@ initSignupForm();
 document.getElementById('signup_btn').addEventListener("click", async function(event){
     event.preventDefault();
     await getUserData();
+    showToast(); 
     }
 )
 

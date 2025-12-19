@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="./styles/standard.css" />
     <link rel="stylesheet" href="./styles/auth.css" />
     <link rel="stylesheet" href="./styles/signup.css" />
+    <link rel="stylesheet" href="./styles/toastmessage.css" />
     <script src="./scripts/firebase.js" defer></script>
-    <script src="./scripts/signup.js" defer></script>
-    <script src="./scripts/login.js"></script>
     <script src="./scripts/contacts.js"></script>
     <script src="./script.js"></script>
     <title>Sign Up</title>
@@ -35,7 +34,7 @@
                 src="./assets/img/arrow-left-line.svg"
                 alt="arrow left icon"
             /></a>
-            <h1 >Sign up</h1>
+            <h1>Sign up</h1>
           </div>
           <div class="underline"></div>
         </div>
@@ -101,18 +100,22 @@
               src="./assets/img/lock_icon.svg"
               alt="Toggle Password Visibility"
             />
-             <div id="confirm_password_error" class="error-message"></div>
+            <div id="confirm_password_error" class="error-message"></div>
           </div>
 
           <label class="checkbox-row">
             <input type="checkbox" />
             <span class="checkbox_text"
               >I accept the
-              <a class="checkbox_link" href="privacy_policy.html">Privacy Policy</a></span
+              <a class="checkbox_link" href="privacy_policy.html"
+                >Privacy Policy</a
+              ></span
             >
           </label>
           <div class="auth_btns">
-             <button id="signup_btn" class="auth_btn" type="submit" disabled>Sign up</button>
+            <button id="signup_btn" class="auth_btn" type="submit" disabled>
+              Sign up
+            </button>
           </div>
         </form>
       </div>
@@ -122,5 +125,11 @@
       <a class="auth_link" href="privacy_policy.html">Privacy Policy</a>
       <a class="auth_link" href="legal_notice.html">Legal Notice</a>
     </footer>
+
+    <!-- Toastmessage -->
+    <div id="msgBox" class="toast-message">You Signed Up successfully</div>
+
+     <script src="./scripts/login.js"></script>
+    <script src="./scripts/signup.js" defer></script>
   </body>
 </html>

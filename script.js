@@ -151,3 +151,12 @@ function highlightActiveLink() {
         }
     });
 }
+
+function showToast() {
+    const toast = document.getElementById("msgBox");
+
+    toast.classList.add("show");
+    setTimeout(function() {
+        toast.classList.remove("show");
+    }, 800);
+}
