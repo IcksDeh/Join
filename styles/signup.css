@@ -108,4 +108,9 @@
     max-width: 396px;
     height: 587px;
   }
+
+  .signup_footer {
+    margin-top: 0;
+    padding-top: 0;
+  }
 }
