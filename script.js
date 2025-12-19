@@ -135,7 +135,11 @@ window.addEventListener('DOMContentLoaded', () => {
   dueDateInput.max = maxDate.toISOString().split('T')[0];
 });
 
-
+/**
+ * Highlights the active sidebar or navbar link based on the current URL.
+ * Compares each link's href with the current window location
+ * and adds the "active" class to the matching link.
+ */
 function highlightActiveLink() {
     const links = document.querySelectorAll('.link_active');
     const currentPath = window.location.pathname;
