@@ -35,7 +35,6 @@
     transform: translate(-50%, -50%);
     display: block;
     overflow-y: auto;
-    scrollbar-gutter: stable both-edges;
 }
 
 .user_story_wrapper {
