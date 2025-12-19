@@ -53,7 +53,7 @@ function editContactTemplate(){
                     </div>
                     <div class="right_container_wrapper">
                         <div>
-                            <img class="contact_user_icon" src="./assets/img/user-am.svg" alt="User Icon">
+                            <div class="initals_big">AM</div>
                         </div>
                         <div>
                             <div class="input_fields_container">

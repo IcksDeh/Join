@@ -113,7 +113,8 @@
     border-radius: 70px;
     color: white;
     background-color: orange;
-    border: 3px solid white;
+    border: 3.5px solid white;
+    box-shadow: 0 0 4px rgba(0,0,0,0.15);
 }
 
 .small-info h3 {
