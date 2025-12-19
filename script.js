@@ -23,7 +23,8 @@ function init() {
     loadSidebar();
     loadNavbar();
     loadMobileFooter();
-    // loadFirebaseData("user", user);
+     highlightActiveLink();
+    // // loadFirebaseData("user", user);
     // loadFirebaseData("contacts", contacts);
 }
 
@@ -133,3 +134,16 @@ window.addEventListener('DOMContentLoaded', () => {
   dueDateInput.min = isoToday;
   dueDateInput.max = maxDate.toISOString().split('T')[0];
 });
+
+
+function highlightActiveLink() {
+    const links = document.querySelectorAll('.link_active');
+    const currentPath = window.location.pathname;
+
+    links.forEach(link => {
+        const linkPath = link.getAttribute('href').replace('./', '');
+        if (currentPath.includes(linkPath)) {
+            link.classList.add('active');
+        }
+    });
+}

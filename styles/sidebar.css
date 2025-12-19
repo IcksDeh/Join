@@ -64,6 +64,7 @@
 
 .design_privacy_legal {
   padding-left: 90px;
+  width: 300px;
   height: 60px;
   display: flex;
   align-items: center;
@@ -92,4 +93,8 @@
 
 .p_text {
   color: #cdcdcd;
+}
+
+.link_active.active {
+    background-color: #091931; 
 }

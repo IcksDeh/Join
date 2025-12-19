@@ -3,27 +3,27 @@ function sidebarLoginTemplate() {
         <img class = "logo_invert" src="./assets/img/logo_version2.svg" alt="Join Logo">
         <div class="order_selection_privacy_legal_sidebar">
             <div class="sidebar_selection">
-                <a class="order_icon_selection" href="./summary.html">
+                <a class="order_icon_selection link_active" href="./summary.html">
                     <img class="icon_sidebar" src="./assets/img/summary_noneactivated.svg" alt="">
                     <p>Summary</p>
                 </a>
-                <a class="order_icon_selection" href="./add_task.html">
+                <a class="order_icon_selection link_active" href="./add_task.html">
                     <img class="icon_sidebar" src="./assets/img/add_task_icon.svg" alt="">
                     <p>Add Task</p>
 
                 </a>
-                <a class="order_icon_selection" href="./board.html">
+                <a class="order_icon_selection link_active" href="./board.html">
                     <img class="icon_sidebar" src="./assets/img/board_icon.svg" alt="">
                     <p>Board</p>
                 </a>
-                <a class="order_icon_selection" href="./contacts.html">
+                <a class="order_icon_selection link_active" href="./contacts.html">
                     <img class="icon_sidebar" src="./assets/img/contacts_icon.svg" alt="">
                     <p>Contacts</p>
                 </a>
             </div>   
             <div class="sidebar_privacy_legal">
-                <a class="design_privacy_legal" href="./privacy_policy.html">Privacy Policy</a>
-                <a class="design_privacy_legal" href="./legal_notice.html">Legal Notice</a>
+                <a class="design_privacy_legal link_active" href="./privacy_policy.html">Privacy Policy</a>
+                <a class="design_privacy_legal link_active" href="./legal_notice.html">Legal Notice</a>
             </div>
         </div> 
     `;
@@ -38,8 +38,8 @@ function sidebarLogOffTemplate() {
                 <p class="p_text">Log In</p>
             </a>
             <div class="sidebar_privacy_legal">
-                <a class="design_privacy_legal" href="./privacy_policy_login.html">Privacy Policy</a>
-                <a class="design_privacy_legal" href="./legal_notice_login.html">Legal Notice</a>
+                <a class="design_privacy_legal link_active" href="./privacy_policy_login.html">Privacy Policy</a>
+                <a class="design_privacy_legal link_active" href="./legal_notice_login.html">Legal Notice</a>
             </div>
         </div>
     `;
@@ -65,7 +65,7 @@ function navbarTemplate() {
 }
 
 function mobileFooterLoginTemplate() {
-  return `<a class="mobile_footer_link" href="summary.html">
+  return `<a class="mobile_footer_link link_active" href="summary.html">
             <img
               class="mobile_link_icon"
               src="assets/img/summary_noneactivated.svg"
@@ -73,7 +73,7 @@ function mobileFooterLoginTemplate() {
             />
             <p>Summary</p>
           </a>
-          <a class="mobile_footer_link" href="add_task.html">
+          <a class="mobile_footer_link link_active" href="add_task.html">
             <img
               class="mobile_link_icon"
               src="assets/img/add_task_icon.svg"
@@ -81,7 +81,7 @@ function mobileFooterLoginTemplate() {
             />
             <p>Add Task</p>
           </a>
-          <a class="mobile_footer_link" href="board.html">
+          <a class="mobile_footer_link link_active" href="board.html">
             <img
               class="mobile_link_icon"
               src="assets/img/board_icon.svg"
@@ -89,7 +89,7 @@ function mobileFooterLoginTemplate() {
             />
             <p>Board</p>
           </a>
-          <a class="mobile_footer_link" href="contacts.html">
+          <a class="mobile_footer_link link_active" href="contacts.html">
             <img
               class="mobile_link_icon"
               src="assets/img/contacts_icon.svg"
@@ -107,8 +107,8 @@ function mobileFooterLogoffTemplate() {
                     <p class="p_text">Log In</p>
                 </a>
                 <div  >
-                    <a class="footer_link footer_link_padding" href="./privacy_policy_login.html">Privacy Policy</a>
-                    <a class="footer_link" href="./legal_notice_login.html">Legal Notice</a>
+                    <a class="footer_link footer_link_padding link_active" href="./privacy_policy_login.html">Privacy Policy</a>
+                    <a class="footer_link link_active" href="./legal_notice_login.html">Legal Notice</a>
                 </div>
             </div>
             `
