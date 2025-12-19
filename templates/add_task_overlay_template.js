@@ -83,15 +83,6 @@ function addTaskTemplate(){
                                         <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
                                     </div>
                                 </li>
-                                <li class="dropdown_item">
-                                    <div class="dropdown_item_user">
-                                        <div class="user_info">
-                                            <img src="./assets/img/user-em.svg" alt="">
-                                            <p>Emmanuel Mauer</p>
-                                        </div>
-                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                         <div class="input_spacer"></div>
@@ -99,12 +90,12 @@ function addTaskTemplate(){
                         <label class="label_text">Category<sup>*</sup></label><br>
                         <div class="dropdown">
                             <div class="dropdown_input add_task_input_dropdown styled_input">
-                                <span class="dropdown_text">Select task category</span>
+                                <span class="dropdown_text" id="selected_category">Select task category</span>
                                 <div class="dropdown_icon" onclick="toggleCategoryList()"></div>
                             </div>
                             <ul class="dropdown_list" id="category_list" style="display:none;">
-                                <li class="dropdown_item">Technical Task</li>
-                                <li class="dropdown_item">User Story</li>
+                                <li class="dropdown_item" onclick="selectCategory(this)">Technical Task</li>
+                                <li class="dropdown_item" onclick="selectCategory(this)">User Story</li>
                             </ul>
                         </div>
                         <div class="input_spacer"></div>

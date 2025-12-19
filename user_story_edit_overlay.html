@@ -57,52 +57,49 @@
                     </div>
 
                     <label class="label_text_edit">Assigned to</label><br>
-                        <div class="dropdown">
-                            <div class="dropdown_input user_story_edit_input_dropdown styled_input_edit">
-                                <span class="dropdown_text">Select contacts to assign</span>
-                                <div class="dropdown_icon" onclick="toggleContactsList()"></div>
-                            </div>
-                            <ul class="dropdown_list_contacts" id="contacts_list" style="display:none;">
-                                <li class="dropdown_item">
-                                    <div class="dropdown_item_user">
-                                        <div class="user_info">
-                                            <img src="./assets/img/user-am.svg" alt="">
-                                            <p>Anton Mayer</p>
-                                        </div>
-                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                                    </div>
-                                </li>
-                                <li class="dropdown_item">
-                                    <div class="dropdown_item_user">
-                                        <div class="user_info">
-                                            <img src="./assets/img/user-de.svg" alt="">
-                                            <p>David Eisenberg</p>
-                                        </div>
-                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                                    </div>
-                                </li>
-                                <li class="dropdown_item">
-                                    <div class="dropdown_item_user">
-                                        <div class="user_info">
-                                            <img src="./assets/img/user-ef.svg" alt="">
-                                            <p>Eva Fischer</p>
-                                        </div>
-                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                                    </div>
-                                </li>
-                                <li class="dropdown_item">
-                                    <div class="dropdown_item_user">
-                                        <div class="user_info">
-                                            <img src="./assets/img/user-em.svg" alt="">
-                                            <p>Emmanuel Mauer</p>
-                                        </div>
-                                        <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                                    </div>
-                                </li>
-                            </ul>
+                    <div class="dropdown">
+                        <div class="dropdown_input user_story_edit_input_dropdown styled_input_edit">
+                            <span class="dropdown_text">Select contacts to assign</span>
+                            <div class="dropdown_icon" onclick="toggleContactsList()"></div>
                         </div>
-                        <div class="input_spacer"></div>
+                        <ul class="dropdown_list_contacts" id="contacts_list" style="display:none;">
+                            <li class="dropdown_item">
+                                <div class="dropdown_item_user">
+                                    <div class="user_info">
+                                        <img src="./assets/img/user-am.svg" alt="">
+                                        <p>Anton Mayer</p>
+                                    </div>
+                                    <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                </div>
+                            </li>
+                            <li class="dropdown_item">
+                                <div class="dropdown_item_user">
+                                    <div class="user_info">
+                                        <img src="./assets/img/user-de.svg" alt="">
+                                        <p>David Eisenberg</p>
+                                    </div>
+                                    <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                </div>
+                            </li>
+                            <li class="dropdown_item">
+                                <div class="dropdown_item_user">
+                                    <div class="user_info">
+                                        <img src="./assets/img/user-ef.svg" alt="">
+                                        <p>Eva Fischer</p>
+                                    </div>
+                                    <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="input_spacer"></div>
 
+                    <label class="label_text_edit">Subtasks</label><br>
+                    <div class="input_spacer"></div>
+
+                    <div class="user_story_edit_btn">
+                        <button type="submit" class="ok_btn">Ok<img src="./assets/img/check_white.svg" alt="Edit Button"></button>
+                    </div>
                 </section>
             </form>
 

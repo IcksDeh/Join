@@ -1,6 +1,6 @@
 /**
  * Sets the priority indicator and updates the corresponding button states.
- * * Shows the “filled” button for the selected priority and displays the “default” buttons for all other priorities.
+ * Shows the "filled" button for the selected priority and displays the "default" buttons for all other priorities.
  *
  * @param {"urgent"|"medium"|"low"} level - The priority to activate.
  * @param {Document|HTMLElement} [root=document] - Root element used for DOM queries.
@@ -23,7 +23,7 @@ function setPriority(level, root = document) {
 
 
 /**
- * Calls setPriority("medium") after the DOM is loaded.
+ * Calls setPriority("medium") and displays it as "default" button after the DOM is loaded.
  */
 document.addEventListener("DOMContentLoaded", () => {
   setPriority("medium");
@@ -65,9 +65,17 @@ function toggleCategoryList() {
 
 
 /**
+ * Selects category element via onclick.
+ */
+function selectCategory(element) {
+  document.getElementById("selected_category").innerHTML = element.innerHTML;
+  document.getElementById("category_list").style.display = "none";
+}
+
+
+/**
  * Clears specific input fields and resets the priority to "Medium".
- * After clearing the fields, the function automatically sets the priority button
- * to "Medium" by calling `setPriority("medium")`.
+ * After clearing the fields, the function automatically sets the priority button to "default".
  * 
  * @function clearInputs
  * @returns {void} - This function does not return a value.
@@ -86,6 +94,7 @@ function clearInputs() {
     }
   });
 
+  document.getElementById("selected_category").innerHTML = "Select task category";
   setPriority("medium");
 }
 
