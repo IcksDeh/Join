@@ -62,7 +62,7 @@ function contactInfo(c) {
 
 function moreContactInfo(c) {
     return `       
-        <div class="contact-big-information">
+        <div class="contact-big-information" id="contact-big-information">
             <span id="cinfo">Contact Information</span>
             <div class="contact-deep-info">
                 <div class="contact-mail">

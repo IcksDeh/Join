@@ -42,6 +42,18 @@ function contactActive(element) {
     const index = Number(element.id.replace("contact-", ""));
     const selectedContact = contact[index];
     cInfo.innerHTML = contactHeadline() + contactInfo(selectedContact) + moreContactInfo(selectedContact)
+    slideContactInfo()
+}
+
+function slideContactInfo() {
+    const bigContact = document.getElementById('contact-big')
+    const bigContactInfo = document.getElementById('contact-big-information')
+    const toggle = () => {
+        bigContact.classList.toggle('slideactive')
+        bigContactInfo.classList.toggle('slideactive')
+    }
+    const myTimeout = setTimeout(toggle, 1)
+    return myTimeout
 }
 
 function sortContactsByFirstName(contacts) {
