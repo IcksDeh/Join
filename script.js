@@ -23,8 +23,8 @@ function init() {
     loadSidebar();
     loadNavbar();
     loadMobileFooter();
-    loadFirebaseData("user", user);
-    loadFirebaseData("contacts", contacts);
+    // loadFirebaseData("user", user);
+    // loadFirebaseData("contacts", contacts);
 }
 
 
