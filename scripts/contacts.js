@@ -44,10 +44,30 @@ function contactActive(element) {
     cInfo.innerHTML = contactHeadline() + contactInfo(selectedContact) + moreContactInfo(selectedContact)
 }
 
+function sortContactsByFirstName(contacts) {
+    return [...contacts].sort((a, b) => {
+        const firstNameA = a.name.split(" ")[0].toUpperCase();
+        const firstNameB = b.name.split(" ")[0].toUpperCase();
+        return firstNameA.localeCompare(firstNameB);
+    });
+}
+
+function renderContactList(contacts) {
+    const container = document.getElementById('contact-list');
+    container.innerHTML = addContactButtonTemplate();
+    let currentLetter = "";
+    contacts.forEach((contact, index) => {
+        const firstName = contact.name.split(" ")[0];
+        const firstLetter = firstName[0].toUpperCase();
+        if (firstLetter !== currentLetter) {
+            currentLetter = firstLetter;
+            container.innerHTML += contactSeperator(currentLetter);
+        }
+        container.innerHTML += loadContactList(contact, index);
+    });
+}
+
 function cList() {
-    const cList = document.getElementById('contact-list')
-    for (let index = 0; index < contact.length; index++) {
-        const element = contact[index];
-        cList.innerHTML += loadContactList(element, index)
-    }
+    const sortedContacts = sortContactsByFirstName(contact);
+    renderContactList(sortedContacts);
 }
