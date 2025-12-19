@@ -1,18 +1,69 @@
 const contact = [
-    { name: "Anton Mayer", email: "antonm@gmail.com", phone: "+491111111111" },
-    { name: "Anja Schulz", email: "schulz@hotmail.com", phone: "+491111111112" },
-    { name: "Benedikt Ziegler", email: "benedikt@gmail.com", phone: "+491111111113" },
-    { name: "David Eisenberg", email: "davidberg@gmail.com", phone: "+491111111114" },
-    { name: "Eva Fischer", email: "eva@gmail.com", phone: "+491111111115" },
-    { name: "Emmauel Mauer", email: "emmanuelma@gmail.com", phone: "+491111111116" },
-    { name: "Marcel Bauer", email: "bauer@gmail.com", phone: "+491111111117" },
-    { name: "Tatjana Wolf", email: "wolf@gmail.com", phone: "+491111111118" }
+    {
+        "name": "Max Mustermann",
+        "email": "max.mustermann@gmail.com",
+        "phone": "+49 170 1234567",
+        "color": "#F44336"
+    },
+    {
+        "name": "Anna Schmidt",
+        "email": "anna.schmidt@yahoo.de",
+        "phone": "+49 151 2345678",
+        "color": "#E91E63"
+    },
+    {
+        "name": "Lukas Weber",
+        "email": "lukas.weber@outlook.com",
+        "phone": "+49 160 3456789",
+        "color": "#9C27B0"
+    },
+    {
+        "name": "Laura Fischer",
+        "email": "laura.fischer@web.de",
+        "phone": "+49 171 4567890",
+        "color": "#673AB7"
+    },
+    {
+        "name": "Tim Schneider",
+        "email": "tim.schneider@icloud.com",
+        "phone": "+49 152 5678901",
+        "color": "#3F51B5"
+    },
+    {
+        "name": "Sophie Bauer",
+        "email": "sophie.bauer@gmx.de",
+        "phone": "+49 176 6789012",
+        "color": "#2196F3"
+    },
+    {
+        "name": "Jonas Hoffmann",
+        "email": "jonas.hoffmann@t-online.de",
+        "phone": "+49 157 7890123",
+        "color": "#03A9F4"
+    },
+    {
+        "name": "Marie Klein",
+        "email": "marie.klein@protonmail.com",
+        "phone": "+49 159 8901234",
+        "color": "#009688"
+    },
+    {
+        "name": "Paul Richter",
+        "email": "paul.richter@zoho.com",
+        "phone": "+49 172 9012345",
+        "color": "#4CAF50"
+    },
+    {
+        "name": "Lisa Wagner",
+        "email": "lisa.wagner@mail.de",
+        "phone": "+49 175 0123456",
+        "color": "#FF9800"
+    }
 ]
 
-
-function loadContactList(c, i) {
+function loadContactListItem(c) {
     return `        
-        <div class="contact-person" id="contact-${i}" onclick="contactActive(this)">
+        <div class="contact-person" id="contact-${c.email}" onclick="setContactActive('${c.email}', this)">
             <div class="initals">${c.name.split(" ").map(word => word[0]).join("")}</div>
             <div class="small-info">
                 <h3>${c.name}</h3>
@@ -29,7 +80,7 @@ function addContactButtonTemplate() {
             </button>`
 }
 
-function contactHeadline() {
+function contactHeadlineTemplate() {
     return `
         <div class="contact-headline">
             <h3>Contacts</h3>
@@ -40,7 +91,7 @@ function contactHeadline() {
 }
 
 
-function contactInfo(c) {
+function contactInitialsTemplate(c) {
     return `
         <div class="contact-big" id="contact-big">
             <div class="initals-big">${c.name.split(" ").map(word => word[0]).join("")}</div>
@@ -60,7 +111,7 @@ function contactInfo(c) {
 }
 
 
-function moreContactInfo(c) {
+function contactInfoTemplate(c) {
     return `       
         <div class="contact-big-information" id="contact-big-information">
             <span id="cinfo">Contact Information</span>
@@ -78,7 +129,7 @@ function moreContactInfo(c) {
     `
 }
 
-function contactSeperator(currentLetter) {
+function contactSeperatorTemplate(currentLetter) {
     return `<div>
                 <p class="beginning-letter">${currentLetter}</p>
                 <div class="contact-seperator"></div>

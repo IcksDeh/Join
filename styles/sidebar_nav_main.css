@@ -1,19 +1,22 @@
-.order_sidebar_main{
-    display: flex;
-    width: 100%;
+.order_sidebar_main {
+  display: flex;
+  width: 100%;
 }
 
-.nav_main_content{
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 300px);
+.nav_main_content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 300px);
+  overflow-y: hidden;
 }
 
 @media (max-width:600px) {
-  .nav_main_content{
+  .nav_main_content {
     width: 100%;
   }
-.desktop {
+
+  .desktop {
     display: none;
-}
+  }
 }
