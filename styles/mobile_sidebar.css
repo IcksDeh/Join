@@ -1,0 +1,17 @@
+@media(max-width: 850px){
+   .sidebar{
+    max-width: 200px;
+   } 
+
+   .order_icon_selection{
+    padding-left: 40px;
+   }
+
+   .design_privacy_legal{
+    padding-left: 40px;
+   }
+
+   .nav_main_content{
+        width: calc(100% - 200px);
+    }
+}

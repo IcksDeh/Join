@@ -1,0 +1,45 @@
+@media (max-width: 1220px){
+    .order_summary_information{
+        flex-direction: column-reverse;
+        justify-content: start;
+        align-items: start;
+        margin-bottom: 30px;
+        gap: 30px;
+    }
+    .order_greeting_username{
+        margin-left: 100px;
+    }
+
+    .summary_header{
+        flex-wrap: wrap;
+        margin-bottom: 50px;
+        gap: 0;
+    }
+
+}
+
+@media(max-width: 975px){
+    .style_todo_done_box{
+        max-width: 200px;
+        aspect-ratio: 0/1;
+    }
+    .box_prio_tickets{
+        max-width: 420px;
+        gap: 0;
+    }
+
+    .counter_prio_tickets{
+        gap: 10px;
+    }
+
+    .order_ticket_box_below{
+        
+    }
+
+    .boxes_last_row{
+        max-width: 125px;
+    }
+
+    
+
+}

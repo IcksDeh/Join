@@ -97,6 +97,7 @@ button {
 
 .content_wrapper_sidebar {
   max-width: 1340px;
+  
 }
 
 @media (max-width: 600px) {

@@ -3,10 +3,11 @@
   background-color: #2a3647;
   position: fixed;
   bottom: 0;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   height: 80px;
   width: 100%;
+
 }
 
 .mobile_link_icon {

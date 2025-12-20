@@ -48,6 +48,7 @@
   border: 2px solid #2a3647;
   border-radius: 50%;
   color: #29abe2;
+  margin-right: 30px;
 }
 
 .user_circle:hover {
@@ -69,12 +70,12 @@
   right: 0;
   z-index: 9999;
   top: 67.5px;
-  right: 0;
   background-color: #2a3647;
   width: 170px;
   padding: 16px 0;
   border-radius: 14px 0 14px 14px;
   font-family: "latin_400";
+  margin-right: 30px;
 }
 
 .menu_navbar a {
@@ -93,6 +94,7 @@
   display: none;
   width: 32px;
   margin-left: 10px;
+  margin-left: 20px;
 }
 
 @media (max-width: 600px) {
