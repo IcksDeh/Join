@@ -20,26 +20,50 @@
 
 @media(max-width: 975px){
     .style_todo_done_box{
-        max-width: 200px;
-        aspect-ratio: 0/1;
+        max-width: 150px;
+        gap: 8px;
     }
     .box_prio_tickets{
-        max-width: 420px;
+        max-width: 320px;
         gap: 0;
     }
 
-    .counter_prio_tickets{
-        gap: 10px;
+    .divider_prio_box{
+        margin: 10px;
     }
 
-    .order_ticket_box_below{
-        
+    .deadline_information{
+        text-align: center;
+        width: auto;
+    }
+
+    .counter_prio_tickets{
+        gap: 8px;
+        width: 150px;
+        margin-left: 8px;
     }
 
     .boxes_last_row{
-        max-width: 125px;
+        max-width: 100px;
     }
 
-    
+    .order_ticket_box_below{
+        gap: 9px;
+    }
+}
 
+@media(max-width: 740px){
+  .order_greeting_username{
+    margin-left: 50px;
+  }
+}
+
+@media(max-width: 650px){
+    .style_greeting_text{
+        font-size: 36px;
+    }
+
+    .style_username{
+        font-size: 48px ;
+    }
 }

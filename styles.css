@@ -100,6 +100,12 @@ button {
   
 }
 
+@media(max-width: 740px){
+  .margin_left{
+    margin-left: 50px;
+  }
+}
+
 @media (max-width: 600px) {
   h1 {
     font-size: 47px;
