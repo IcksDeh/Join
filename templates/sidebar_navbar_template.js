@@ -58,7 +58,7 @@ function navbarTemplate() {
             <div id="menu_navbar" class="menu_navbar d_none content_wrapper">
                 <a href="./legal_notice.html">Legal Notice</a>
                 <a href="./privacy_policy.html">Privacy Policy</a>
-                <a href="#">Log out</a>
+                <a href="./index.html">Log out</a>
             </div>
         </div>
     `;
