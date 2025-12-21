@@ -63,21 +63,25 @@ const contact = [
 
 function loadContactListItem(c) {
     return `        
-        <div class="contact-person" id="contact-${c.email}" onclick="setContactActive('${c.email}', this)">
-            <div class="initals">${c.name.split(" ").map(word => word[0]).join("")}</div>
-            <div class="small-info">
-                <h3>${c.name}</h3>
-                <a href="mailto:${c.email}">${c.email}</a>
-            </div>
-        </div>
+        <li>
+            <button class="contact-person" onclick="setContactActive('${c.email}', this)" id="contact-${c.email}">
+                <span class="initals">${c.name.split(" ").map(word => word[0]).join("")}</span>
+                <div class="small-info">
+                    <h3>${c.name}</h3>
+                    <a href="mailto:${c.email}">${c.email}</a>
+                </div>
+            </button>
+        </li>
     `
 }
 
 function addContactButtonTemplate() {
-    return `<button class="contact-btn" id="addNewContactBtn" onclick="openAddContactDialog()">
-                <span>Add new Contact</span>
-                <img src="./assets/img/person_add_white.svg" alt="add Person" />
-            </button>`
+    return `<div class="button-container">
+                <button class="contact-btn" id="addNewContactBtn" onclick="openAddContactDialog()">
+                    <span>Add new Contact</span>
+                    <img src="./assets/img/person_add_white.svg" alt="add Person" />
+                </button>
+            </div>`
 }
 
 function contactHeadlineTemplate() {
@@ -130,8 +134,8 @@ function contactInfoTemplate(c) {
 }
 
 function contactSeperatorTemplate(currentLetter) {
-    return `<div>
+    return `<li>
                 <p class="beginning-letter">${currentLetter}</p>
                 <div class="contact-seperator"></div>
-            </div>`
+            </li>`
 }
