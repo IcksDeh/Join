@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/standard.css" />
     <link rel="stylesheet" href="./styles/sidebar.css">
+    <link rel="stylesheet" href="./styles/mobile_sidebar.css">
     <link rel="stylesheet" href="./styles/sidebar_nav_main.css">
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/contact.css">
+    <link rel="stylesheet" href="./styles/contact_mobile.css">
     <link rel="stylesheet" href="./styles/add_task.css" />
     <link rel="stylesheet" href="./styles/add_edit_contact_overlay.css" />
     <link rel="stylesheet" href="./styles/mobile_footer.css">
-    <link rel="stylesheet" href="./styles/mobile_sidebar.css">
+
     <script src="./script.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
     <script src="./templates/add_edit_contact_overlay_template.js" defer></script>
@@ -37,10 +39,17 @@
             </nav>
 
             <main class="contact-page">
-                <div id="contact-list" class="contact_list">
+                <div class="contact-list-container">
+                    <div class="button-container">
+                        <button class="contact-btn" id="addNewContactBtn" onclick="openAddContactDialog()">
+                            <span>Add new Contact</span>
+                            <img src="./assets/img/person_add_white.svg" alt="add Person" />
+                        </button>
+                    </div>
+                    <ul id="contact-list" class="contact_list">
 
+                    </ul>
                 </div>
-
                 <div class="contact-info" id="contact-info">
                     <div class="contact-headline">
                         <h3>Contacts</h3>

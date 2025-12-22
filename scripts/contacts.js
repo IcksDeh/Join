@@ -1,3 +1,5 @@
+console.dirxml(document.getElementById('addNewContactBtn'))
+
 function getElementsContacts() {
     return {
         name: document.getElementById('id_contact_name'),
@@ -27,8 +29,6 @@ async function switchContactsData(contactName, contactEmail, contactColor, eleme
 }
 
 function setContactActive(email, element) {
-
-
     const isActive = element.classList.contains("active-contact");
     const cInfo = document.getElementById('contact-info')
     const contacts = document.getElementsByClassName("contact-person");
@@ -42,6 +42,7 @@ function setContactActive(email, element) {
     }
 
     element.classList.add("active-contact");
+    // showMobileContact()
     const selectedContact = contact.find(entry => entry.email === email);
     cInfo.innerHTML = contactHeadlineTemplate() + contactInitialsTemplate(selectedContact) + contactInfoTemplate(selectedContact)
 
@@ -62,6 +63,19 @@ function slideContactInfo() {
         bigContactInfo.classList.toggle('slideactive')
     })
 }
+function detectMobile() {
+    return window.innerWidth <= 600
+}
+
+// function showMobileContact() {
+//     const contactList = document.getElementById('contact-list')
+//     const bigContact = document.getElementById('contact-big')
+//     const bigContactInfo = document.getElementById('contact-big-information')
+//     if (detectMobile() == true) {
+//         contactList.classList.toggle('d_none')
+
+//     }
+// }
 
 function sortContactsByFirstName(contacts) {
     return [...contacts].sort((a, b) => {
@@ -75,7 +89,7 @@ function renderContactList() {
     const contacts = sortContactsByFirstName(contact);
     const container = document.getElementById('contact-list');
 
-    container.innerHTML = addContactButtonTemplate();
+    // container.innerHTML = addContactButtonTemplate();
     let currentLetter = "";
 
     contacts.forEach((contact) => {
