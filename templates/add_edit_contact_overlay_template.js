@@ -18,9 +18,9 @@ function addContactTemplate(){
                         </div>
                         <div>
                             <div class="input_fields_container">
-                                <input type="text" id="id_contact_name" class="contact_input styled_input" placeholder="Name"><br>
-                                <input type="text" id="id_contact_email" class="contact_input styled_input" placeholder="Email"><br>
-                                <input type="text" id="id_contact_phone" class="contact_input styled_input" placeholder="Phone"><br>
+                                <input type="text" id="id_contact_name" class="contact_input styled_input" placeholder="Name" oninput="limitInputLength(this, 25)"><br>
+                                <input type="text" id="id_contact_email" class="contact_input styled_input" placeholder="Email" oninput="limitInputLength(this, 25)"><br>
+                                <input type="text" id="id_contact_phone" class="contact_input styled_input" placeholder="Phone" oninput="limitInputLength(this, 25)"><br>
                             </div>
                             <div class="contact_btn_area">
                                 <button type="button" class="outline_btn" onclick="closeAddContactDialog()">Cancel
@@ -57,9 +57,9 @@ function editContactTemplate(){
                         </div>
                         <div>
                             <div class="input_fields_container">
-                                <input type="text" id="name" class="user_input styled_input" placeholder="Anton Mayer"><br>
-                                <input type="text" id="email" class="user_input styled_input" placeholder="antonm@gmail.com"><br>
-                                <input type="text" id="phone" class="user_input styled_input" placeholder="+49 1111 111 111 11"><br>
+                                <input type="text" id="name" class="user_input styled_input" placeholder="Anton Mayer" oninput="limitInputLength(this, 25)"><br>
+                                <input type="text" id="email" class="user_input styled_input" placeholder="antonm@gmail.com" oninput="limitInputLength(this, 25)"><br>
+                                <input type="text" id="phone" class="user_input styled_input" placeholder="+49 1111 111 111 11" oninput="limitInputLength(this, 25)"><br>
                             </div>
                             <div class="contact_btn_area">
                                 <button type="button" class="outline_btn" onclick="clearContactInputs()">Delete

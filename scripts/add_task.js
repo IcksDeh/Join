@@ -226,16 +226,3 @@ function editSubtask(btn) {
   showSubtaskActions();
   subtaskInput.focus();
 }
-
-
-/**
- * Limits the number of characters in an input or textarea element.
- *
- * @param {HTMLInputElement|HTMLTextAreaElement} element - The input or textarea element to limit.
- * @param {number} maxLength - The maximum number of characters allowed.
- */
-function limitInputLength(element, maxLength) {
-  if (element.value.length > maxLength) {
-    element.value = element.value.slice(0, maxLength);
-  }
-}
