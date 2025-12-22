@@ -35,6 +35,9 @@ function setPriority(level, root = document) {
 
 /**
  * Calls setPriority("medium") and displays it as "default" button after the DOM is loaded.
+ *
+ * @event DOMContentLoaded
+ * @returns {void} - This event handler does not return a value.
  */
 document.addEventListener("DOMContentLoaded", () => {
   setPriority("medium");
@@ -79,7 +82,7 @@ function toggleCategoryList() {
  * Selects category element via onclick. Hides the category list after selection.
  *
  * @param {HTMLElement} element - The clicked category element.
- * @returns {void}
+ * @returns {void} - This function does not return a value.
  */
 function selectCategory(element) {
   document.getElementById("selected_category").innerHTML = element.innerHTML;
@@ -171,13 +174,24 @@ function showSubtaskActions() {
  * Clears the input field, hides the subtask action buttons and resets the currently edited item.
  *
  * @function cancelSubtask
- * @returns {void}
+ * @returns {void} - This function does not return a value.
  */
 function cancelSubtask() {
   subtaskInput.value = "";
   subtaskActions.style.display = "none";
-  editItem = null;
+  // editItem = null;
   showSubtaskActions();
+}
+
+
+/**
+ * Clears the value of the subtask input field.
+ *
+ * @function clearInput
+ * @returns {void} - This function does not return a value.
+ */
+function clearInput() {
+  subtaskInput.value = "";
 }
 
 
@@ -187,24 +201,39 @@ function cancelSubtask() {
  * Otherwise, a new list item is created and appended.
  *
  * @function addSubtask
- * @returns {void}
+ * @returns {void} - This function does not return a value.
  */
 function addSubtask() {
   if (!subtaskInput.value.trim()) return;
 
   if (editItem) {
-    editItem.querySelector(".subtask_text").innerHTML = subtaskInput.value;
+    editItem.querySelector('.subtask_text').innerHTML = subtaskInput.value;
   } else {
     subtaskList.innerHTML += `
       <li class="list_element">
-        <span class="subtask_text new_subtask">${subtaskInput.value}</span>
-        <div class="list_icon_element">
-          <button class="subtask_btn edit_subtask" onclick="editSubtask(this)">
-            <img class="edit_subtask" src="./assets/img/edit.svg" alt="Edit Subtask">
-          </button>
-          <button class="subtask_btn" onclick="this.closest('li').remove()">
-            <img class="delete_subtask" src="./assets/img/delete.svg" alt="Delete Subtask">
-          </button>
+        <div class="list_row">
+          <span class="subtask_text new_subtask">${subtaskInput.value}</span>
+          <div class="list_icon_element">
+            <button class="subtask_btn edit_subtask" onclick="editSubtask(this)">
+              <img class="edit_subtask" src="./assets/img/edit.svg" alt="Edit Subtask">
+            </button>
+            <button class="subtask_btn" onclick="this.closest('li').remove()">
+              <img class="delete_subtask" src="./assets/img/delete.svg" alt="Delete Subtask">
+            </button>
+          </div>
+        </div>
+
+        <div class="edit_container" style="display:none;">
+          <input type="text" class="subtask_edit_input styled_input">
+          <hr class="subtask_edit_hr">
+          <div class="subtask_edit_area">
+            <button class="subtask_edit_btn" type="button" onclick="cancelEdit(this)">
+              <img class="cancel_subtask" src="./assets/img/delete.svg" alt="Delete Subtask">
+            </button>
+            <button class="subtask_edit_btn" type="button" onclick="saveEdit(this)">
+              <img class="submit_subtask" src="./assets/img/check.svg" alt="Submit Edited Version">
+            </button>
+          </div>
         </div>
       </li>`;
   }
@@ -218,11 +247,34 @@ function addSubtask() {
  * Loads the selected subtask text into the input field and displays the subtask action buttons.
  *
  * @param {HTMLElement} btn - The edit button of the selected subtask.
- * @returns {void}
+ * @returns {void} - This function does not return a value.
  */
 function editSubtask(btn) {
-  editItem = btn.parentElement;
-  subtaskInput.value = editItem.querySelector(".subtask_text").innerHTML;
-  showSubtaskActions();
-  subtaskInput.focus();
+  const listItem = btn.closest('li');
+  editItem = listItem;
+  const editContainer = listItem.querySelector('.edit_container');
+  const editInput = editContainer.querySelector('.subtask_edit_input');
+
+  editInput.value = listItem.querySelector('.subtask_text').innerText;
+  editContainer.style.display = 'flex';
+  editInput.focus();
+}
+
+
+function saveEdit(btn) {
+  const editContainer = btn.closest('.edit_container');
+  const listItem = btn.closest('li');
+  const editInput = editContainer.querySelector('.subtask_edit_input');
+
+  listItem.querySelector('.subtask_text').innerText = editInput.value;
+  editContainer.style.display = 'none';
+  editInput.value = '';
+}
+
+
+function cancelEdit(btn) {
+  const editContainer = btn.closest('.edit_container');
+  const editInput = editContainer.querySelector('.subtask_edit_input');
+  editContainer.style.display = 'none';
+  editInput.value = '';
 }

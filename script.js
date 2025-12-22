@@ -174,6 +174,9 @@ window.addEventListener('DOMContentLoaded', () => {
 /**
  *  Highlights the active sidebar or navbar link based on the current URL.
  *  Compares each link's href with the current window location and adds the "active" class to the matching link.
+ * 
+ *  @function highlightActiveLink
+ *  @returns {void} - This function does not return a value.
  */
 function highlightActiveLink() {
     const links = document.querySelectorAll('.link_active');
