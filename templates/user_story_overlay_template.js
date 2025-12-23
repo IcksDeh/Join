@@ -44,12 +44,12 @@ function userStoryTemplate(){
             <p class="user_story_description">Subtasks</p>
             <div>
                 <div class="subtasks_container">
-                    <img class="checkbox_icon" src="./assets/img/checkbox_checked_contact_form.svg" alt="Checkbox Button">
-                    <p class="user_story_description">Implement Recipe Recommendation</p>
+                    <img onclick="toggleCheckedIcon(this)" class="checkbox_icon" data-checked="false" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                    <p class="user_story_description">Subtask 01</p>
                 </div>
                 <div class="subtasks_container">
-                    <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                    <p class="user_story_description">Implement Recipe Recommendation</p>
+                    <img onclick="toggleCheckedIcon(this)" class="checkbox_icon" data-checked="false" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                    <p class="user_story_description">Subtask 02</p>
                 </div>
             </div>
 

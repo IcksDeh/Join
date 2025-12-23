@@ -1,3 +1,7 @@
+// USER STORY DIALOG
+// PAGE 1
+
+
 /**
  * Opens the "User Story" dialog if it is not already open and loads the template.
  * setTimeout removes focus from any active element.
@@ -37,6 +41,27 @@ function closeUserStoryDialog() {
 
   clearContactInputs();
 }
+
+
+/**
+ * Toggles the checked state of a checkbox icon.
+ *
+ * @param {HTMLImageElement} img
+ * The image element representing the checkbox icon.
+ * Must contain a 'data-checked' attribute ('true' or 'false').
+ */
+function toggleCheckedIcon(img) {
+  const checked = img.dataset.checked === "true";
+  img.dataset.checked = !checked;
+
+  img.src = checked
+    ? "./assets/img/checkbox_unchecked_contact_form.svg"
+    : "./assets/img/checkbox_checked_contact_form.svg";
+}
+
+
+// USER STORY EDIT DIALOG
+// PAGE 2
 
 
 /**

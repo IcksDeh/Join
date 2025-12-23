@@ -158,6 +158,22 @@
     vertical-align: middle;
 }
 
+.checkbox_icon[data-checked="false"] {
+    content: url("./assets/img/checkbox_unchecked_contact_form.svg");
+}
+
+.checkbox_icon[data-checked="false"]:hover {
+    content: url("./assets/img/checkbox_unchecked_contact_form_hover.svg");
+}
+
+.checkbox_icon[data-checked="true"] {
+    content: url("./assets/img/checkbox_checked_contact_form.svg");
+}
+
+.checkbox_icon[data-checked="true"]:hover {
+    content: url("./assets/img/checkbox_checked_contact_form_hover.svg");
+}
+
 /* ---------- BOTTOM BOTTON AREA ---------- */
 
 .bottom_area {
