@@ -9,6 +9,48 @@ let editItem = null;
 
 // FUNCTIONS
 
+
+/**
+ * Opens the "Add Task" dialog if it is not already open and loads the template.
+ * setTimeout removes focus from any active element.
+ * 
+ * @function openAddTaskDialog
+ * @returns {void} - This function does not return a value.
+ */
+function openAddTaskDialog() {
+  const dialog = document.getElementById('addTaskDialog');
+
+  if (!dialog.open) {
+    dialog.innerHTML = addTaskTemplate();
+    dialog.showModal();
+
+    setPriority("medium", dialog);
+
+    setTimeout(() => {
+      document.activeElement?.blur();
+    }, 0);
+  }
+}
+
+
+/**
+ * Closes the "Add Task" dialog.
+ * Removes its content and resets all contact input fields.
+ * 
+ * @function closeAddTaskDialog
+ * @returns {void} - This function does not return a value.
+ */
+function closeAddTaskDialog() {
+  const dialog = document.getElementById('addTaskDialog');
+  if (!dialog) return;
+
+  dialog.close();
+  dialog.innerHTML = "";
+
+  clearInputs();
+}
+
+
 /**
  * Sets the priority indicator and updates the corresponding button states.
  * Shows the "filled" button for the selected priority and displays the "default" buttons for all other priorities.
@@ -91,6 +133,21 @@ function selectCategory(element) {
 
 
 /**
+ * Collapses the contacts dropdown list if it is currently expanded.
+ *
+ * @function closeContactsList
+ * @returns {void} - This function does not return a value.
+ */
+function closeContactsList() {
+  const contactsList = document.getElementById("contacts_list");
+
+  if (contactsList) {
+    contactsList.style.display = "none";
+  }
+}
+
+
+/**
  * Clears specific input fields and resets the priority to "Medium".
  * After clearing the fields, the function automatically sets the priority button to "default".
  * 
@@ -112,49 +169,26 @@ function clearInputs() {
   });
 
   document.getElementById("selected_category").innerHTML = "Select task category";
+  closeContactsList()
   subtaskList.innerHTML = "";
   setPriority("medium");
 }
 
 
 /**
- * Opens the "Add Task" dialog if it is not already open and loads the template.
- * setTimeout removes focus from any active element.
- * 
- * @function openAddTaskDialog
- * @returns {void} - This function does not return a value.
+ * Toggles the checked state of the checkbox icon in 'Assigned to' dropdown list.
+ *
+ * @param {HTMLImageElement} img
+ * The image element representing the checkbox icon.
+ * Must contain a 'data-checked' attribute ('true' or 'false').
  */
-function openAddTaskDialog() {
-  const dialog = document.getElementById('addTaskDialog');
+function toggleCheckedIcon(img) {
+  const checked = img.dataset.checked === "true";
+  img.dataset.checked = !checked;
 
-  if (!dialog.open) {
-    dialog.innerHTML = addTaskTemplate();
-    dialog.showModal();
-
-    setPriority("medium", dialog);
-
-    setTimeout(() => {
-      document.activeElement?.blur();
-    }, 0);
-  }
-}
-
-
-/**
- * Closes the "Add Task" dialog.
- * Removes its content and resets all contact input fields.
- * 
- * @function closeAddTaskDialog
- * @returns {void} - This function does not return a value.
- */
-function closeAddTaskDialog() {
-  const dialog = document.getElementById('addTaskDialog');
-  if (!dialog) return;
-
-  dialog.close();
-  dialog.innerHTML = "";
-
-  clearInputs();
+  img.src = checked
+    ? "./assets/img/checkbox_unchecked_contact_form.svg"
+    : "./assets/img/checkbox_checked_contact_form.svg";
 }
 
 
@@ -185,96 +219,80 @@ function cancelSubtask() {
 
 
 /**
- * Clears the value of the subtask input field.
- *
- * @function clearInput
- * @returns {void} - This function does not return a value.
- */
-function clearInput() {
-  subtaskInput.value = "";
-}
-
-
-/**
  * Adds a new subtask to the subtask list.
- * If an item is currently being edited, its text will be replaced.
- * Otherwise, a new list item is created and appended.
- *
- * @function addSubtask
- * @returns {void} - This function does not return a value.
+ * Reads the value from the input, creates a list item with edit and delete buttons, and appends it to the subtask list.
  */
 function addSubtask() {
-  if (!subtaskInput.value.trim()) return;
+  const value = subtaskInput.value.trim();
+  if (!value) return;
 
-  if (editItem) {
-    editItem.querySelector('.subtask_text').innerHTML = subtaskInput.value;
-  } else {
-    subtaskList.innerHTML += `
-      <li class="list_element">
-        <div class="list_row">
-          <span class="subtask_text new_subtask">${subtaskInput.value}</span>
-          <div class="list_icon_element">
-            <button class="subtask_btn edit_subtask" onclick="editSubtask(this)">
-              <img class="edit_subtask" src="./assets/img/edit.svg" alt="Edit Subtask">
-            </button>
-            <button class="subtask_btn" onclick="this.closest('li').remove()">
-              <img class="delete_subtask" src="./assets/img/delete.svg" alt="Delete Subtask">
-            </button>
-          </div>
-        </div>
+  const li = document.createElement('li');
+  li.className = 'list_element';
+  li.innerHTML = `
+    <div class="list_row">
+      <span class="subtask_text new_subtask">${value}</span>
+      <div class="list_icon_element">
+        <button class="subtask_btn edit_subtask" type="button" onclick="editSubtask(this)">
+          <img class="edit_subtask" src="./assets/img/edit.svg" alt="Edit Subtask">
+        </button>
+        <button class="subtask_btn" type="button" onclick="this.closest('li').remove()">
+          <img class="delete_subtask" src="./assets/img/delete.svg" alt="Delete Subtask">
+        </button>
+      </div>
+    </div>
 
-        <div class="edit_container" style="display:none;">
-          <input type="text" class="subtask_edit_input styled_input">
-          <hr class="subtask_edit_hr">
-          <div class="subtask_edit_area">
-            <button class="subtask_edit_btn" type="button" onclick="cancelEdit(this)">
-              <img class="cancel_subtask" src="./assets/img/delete.svg" alt="Delete Subtask">
-            </button>
-            <button class="subtask_edit_btn" type="button" onclick="saveEdit(this)">
-              <img class="submit_subtask" src="./assets/img/check.svg" alt="Submit Edited Version">
-            </button>
-          </div>
-        </div>
-      </li>`;
-  }
-
+    <div class="edit_container" style="display:none;">
+      <input type="text" class="subtask_edit_input styled_input" value="${value}" oninput="limitInputLength(this, 25)">
+      <hr class="subtask_edit_hr">
+      <div class="subtask_edit_area">
+        <button class="subtask_edit_btn" type="button" onclick="cancelEdit(this)">
+          <img class="cancel_subtask_edit" src="./assets/img/delete.svg" alt="Delete Subtask">
+        </button>
+        <button class="subtask_edit_btn" type="button" onclick="saveEdit(this)">
+          <img class="submit_subtask" src="./assets/img/check.svg" alt="Submit Edited Version">
+        </button>
+      </div>
+    </div>
+  `;
+  subtaskList.appendChild(li);
+  subtaskInput.value = "";
   cancelSubtask();
 }
 
 
 /**
- * Enables editing mode for an existing subtask.
- * Loads the selected subtask text into the input field and displays the subtask action buttons.
- *
- * @param {HTMLElement} btn - The edit button of the selected subtask.
- * @returns {void} - This function does not return a value.
+ * Enables edit mode for a subtask.
+ * 
+ * @param {HTMLElement} btn - The button that triggers editing.
  */
 function editSubtask(btn) {
-  const listItem = btn.closest('li');
-  editItem = listItem;
-  const editContainer = listItem.querySelector('.edit_container');
-  const editInput = editContainer.querySelector('.subtask_edit_input');
-
-  editInput.value = listItem.querySelector('.subtask_text').innerText;
-  editContainer.style.display = 'flex';
-  editInput.focus();
+  const li = btn.closest('li');
+  li.querySelector('.edit_container').style.display = 'block';
+  li.querySelector('.list_row').style.display = 'none';
 }
 
 
+/**
+ * Saves the changes made to a subtask.
+ * 
+ * @param {HTMLElement} btn - The button that triggers saving.
+ */
 function saveEdit(btn) {
-  const editContainer = btn.closest('.edit_container');
-  const listItem = btn.closest('li');
-  const editInput = editContainer.querySelector('.subtask_edit_input');
-
-  listItem.querySelector('.subtask_text').innerText = editInput.value;
-  editContainer.style.display = 'none';
-  editInput.value = '';
+  const li = btn.closest('li');
+  const newValue = li.querySelector('.subtask_edit_input').value;
+  li.querySelector('.subtask_text').innerText = newValue;
+  li.querySelector('.edit_container').style.display = 'none';
+  li.querySelector('.list_row').style.display = 'flex';
 }
 
 
+/**
+ * Cancels the edit mode and restores the original subtask display.
+ * 
+ * @param {HTMLElement} btn - The button that triggers canceling.
+ */
 function cancelEdit(btn) {
-  const editContainer = btn.closest('.edit_container');
-  const editInput = editContainer.querySelector('.subtask_edit_input');
-  editContainer.style.display = 'none';
-  editInput.value = '';
+  const li = btn.closest('li');
+  li.querySelector('.edit_container').style.display = 'none';
+  li.querySelector('.list_row').style.display = 'flex';
 }

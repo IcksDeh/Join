@@ -238,8 +238,12 @@ textarea:focus {
     padding-right: 30px;
 }
 
-.checkbox_icon:hover {
-    content: url("../assets/img/checkbox_unchecked_hover.svg");
+.checkbox_icon[data-checked="false"] {
+    content: url("./assets/img/checkbox_unchecked_contact_form.svg");
+}
+
+.checkbox_icon[data-checked="true"] {
+    content: url("./assets/img/checkbox_checked_contact_form.svg");
 }
 
 /* ---------- SCROLL BAR ---------- */
@@ -459,7 +463,7 @@ textarea:focus {
 }
 
 .cancel_subtask:hover {
-    content: url("../assets/img/close_hover.svg");
+    content: url("../assets/img/close_hover.svg") !important;
 }
 
 .submit_subtask:hover {
@@ -516,8 +520,8 @@ textarea:focus {
     cursor: pointer;
 }
 
-.cancel_subtask:hover {
-    content: url("../assets/img/delete_hover.svg");
+.cancel_subtask_edit:hover {
+    content: url("../assets/img/delete_hover.svg") !important;
 }
 
 .subtask_edit_hr {
