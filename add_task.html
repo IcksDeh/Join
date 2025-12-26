@@ -73,9 +73,9 @@
 
                             <label class="label_text">Assigned to</label><br>
                             <div class="dropdown">
-                                <div class="dropdown_input add_task_input_dropdown styled_input">
-                                    <span class="dropdown_text">Select contacts to assign</span>
-                                    <div class="dropdown_icon" onclick="toggleContactsList()"></div>
+                                <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleContactsList()">
+                                    <span class="dropdown_text" id="selected_contacts">Select contacts to assign</span>
+                                    <div class="dropdown_icon"></div>
                                 </div>
                                 <ul class="dropdown_list_contacts" id="contacts_list" style="display:none;">
                                     <li class="dropdown_item">
@@ -84,7 +84,7 @@
                                                 <img src="./assets/img/user-am.svg" alt="">
                                                 <p>Anton Mayer</p>
                                             </div>
-                                            <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                            <img onclick="toggleCheckedIcon(this)" class="checkbox_icon" data-checked="false" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
                                         </div>
                                     </li>
                                     <li class="dropdown_item">
@@ -93,7 +93,7 @@
                                                 <img src="./assets/img/user-de.svg" alt="">
                                                 <p>David Eisenberg</p>
                                             </div>
-                                            <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                            <img onclick="toggleCheckedIcon(this)" class="checkbox_icon" data-checked="false" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
                                         </div>
                                     </li>
                                     <li class="dropdown_item">
@@ -102,7 +102,7 @@
                                                 <img src="./assets/img/user-ef.svg" alt="">
                                                 <p>Eva Fischer</p>
                                             </div>
-                                            <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                            <img onclick="toggleCheckedIcon(this)" class="checkbox_icon" data-checked="false" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
                                         </div>
                                     </li>
                                     <li class="dropdown_item">
@@ -111,7 +111,7 @@
                                                 <img src="./assets/img/user-em.svg" alt="">
                                                 <p>Emmanuel Mauer</p>
                                             </div>
-                                            <img class="checkbox_icon" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+                                            <img onclick="toggleCheckedIcon(this)" class="checkbox_icon" data-checked="false" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
                                         </div>
                                     </li>
                                 </ul>
@@ -120,9 +120,9 @@
 
                             <label class="label_text">Category<sup>*</sup></label><br>
                             <div class="dropdown">
-                                <div class="dropdown_input add_task_input_dropdown styled_input">
+                                <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleCategoryList()">
                                     <span class="dropdown_text" id="selected_category">Select task category</span>
-                                    <div class="dropdown_icon" onclick="toggleCategoryList()"></div>
+                                    <div class="dropdown_icon"></div>
                                 </div>
                                 <ul class="dropdown_list" id="category_list" style="display:none;">
                                     <li class="dropdown_item" onclick="selectCategory(this)">Technical Task</li>
