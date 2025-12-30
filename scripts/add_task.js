@@ -6,7 +6,7 @@ const subtaskActions = document.querySelector(".subtask_actions");
 
 let editItem = null;
 
-const prioities = [
+const priorities = [
     {"name": "urgent", "color": "red"},
     {"name": "medium", "color":"yellow"},
     {"name": "low", "color":"green"},
@@ -320,7 +320,7 @@ document.getElementById('id_btn_create_task').addEventListener("click", async fu
 }
 
 function getPriority(){
-  return prioities.find(({name}) => {
+  return priorities.find(({name}) => {
     const priorityElement = document.getElementById('id_' + name + '_btn');
     return priorityElement?.classList.contains(name +'_btn_filled' );
   }) || null;
