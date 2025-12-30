@@ -161,7 +161,7 @@ function clearInputs() {
   const inputIds = ["title", "description", "due_date", "subtasks"];
 
   inputIds.forEach(id => {
-    const element = document.getElementById(id);
+    const element = document.getElementById('id_'+id+'_add_task');
     if (element) {
       if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
         element.value = "";
@@ -300,21 +300,42 @@ function cancelEdit(btn) {
   li.querySelector('.list_row').style.display = 'flex';
 }
 
+document.getElementById('id_btn_create_task').addEventListener("click", async function(event){
+    event.preventDefault();
+    await getAddTaskData();
+    }
+)
 
-function getAddTaskData(){
+ async function getAddTaskData(){
   let titleTask = document.getElementById('id_title_add_task').value;
   let descriptionTask = document.getElementById('id_description_add_task').value;
   let dueDateTask = document.getElementById('id_due_date_add_task').value;
-  let priorityTask = "";
+  let priorityTask = getPriority();
   let assignedToTask = "";
   let categoryTask = "";
   let subtasksTask = ""; 
   let statusTask = "ToDo";
+
+  await switchTaskData(titleTask, descriptionTask, dueDateTask, priorityTask,assignedToTask, categoryTask, subtasksTask, statusTask); 
 }
 
 function getPriority(){
-  prioities.forEach(({name, color}) => {
-    let getPrioElement = document.getElementById('id_'+name+'_btn')
-    
-  })
+  return prioities.find(({name}) => {
+    const priorityElement = document.getElementById('id_' + name + '_btn');
+    return priorityElement?.classList.contains(name +'_btn_filled' );
+  }) || null;
+}
+
+async function switchTaskData (titleTask, descriptionTask, dueDateTask, priorityTask,assignedToTask, categoryTask ="", subtasksTask="", statusTask){
+  let taskData = {
+    "title": titleTask,
+    "description": descriptionTask,
+    "dueDate": dueDateTask,
+    "priority": priorityTask,
+    "assignees": assignedToTask,
+    "category": categoryTask,
+    "subtasks": subtasksTask,
+    "statusTask": statusTask,
+  }
+ await putToStorage("tasks", taskData);
 }

@@ -3,15 +3,25 @@ let newUserID = 0;
 let user = [];
 let contacts = [];
 
-async function putToStorage(path, userData, elements){
+async function putToStorage(path, Data, elements =""){
     let userStorage = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"},
-        body: JSON.stringify(userData),    
+        body: JSON.stringify(Data),    
         }
     );
-    clearElements(elements);
+    
+    checkClearElements(path, elements)
+    
+}
+
+function checkClearElements(path, elements){
+        if(path == 'user' || path == 'contacts'){
+            clearElements(elements);
+        } else {
+            clearInputs();
+        }
 }
 
 function clearElements(elements){

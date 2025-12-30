@@ -16,6 +16,7 @@
     <script src="script.js" defer></script>
     <script src="./scripts/add_task.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
+    <script src="./scripts/firebase.js"></script>
     <title>Add Task</title>
 </head>
 <body onload="init()">
@@ -150,7 +151,7 @@
                                 <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                 <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                             </button>
-                            <button type="submit" class="create_task_btn">Create Task<img src="./assets/img/check_white.svg" alt="Create Task"></button>
+                            <button type="submit" id="id_btn_create_task" class="create_task_btn">Create Task<img src="./assets/img/check_white.svg" alt="Create Task"></button>
                         </div>
                     </div>
                 </form>
