@@ -6,6 +6,11 @@ const subtaskActions = document.querySelector(".subtask_actions");
 
 let editItem = null;
 
+const prioities = [
+    {"name": "urgent", "color": "red"},
+    {"name": "medium", "color":"yellow"},
+    {"name": "low", "color":"green"},
+  ]
 
 // FUNCTIONS
 
@@ -50,39 +55,37 @@ function closeAddTaskDialog() {
   clearInputs();
 }
 
-
-/**
- * Sets the priority indicator and updates the corresponding button states.
- * Shows the "filled" button for the selected priority and displays the "default" buttons for all other priorities.
- *
- * @param {"urgent"|"medium"|"low"} level - The priority to activate.
- * @param {Document|HTMLElement} [root=document] - Root element used for DOM queries.
- * @returns {void} - This function does not return a value; it updates the UI only.
- */
-function setPriority(level, root = document) {
-  const priorities = ["urgent", "medium", "low"];
-
-  const toggle = (prio, active) => {
-    const def = root.querySelector(`#${prio}_btn_default`);
-    const fill = root.querySelector(`#${prio}_btn_filled`);
-    if (!def || !fill) return;
-
-    def.classList.toggle("d_none", active);
-    fill.classList.toggle("d_none", !active);
-  };
-
-  priorities.forEach(prio => toggle(prio, prio === level));
+function checkPriority(status){
+    prioities.forEach(({name, color}) => {
+    if (name == status){  
+      markPriorityButton(name);
+    } else {
+      removeMarkOtherButton(name, color);
+    }     
+  })
 }
 
+// Funktion noch zusammenfassen, da sie prinzipiell dasgleiche macht. 
+function markPriorityButton(priorityElement){
+  document.getElementById('id_'+ priorityElement +'_btn').classList.remove(priorityElement +'_btn_default');
+  document.getElementById('id_'+ priorityElement +'_btn').classList.add(priorityElement +'_btn_filled');
+  document.getElementById('id_icon_'+ priorityElement +'_task').src = "./assets/img/prio_" + priorityElement + "_white.svg";
+}
+
+function removeMarkOtherButton(priorityElement, color){
+  document.getElementById('id_'+ priorityElement +'_btn').classList.add(priorityElement +'_btn_default');
+  document.getElementById('id_'+ priorityElement +'_btn').classList.remove(priorityElement +'_btn_filled');
+  document.getElementById('id_icon_'+ priorityElement +'_task').src = "./assets/img/prio_" + priorityElement + "_"+ color +".svg";
+}
 
 /**
- * Calls setPriority("medium") and displays it as "default" button after the DOM is loaded.
+ * Calls checkPriority("medium") and displays it as "default" button after the DOM is loaded.
  *
  * @event DOMContentLoaded
  * @returns {void} - This event handler does not return a value.
  */
 document.addEventListener("DOMContentLoaded", () => {
-  setPriority("medium");
+  checkPriority("medium");
 });
 
 
@@ -171,7 +174,7 @@ function clearInputs() {
   document.getElementById("selected_category").innerHTML = "Select task category";
   closeContactsList()
   subtaskList.innerHTML = "";
-  setPriority("medium");
+  checkPriority("medium");
 }
 
 
@@ -295,4 +298,23 @@ function cancelEdit(btn) {
   const li = btn.closest('li');
   li.querySelector('.edit_container').style.display = 'none';
   li.querySelector('.list_row').style.display = 'flex';
+}
+
+
+function getAddTaskData(){
+  let titleTask = document.getElementById('id_title_add_task').value;
+  let descriptionTask = document.getElementById('id_description_add_task').value;
+  let dueDateTask = document.getElementById('id_due_date_add_task').value;
+  let priorityTask = "";
+  let assignedToTask = "";
+  let categoryTask = "";
+  let subtasksTask = ""; 
+  let statusTask = "ToDo";
+}
+
+function getPriority(){
+  prioities.forEach(({name, color}) => {
+    let getPrioElement = document.getElementById('id_'+name+'_btn')
+    
+  })
 }
