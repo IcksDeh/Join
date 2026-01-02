@@ -45,20 +45,33 @@ function sidebarLogOffTemplate() {
     `;
 }
 
-function navbarTemplate() {
+function navbarTemplate(userInitials) {
   return `
-        <div class = "content_wrapper order_content_navbar">  
-        <img class="mobile_logo" id="header_logo" src="./assets/img/logo_version_1.svg" alt="logo image"/>  
+        <div class="content_wrapper order_content_navbar">  
+            <img class="mobile_logo" id="header_logo" src="./assets/img/logo_version_1.svg" alt="logo image"/>  
             <p class="text_navbar desktop">Kanban Projekt Management Tool</p>
             <div class="help_user_icon">
                 <a href="./help.html"><img class="help_icon desktop" src="./assets/img/questionmark_small.svg" alt="Help Button"></a>
-                <div class="user_circle" onclick="toggleMenu()">AM</div>
+                
+                <div class="user_circle" onclick="toggleMenu()">${userInitials}</div>
+            
             </div>
 
             <div id="menu_navbar" class="menu_navbar d_none content_wrapper">
                 <a href="./legal_notice.html">Legal Notice</a>
                 <a href="./privacy_policy.html">Privacy Policy</a>
-                <a href="./index.html">Log out</a>
+                <a href="./index.html" onclick="localStorage.removeItem('activeUser')">Log out</a>
+            </div>
+        </div>
+    `;
+}
+
+function navbarLogOffTemplate() {
+  return `
+        <div class="content_wrapper order_content_navbar">  
+            <img class="mobile_logo" id="header_logo" src="./assets/img/logo_version_1.svg" alt="logo image"/>  
+            <p class="text_navbar desktop">Kanban Projekt Management Tool</p>
+            <div class="help_user_icon">
             </div>
         </div>
     `;

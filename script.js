@@ -51,9 +51,11 @@ function loadSidebar() {
  *  @returns {void} - This function does not return a value.
  */
 function loadNavbar() {
+    let user = JSON.parse(localStorage.getItem('activeUser'));
+    let userInitials = user ? user.initials : "G"; 
     const navbar = document.getElementById('id_navbar');
     navbar.innerHTML = "";
-    navbar.innerHTML = navbarTemplate();
+    navbar.innerHTML = navbarTemplate(userInitials);
 }
 
 
@@ -77,11 +79,31 @@ function loadMobileFooter() {
  *  @returns {void} - This function does not return a value.
  */
 function loadSummary() {
+    let user = JSON.parse(localStorage.getItem('activeUser'));
+    let greetingText = getGreeting(); 
+    let userName = "";
+
+    if (user && user.name !== "Guest") {
+        greetingText = greetingText + ","; 
+        userName = user.name;
+    } else {
+        greetingText = greetingText + "!";
+        userName = ""; 
+    }
+
     const summaryContent = document.getElementById('id_content_summary');
-    summaryContent.innerHTML = "";
-    summaryContent.innerHTML = summaryContentTemplate();
+    summaryContent.innerHTML = summaryContentTemplate(userName, greetingText);
 }
 
+/**
+ * Determines the greeting based on the current time of day.
+ */
+function getGreeting() {
+const hour = new Date().getHours();
+if (hour < 12) return "Good morning";
+if (hour < 18) return "Good afternoon";
+return "Good evening";
+}
 
 /**
  *  Loads and renders the log-off sidebar template into the sidebar container.
