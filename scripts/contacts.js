@@ -14,16 +14,23 @@ async function getContactData() {
     let contactEmail = elements.email.value;
     let contactPhonenumber = elements.phonenumber.value;
     let contactColor = getRandomColor();
+    let contactInitals = getContactInitials(contactName);
 
-    await switchContactsData(contactName, contactEmail, contactColor, elements, contactPhonenumber)
+    await switchContactsData(contactName, contactEmail, contactColor, elements, contactPhonenumber, contactInitals )
 }
 
-async function switchContactsData(contactName, contactEmail, contactColor, elements = "", contactPhonenumber = "") {
+function getContactInitials(contactName){
+    let contactInitials = contactName.split(" ").map(word => word[0]).join("");
+    return contactInitials;
+}
+
+async function switchContactsData(contactName, contactEmail, contactColor, elements = "", contactPhonenumber = "", contactInitals) {
     let contactData = {
         "name": contactName,
         "eMail": contactEmail,
         "phoneNumber": contactPhonenumber,
         "color": contactColor,
+        "initial": contactInitals,
     }
     await putToStorage("contacts", contactData, elements)
 }
