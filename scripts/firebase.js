@@ -34,14 +34,29 @@ async function loadFirebaseData(path, array){
     let responseFirebaseData = await fetch(BASE_URL + path + ".json");
     let responseFirebaseDataToJSON = await responseFirebaseData.json();
     let firebaseKeys = Object.keys(responseFirebaseDataToJSON);
-    for (let index = 0; index < firebaseKeys.length; index++) {
-        array.push(
+    await checkPushToArray(firebaseKeys, responseFirebaseDataToJSON, path);
+    
+
+}
+    
+async function checkPushToArray(firebaseKeys, responseFirebaseDataToJSON,  path){
+    if (path == 'contacts'){
+        await pushToContactsArray(firebaseKeys, responseFirebaseDataToJSON);
+    } else if ( path == 'tasks'){
+        await pushToTaskArray(firebaseKeys, responseFirebaseDataToJSON);
+    } else {
+        await pushToUserArray(firebaseKeys, responseFirebaseDataToJSON); 
+    }    
+}
+
+async function pushToContactsArray(firebaseKeys, responseFirebaseDataToJSON){
+       for (let index = 0; index < firebaseKeys.length; index++) {
+        contactsList.push(
             {
                 "id" : firebaseKeys[index],
-                "user": responseFirebaseDataToJSON[firebaseKeys[index]],
+                "contact": responseFirebaseDataToJSON[firebaseKeys[index]],
             }
         )
     }
-    console.log(array);
+    console.log(contactsList);
 }
-    

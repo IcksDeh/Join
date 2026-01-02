@@ -97,6 +97,15 @@ function toggleListTasks(element){
   } else {
     list.style.display = "none";
   }
+  checkContactList(element);
+}
+
+
+function checkContactList(element){
+  if (element == "contacts"){
+    loadFirebaseData("contacts", contacts);
+    // showContactsInTasks();
+  }
 }
 
 
