@@ -145,9 +145,8 @@ function goBack() {
  * @returns {string} - A color value from the colors array.
  */
 function getRandomColor(){
-    const color = colors[colorIndex];
-    colorIndex = (colorIndex + 1) % colors.length;
-    return color;
+     const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
 }
 
 
