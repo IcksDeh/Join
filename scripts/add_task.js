@@ -56,7 +56,7 @@ function closeAddTaskDialog() {
 }
 
 function checkPriority(status){
-    prioities.forEach(({name, color}) => {
+    priorities.forEach(({name, color}) => {
     if (name == status){  
       markPriorityButton(name);
     } else {
@@ -312,9 +312,9 @@ document.getElementById('id_btn_create_task').addEventListener("click", async fu
   let dueDateTask = document.getElementById('id_due_date_add_task').value;
   let priorityTask = getPriority();
   let assignedToTask = "";
-  let categoryTask = "";
-  let subtasksTask = ""; 
-  let statusTask = "ToDo";
+  let categoryTask = getTaskCategory();
+  let subtasksTask = getAllSubtasks(); 
+  let statusTask = "todo";
 
   await switchTaskData(titleTask, descriptionTask, dueDateTask, priorityTask,assignedToTask, categoryTask, subtasksTask, statusTask); 
 }
@@ -326,7 +326,27 @@ function getPriority(){
   }) || null;
 }
 
-async function switchTaskData (titleTask, descriptionTask, dueDateTask, priorityTask,assignedToTask, categoryTask ="", subtasksTask="", statusTask){
+function getTaskCategory(){
+  const categoryElement = document.getElementById('selected_category');
+  let categoryContent = categoryElement.textContent;
+  return categoryContent;
+}
+
+function getAllSubtasks(){
+  const subtasks = {};
+  document.querySelectorAll('.list_element').forEach(li => {
+    let subtaskId = crypto.randomUUID();
+    let subtastText = li.querySelector('.subtask_text').textContent.trim();
+    
+    subtasks[subtaskId]= {
+      text: subtastText,
+      done: false
+    };
+  });
+  return subtasks;
+}
+
+async function switchTaskData (titleTask, descriptionTask, dueDateTask, priorityTask,assignedToTask="", categoryTask ="", subtasksTask="", statusTask){
   let taskData = {
     "title": titleTask,
     "description": descriptionTask,
@@ -339,3 +359,5 @@ async function switchTaskData (titleTask, descriptionTask, dueDateTask, priority
   }
  await putToStorage("tasks", taskData);
 }
+
+
