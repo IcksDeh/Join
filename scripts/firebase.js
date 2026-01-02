@@ -50,7 +50,8 @@ async function checkPushToArray(firebaseKeys, responseFirebaseDataToJSON,  path)
 }
 
 async function pushToContactsArray(firebaseKeys, responseFirebaseDataToJSON){
-       for (let index = 0; index < firebaseKeys.length; index++) {
+    contactsList = [];   
+    for (let index = 0; index < firebaseKeys.length; index++) {
         contactsList.push(
             {
                 "id" : firebaseKeys[index],

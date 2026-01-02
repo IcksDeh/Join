@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function toggleListTasks(element){
-  let list = document.getElementById(element + "_list");
+  let list = document.getElementById(element + "_list_task");
     
   if (list.style.display === "none") {
     list.style.display = "block";
@@ -101,9 +101,9 @@ function toggleListTasks(element){
 }
 
 
-function checkContactList(element){
+async function checkContactList(element){
   if (element == "contacts"){
-    loadFirebaseData("contacts", contacts);
+    await loadFirebaseData("contacts", contacts);
     // showContactsInTasks();
   }
 }
@@ -321,4 +321,14 @@ async function switchTaskData (titleTask, descriptionTask, dueDateTask, priority
  await putToStorage("tasks", taskData);
 }
 
+function showContactsInTasks(){
+  let assigneeList = document.getElementById('contacts_list_task');
+  for (let index = 0; index < contactsList.length; index++) {
+  const listElement = document.createElement('li');
+  listElement.className = 'dropdown_item';
+  listElement.innerHTML = listAssigneeTemplate();
+  assigneeList.appendChild(listElement);
+    
+  }
+}
 

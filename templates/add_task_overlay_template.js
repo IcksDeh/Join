@@ -150,3 +150,7 @@ function listSubtaskTemplate(value){
     </div>
   `
 }
+
+function listAssigneeTemplate(){
+    
+}
