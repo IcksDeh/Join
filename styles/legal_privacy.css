@@ -102,6 +102,12 @@ h3 {
   padding-bottom: 50px;
 }
 
+@media (max-width: 975px) {
+  .design_privacy_legal {
+    width: 200px;
+  }
+}
+
 
 @media (max-width:700px) {
   .legal_privacy_main {
