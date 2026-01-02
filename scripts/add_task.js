@@ -104,7 +104,7 @@ function toggleListTasks(element){
 async function checkContactList(element){
   if (element == "contacts"){
     await loadFirebaseData("contacts", contacts);
-    // showContactsInTasks();
+    showContactsInTasks();
   }
 }
 
@@ -323,12 +323,13 @@ async function switchTaskData (titleTask, descriptionTask, dueDateTask, priority
 
 function showContactsInTasks(){
   let assigneeList = document.getElementById('contacts_list_task');
+  assigneeList.innerHTML = "";
   for (let index = 0; index < contactsList.length; index++) {
-  const listElement = document.createElement('li');
-  listElement.className = 'dropdown_item';
-  listElement.innerHTML = listAssigneeTemplate();
-  assigneeList.appendChild(listElement);
-    
+    console.log(contactsList[index]);
+    const listElement = document.createElement('li');
+    listElement.className = 'dropdown_item';
+    listElement.innerHTML = listAssigneeTemplate(contactsList, index);
+    assigneeList.appendChild(listElement);
   }
 }
 

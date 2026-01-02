@@ -161,14 +161,14 @@ input[type="date"]:-ms-input-placeholder {
     padding-right: 12px;
 }
 
-.dropdown_icon {
+/* .dropdown_icon {
     width: 20px;
     height: 20px;
     background-image: url("../assets/img/drop_down.svg");
     background-size: contain;
     background-repeat: no-repeat;
     transition: opacity 0.2s ease;
-}
+} */
 
 input:focus,
 textarea:focus {
@@ -207,7 +207,7 @@ textarea:focus {
     padding-top: 10px;
     padding-bottom: 12px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .dropdown_item:hover {
@@ -562,4 +562,23 @@ textarea:focus {
     height: 35px;
     border: none;
     cursor: pointer;
+}
+
+.contact_initial_circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid white;
+  border-radius: 50%;
+  color: white;
+  margin-right: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: opacity 0.2s ease;
+}
+
+.user_name_assginee_circle{
+    font-size: 20px;
 }
