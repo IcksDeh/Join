@@ -206,6 +206,17 @@
   display: none;
 }
 
+#login_error_message {
+  position: absolute;   
+  bottom: -20px;        
+  left: 0;
+  width: 100%;
+  text-align: left;     
+  color: #ff3d00;
+  font-size: 14px;      
+  display: none;       
+}
+
 .input-wrapper input.error {
   border: 1px solid #ff3d00;
 }

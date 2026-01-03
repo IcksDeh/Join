@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/standard.css" />
     <link rel="stylesheet" href="./styles/auth.css" />
-    <link rel="stylesheet" href="./styles/animation.css">
+    <link rel="stylesheet" href="./styles/animation.css" />
     <title>Join</title>
   </head>
   <body class="auth_body">
@@ -47,6 +47,7 @@
                 type="email"
                 placeholder="Email"
                 required
+                oninput="resetLoginError()"
               />
               <img
                 class="input-icon"
@@ -70,8 +71,9 @@
                 src="./assets/img/lock_icon.svg"
                 alt="Toggle Password Visibility"
               />
+              <div id="login_error_message">Check your email and password</div>
             </div>
-            
+
             <div class="auth_btns">
               <button class="auth_btn" type="button" onclick="login()">
                 Log in
