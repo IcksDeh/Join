@@ -141,18 +141,6 @@ document.getElementById('signup_btn').addEventListener("click", async function(e
     }
 )
 
-async function getUserData(){
-  const elements = getElementsUser();
- 
-  let userName = elements.name.value;
-  let userEmail = elements.email.value;
-  let userPassword = elements.pass.value;
-  let userColor = getRandomColor();
-  let userInitials = getContactInitials(userName)
-  await switchUserData(userName, userEmail, userColor, elements, userPassword, userInitials);
-  await switchContactsData(userName, userEmail, userColor, userInitials);
-}
-
 
   // sinnvoll zusammenfassen? 
   async function switchUserData(userName, userEmail, userColor, elements, userPassword, userInitials){

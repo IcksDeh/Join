@@ -153,7 +153,7 @@ function listSubtaskTemplate(value){
 
 function listAssigneeTemplate(contactsList, index){
     return `
-                <div class="dropdown_item_user">
+                <div class="dropdown_item_user" data-assignee-id="${contactsList[index].id}">
                     <div class="user_info">
                             <div class="contact_initial_circle" style="background-color: ${contactsList[index].contact.color};">${contactsList[index].contact.initial} </div>
                             <p class="user_name_assignee_circle">${contactsList[index].contact.name}</p>

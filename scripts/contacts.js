@@ -1,39 +1,6 @@
 console.dirxml(document.getElementById('addNewContactBtn'))
 
-function getElementsContacts() {
-    return {
-        name: document.getElementById('id_contact_name'),
-        email: document.getElementById('id_contact_email'),
-        phonenumber: document.getElementById('id_contact_phone'),
-    };
-}
 
-async function getContactData() {
-    const elements = getElementsContacts();
-    let contactName = elements.name.value;
-    let contactEmail = elements.email.value;
-    let contactPhonenumber = elements.phonenumber.value;
-    let contactColor = getRandomColor();
-    let contactInitals = getContactInitials(contactName);
-
-    await switchContactsData(contactName, contactEmail, contactColor, contactInitals, elements, contactPhonenumber,  )
-}
-
-function getContactInitials(contactName){
-    let contactInitials = contactName.split(" ").map(word => word[0]).join("");
-    return contactInitials;
-}
-
-async function switchContactsData(contactName, contactEmail, contactColor, contactInitals, elements = "", contactPhonenumber = "") {
-    let contactData = {
-        "name": contactName,
-        "eMail": contactEmail,
-        "phoneNumber": contactPhonenumber,
-        "color": contactColor,
-        "initial": contactInitals,
-    }
-    await putToStorage("contacts", contactData, elements)
-}
 
 function setContactActive(email, element) {
     const isActive = element.classList.contains("active-contact");

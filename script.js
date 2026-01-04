@@ -1,5 +1,3 @@
-let contactsList = [];
-
 const colors = [
     "#ff7a00",
     "#ff5eb3",
