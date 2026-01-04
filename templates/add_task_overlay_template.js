@@ -152,13 +152,13 @@ function listSubtaskTemplate(value){
 }
 
 function listAssigneeTemplate(contactsList, index){
-    return `<li class="dropdown_item">
+    return `
                 <div class="dropdown_item_user">
                     <div class="user_info">
                             <div class="contact_initial_circle" style="background-color: ${contactsList[index].contact.color};">${contactsList[index].contact.initial} </div>
-                            <p class="user_name_assginee_circle">${contactsList[index].contact.name}</p>
+                            <p class="user_name_assignee_circle">${contactsList[index].contact.name}</p>
                     </div>
                     <img onclick="toggleCheckedIcon(this)" class="checkbox_icon" data-checked="false" src="../assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
                 </div>
-            </li>`
+            `
 }

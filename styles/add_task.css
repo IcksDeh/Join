@@ -573,12 +573,11 @@ textarea:focus {
   border: 2px solid white;
   border-radius: 50%;
   color: white;
-  margin-right: 30px;
   background-size: contain;
   background-repeat: no-repeat;
   transition: opacity 0.2s ease;
 }
 
-.user_name_assginee_circle{
+.user_name_assignee_circle{
     font-size: 20px;
 }

@@ -16,7 +16,7 @@ async function getContactData() {
     let contactColor = getRandomColor();
     let contactInitals = getContactInitials(contactName);
 
-    await switchContactsData(contactName, contactEmail, contactColor, elements, contactPhonenumber, contactInitals )
+    await switchContactsData(contactName, contactEmail, contactColor, contactInitals, elements, contactPhonenumber,  )
 }
 
 function getContactInitials(contactName){
@@ -24,7 +24,7 @@ function getContactInitials(contactName){
     return contactInitials;
 }
 
-async function switchContactsData(contactName, contactEmail, contactColor, elements = "", contactPhonenumber = "", contactInitals) {
+async function switchContactsData(contactName, contactEmail, contactColor, contactInitals, elements = "", contactPhonenumber = "") {
     let contactData = {
         "name": contactName,
         "eMail": contactEmail,

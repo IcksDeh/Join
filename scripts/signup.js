@@ -148,18 +148,20 @@ async function getUserData(){
   let userEmail = elements.email.value;
   let userPassword = elements.pass.value;
   let userColor = getRandomColor();
-  await switchUserData(userName, userEmail, userColor, elements, userPassword);
-  await switchContactsData(userName, userEmail, userColor);
+  let userInitials = getContactInitials(userName)
+  await switchUserData(userName, userEmail, userColor, elements, userPassword, userInitials);
+  await switchContactsData(userName, userEmail, userColor, userInitials);
 }
 
 
   // sinnvoll zusammenfassen? 
-  async function switchUserData(userName, userEmail, userColor, elements, userPassword){
+  async function switchUserData(userName, userEmail, userColor, elements, userPassword, userInitials){
    let userData = {
         "name" : userName,
         "eMail" : userEmail,
         "password" : userPassword,
         "color" : userColor,
+        "initial": userInitials
         }   
     await putToStorage("user", userData, elements);
 }

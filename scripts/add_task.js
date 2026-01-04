@@ -117,7 +117,7 @@ async function checkContactList(element){
  */
 function selectCategory(element) {
   document.getElementById("selected_category").innerHTML = element.innerHTML;
-  document.getElementById("category_list").style.display = "none";
+  document.getElementById("category_list_task").style.display = "none";
 }
 
 
@@ -272,7 +272,7 @@ document.getElementById('id_btn_create_task').addEventListener("click", async fu
   let descriptionTask = document.getElementById('id_description_add_task').value;
   let dueDateTask = document.getElementById('id_due_date_add_task').value;
   let priorityTask = getPriority();
-  let assignedToTask = "";
+  let assignedToTask = getAssignee();
   let categoryTask = getTaskCategory();
   let subtasksTask = getAllSubtasks(); 
   let statusTask = "todo";
@@ -305,6 +305,25 @@ function getAllSubtasks(){
     };
   });
   return subtasks;
+}
+
+function getAssignee(){
+  let selectedAssignees = [];
+  document.querySelectorAll('.dropdown_item_user').forEach(listElement =>{
+    const validDataChecked = listElement.querySelector('.checkbox_icon');
+    if (validDataChecked.dataset.checked === 'true'){
+      const name = listElement.querySelector('.user_name_assignee_circle').textContent.trim();
+      const initial = listElement.querySelector('.contact_initial_circle').textContent.trim();
+      const color = listElement.querySelector('.contact_initial_circle').style.backgroundColor;
+    
+    selectedAssignees.push({
+      name,
+      initial,
+      color
+    })
+    }
+
+})
 }
 
 async function switchTaskData (titleTask, descriptionTask, dueDateTask, priorityTask,assignedToTask="", categoryTask ="", subtasksTask="", statusTask){
