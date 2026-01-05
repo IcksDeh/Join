@@ -42,6 +42,16 @@ sup {
     color: #FF3D00;
 }
 
+.validate-required.error {
+    border-color: #FF3D00 !important;
+}
+
+.required_message {
+    display: none;
+    color: #FF3D00;
+    font-size: 12pt;
+}
+
 .add_task_input {
     background-color: white;
     border-radius: 8px;

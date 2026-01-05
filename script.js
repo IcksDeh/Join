@@ -173,24 +173,25 @@ function getRandomColor(){
 
 
 /**
- *  Initializes the due date picker with minimum and maximum selectable dates.
- *  Sets the minimum date to today and the maximum date to five years from today once the DOM content has fully loaded.
- *
+ * Ensures that a date input always has the year 2026, while allowing free selection of month and day.
+ * 
  *  @event DOMContentLoaded
  *  @returns {void} - This handler does not return a value.
  */
 window.addEventListener('DOMContentLoaded', () => {
-    const dueDateInput = document.getElementById('due_date');
+    const dueDateInput = document.getElementById('id_due_date_add_task');
     if (!dueDateInput) return;
 
-    const today = new Date();
-    const isoToday = today.toISOString().split('T')[0];
+    dueDateInput.addEventListener('input', () => {
+        const value = dueDateInput.value;
+        if (!value) return;
 
-    const maxDate = new Date();
-    maxDate.setFullYear(today.getFullYear() + 5);
-
-    dueDateInput.min = isoToday;
-    dueDateInput.max = maxDate.toISOString().split('T')[0];
+        const parts = value.split('-');
+        if (parts.length === 3 && parts[0] !== '2026') {
+            parts[0] = '2026';
+            dueDateInput.value = parts.join('-');
+        }
+    });
 });
 
 

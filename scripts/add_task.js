@@ -373,3 +373,25 @@ function showContactsInTasks() {
     assigneeList.appendChild(listElement);
   }
 }
+
+
+/**
+ * Shows or hides a required field message and toggles an error class based on whether the input is empty and focused.
+ *
+ * @param {HTMLInputElement} input - The input field to validate.
+ */
+function handleRequiredMessage(input) {
+  const message = document.querySelector(`.required_message[data-for="${input.id}"]`);
+
+  if (!message) return;
+
+  if (input === document.activeElement && input.value.trim() === "") {
+    message.style.display = "block";
+    if (input.classList.contains("validate-required")) {
+      input.classList.add("error");
+    }
+  } else {
+    message.style.display = "none";
+    input.classList.remove("error");
+  }
+}
