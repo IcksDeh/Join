@@ -122,6 +122,7 @@ function addTaskTemplate(){
     `
 }
 
+
 function listSubtaskTemplate(value){
     return  `
     <div class="list_row">
@@ -151,6 +152,7 @@ function listSubtaskTemplate(value){
   `
 }
 
+
 function listAssigneeTemplate(contactsList, index, imgPath, checkState){
     return `
         <div class="dropdown_item_user" data-assignee-id="${contactsList[index].id}">
@@ -161,11 +163,7 @@ function listAssigneeTemplate(contactsList, index, imgPath, checkState){
                 <p class="user_name_assignee_circle">${contactsList[index].contact.name}</p>
             </div>
             
-            <img onclick="toggleCheckedIcon(this, ${index}); event.stopPropagation();" 
-                 class="checkbox_icon" 
-                 data-checked="${checkState}" 
-                 src="${imgPath}" 
-                 alt="Checkbox Button">
+            <img onclick="toggleCheckedIcon(this, ${index}); event.stopPropagation();" class="checkbox_icon" data-checked="${checkState}" src="${imgPath}" alt="Checkbox Button">
         </div>
     `;
 }

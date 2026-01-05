@@ -10,10 +10,10 @@ const colors = [
     "#fc71ff",
     "#ffc701",
     "#0038ff",
-    "#c3ff2b",
+    "#7Ae229",
     "#ffe62b",
-    "#ff4646",
-    "#ffbb2b", 
+    "#ff3d00",
+    "#ffa800", 
 ]
 
 let colorIndex = 0;
@@ -93,15 +93,17 @@ function loadSummary() {
     summaryContent.innerHTML = summaryContentTemplate(userName, greetingText);
 }
 
+
 /**
- * Determines the greeting based on the current time of day.
+ *  Determines the greeting based on the current time of day.
  */
 function getGreeting() {
-const hour = new Date().getHours();
-if (hour < 12) return "Good morning";
-if (hour < 18) return "Good afternoon";
-return "Good evening";
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+    return "Good evening";
 }
+
 
 /**
  *  Loads and renders the log-off sidebar template into the sidebar container.
@@ -147,10 +149,10 @@ document.querySelectorAll('dialog').forEach(dialog => {
 
 
 /**
- * Navigates to the previously visited page in the browser history.
+ *  Navigates to the previously visited page in the browser history.
  *
- * @function goBack
- * @returns {void} - This function does not return a value.
+ *  @function goBack
+ *  @returns {void} - This function does not return a value.
  */
 function goBack() {
     window.history.back();
@@ -158,37 +160,38 @@ function goBack() {
 
 
 /**
- * Returns the next color from the predefined color list.
- * Cycles through the colors array sequentially and starts again from the beginning once the end is reached.
+ *  Returns the next color from the predefined color list.
+ *  Cycles through the colors array sequentially and starts again from the beginning once the end is reached.
  *
- * @function getRandomColor
- * @returns {string} - A color value from the colors array.
+ *  @function getRandomColor
+ *  @returns {string} - A color value from the colors array.
  */
 function getRandomColor(){
-     const randomIndex = Math.floor(Math.random() * colors.length);
+    const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
 }
 
 
 /**
- *  Initializes the due date picker with minimum and maximum selectable dates.
- *  Sets the minimum date to today and the maximum date to five years from today once the DOM content has fully loaded.
- *
+ *  Ensures that a date input always has the year 2026, while allowing free selection of month and day.
+ * 
  *  @event DOMContentLoaded
  *  @returns {void} - This handler does not return a value.
  */
 window.addEventListener('DOMContentLoaded', () => {
-    const dueDateInput = document.getElementById('due_date');
+    const dueDateInput = document.getElementById('id_due_date_add_task');
     if (!dueDateInput) return;
 
-    const today = new Date();
-    const isoToday = today.toISOString().split('T')[0];
+    dueDateInput.addEventListener('input', () => {
+        const value = dueDateInput.value;
+        if (!value) return;
 
-    const maxDate = new Date();
-    maxDate.setFullYear(today.getFullYear() + 5);
-
-    dueDateInput.min = isoToday;
-    dueDateInput.max = maxDate.toISOString().split('T')[0];
+        const parts = value.split('-');
+        if (parts.length === 3 && parts[0] !== '2026') {
+            parts[0] = '2026';
+            dueDateInput.value = parts.join('-');
+        }
+    });
 });
 
 
@@ -239,4 +242,15 @@ function limitInputLength(element, maxLength) {
     if (element.value.length > maxLength) {
         element.value = element.value.slice(0, maxLength);
     }
+}
+
+
+/**
+ * Redirects the user to the board page.
+ *
+ * @function goToBoardPage
+ * @returns {void} - This function does not return a value.
+ */
+function goToBoardPage() {
+    window.location.href = "board.html";
 }

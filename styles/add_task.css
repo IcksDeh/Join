@@ -42,6 +42,27 @@ sup {
     color: #FF3D00;
 }
 
+.formfield_left_wrapper {
+    position: relative;
+}
+
+.validate-required.error {
+    border-color: #FF3D00 !important;
+}
+
+.required_message {
+    position: absolute;
+    left: 0;
+    bottom: 18px; 
+    display: none;
+    color: #FF3D00;
+    font-size: 12pt;
+}
+
+.required_message.active {
+    display: block;
+}
+
 .add_task_input {
     background-color: white;
     border-radius: 8px;
@@ -115,7 +136,7 @@ sup {
     padding-top: 8px;
 }
 
-#due_date {
+#id_due_date_add_task {
     background: url("../assets/img/event.svg") no-repeat right 16px center;
     background-color: white;
 }
@@ -161,14 +182,14 @@ input[type="date"]:-ms-input-placeholder {
     padding-right: 12px;
 }
 
-/* .dropdown_icon {
+.dropdown_icon {
     width: 20px;
     height: 20px;
-    background-image: url("./assets/img/drop_down.svg");
+    background-image: url("../assets/img/drop_down.svg");
     background-size: contain;
     background-repeat: no-repeat;
     transition: opacity 0.2s ease;
-} */
+}
 
 input:focus,
 textarea:focus {
@@ -194,7 +215,7 @@ textarea:focus {
     list-style: none;
     padding: 0;
     width: 100%;
-    max-height: 190px;
+    max-height: 185px;
     overflow-y: auto;
     background: #fff;
     border-radius: 10px;
@@ -207,7 +228,7 @@ textarea:focus {
     padding-top: 10px;
     padding-bottom: 12px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .dropdown_item:hover {
@@ -220,6 +241,14 @@ textarea:focus {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+
+.dropdown_circle_initals {
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 .input_spacer {
@@ -294,6 +323,7 @@ textarea:focus {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
 }
 
 .urgent_btn_default:hover,
@@ -341,75 +371,25 @@ textarea:focus {
     gap: 8px;
 }
 
-/* ---------- BOTTOM AREA ---------- */
+/* ---------- ASSIGNED TO DROP-DOWN ---------- */
 
-.add_task_bottom_area {
+.contact_initial_circle {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+    border-radius: 50%;
+    color: white;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity 0.2s ease;
+    font-size: 15px;
 }
-
-.add_task_btn_area {
-    display: flex;
-    gap: 12px;
-    margin-top: 24px;
-}
-
-.clear_btn {
-    font-weight: 400;
-    font-family: "latin_400", sans-serif;
-    padding: 8px 18px;
-    color: #2a3647;
-    background-color: rgb(246, 247, 248);
+ 
+.user_name_assignee_circle{
     font-size: 20px;
-    border: 2px solid #2a3647;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    cursor: pointer;
-}
-
-.clear_btn .icon {
-    width: 24px;  
-    height: 24px;  
-    object-fit: contain;
-}
-
-.clear_btn img.hover {
-    display: none;
-}
-
-.clear_btn:hover {
-    color: #29abe2;
-    border-color: #29abe2;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-}
-
-.clear_btn:hover img.default {
-    display: none;
-}
-
-.clear_btn:hover img.hover {
-    display: inline;
-}
-
-.create_task_btn {
-    font-family: "latin_600", sans-serif;
-    padding: 8px 18px;
-    color: white;
-    background-color: #2a3647;
-    font-size: 21px;
-    display: flex;
-    align-items: center; 
-    justify-content: center;
-    gap: 6px; 
-}
-
-.create_task_btn:hover {
-    color: white;
-    background-color: #29abe2;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
 /* ---------- SUBTASK AREA AND BUTTON ---------- */
@@ -564,20 +544,73 @@ textarea:focus {
     cursor: pointer;
 }
 
-.contact_initial_circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 2px solid white;
-  border-radius: 50%;
-  color: white;
-  background-size: contain;
-  background-repeat: no-repeat;
-  transition: opacity 0.2s ease;
+/* ---------- BOTTOM AREA ---------- */
+
+.add_task_bottom_area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.user_name_assignee_circle{
+.add_task_btn_area {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.clear_btn {
+    font-weight: 400;
+    font-family: "latin_400", sans-serif;
+    padding: 8px 18px;
+    color: #2a3647;
+    background-color: rgb(246, 247, 248);
     font-size: 20px;
+    border: 2px solid #2a3647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.clear_btn .icon {
+    width: 24px;  
+    height: 24px;  
+    object-fit: contain;
+}
+
+.clear_btn img.hover {
+    display: none;
+}
+
+.clear_btn:hover {
+    color: #29abe2;
+    border-color: #29abe2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.clear_btn:hover img.default {
+    display: none;
+}
+
+.clear_btn:hover img.hover {
+    display: inline;
+}
+
+.create_task_btn {
+    font-family: "latin_600", sans-serif;
+    padding: 8px 18px;
+    color: white;
+    background-color: #2a3647;
+    font-size: 21px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 6px; 
+}
+
+.create_task_btn:hover {
+    color: white;
+    background-color: #29abe2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }

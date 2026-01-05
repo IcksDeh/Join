@@ -38,14 +38,20 @@
 
                     <div class="add_task_form_container">
                         <section class="formfield_left">
-                            <label for="title" class="label_text">Title<sup>*</sup></label><br>
-                            <input type="text" class="add_task_input styled_input" id="id_title_add_task" placeholder="Enter a title" oninput="limitInputLength(this, 30)"><br>
+                            <div class="formfield_left_wrapper">
+                                <label for="id_title_add_task" class="label_text">Title<sup>*</sup></label><br>
+                                <input type="text" class="add_task_input styled_input validate-required" id="id_title_add_task" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 35)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                                <span class="required_message" data-for="id_title_add_task">This field is required</span><br>
+                            </div>
 
-                            <label for="description" class="label_text">Description</label><br>
+                            <label for="id_description_add_task" class="label_text">Description</label><br>
                             <textarea class="add_task_description styled_input_description" id="id_description_add_task" placeholder="Enter a description" oninput="limitInputLength(this, 120)"></textarea><br>
 
-                            <label for="due_date" class="label_text">Due Date<sup>*</sup></label><br>
-                            <input type="date" id="id_due_date_add_task" class="add_task_input styled_input"><br>
+                            <div class="formfield_left_wrapper">
+                                <label for="id_due_date_add_task" class="label_text">Due Date<sup>*</sup></label><br>
+                                <input type="date" class="add_task_input styled_input validate-required" id="id_due_date_add_task" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                                <span class="required_message" data-for="id_due_date_add_task">This field is required</span><br>
+                            </div>
                         </section>
 
                         <div class="vertical_line"></div>
@@ -54,18 +60,18 @@
                             <label class="label_text">Priority</label><br>
                             <div class="priority_options">
                                 <button type="button" class="urgent_btn_default" id="id_urgent_btn" onclick="checkPriority('urgent')">Urgent
-                                    <img id ="id_icon_urgent_task" src="../assets/img/prio_urgent_red.svg" alt="Priority Urgent">
+                                    <img id ="id_icon_urgent_task" src="./assets/img/prio_urgent_red.svg" alt="Priority Urgent">
                                 </button>
                                 <button type="button" class="medium_btn_filled" id="id_medium_btn" onclick="checkPriority('medium')">Medium
-                                    <img id ="id_icon_medium_task" class="icon hover" src="../assets/img/prio_medium_white.svg" alt="Priority Medium Hover">
+                                    <img id ="id_icon_medium_task" class="icon hover" src="./assets/img/prio_medium_white.svg" alt="Priority Medium Hover">
                                 </button>
                                 <button type="button" class="low_btn_default" id="id_low_btn" onclick="checkPriority('low')">Low
-                                    <img  id ="id_icon_low_task" src="../assets/img/prio_low_green.svg" alt="Priority Low">
+                                    <img  id ="id_icon_low_task" src="./assets/img/prio_low_green.svg" alt="Priority Low">
                                 </button>
                             </div>
 
                             <label class="label_text">Assigned to</label><br>
-                            <div class="dropdown">
+                            <div class="dropdown" data-type="contacts">
                                 <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('contacts')">
                                     <span class="dropdown_text" id="selected_contacts">Select contacts to assign</span>
                                     <div class="dropdown_icon"></div>
@@ -76,7 +82,7 @@
                             <div class="input_spacer"></div>
 
                             <label class="label_text">Category<sup>*</sup></label><br>
-                            <div class="dropdown">
+                            <div class="dropdown" data-type="category">
                                 <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('category')">
                                     <span class="dropdown_text" id="selected_category">Select task category</span>
                                     <div class="dropdown_icon"></div>
