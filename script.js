@@ -93,6 +93,7 @@ function loadSummary() {
     summaryContent.innerHTML = summaryContentTemplate(userName, greetingText);
 }
 
+
 /**
  * Determines the greeting based on the current time of day.
  */
@@ -102,6 +103,7 @@ if (hour < 12) return "Good morning";
 if (hour < 18) return "Good afternoon";
 return "Good evening";
 }
+
 
 /**
  *  Loads and renders the log-off sidebar template into the sidebar container.
