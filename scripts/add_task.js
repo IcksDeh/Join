@@ -346,6 +346,7 @@ document
   .addEventListener("click", async function (event) {
     event.preventDefault();
     await getAddTaskData();
+    showToast()
   });
 
 
