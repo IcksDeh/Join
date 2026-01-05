@@ -38,16 +38,20 @@
 
                     <div class="add_task_form_container">
                         <section class="formfield_left">
-                            <label for="id_title_add_task" class="label_text">Title<sup>*</sup></label><br>
-                            <input type="text" class="add_task_input styled_input validate-required" id="id_title_add_task" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 35)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
-                            <span class="required_message" data-for="id_title_add_task">This field is required</span><br>
+                            <div class="formfield_left_wrapper">
+                                <label for="id_title_add_task" class="label_text">Title<sup>*</sup></label><br>
+                                <input type="text" class="add_task_input styled_input validate-required" id="id_title_add_task" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 35)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                                <span class="required_message" data-for="id_title_add_task">This field is required</span><br>
+                            </div>
 
                             <label for="id_description_add_task" class="label_text">Description</label><br>
                             <textarea class="add_task_description styled_input_description" id="id_description_add_task" placeholder="Enter a description" oninput="limitInputLength(this, 120)"></textarea><br>
 
-                            <label for="id_due_date_add_task" class="label_text">Due Date<sup>*</sup></label><br>
-                            <input type="date" class="add_task_input styled_input validate-required" id="id_due_date_add_task" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
-                            <span class="required_message" data-for="id_due_date_add_task">This field is required</span><br>
+                            <div class="formfield_left_wrapper">
+                                <label for="id_due_date_add_task" class="label_text">Due Date<sup>*</sup></label><br>
+                                <input type="date" class="add_task_input styled_input validate-required" id="id_due_date_add_task" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                                <span class="required_message" data-for="id_due_date_add_task">This field is required</span><br>
+                            </div>
                         </section>
 
                         <div class="vertical_line"></div>

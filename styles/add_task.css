@@ -42,14 +42,25 @@ sup {
     color: #FF3D00;
 }
 
+.formfield_left_wrapper {
+    position: relative;
+}
+
 .validate-required.error {
     border-color: #FF3D00 !important;
 }
 
 .required_message {
+    position: absolute;
+    left: 0;
+    bottom: 18px; 
     display: none;
     color: #FF3D00;
     font-size: 12pt;
+}
+
+.required_message.active {
+    display: block;
 }
 
 .add_task_input {

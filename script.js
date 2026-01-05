@@ -10,10 +10,10 @@ const colors = [
     "#fc71ff",
     "#ffc701",
     "#0038ff",
-    "#c3ff2b",
+    "#7Ae229",
     "#ffe62b",
-    "#ff4646",
-    "#ffbb2b", 
+    "#ff3d00",
+    "#ffa800", 
 ]
 
 let colorIndex = 0;
