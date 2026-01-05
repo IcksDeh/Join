@@ -180,16 +180,20 @@ function selectCategory(element) {
 
 
 /**
- * Collapses the contacts dropdown list if it is currently expanded.
+ * Collapses the contacts and category dropdown lists if it is currently expanded.
  *
- * @function closeContactsList
+ * @function closeDropdownLists
  * @returns {void} - This function does not return a value.
  */
-function closeContactsList() {
-  const contactsList = document.getElementById("contacts_list");
-
+function closeDropdownLists() {
+  const contactsList = document.getElementById("contacts_list_task");
   if (contactsList) {
     contactsList.style.display = "none";
+  }
+
+  const categoryList = document.getElementById("category_list_task");
+  if (categoryList) {
+    categoryList.style.display = "none";
   }
 }
 
@@ -216,7 +220,8 @@ function clearInputs() {
   });
 
   document.getElementById("selected_category").innerHTML = "Select task category";
-  closeContactsList();
+  document.getElementById("selected_contacts").innerHTML = "Select contacts to assign";
+  closeDropdownLists();
   subtaskList.innerHTML = "";
   checkPriority("medium");
   cancelSubtask();
