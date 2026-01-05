@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="./styles/mobile_footer.css">
     <link rel="stylesheet" href="./styles/mobile_sidebar.css">
     <script src="./script.js" defer></script>
-    <script src="./scripts/add_task.js" defer></script>
     <script src="./scripts/user_story_overlay.js" defer></script>
     <script src="./scripts/add_edit_contact_overlay.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
@@ -26,6 +25,7 @@
     <script src="./templates/user_story_overlay_template.js" defer></script>
     <script src="./templates/add_task_overlay_template.js" defer></script>
     <script src="./scripts/get_data.js"></script>
+    <script src="./scripts/firebase.js"></script>
     <title>Board</title>
   </head>
   <body onload="init()">
@@ -54,18 +54,19 @@
               </section> 
               <section class="order_board_sections">
                 <!-- board -->
+                  <!-- Todo -->
                   <div class="order_elements_in_section">
                     <div class="order_elements_in_section_header">
                       <p class="text_section">To Do</p>
                       <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
                     </div>
                     <div class="width_section">
-                      <div class="no_task_availabe">
+                      <div class="no_task_availabe" id="board_column_todo">
                         <p>No tasks in To Do</p>
                       </div>
                     </div>
                   </div>
-
+                  <!-- in Progress-->
                   <div class="order_elements_in_section">
                     <div class="order_elements_in_section_header">
                       <p class="text_section">In Progress</p>
@@ -101,7 +102,7 @@
                       <!-- End Task Card -->
                     </div>                                   
                   </div> 
-
+                  <!-- await Feedback -->
                   <div class="order_elements_in_section">
                     <div class="order_elements_in_section_header">
                       <p class="text_section">Await Feedback</p>
@@ -112,7 +113,7 @@
                       <p>No tasks in Await Feedback</p>
                     </div>
                    </div>
-                    
+                    <!-- done -->
                   </div>
                   <div class="order_elements_in_section">
                     <p class="text_section">Done</p>

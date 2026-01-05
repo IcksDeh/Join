@@ -279,4 +279,3 @@ function showContactsInTasks(){
     assigneeList.appendChild(listElement);
   }
 }
-
