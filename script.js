@@ -95,13 +95,13 @@ function loadSummary() {
 
 
 /**
- * Determines the greeting based on the current time of day.
+ *  Determines the greeting based on the current time of day.
  */
 function getGreeting() {
-const hour = new Date().getHours();
-if (hour < 12) return "Good morning";
-if (hour < 18) return "Good afternoon";
-return "Good evening";
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+    return "Good evening";
 }
 
 
@@ -149,10 +149,10 @@ document.querySelectorAll('dialog').forEach(dialog => {
 
 
 /**
- * Navigates to the previously visited page in the browser history.
+ *  Navigates to the previously visited page in the browser history.
  *
- * @function goBack
- * @returns {void} - This function does not return a value.
+ *  @function goBack
+ *  @returns {void} - This function does not return a value.
  */
 function goBack() {
     window.history.back();
@@ -160,20 +160,20 @@ function goBack() {
 
 
 /**
- * Returns the next color from the predefined color list.
- * Cycles through the colors array sequentially and starts again from the beginning once the end is reached.
+ *  Returns the next color from the predefined color list.
+ *  Cycles through the colors array sequentially and starts again from the beginning once the end is reached.
  *
- * @function getRandomColor
- * @returns {string} - A color value from the colors array.
+ *  @function getRandomColor
+ *  @returns {string} - A color value from the colors array.
  */
 function getRandomColor(){
-     const randomIndex = Math.floor(Math.random() * colors.length);
+    const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
 }
 
 
 /**
- * Ensures that a date input always has the year 2026, while allowing free selection of month and day.
+ *  Ensures that a date input always has the year 2026, while allowing free selection of month and day.
  * 
  *  @event DOMContentLoaded
  *  @returns {void} - This handler does not return a value.
@@ -242,4 +242,15 @@ function limitInputLength(element, maxLength) {
     if (element.value.length > maxLength) {
         element.value = element.value.slice(0, maxLength);
     }
+}
+
+
+/**
+ * Redirects the user to the board page.
+ *
+ * @function goToBoardPage
+ * @returns {void} - This function does not return a value.
+ */
+function goToBoardPage() {
+    window.location.href = "board.html";
 }
