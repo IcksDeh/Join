@@ -4,11 +4,11 @@
 }
 
 .nav_main_content {
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   width: calc(100% - 300px);
-  overflow-y: hidden;
+  overflow: visible;
 }
 
 @media (max-width:600px) {
