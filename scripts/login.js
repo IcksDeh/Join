@@ -6,7 +6,17 @@ function goToSignup() {
 }
 
 function guestLogin() {
-  window.location.href = "summary.html";
+    let guestUser = {
+        name: "Guest",
+        email: "guest@guest.com",
+        initials: "G",
+
+    };
+    
+    // Αποθήκευση στο localStorage ώστε οι συναρτήσεις load... να τον βλέπουν
+    localStorage.setItem("activeUser", JSON.stringify(guestUser));
+    
+    window.location.href = "summary.html";
 }
 
 // ----------------------

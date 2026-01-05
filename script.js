@@ -38,9 +38,14 @@ function init() {
 function loadSidebar() {
     const sidebar = document.getElementById('id_sidebar');
     sidebar.innerHTML = "";
-    sidebar.innerHTML = sidebarLoginTemplate();
-}
+    let user = JSON.parse(localStorage.getItem('activeUser'));
 
+    if (user) {
+        sidebar.innerHTML = sidebarLoginTemplate();
+    } else {
+        sidebar.innerHTML = sidebarLogOffTemplate();
+    }
+}
 
 /**
  *  Loads and renders the navbar template into the navbar container.
@@ -49,11 +54,16 @@ function loadSidebar() {
  *  @returns {void} - This function does not return a value.
  */
 function loadNavbar() {
-    let user = JSON.parse(localStorage.getItem('activeUser'));
-    let userInitials = user ? user.initials : "G"; 
     const navbar = document.getElementById('id_navbar');
     navbar.innerHTML = "";
-    navbar.innerHTML = navbarTemplate(userInitials);
+
+    let user = JSON.parse(localStorage.getItem('activeUser'));
+    
+    if (user) {
+        navbar.innerHTML = navbarTemplate(user.initials);
+    } else {
+        navbar.innerHTML = navbarLogOffTemplate();
+    }
 }
 
 
@@ -65,8 +75,17 @@ function loadNavbar() {
  */
 function loadMobileFooter() {
     const footer = document.getElementById('mobile_footer');
+    if (!footer) return;
+
     footer.innerHTML = "";
-    footer.innerHTML = mobileFooterLoginTemplate();
+    
+    let user = JSON.parse(localStorage.getItem('activeUser'));
+
+    if (user) {
+        footer.innerHTML = mobileFooterLoginTemplate();
+    } else {
+        footer.innerHTML = mobileFooterLogoffTemplate();
+    }
 }
 
 
