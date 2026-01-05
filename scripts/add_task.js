@@ -7,23 +7,22 @@ const subtaskActions = document.querySelector(".subtask_actions");
 let editItem = null;
 
 const priorities = [
-    {"name": "urgent", "color": "red"},
-    {"name": "medium", "color":"yellow"},
-    {"name": "low", "color":"green"},
-  ]
+  { name: "urgent", color: "red" },
+  { name: "medium", color: "yellow" },
+  { name: "low", color: "green" },
+];
 
 // FUNCTIONS
-
 
 /**
  * Opens the "Add Task" dialog if it is not already open and loads the template.
  * setTimeout removes focus from any active element.
- * 
+ *
  * @function openAddTaskDialog
  * @returns {void} - This function does not return a value.
  */
 function openAddTaskDialog() {
-  const dialog = document.getElementById('addTaskDialog');
+  const dialog = document.getElementById("addTaskDialog");
 
   if (!dialog.open) {
     dialog.innerHTML = addTaskTemplate();
@@ -37,16 +36,15 @@ function openAddTaskDialog() {
   }
 }
 
-
 /**
  * Closes the "Add Task" dialog.
  * Removes its content and resets all contact input fields.
- * 
+ *
  * @function closeAddTaskDialog
  * @returns {void} - This function does not return a value.
  */
 function closeAddTaskDialog() {
-  const dialog = document.getElementById('addTaskDialog');
+  const dialog = document.getElementById("addTaskDialog");
   if (!dialog) return;
 
   dialog.close();
@@ -55,27 +53,37 @@ function closeAddTaskDialog() {
   clearInputs();
 }
 
-function checkPriority(status){
-    priorities.forEach(({name, color}) => {
-    if (name == status){  
+function checkPriority(status) {
+  priorities.forEach(({ name, color }) => {
+    if (name == status) {
       markPriorityButton(name);
     } else {
       removeMarkOtherButton(name, color);
-    }     
-  })
+    }
+  });
 }
 
-// Funktion noch zusammenfassen, da sie prinzipiell dasgleiche macht. 
-function markPriorityButton(priorityElement){
-  document.getElementById('id_'+ priorityElement +'_btn').classList.remove(priorityElement +'_btn_default');
-  document.getElementById('id_'+ priorityElement +'_btn').classList.add(priorityElement +'_btn_filled');
-  document.getElementById('id_icon_'+ priorityElement +'_task').src = "./assets/img/prio_" + priorityElement + "_white.svg";
+// Funktion noch zusammenfassen, da sie prinzipiell dasgleiche macht.
+function markPriorityButton(priorityElement) {
+  document
+    .getElementById("id_" + priorityElement + "_btn")
+    .classList.remove(priorityElement + "_btn_default");
+  document
+    .getElementById("id_" + priorityElement + "_btn")
+    .classList.add(priorityElement + "_btn_filled");
+  document.getElementById("id_icon_" + priorityElement + "_task").src =
+    "./assets/img/prio_" + priorityElement + "_white.svg";
 }
 
-function removeMarkOtherButton(priorityElement, color){
-  document.getElementById('id_'+ priorityElement +'_btn').classList.add(priorityElement +'_btn_default');
-  document.getElementById('id_'+ priorityElement +'_btn').classList.remove(priorityElement +'_btn_filled');
-  document.getElementById('id_icon_'+ priorityElement +'_task').src = "./assets/img/prio_" + priorityElement + "_"+ color +".svg";
+function removeMarkOtherButton(priorityElement, color) {
+  document
+    .getElementById("id_" + priorityElement + "_btn")
+    .classList.add(priorityElement + "_btn_default");
+  document
+    .getElementById("id_" + priorityElement + "_btn")
+    .classList.remove(priorityElement + "_btn_filled");
+  document.getElementById("id_icon_" + priorityElement + "_task").src =
+    "./assets/img/prio_" + priorityElement + "_" + color + ".svg";
 }
 
 /**
@@ -88,8 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   checkPriority("medium");
 });
 
-
-function toggleListTasks(element){
+function toggleListTasks(element) {
   let list = document.getElementById(element + "_list_task");
 
   if (list.style.display === "none") {
@@ -98,17 +105,19 @@ function toggleListTasks(element){
   } else {
     list.style.display = "none";
   }
-  
 }
-
 
 async function checkContactList(element){
   if (element == "contacts"){
+    if (contactsList.length > 0) {
+        showContactsInTasks(); 
+        return;
+    }
+    
     await loadFirebaseData("contacts", contacts);
     showContactsInTasks();
   }
 }
-
 
 /**
  * Selects category element via onclick. Hides the category list after selection.
@@ -120,7 +129,6 @@ function selectCategory(element) {
   document.getElementById("selected_category").innerHTML = element.innerHTML;
   document.getElementById("category_list_task").style.display = "none";
 }
-
 
 /**
  * Collapses the contacts dropdown list if it is currently expanded.
@@ -136,19 +144,18 @@ function closeContactsList() {
   }
 }
 
-
 /**
  * Clears specific input fields and resets the priority to "Medium".
  * After clearing the fields, the function automatically sets the priority button to "default".
- * 
+ *
  * @function clearInputs
  * @returns {void} - This function does not return a value.
  */
 function clearInputs() {
   const inputIds = ["title", "description", "due_date", "subtasks"];
 
-  inputIds.forEach(id => {
-    const element = document.getElementById('id_'+id+'_add_task');
+  inputIds.forEach((id) => {
+    const element = document.getElementById("id_" + id + "_add_task");
     if (element) {
       if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
         element.value = "";
@@ -158,12 +165,12 @@ function clearInputs() {
     }
   });
 
-  document.getElementById("selected_category").innerHTML = "Select task category";
-  closeContactsList()
+  document.getElementById("selected_category").innerHTML =
+    "Select task category";
+  closeContactsList();
   subtaskList.innerHTML = "";
   checkPriority("medium");
 }
-
 
 /**
  * Toggles the checked state of the checkbox icon in 'Assigned to' dropdown list.
@@ -172,15 +179,18 @@ function clearInputs() {
  * The image element representing the checkbox icon.
  * Must contain a 'data-checked' attribute ('true' or 'false').
  */
-function toggleCheckedIcon(img) {
-  const checked = img.dataset.checked === "true";
-  img.dataset.checked = !checked;
+function toggleCheckedIcon(img, index) {
+  const isChecked = img.dataset.checked === "true";
+  const newStatus = !isChecked;
 
-  img.src = checked
-    ? "./assets/img/checkbox_unchecked_contact_form.svg"
-    : "./assets/img/checkbox_checked_contact_form.svg";
+  img.dataset.checked = newStatus ? "true" : "false";
+  img.src = newStatus
+    ? "./assets/img/checkbox_checked_contact_form.svg"
+    : "./assets/img/checkbox_unchecked_contact_form.svg";
+  if (contactsList[index]) {
+    contactsList[index].isChecked = newStatus;
+  }
 }
-
 
 /**
  * Shows the subtask action buttons and sets the display style to flex.
@@ -191,7 +201,6 @@ function toggleCheckedIcon(img) {
 function showSubtaskActions() {
   subtaskActions.style.display = "flex";
 }
-
 
 /**
  * Cancels the current subtask input.
@@ -207,7 +216,6 @@ function cancelSubtask() {
   showSubtaskActions();
 }
 
-
 /**
  * Adds a new subtask to the subtask list.
  * Reads the value from the input, creates a list item with edit and delete buttons, and appends it to the subtask list.
@@ -216,66 +224,78 @@ function addSubtask() {
   const value = subtaskInput.value.trim();
   if (!value) return;
 
-  const li = document.createElement('li');
-  li.className = 'list_element';
+  const li = document.createElement("li");
+  li.className = "list_element";
   li.innerHTML = listSubtaskTemplate(value);
   subtaskList.appendChild(li);
   subtaskInput.value = "";
   cancelSubtask();
 }
 
-
 /**
  * Enables edit mode for a subtask.
- * 
+ *
  * @param {HTMLElement} btn - The button that triggers editing.
  */
 function editSubtask(btn) {
-  const li = btn.closest('li');
-  li.querySelector('.edit_container').style.display = 'block';
-  li.querySelector('.list_row').style.display = 'none';
+  const li = btn.closest("li");
+  li.querySelector(".edit_container").style.display = "block";
+  li.querySelector(".list_row").style.display = "none";
 }
-
 
 /**
  * Saves the changes made to a subtask.
- * 
+ *
  * @param {HTMLElement} btn - The button that triggers saving.
  */
 function saveEdit(btn) {
-  const li = btn.closest('li');
-  const newValue = li.querySelector('.subtask_edit_input').value;
-  li.querySelector('.subtask_text').innerText = newValue;
-  li.querySelector('.edit_container').style.display = 'none';
-  li.querySelector('.list_row').style.display = 'flex';
+  const li = btn.closest("li");
+  const newValue = li.querySelector(".subtask_edit_input").value;
+  li.querySelector(".subtask_text").innerText = newValue;
+  li.querySelector(".edit_container").style.display = "none";
+  li.querySelector(".list_row").style.display = "flex";
 }
-
 
 /**
  * Cancels the edit mode and restores the original subtask display.
- * 
+ *
  * @param {HTMLElement} btn - The button that triggers canceling.
  */
 function cancelEdit(btn) {
-  const li = btn.closest('li');
-  li.querySelector('.edit_container').style.display = 'none';
-  li.querySelector('.list_row').style.display = 'flex';
+  const li = btn.closest("li");
+  li.querySelector(".edit_container").style.display = "none";
+  li.querySelector(".list_row").style.display = "flex";
 }
 
-document.getElementById('id_btn_create_task').addEventListener("click", async function(event){
+document
+  .getElementById("id_btn_create_task")
+  .addEventListener("click", async function (event) {
     event.preventDefault();
     await getAddTaskData();
-    }
-)
+  });
 
-function showContactsInTasks(){
-  let assigneeList = document.getElementById('contacts_list_task');
+function showContactsInTasks() {
+  let assigneeList = document.getElementById("contacts_list_task");
   assigneeList.innerHTML = "";
+
   for (let index = 0; index < contactsList.length; index++) {
     console.log(contactsList[index]);
-    const listElement = document.createElement('li');
-    listElement.className = 'dropdown_item';
-    listElement.innerHTML = listAssigneeTemplate(contactsList, index);
+    const isChecked = contactsList[index].isChecked === true;
+    const checkImg = isChecked
+      ? "./assets/img/checkbox_checked_contact_form.svg"
+      : "./assets/img/checkbox_unchecked_contact_form.svg";
+
+    const checkState = isChecked ? "true" : "false";
+
+    const listElement = document.createElement("li");
+    listElement.className = "dropdown_item";
+
+    listElement.innerHTML = listAssigneeTemplate(
+      contactsList,
+      index,
+      checkImg,
+      checkState
+    );
     assigneeList.appendChild(listElement);
   }
 }
