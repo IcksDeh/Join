@@ -26,9 +26,11 @@
     <script src="./templates/add_task_overlay_template.js" defer></script>
     <script src="./scripts/get_data.js"></script>
     <script src="./scripts/firebase.js"></script>
+    <script src="./scripts/board.js"></script>
+    <script src="./templates/board_templates.js"></script>
     <title>Board</title>
   </head>
-  <body onload="init()">
+  <body onload="init(), loadContentBoard()">
     <div class="order_sidebar_main">
         <aside class="sidebar desktop" id="id_sidebar">    
         </aside>
@@ -61,7 +63,7 @@
                       <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
                     </div>
                     <div class="width_section">
-                      <div class="no_task_availabe" id="board_column_todo">
+                      <div class="no_task_available" id="board_column_todo">
                         <p>No tasks in To Do</p>
                       </div>
                     </div>
@@ -83,14 +85,14 @@
                         <div class="order_progressbar_counter">
                           <div class="style_progress_bar"></div>
                           <div class="order_counter_progress">
-                            <p>1</p>
+                            <p data-task-id="p-Anzahl">1</p>
                             <p>/</p>
                             <p>2</p>
                             <p>Subtasks</p>                      
                           </div>
                         </div>
                         <div class="order_elements_user_icon_priolable"> 
-                          <div class="order_user_icons_task_card">
+                          <div class="order_user_icons_task_card" id="board_assignee"> 
                             <div class="user_circle_task_card" style="background-color: aqua;">AM</div>
                             <div class="user_circle_task_card" style="background-color: blueviolet ;">KK</div>
                             <div class="user_circle_task_card" style="background-color: chartreuse;">NP</div>

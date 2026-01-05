@@ -30,7 +30,7 @@ function clearElements(elements){
     })
 }
 
-async function loadFirebaseData(path, array){
+async function loadFirebaseData(path){
     let responseFirebaseData = await fetch(BASE_URL + path + ".json");
     let responseFirebaseDataToJSON = await responseFirebaseData.json();
     let firebaseKeys = Object.keys(responseFirebaseDataToJSON);
@@ -60,4 +60,17 @@ async function pushToContactsArray(firebaseKeys, responseFirebaseDataToJSON){
         )
     }
     console.log(contactsList);
+}
+
+async function pushToTaskArray(firebaseKeys, responseFirebaseDataToJSON) {
+    taskList = [];
+    for (let index = 0; index < firebaseKeys.length; index++) {
+        taskList.push(
+            {
+                "id": firebaseKeys[index],
+                "task": responseFirebaseDataToJSON[firebaseKeys[index]],
+            }
+        )
+    }
+    console.log(taskList);
 }

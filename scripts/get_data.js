@@ -1,6 +1,8 @@
 // VARIABLES
 
 let contactsList = [];
+let taskList = [];
+
 
 //TASK
 
