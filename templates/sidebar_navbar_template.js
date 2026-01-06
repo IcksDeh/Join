@@ -120,9 +120,9 @@ function mobileFooterLogoffTemplate() {
                 <img src="./assets/img/log_in.svg" alt="Login">
                 <p class="p_text">Log In</p>
             </a>
-            <div>
-                <a class="footer_link footer_link_padding link_active" href="privacy_policy.html">Privacy Policy</a>
-                <a class="footer_link link_active" href="legal_notice.html">Legal Notice</a>
+            <div class="mobile_footer_links">
+                <a class="footer_link footer_links_padding link_active" href="privacy_policy.html">Privacy Policy</a>
+                <a class="footer_link footer_links_padding link_active" href="legal_notice.html">Legal Notice</a>
             </div>
         </div>
     `;
