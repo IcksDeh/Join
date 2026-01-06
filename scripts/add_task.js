@@ -29,7 +29,8 @@ function openAddTaskDialog() {
     dialog.innerHTML = addTaskTemplate();
     dialog.showModal();
 
-    setPriority("medium", dialog);
+    // setPriority("medium", dialog);
+    initAddTaskDOM(); // NEW
 
     setTimeout(() => {
       document.activeElement?.blur();
@@ -53,6 +54,24 @@ function closeAddTaskDialog() {
   dialog.innerHTML = "";
 
   clearInputs();
+}
+
+
+// NEW
+function initAddTaskDOM() {
+  window.subtaskInput = document.getElementById("subtasks");
+  window.subtaskList = document.getElementById("subtaskList");
+  window.subtaskActions = document.querySelector(".subtask_actions");
+
+  document
+    .getElementById("id_btn_create_task")
+    .addEventListener("click", async function (event) {
+      event.preventDefault();
+      await getAddTaskData();
+      showToast();
+    });
+
+  checkPriority("medium");
 }
 
 
@@ -138,15 +157,15 @@ function removeMarkOtherButton(priorityElement, color) {
 }
 
 
-/**
- * Calls checkPriority("medium") and displays it as "default" button after the DOM is loaded.
- *
- * @event DOMContentLoaded
- * @returns {void} - This event handler does not return a value.
- */
-document.addEventListener("DOMContentLoaded", () => {
-  checkPriority("medium");
-});
+// /**
+//  * Calls checkPriority("medium") and displays it as "default" button after the DOM is loaded.
+//  *
+//  * @event DOMContentLoaded
+//  * @returns {void} - This event handler does not return a value.
+//  */
+// document.addEventListener("DOMContentLoaded", () => {
+//   checkPriority("medium");
+// });
 
 
 /**
@@ -270,13 +289,13 @@ function toggleCheckedIcon(imgElement, index) {
   if (isChecked) {
     selectedAssignees = selectedAssignees.filter(c => c.id !== contactId);
     imgElement.dataset.checked = "false";
-    imgElement.src = "./assets/img/checkbox-empty.svg";
+    imgElement.src = "./assets/img/checkbox_unchecked.svg";
   } else {
     if (!selectedAssignees.some(c => c.id === contactId)) {
       selectedAssignees.push(contact);
     }
     imgElement.dataset.checked = "true";
-    imgElement.src = "./assets/img/checkbox-checked.svg";
+    imgElement.src = "./assets/img/checkbox_checked.svg";
   }
 
   renderAssignedContacts();
@@ -316,8 +335,8 @@ function syncDropdownCheckboxes() {
     const checked = selectedAssignees.some(c => c.id == id);
     checkbox.dataset.checked = checked;
     checkbox.src = checked
-      ? "./assets/img/checkbox-checked.svg"
-      : "./assets/img/checkbox-empty.svg";
+      ? "./assets/img/checkbox_checked.svg"
+      : "./assets/img/checkbox_unchecked.svg";
   });
 }
 
@@ -331,7 +350,7 @@ function clearSelectedAssignees() {
 
   document.querySelectorAll(".checkbox_icon").forEach((checkbox) => {
     checkbox.dataset.checked = "false";
-    checkbox.src = "./assets/img/checkbox-empty.svg";
+    checkbox.src = "./assets/img/checkbox_unchecked.svg";
   });
 
   const assignedContainer = document.getElementById("assigned_contacts_row");
@@ -456,18 +475,18 @@ function showContactsInTasks() {
 }
 
 
-/**
- * Handles the click event for the "Create Task" button.
- * Prevents the default form submission behavior and triggers the task creation process by collecting and processing task data.
- *
- * @event click
- * @listens HTMLButtonElement#click
- * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
- */
-document
-  .getElementById("id_btn_create_task")
-  .addEventListener("click", async function (event) {
-    event.preventDefault();
-    await getAddTaskData();
-    showToast()
-  });
+// /**
+//  * Handles the click event for the "Create Task" button.
+//  * Prevents the default form submission behavior and triggers the task creation process by collecting and processing task data.
+//  *
+//  * @event click
+//  * @listens HTMLButtonElement#click
+//  * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
+//  */
+// document
+//   .getElementById("id_btn_create_task")
+//   .addEventListener("click", async function (event) {
+//     event.preventDefault();
+//     await getAddTaskData();
+//     showToast()
+//   });
