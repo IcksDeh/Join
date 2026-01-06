@@ -15,6 +15,8 @@ function openUserStoryDialog(index, taskList, taskID) {
   if (!dialog.open) {
     dialog.innerHTML = userStoryTemplate(index, taskList, taskID);
     loadAssigneesTaskDetails(taskList, index, taskID);
+    loadSubtaksTaskDetails(taskList, index);
+    colorLabelTaskDetails (taskList, index, taskID);
     dialog.showModal();
 
     setTimeout(() => {
@@ -26,7 +28,7 @@ function openUserStoryDialog(index, taskList, taskID) {
 }
 
 function loadAssigneesTaskDetails(taskList, index, taskID){
-  let taskAssigneeElement = document.getElementById("assignees_task_details_"+ taskID);
+    let taskAssigneeElement = document.getElementById("assignees_task_details_"+ taskID);
     let assigneeList = taskList[index].task.assignees;
     Object.values(assigneeList)
         .forEach(assignee => {
@@ -36,8 +38,43 @@ function loadAssigneesTaskDetails(taskList, index, taskID){
         assigneeHTMLElement.innerHTML = AssigneesTaskDetailsTemplate(taskList, index, taskID, assignee);
         taskAssigneeElement.appendChild(assigneeHTMLElement);
 
-    }) 
+    })
+  }
+
+function loadSubtaksTaskDetails(taskList, index){
+  let subtaskListElement = document.getElementById("subtasks_task_detail_list");
+  let subtaskList = taskList[index].task.subtasks;
+  Object.entries(subtaskList).forEach(subtaskElement =>{
+    console.log(subtaskElement);
+    let subtaskID = subtaskElement[0];
+    let subtaskContent = subtaskElement[1];
+    let subtaskHTMLElement = document.createElement('div');
+    subtaskHTMLElement.className = "subtasks_container"
+    subtaskHTMLElement.innerHTML = subtaskTaskDetailsTemplate(subtaskID, subtaskContent);
+    subtaskListElement.appendChild(subtaskHTMLElement);
+    checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent);
+  })
 }
+
+function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
+  let subtaskCheckboxElement = document.getElementById("checkbox_subtask_task_detail_"+ subtaskID);
+  if(subtaskContent.done == "false"){
+    subtaskCheckboxElement.src = "../assets/img/checkbox_unchecked_contact_form.svg";
+  } else {
+    subtaskCheckboxElement.src ="../assets/img/checkbox_checked_contact_form.svg";
+  }
+}
+
+function colorLabelTaskDetails (taskList, index, taskID){
+  let labelElement = document.getElementById("category_label_task_details_" +taskID)
+    if (taskList[index].task.category === "Technical Task"){
+        labelElement.style.backgroundColor = '#1FD7C1';
+    } else if( taskList[index].task.category === "User Story"){
+        labelElement.style.backgroundColor = '#0038FF';
+    } else {
+        labelElement.style.backgroundColor = '#ff00d9ff';
+    }
+  }
 
 
 /**
