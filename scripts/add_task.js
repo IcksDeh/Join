@@ -62,17 +62,18 @@ function closeAddTaskDialog() {
 //   window.subtaskInput = document.getElementById("subtasks");
 //   window.subtaskList = document.getElementById("subtaskList");
 //   window.subtaskActions = document.querySelector(".subtask_actions");
+  // document
+  //   .getElementById("id_btn_create_task")
+  //   .addEventListener("click", async function (event) {
+  //     event.preventDefault();
+  //     await getAddTaskData();
+  //     showToast();
+  //   });
 
-//   document
-//     .getElementById("id_btn_create_task")
-//     .addEventListener("click", async function (event) {
-//       event.preventDefault();
-//       await getAddTaskData();
-//       showToast();
-//     });
 
 //   checkPriority("medium");
 // }
+
 
 
 /**

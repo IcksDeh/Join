@@ -1,6 +1,40 @@
 async function loadContentBoard(){
     await loadFirebaseData('tasks');
-    loadTaskTickets();
+    // loadTaskTickets();
+    checkStatusTask();
+}
+
+function checkStatusTask(){
+    Object.entries(taskList).forEach((taskElementofColumn, index) =>{
+        taskID = taskElementofColumn[1].id;
+        taskContent = taskElementofColumn[1].task;
+        if(taskContent.statusTask =="todo"){
+            loadBoardColumn(taskID, taskContent, index, "todo");
+        } else if (taskContent.statusTask =="inProgress"){
+            loadBoardColumn(taskID, taskContent, index, "inProgress");
+        } else if (taskContent.statusTask =="awaitFeedback"){
+            loadBoardColumn(taskID, taskContent, index, "awaitFeedback");
+        } else if (taskContent.statusTask =="done"){
+            loadBoardColumn(taskID, taskContent, index, "done");
+        }
+    })
+}
+
+function loadBoardColumn(taskID, taskContent, index, status){
+    let columnElement = document.getElementById('board_column_' +status);
+    columnElement.innerHTML = "";
+    columnElement.classList.remove("no_task_available");      
+    let taskElementofColumnList = document.createElement('div');
+    taskElementofColumnList.className = "style_task_card";
+    taskElementofColumnList.dataset
+    taskElementofColumnList.innerHTML = taskListElementTemplate(taskID, taskContent);
+    taskElementofColumnList.addEventListener('click', function(){
+            openUserStoryDialog(index, taskContent, taskID);
+        })
+    columnElement.appendChild(taskElementofColumnList);
+    loadAssigneesOfTaks(taskList, index, taskID);
+    loadPriorityIcon(taskList, index, taskID);
+    loadCategoryLabelColor(taskList, index, taskID);
 }
 
 function loadTaskTickets(){

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./styles/mobile_footer.css">
     <link rel="stylesheet" href="./styles/mobile_sidebar.css">
     <script src="./script.js" defer></script>
-    <script src="./scripts/add_task.js" defer></script>
+    <!-- <script src="./scripts/add_task.js" defer></script> -->
     <script src="./scripts/user_story_overlay.js" defer></script>
     <script src="./scripts/add_edit_contact_overlay.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
@@ -76,33 +76,9 @@
                       <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
                     </div>
                     <div class="width_section">
-                      <!-- Task_card -->
-                      <div class="style_task_card" onclick="openUserStoryDialog()">
-                        <div class="label_task_card">
-                            <p class="text_label_task_card">User Story</p>
-                        </div>
-                        <p class="style_text_titel_card"> Hier steht der Titel des Tickets in fett gedruckt</p>
-                        <p class="style_text_description_card">Anschließend ist die Description. Maximal 2-zeilig...</p>
-                        <div class="order_progressbar_counter">
-                          <div class="style_progress_bar"></div>
-                          <div class="order_counter_progress">
-                            <p data-task-id="p-Anzahl">1</p>
-                            <p>/</p>
-                            <p>2</p>
-                            <p>Subtasks</p>                      
-                          </div>
-                        </div>
-                        <div class="order_elements_user_icon_priolable"> 
-                          <div class="order_user_icons_task_card" id="board_assignee"> 
-                            <div class="user_circle_task_card" style="background-color: aqua;">AM</div>
-                            <div class="user_circle_task_card" style="background-color: blueviolet ;">KK</div>
-                            <div class="user_circle_task_card" style="background-color: chartreuse;">NP</div>
-                            <div class="user_circle_task_card" style="background-color: coral;">T</div>
-                          </div>
-                          <img src="./assets/img/prio_medium_yellow.svg" alt="">
-                        </div>
-                      </div>                    
-                      <!-- End Task Card -->
+                      <div class="no_task_available" id="board_column_inProgress">
+                        <p>No tasks in To Do</p>
+                      </div>
                     </div>                                   
                   </div> 
                   <!-- await Feedback -->
@@ -112,7 +88,7 @@
                       <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
                     </div>
                    <div class="width_section">
-                      <div class="no_task_availabe">
+                      <div class="no_task_availabe" id="board_column_awaitFeedback">
                       <p>No tasks in Await Feedback</p>
                     </div>
                    </div>
@@ -121,7 +97,7 @@
                   <div class="order_elements_in_section">
                     <p class="text_section">Done</p>
                     <div class="width_section">
-                      <div class="no_task_availabe">
+                      <div class="no_task_availabe" id="board_column_done">
                       <p>No tasks in Done</p>
                       </div>  
                     </div>                           
