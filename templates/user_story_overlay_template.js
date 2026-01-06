@@ -18,7 +18,7 @@ function userStoryTemplate(index, taskList, taskID){
                     <tr>
                     <th scope="row" class="user_story_description table_spacer">Priority:</th>
                     <td class="user_story_description table_spacer icon_gap">${taskList[index].task.priority.name}
-                        <img src="./assets/img/prio_urgent_red.svg" alt="Prio Urgent">
+                        <img src="./assets/img/prio_${taskList[index].task.priority.name}_${taskList[index].task.priority.color}.svg" alt="Prio Urgent">
                     </td>
                     </tr>
                     <tr>
@@ -30,15 +30,7 @@ function userStoryTemplate(index, taskList, taskID){
             </div>
 
             <p class="user_story_description">Subtasks</p>
-            <div>
-                <div class="subtasks_container">
-                    <img onclick="toggleCheckedIcon(this)" class="checkbox_icon" data-checked="false" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                    <p class="user_story_description">Subtask 01</p>
-                </div>
-                <div class="subtasks_container">
-                    <img onclick="toggleCheckedIcon(this)" class="checkbox_icon" data-checked="false" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-                    <p class="user_story_description">Subtask 02</p>
-                </div>
+            <div id = "subtasks_task_detail_list">
             </div>
 
             <div class="bottom_area">
@@ -60,16 +52,22 @@ function userStoryTemplate(index, taskList, taskID){
     `
 }
 
-
 function userStoryEditTemplate(){
     return `
 
     `
 }
 
-function AssigneesTaskDetailsTemplate(taskList, index, taskID, assignee){
+function AssigneesTaskDetailsTemplate(assignee){
     return `<div class="contact_initial_circle" style="background-color: ${assignee.assigneeColor};">
                     ${assignee.assigneeInitial} 
                 </div>
             <p>${assignee.assigneeName}</p>`
 }
+
+function subtaskTaskDetailsTemplate(subtaskID, subtaskContent){
+    return` 
+        <img id="checkbox_subtask_task_detail_${subtaskID}" onclick="toggleCheckedIcon(this)" class="checkbox_icon" data-checked="${subtaskContent.done}" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+        <p class="user_story_description">${subtaskContent.text}</p>
+    `
+}   

@@ -72,10 +72,12 @@
 .story_task_btn {
     padding: 0 20px;
     color: white;
-    background-color: #0038ff;
     font-family: 'latin_400';
     font-weight: 400;
     font-size: 20px;
+    border-radius: 10px;
+    padding: 7px 15px;
+
 }
 
 .user_story_title {
