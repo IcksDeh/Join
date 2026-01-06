@@ -1,23 +1,23 @@
-function userStoryTemplate(){
+function userStoryTemplate(index, taskList, taskID){
     return `
-        <main class="user_story_wrapper">
+        <main class="user_story_wrapper" data-task_detail_information-id ="${taskList[index].id}">
             <div class="close_btn_container_user_story">
-                <button class="story_task_btn">User Story</button>
+                <div id="category_label_task_details_${taskList[index].id}" class="story_task_btn">${taskList[index].task.category}</div>
                 <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeUserStoryDialog()" role="button" aria-label="Schließen">
             </div>
 
-            <span class="user_story_title">Page and Recipe Recommender</span>
-            <p class="user_story_description">It provides users with personalized suggestions for pages and recipes based on their preferences.</p>
+            <span id="task_detail_title_${taskList[index].id}" class="user_story_title">${taskList[index].task.title}</span>
+            <p id="task_detail_description_${taskList[index].id}" class="user_story_description">${taskList[index].task.description}</p>
             
             <table class="recommender_table" aria-label="Page and Recipe Recommender details">
                 <tbody>
                     <tr>
                     <th scope="row" class="user_story_description table_spacer">Due Date:</th>
-                    <td class="user_story_description table_spacer">10/01/2026</td>
+                    <td class="user_story_description table_spacer">${taskList[index].task.dueDate}</td>
                     </tr>
                     <tr>
                     <th scope="row" class="user_story_description table_spacer">Priority:</th>
-                    <td class="user_story_description table_spacer icon_gap">Urgent
+                    <td class="user_story_description table_spacer icon_gap">${taskList[index].task.priority.name}
                         <img src="./assets/img/prio_urgent_red.svg" alt="Prio Urgent">
                     </td>
                     </tr>
@@ -26,19 +26,7 @@ function userStoryTemplate(){
                     </tr>
                 </tbody>
             </table>
-            <div class="assigned_user">
-                <div class="user_info">
-                    <img src="./assets/img/user-de.svg" alt="">
-                    <p>David Eisenberg</p>
-                </div>
-                <div class="user_info">
-                    <img src="./assets/img/user-am.svg" alt="">
-                    <p>Anton Mayer</p>
-                </div>
-                <div class="user_info">
-                    <img src="./assets/img/user-ef.svg" alt="">
-                    <p>Eva Fischer</p>
-                </div>
+            <div id= "assignees_task_details_${taskList[index].id}" class="assigned_user">
             </div>
 
             <p class="user_story_description">Subtasks</p>
@@ -77,4 +65,11 @@ function userStoryEditTemplate(){
     return `
 
     `
+}
+
+function AssigneesTaskDetailsTemplate(taskList, index, taskID, assignee){
+    return `<div class="contact_initial_circle" style="background-color: ${assignee.assigneeColor};">
+                    ${assignee.assigneeInitial} 
+                </div>
+            <p>${assignee.assigneeName}</p>`
 }
