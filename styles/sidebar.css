@@ -96,5 +96,6 @@
 }
 
 .link_active.active {
-    background-color: #091931; 
+  background-color: #091931; 
+  color: white;
 }

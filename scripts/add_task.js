@@ -29,8 +29,8 @@ function openAddTaskDialog() {
     dialog.innerHTML = addTaskTemplate();
     dialog.showModal();
 
-    // setPriority("medium", dialog);
-    initAddTaskDOM(); // NEW
+    setPriority("medium", dialog);
+    // initAddTaskDOM(); // NEW
 
     setTimeout(() => {
       document.activeElement?.blur();
@@ -58,21 +58,21 @@ function closeAddTaskDialog() {
 
 
 // NEW
-function initAddTaskDOM() {
-  window.subtaskInput = document.getElementById("subtasks");
-  window.subtaskList = document.getElementById("subtaskList");
-  window.subtaskActions = document.querySelector(".subtask_actions");
+// function initAddTaskDOM() {
+//   window.subtaskInput = document.getElementById("subtasks");
+//   window.subtaskList = document.getElementById("subtaskList");
+//   window.subtaskActions = document.querySelector(".subtask_actions");
 
-  document
-    .getElementById("id_btn_create_task")
-    .addEventListener("click", async function (event) {
-      event.preventDefault();
-      await getAddTaskData();
-      showToast();
-    });
+//   document
+//     .getElementById("id_btn_create_task")
+//     .addEventListener("click", async function (event) {
+//       event.preventDefault();
+//       await getAddTaskData();
+//       showToast();
+//     });
 
-  checkPriority("medium");
-}
+//   checkPriority("medium");
+// }
 
 
 /**
@@ -157,15 +157,15 @@ function removeMarkOtherButton(priorityElement, color) {
 }
 
 
-// /**
-//  * Calls checkPriority("medium") and displays it as "default" button after the DOM is loaded.
-//  *
-//  * @event DOMContentLoaded
-//  * @returns {void} - This event handler does not return a value.
-//  */
-// document.addEventListener("DOMContentLoaded", () => {
-//   checkPriority("medium");
-// });
+/**
+ * Calls checkPriority("medium") and displays it as "default" button after the DOM is loaded.
+ *
+ * @event DOMContentLoaded
+ * @returns {void} - This event handler does not return a value.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  checkPriority("medium");
+});
 
 
 /**
@@ -475,18 +475,18 @@ function showContactsInTasks() {
 }
 
 
-// /**
-//  * Handles the click event for the "Create Task" button.
-//  * Prevents the default form submission behavior and triggers the task creation process by collecting and processing task data.
-//  *
-//  * @event click
-//  * @listens HTMLButtonElement#click
-//  * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
-//  */
-// document
-//   .getElementById("id_btn_create_task")
-//   .addEventListener("click", async function (event) {
-//     event.preventDefault();
-//     await getAddTaskData();
-//     showToast()
-//   });
+/**
+ * Handles the click event for the "Create Task" button.
+ * Prevents the default form submission behavior and triggers the task creation process by collecting and processing task data.
+ *
+ * @event click
+ * @listens HTMLButtonElement#click
+ * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
+ */
+document
+  .getElementById("id_btn_create_task")
+  .addEventListener("click", async function (event) {
+    event.preventDefault();
+    await getAddTaskData();
+    showToast()
+  });

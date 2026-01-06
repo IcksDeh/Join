@@ -8,7 +8,7 @@ function sidebarLoginTemplate() {
                     <p>Summary</p>
                 </a>
                 <a class="order_icon_selection link_active" href="./add_task.html">
-                    <img class="icon_sidebar" src="./assets/img/add_task_icon.svg" alt="">
+                    <img class="icon_sidebar" src="./assets/img/add_task_grey.svg" alt="">
                     <p>Add Task</p>
 
                 </a>
@@ -53,6 +53,7 @@ function navbarTemplate(userInitials) {
             <div class="help_user_icon">
                 <a href="./help.html"><img class="help_icon desktop" src="./assets/img/questionmark_small.svg" alt="Help Button"></a>
                 <div class="user_circle" onclick="toggleMenu()">${userInitials}</div>
+
             </div>
 
             <div id="menu_navbar" class="menu_navbar d_none content_wrapper">
