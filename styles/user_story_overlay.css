@@ -3,7 +3,7 @@
 
 .dialog_user_story_container {
     width: 500px;
-    height: 840px;
+    min-height: 840px;
     background-color: #fff;
     border-radius: 25px; 
     border: none;
@@ -14,7 +14,6 @@
     transform: translate(-50%, -50%);
     display: block;
     overflow-y: auto;
-    scrollbar-gutter: stable both-edges;
 }
 
 .user_story_wrapper {
@@ -44,15 +43,14 @@
 .close_btn_container_user_story {
     position: absolute;
     top: 28px;
+    left: 32px;
     right: 32px;
     height: 30px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding-left: 70px;
+    justify-content: space-between;
     margin-top: 16px;
+    padding-left: 0;
 }
 
 .close_btn {
@@ -74,7 +72,7 @@
 .story_task_btn {
     padding: 0 20px;
     color: white;
-    background-color: #1437f5;
+    background-color: #0038ff;
     font-family: 'latin_400';
     font-weight: 400;
     font-size: 20px;
@@ -128,6 +126,9 @@
     align-items: center;
     gap: 16px;
     padding-bottom: 10px;
+    font-family: "latin_400", sans-serif;
+    font-size: 18px;
+    color: #2a3647;
 }
 
 .subtasks_container {
@@ -135,7 +136,7 @@
     justify-content: start;
     align-items: center;
     width: 100%;
-    gap: 12px;
+    gap: 4px;
     margin-top: 12px;
     padding: 2px 8px;
     transition: background 0.3s ease;
@@ -159,11 +160,11 @@
 }
 
 .checkbox_icon[data-checked="false"] {
-    content: url("./assets/img/checkbox_unchecked_contact_form.svg");
+    content: url("../assets/img/checkbox_unchecked_contact_form.svg");
 }
 
 .checkbox_icon[data-checked="true"] {
-    content: url("./assets/img/checkbox_checked_contact_form.svg");
+    content: url("../assets/img/checkbox_checked_contact_form.svg");
 }
 
 /* ---------- BOTTOM BOTTON AREA ---------- */

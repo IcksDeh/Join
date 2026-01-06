@@ -22,7 +22,7 @@ function userStoryTemplate(){
                     </td>
                     </tr>
                     <tr>
-                    <th scope="row" class="user_story_description table_spacer">Assigned To:</th>
+                    <th scope="row" class="user_story_description table_spacer">Assigned to:</th>
                     </tr>
                 </tbody>
             </table>
