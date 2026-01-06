@@ -52,9 +52,7 @@ function navbarTemplate(userInitials) {
             <p class="text_navbar desktop">Kanban Projekt Management Tool</p>
             <div class="help_user_icon">
                 <a href="./help.html"><img class="help_icon desktop" src="./assets/img/questionmark_small.svg" alt="Help Button"></a>
-                
                 <div class="user_circle" onclick="toggleMenu()">${userInitials}</div>
-            
             </div>
 
             <div id="menu_navbar" class="menu_navbar d_none content_wrapper">
@@ -78,51 +76,53 @@ function navbarLogOffTemplate() {
 }
 
 function mobileFooterLoginTemplate() {
-  return `<a class="mobile_footer_link link_active" href="summary.html">
+    return `
+        <a class="mobile_footer_link link_active" href="summary.html">
             <img
-              class="mobile_link_icon"
-              src="assets/img/summary_noneactivated.svg"
-              alt="summary icon"
+            class="mobile_link_icon"
+            src="assets/img/summary_noneactivated.svg"
+            alt="summary icon"
             />
             <p>Summary</p>
-          </a>
-          <a class="mobile_footer_link link_active" href="add_task.html">
+        </a>
+        <a class="mobile_footer_link link_active" href="add_task.html">
             <img
-              class="mobile_link_icon"
-              src="assets/img/add_task_icon.svg"
-              alt="add task icon"
+            class="mobile_link_icon"
+            src="assets/img/add_task_icon.svg"
+            alt="add task icon"
             />
             <p>Add Task</p>
-          </a>
-          <a class="mobile_footer_link link_active" href="board.html">
+        </a>
+        <a class="mobile_footer_link link_active" href="board.html">
             <img
-              class="mobile_link_icon"
-              src="assets/img/board_icon.svg"
-              alt="board icon"
+            class="mobile_link_icon"
+            src="assets/img/board_icon.svg"
+            alt="board icon"
             />
             <p>Board</p>
-          </a>
-          <a class="mobile_footer_link link_active" href="contacts.html">
+        </a>
+        <a class="mobile_footer_link link_active" href="contacts.html">
             <img
-              class="mobile_link_icon"
-              src="assets/img/contacts_icon.svg"
-              alt="contacts icon"
+            class="mobile_link_icon"
+            src="assets/img/contacts_icon.svg"
+            alt="contacts icon"
             />
             <p>Contacts</p>
-          </a>`;
+        </a>
+    `;
 }
 
 function mobileFooterLogoffTemplate() {
     return `
-            <div class="logout_footer">
-                <a href="./index.html">
-                    <img src="./assets/img/log_in.svg" alt="Login">
-                    <p class="p_text">Log In</p>
-                </a>
-                <div  >
-                    <a class="footer_link footer_link_padding link_active" href="privacy_policy.html">Privacy Policy</a>
-                    <a class="footer_link link_active" href="legal_notice.html">Legal Notice</a>
-                </div>
+        <div class="logout_footer">
+            <a href="./index.html">
+                <img src="./assets/img/log_in.svg" alt="Login">
+                <p class="p_text">Log In</p>
+            </a>
+            <div>
+                <a class="footer_link footer_link_padding link_active" href="privacy_policy.html">Privacy Policy</a>
+                <a class="footer_link link_active" href="legal_notice.html">Legal Notice</a>
             </div>
-            `
+        </div>
+    `;
 }
