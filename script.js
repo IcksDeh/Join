@@ -1,12 +1,12 @@
 const colors = [
     "#ff7a00",
     "#ff5eb3",
-    "#6e52ff",
+    "#7357ffff",
     "#9327ff",
     "#00bee8",
     "#1fd7c1",
     "#ff745e",
-    "#ffa35e",
+    "#ffb073ff",
     "#fc71ff",
     "#ffc701",
     "#0038ff",
@@ -265,11 +265,31 @@ function limitInputLength(element, maxLength) {
 
 
 /**
- * Redirects the user to the board page.
+ *  Redirects the user to the board page.
  *
- * @function goToBoardPage
- * @returns {void} - This function does not return a value.
+ *  @function goToBoardPage
+ *  @returns {void} - This function does not return a value.
  */
 function goToBoardPage() {
     window.location.href = "board.html";
 }
+
+
+/**
+ *  Closes all dropdown menus when clicking outside of them.
+ *
+ *  @event click
+ *  @param {MouseEvent} event - The click event object.
+ */
+document.addEventListener('click', function (event) {
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+        if (!dropdown.contains(event.target)) {
+            const list = dropdown.querySelector('ul');
+            if (list) {
+                list.style.display = 'none';
+            }
+        }
+    });
+});
