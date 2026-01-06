@@ -1,7 +1,7 @@
 function addTaskTemplate(){
     return `
         <main>
-            <form class="add_task_overlay_wrapper" id="addTaskForm" novalidate>
+            <form class="add_task_overlay_wrapper content_wrapper" id="addTaskForm" novalidate>
                 <div class="close_btn_container">
                     <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddTaskDialog()" role="button" aria-label="Close Dialog">
                 </div>    
@@ -162,7 +162,6 @@ function listAssigneeTemplate(contactsList, index, imgPath, checkState){
                 </div>
                 <p class="user_name_assignee_circle">${contactsList[index].contact.name}</p>
             </div>
-            
             <img onclick="toggleCheckedIcon(this, ${index}); event.stopPropagation();" class="checkbox_icon" data-checked="${checkState}" src="${imgPath}" alt="Checkbox Button">
         </div>
     `;
