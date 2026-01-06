@@ -10,6 +10,8 @@ const priorities = [
   { name: "low", color: "green" },
 ];
 
+let selectedAssignees = [];
+
 
 // FUNCTIONS
 
@@ -51,6 +53,28 @@ function closeAddTaskDialog() {
   dialog.innerHTML = "";
 
   clearInputs();
+}
+
+
+/**
+ * Shows or hides a required field message and toggles an error class based on whether the input is empty and focused.
+ *
+ * @param {HTMLInputElement} input - The input field to validate.
+ */
+function handleRequiredMessage(input) {
+  const message = document.querySelector(`.required_message[data-for="${input.id}"]`);
+
+  if (!message) return;
+
+  if (input === document.activeElement && input.value.trim() === "") {
+    message.style.display = "block";
+    if (input.classList.contains("validate-required")) {
+      input.classList.add("error");
+    }
+  } else {
+    message.style.display = "none";
+    input.classList.remove("error");
+  }
 }
 
 
@@ -139,6 +163,7 @@ function toggleListTasks(element) {
   if (list.style.display === "none") {
     list.style.display = "block";
     checkContactList(element);
+    syncDropdownCheckboxes();
   } else {
     list.style.display = "none";
   }
@@ -206,8 +231,9 @@ function closeDropdownLists() {
  * @returns {void} - This function does not return a value.
  */
 function clearInputs() {
-  const inputIds = ["title", "description", "due_date", "subtasks"];
+  clearSelectedAssignees();
 
+  const inputIds = ["title", "description", "due_date", "subtasks"];
   inputIds.forEach((id) => {
     const element = document.getElementById("id_" + id + "_add_task");
     if (element) {
@@ -221,6 +247,7 @@ function clearInputs() {
 
   document.getElementById("selected_category").innerHTML = "Select task category";
   document.getElementById("selected_contacts").innerHTML = "Select contacts to assign";
+  document.getElementById("assigned_contacts_row").innerHTML = "";
   closeDropdownLists();
   subtaskList.innerHTML = "";
   checkPriority("medium");
@@ -229,22 +256,87 @@ function clearInputs() {
 
 
 /**
- * Toggles the checked state of the checkbox icon in 'Assigned to' dropdown list.
+ * Toggles the selection state of a contact checkbox in the UI.
+ * Updates the `selectedAssignees` array and refreshes the assigned contacts display.
  *
- * @param {HTMLImageElement} img
- * The image element representing the checkbox icon.
- * Must contain a 'data-checked' attribute ('true' or 'false').
+ * @param {HTMLImageElement} imgElement - The checkbox image element to toggle.
+ * @param {number} index - The index of the contact in the `contactsList` array.
  */
-function toggleCheckedIcon(img, index) {
-  const isChecked = img.dataset.checked === "true";
-  const newStatus = !isChecked;
+function toggleCheckedIcon(imgElement, index) {
+  const contact = contactsList[index];
+  const contactId = contact.id;
+  const isChecked = imgElement.dataset.checked === "true";
 
-  img.dataset.checked = newStatus ? "true" : "false";
-  img.src = newStatus
-    ? "./assets/img/checkbox_checked_contact_form.svg"
-    : "./assets/img/checkbox_unchecked_contact_form.svg";
-  if (contactsList[index]) {
-    contactsList[index].isChecked = newStatus;
+  if (isChecked) {
+    selectedAssignees = selectedAssignees.filter(c => c.id !== contactId);
+    imgElement.dataset.checked = "false";
+    imgElement.src = "./assets/img/checkbox-empty.svg";
+  } else {
+    if (!selectedAssignees.some(c => c.id === contactId)) {
+      selectedAssignees.push(contact);
+    }
+    imgElement.dataset.checked = "true";
+    imgElement.src = "./assets/img/checkbox-checked.svg";
+  }
+
+  renderAssignedContacts();
+}
+
+
+/**
+ * Renders all selected assignees into the assigned contacts container.
+ * Each assignee is displayed with an initial and a background color corresponding to their profile.
+ */
+function renderAssignedContacts() {
+  const container = document.getElementById("assigned_contacts_row");
+  container.innerHTML = "";
+
+  selectedAssignees.forEach(contact => {
+    container.innerHTML += `
+      <div class="contact_initial_circle assigned_contact"
+        data-assignee-id="${contact.id}"
+        title="${contact.contact.name}"
+        style="background-color:${contact.contact.color}">
+        ${contact.contact.initial}
+      </div>
+    `;
+  });
+}
+
+
+/**
+ * Synchronizes the checkbox icons in the dropdown list with the current selection.
+ * Ensures that each dropdown item accurately reflects whether the corresponding contact is selected.
+ */
+function syncDropdownCheckboxes() {
+  document.querySelectorAll(".dropdown_item_user").forEach(item => {
+    const id = item.dataset.assigneeId;
+    const checkbox = item.querySelector(".checkbox_icon");
+
+    const checked = selectedAssignees.some(c => c.id == id);
+    checkbox.dataset.checked = checked;
+    checkbox.src = checked
+      ? "./assets/img/checkbox-checked.svg"
+      : "./assets/img/checkbox-empty.svg";
+  });
+}
+
+
+/**
+ * Clears all selected assignees and resets their checkbox icons in the UI.
+ * Empties the `selectedAssignees` array, unchecks all checkboxes, and clears the assigned contacts display.
+ */
+function clearSelectedAssignees() {
+  selectedAssignees = [];
+
+  document.querySelectorAll(".checkbox_icon").forEach((checkbox) => {
+    checkbox.dataset.checked = "false";
+    checkbox.src = "./assets/img/checkbox-empty.svg";
+  });
+
+  const assignedContainer = document.getElementById("assigned_contacts_row");
+  if (assignedContainer) {
+    assignedContainer.innerHTML = "";
   }
 }
 
@@ -334,23 +426,6 @@ function cancelEdit(btn) {
 
 
 /**
- * Handles the click event for the "Create Task" button.
- * Prevents the default form submission behavior and triggers the task creation process by collecting and processing task data.
- *
- * @event click
- * @listens HTMLButtonElement#click
- * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
- */
-document
-  .getElementById("id_btn_create_task")
-  .addEventListener("click", async function (event) {
-    event.preventDefault();
-    await getAddTaskData();
-    showToast()
-  });
-
-
-/**
  * Renders the contact list in the task assignment dropdown.
  * Clears the current list and dynamically creates list items for each contact, including their checked state and corresponding icon.
  *
@@ -382,22 +457,17 @@ function showContactsInTasks() {
 
 
 /**
- * Shows or hides a required field message and toggles an error class based on whether the input is empty and focused.
+ * Handles the click event for the "Create Task" button.
+ * Prevents the default form submission behavior and triggers the task creation process by collecting and processing task data.
  *
- * @param {HTMLInputElement} input - The input field to validate.
+ * @event click
+ * @listens HTMLButtonElement#click
+ * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
  */
-function handleRequiredMessage(input) {
-  const message = document.querySelector(`.required_message[data-for="${input.id}"]`);
-
-  if (!message) return;
-
-  if (input === document.activeElement && input.value.trim() === "") {
-    message.style.display = "block";
-    if (input.classList.contains("validate-required")) {
-      input.classList.add("error");
-    }
-  } else {
-    message.style.display = "none";
-    input.classList.remove("error");
-  }
-}
+document
+  .getElementById("id_btn_create_task")
+  .addEventListener("click", async function (event) {
+    event.preventDefault();
+    await getAddTaskData();
+    showToast()
+  });
