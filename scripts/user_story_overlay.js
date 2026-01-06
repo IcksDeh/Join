@@ -9,11 +9,12 @@
  * @function openUserStoryDialog
  * @returns {void} - This function does not return a value.
  */
-function openUserStoryDialog() {
+function openUserStoryDialog(index, taskList, taskID) {
   const dialog = document.getElementById('userStoryDialog');
     
   if (!dialog.open) {
-    dialog.innerHTML = userStoryTemplate();
+    dialog.innerHTML = userStoryTemplate(index, taskList, taskID);
+    loadAssigneesTaskDetails(taskList, index, taskID);
     dialog.showModal();
 
     setTimeout(() => {
@@ -22,6 +23,20 @@ function openUserStoryDialog() {
       }
     }, 0);
   }
+}
+
+function loadAssigneesTaskDetails(taskList, index, taskID){
+  let taskAssigneeElement = document.getElementById("assignees_task_details_"+ taskID);
+    let assigneeList = taskList[index].task.assignees;
+    Object.values(assigneeList)
+        .forEach(assignee => {
+          console.log(assignee)
+        let assigneeHTMLElement = document.createElement('div');
+        assigneeHTMLElement.className = "user_info";
+        assigneeHTMLElement.innerHTML = AssigneesTaskDetailsTemplate(taskList, index, taskID, assignee);
+        taskAssigneeElement.appendChild(assigneeHTMLElement);
+
+    }) 
 }
 
 

@@ -13,19 +13,16 @@ function loadTaskTickets(){
         let taskID = taskList[index].id
         taskElement.className = "style_task_card";
         taskElement.dataset
-        taskElement.onclick = openUserStoryDialog;
         taskElement.innerHTML = taskListElementTemplate(taskList, index);
+        taskElement.addEventListener('click', function(){
+            openUserStoryDialog(index, taskList, taskID);
+        })
         taskTodo.appendChild(taskElement);
         loadAssigneesOfTaks(taskList, index, taskID);
         loadPriorityIcon(taskList, index, taskID);
         loadCategoryLabelColor(taskList, index, taskID)
     }
 }
-
-document
-    .querySelectorAll("style_task_card")
-    .addEventlistener ("click", openUserStoryDialog())
-
 
 function loadAssigneesOfTaks(taskList, index, taskID){
     let taskAssigneeElement = document.getElementById("board_assignee_"+ taskID);
