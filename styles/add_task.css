@@ -251,6 +251,12 @@ textarea:focus {
     font-size: 20px;
 }
 
+.assigned_contacts_row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
 .input_spacer {
     height: 24px;
     width: 100%;
