@@ -57,23 +57,49 @@ function closeAddTaskDialog() {
 }
 
 
-// NEW
-// function initAddTaskDOM() {
-//   window.subtaskInput = document.getElementById("subtasks");
-//   window.subtaskList = document.getElementById("subtaskList");
-//   window.subtaskActions = document.querySelector(".subtask_actions");
-  // document
-  //   .getElementById("id_btn_create_task")
-  //   .addEventListener("click", async function (event) {
-  //     event.preventDefault();
-  //     await getAddTaskData();
-  //     showToast();
-  //   });
+/**
+ * Updates the UI to reflect the currently selected priority.
+ * Iterates over all priorities and activates the matching one.
+ *
+ * @param {string} status - The currently selected priority name.
+ */
+function checkPriority(status) {
+  priorities.forEach(({ name, color }) => {
+    updatePriorityButton(name, name === status, color);
+  });
+}
 
 
-//   checkPriority("medium");
-// }
+/**
+ * Updates the appearance of a priority button and its icon.
+ * Toggles active/inactive styles and switches the icon based on state.
+ *
+ * @param {string} priority - The priority name (e.g. "low", "medium", "urgent").
+ * @param {boolean} isActive - Whether the priority is currently active.
+ * @param {string} color - The default color used for the inactive icon.
+ */
+function updatePriorityButton(priority, isActive, color) {
+  const btn = document.getElementById(`id_${priority}_btn`);
+  const icon = document.getElementById(`id_icon_${priority}_task`);
 
+  btn.classList.toggle(`${priority}_btn_filled`, isActive);
+  btn.classList.toggle(`${priority}_btn_default`, !isActive);
+
+  icon.src = isActive
+    ? `./assets/img/prio_${priority}_white.svg`
+    : `./assets/img/prio_${priority}_${color}.svg`;
+}
+
+
+/**
+ * Calls checkPriority("medium") and displays it as "default" button after the DOM is loaded.
+ *
+ * @event DOMContentLoaded
+ * @returns {void} - This event handler does not return a value.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  checkPriority("medium");
+});
 
 
 /**
@@ -96,77 +122,6 @@ function handleRequiredMessage(input) {
     input.classList.remove("error");
   }
 }
-
-
-/**
- * Sets the selected priority and updates the UI accordingly.
- * Iterates over all available priorities and highlights the selected one while resetting all other priority buttons to their default state.
- *
- * @function checkPriority
- * @param {string} status - The name of the priority to be selected.
- * @returns {void} - This function does not return a value.
- */
-function checkPriority(status) {
-  priorities.forEach(({ name, color }) => {
-    if (name == status) {
-      markPriorityButton(name);
-    } else {
-      removeMarkOtherButton(name, color);
-    }
-  });
-}
-
-
-/**
- * Marks a priority button as active.
- * Changes the button styling to the filled state and updates the icon color to white.
- *
- * @function markPriorityButton
- * @param {string} priorityElement - The name of the priority to be marked as active.
- * @returns {void} - This function does not return a value.
- */
-function markPriorityButton(priorityElement) {
-  document
-    .getElementById("id_" + priorityElement + "_btn")
-    .classList.remove(priorityElement + "_btn_default");
-  document
-    .getElementById("id_" + priorityElement + "_btn")
-    .classList.add(priorityElement + "_btn_filled");
-  document.getElementById("id_icon_" + priorityElement + "_task").src =
-    "./assets/img/prio_" + priorityElement + "_white.svg";
-}
-
-
-/**
- * Resets a priority button to its default state.
- * Restores the default button styling and sets the icon color based on the priority.
- *
- * @function removeMarkOtherButton
- * @param {string} priorityElement - The name of the priority to be reset.
- * @param {string} color - The color used for the default priority icon.
- * @returns {void} - This function does not return a value.
- */
-function removeMarkOtherButton(priorityElement, color) {
-  document
-    .getElementById("id_" + priorityElement + "_btn")
-    .classList.add(priorityElement + "_btn_default");
-  document
-    .getElementById("id_" + priorityElement + "_btn")
-    .classList.remove(priorityElement + "_btn_filled");
-  document.getElementById("id_icon_" + priorityElement + "_task").src =
-    "./assets/img/prio_" + priorityElement + "_" + color + ".svg";
-}
-
-
-/**
- * Calls checkPriority("medium") and displays it as "default" button after the DOM is loaded.
- *
- * @event DOMContentLoaded
- * @returns {void} - This event handler does not return a value.
- */
-document.addEventListener("DOMContentLoaded", () => {
-  checkPriority("medium");
-});
 
 
 /**
