@@ -36,8 +36,9 @@
     }
 
     .add_task_main_content {
-        padding: 10px;   
+        padding: 20px;   
         margin-bottom: 0;     
+        width: 96%;
     }
 
     .add_task_main_content h1 {
