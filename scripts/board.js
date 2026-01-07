@@ -41,7 +41,7 @@ function loadTaskElementinColumn(taskID, taskContent, index, status){
     taskElementofColumnList.dataset
     taskElementofColumnList.innerHTML = taskListElementTemplate(taskID, taskContent);
     taskElementofColumnList.addEventListener('click', function(){
-            openUserStoryDialog(taskContent, taskID);
+            openUserStoryDialog(taskContent, taskID, index);
         })
     columnElement.appendChild(taskElementofColumnList);
 }

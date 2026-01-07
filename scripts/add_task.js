@@ -1,17 +1,3 @@
-// VARIABLES
-
-const subtaskInput = document.getElementById("subtasks");
-const subtaskList = document.getElementById("subtaskList");
-const subtaskActions = document.querySelector(".subtask_actions");
-
-const priorities = [
-  { name: "urgent", color: "red" },
-  { name: "medium", color: "yellow" },
-  { name: "low", color: "green" },
-];
-
-let selectedAssignees = [];
-
 
 // FUNCTIONS
 

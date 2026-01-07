@@ -9,14 +9,24 @@
  * @function openUserStoryDialog
  * @returns {void} - This function does not return a value.
  */
-function openUserStoryDialog(taskContent, taskID) {
+async function openUserStoryDialog(taskContent, taskID, taskIndex) {
+  await loadFirebaseData("tasks");
+  console.log(taskList);
+
+  // Hole die aktuelle Task aus taskList anhand der ID
+ const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
+  if (!currrentTaskElement) {
+    console.error("Task mit ID nicht gefunden:", taskID);
+    return;
+  }
+  const currentTask = currrentTaskElement.task;
+
   const dialog = document.getElementById('userStoryDialog');
-    
   if (!dialog.open) {
-    dialog.innerHTML = userStoryTemplate(taskContent, taskID);
-    loadAssigneesTaskDetails(taskContent, taskID);
-    loadSubtaksTaskDetails(taskContent, taskID);
-    colorLabelTaskDetails (taskContent, taskID);
+    dialog.innerHTML = userStoryTemplate(currentTask, taskID);
+    loadAssigneesTaskDetails(currentTask, taskID);
+    loadSubtaksTaskDetails(currentTask, taskID, taskIndex);
+    colorLabelTaskDetails(currentTask, taskID);
     dialog.showModal();
 
     setTimeout(() => {
@@ -41,7 +51,7 @@ function loadAssigneesTaskDetails(taskContent, taskID){
     })
   }
 
-function loadSubtaksTaskDetails(taskContent, taskID){
+function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
   let subtaskListElement = document.getElementById("subtasks_task_detail_list");
   let subtaskList = taskContent.subtasks;
   Object.entries(subtaskList).forEach(subtaskElement =>{
@@ -50,7 +60,7 @@ function loadSubtaksTaskDetails(taskContent, taskID){
     let subtaskContent = subtaskElement[1];
     let subtaskHTMLElement = document.createElement('div');
     subtaskHTMLElement.className = "subtasks_container"
-    subtaskHTMLElement.innerHTML = subtaskTaskDetailsTemplate(subtaskID, subtaskContent);
+    subtaskHTMLElement.innerHTML = subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex);
     subtaskListElement.appendChild(subtaskHTMLElement);
     checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent);
   })
@@ -102,13 +112,15 @@ function closeUserStoryDialog() {
  * The image element representing the checkbox icon.
  * Must contain a 'data-checked' attribute ('true' or 'false').
  */
-function toggleCheckedIcon(img) {
+function toggleCheckedIcon(img, subtaskId, taskID, taskIndex) {
   const checked = img.dataset.checked === "true";
   img.dataset.checked = !checked;
 
   img.src = checked
     ? "./assets/img/checkbox_unchecked_contact_form.svg"
     : "./assets/img/checkbox_checked_contact_form.svg";
+
+  updateSubtaskStatus(subtaskId, taskID, !checked, taskIndex);
 }
 
 

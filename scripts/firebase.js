@@ -1,7 +1,7 @@
-const BASE_URL = "https://join-f5da0-default-rtdb.europe-west1.firebasedatabase.app/";
-let newUserID = 0;
-let user = [];
-let contacts = [];
+// wenn keine Fehler auftauchen, können die 3 Variablen gelöscht werden
+// let newUserID = 0;
+// let user = [];
+// let contacts = [];
 
 async function putToStorage(path, Data, elements =""){
     let userStorage = await fetch(BASE_URL + path + ".json", {
@@ -83,3 +83,16 @@ async function deleteTaskFromFirebase(taskID, path) {
     location.reload();
 
 }
+
+async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex){
+    let userStorage = await fetch(BASE_URL + "tasks/" + taskID + "/" + "subtasks/" + subtaskId + "/done.json",{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(statusSubtask),
+    });
+}
+
+
+    

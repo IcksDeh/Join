@@ -1,9 +1,3 @@
-// VARIABLES
-
-let contactsList = [];
-let taskList = [];
-
-
 //TASK
 
 async function getAddTaskData(){
@@ -61,12 +55,11 @@ function getAssignee(){
       assigneeInitial : initial,
       assigneeColor : color,
     }
-
     }})
     return selectedAssignees;
 }
 
-async function switchTaskData (titleTask, descriptionTask, dueDateTask, priorityTask,assignedToTask="", categoryTask ="", subtasksTask="", statusTask){
+async function switchTaskData (titleTask ="", descriptionTask="", dueDateTask="", priorityTask="",assignedToTask="", categoryTask ="", subtasksTask="", statusTask=""){
   let taskData = {
     "title": titleTask,
     "description": descriptionTask,

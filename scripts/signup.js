@@ -1,9 +1,3 @@
-const ICONS = {
-  LOCK: './assets/img/lock_icon.svg',
-  OFF: './assets/img/visibility_off.svg',
-  ON: './assets/img/visibility.svg'
-};
-
 function goToSignup() { window.location.href = "sign_up.html"; }
 function guestLogin() { window.location.href = "summary.html"; }
 

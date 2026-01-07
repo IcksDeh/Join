@@ -1,24 +1,3 @@
-const colors = [
-    "#ff7a00",
-    "#ff5eb3",
-    "#7357ffff",
-    "#9327ff",
-    "#00bee8",
-    "#1fd7c1",
-    "#ff745e",
-    "#ffb073ff",
-    "#fc71ff",
-    "#ffc701",
-    "#0038ff",
-    "#7Ae229",
-    "#ffe62b",
-    "#ff3d00",
-    "#ffa800", 
-]
-
-let colorIndex = 0;
-
-
 function init() {
     loadSidebar();
     loadNavbar();
