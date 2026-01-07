@@ -9,14 +9,14 @@
  * @function openUserStoryDialog
  * @returns {void} - This function does not return a value.
  */
-function openUserStoryDialog(index, taskList, taskID) {
+function openUserStoryDialog(taskContent, taskID) {
   const dialog = document.getElementById('userStoryDialog');
     
   if (!dialog.open) {
-    dialog.innerHTML = userStoryTemplate(index, taskList, taskID);
-    loadAssigneesTaskDetails(taskList, index, taskID);
-    loadSubtaksTaskDetails(taskList, index);
-    colorLabelTaskDetails (taskList, index, taskID);
+    dialog.innerHTML = userStoryTemplate(taskContent, taskID);
+    loadAssigneesTaskDetails(taskContent, taskID);
+    loadSubtaksTaskDetails(taskContent, taskID);
+    colorLabelTaskDetails (taskContent, taskID);
     dialog.showModal();
 
     setTimeout(() => {
@@ -27,23 +27,23 @@ function openUserStoryDialog(index, taskList, taskID) {
   }
 }
 
-function loadAssigneesTaskDetails(taskList, index, taskID){
+function loadAssigneesTaskDetails(taskContent, taskID){
     let taskAssigneeElement = document.getElementById("assignees_task_details_"+ taskID);
-    let assigneeList = taskList[index].task.assignees;
+    let assigneeList = taskContent.assignees;
     Object.values(assigneeList)
         .forEach(assignee => {
           console.log(assignee)
         let assigneeHTMLElement = document.createElement('div');
         assigneeHTMLElement.className = "user_info";
-        assigneeHTMLElement.innerHTML = AssigneesTaskDetailsTemplate(taskList, index, taskID, assignee);
+        assigneeHTMLElement.innerHTML = AssigneesTaskDetailsTemplate(assignee);
         taskAssigneeElement.appendChild(assigneeHTMLElement);
 
     })
   }
 
-function loadSubtaksTaskDetails(taskList, index){
+function loadSubtaksTaskDetails(taskContent, taskID){
   let subtaskListElement = document.getElementById("subtasks_task_detail_list");
-  let subtaskList = taskList[index].task.subtasks;
+  let subtaskList = taskContent.subtasks;
   Object.entries(subtaskList).forEach(subtaskElement =>{
     console.log(subtaskElement);
     let subtaskID = subtaskElement[0];
@@ -65,11 +65,11 @@ function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
   }
 }
 
-function colorLabelTaskDetails (taskList, index, taskID){
+function colorLabelTaskDetails (taskContent, taskID){
   let labelElement = document.getElementById("category_label_task_details_" +taskID)
-    if (taskList[index].task.category === "Technical Task"){
+    if (taskContent.category === "Technical Task"){
         labelElement.style.backgroundColor = '#1FD7C1';
-    } else if( taskList[index].task.category === "User Story"){
+    } else if( taskContent.category === "User Story"){
         labelElement.style.backgroundColor = '#0038FF';
     } else {
         labelElement.style.backgroundColor = '#ff00d9ff';

@@ -1,24 +1,24 @@
-function userStoryTemplate(index, taskList, taskID){
+function userStoryTemplate(taskContent, taskID){
     return `
-        <main class="user_story_wrapper" data-task_detail_information-id ="${taskList[index].id}">
+        <main class="user_story_wrapper" data-task_detail_information-id ="${taskID}">
             <div class="close_btn_container_user_story">
-                <div id="category_label_task_details_${taskList[index].id}" class="story_task_btn">${taskList[index].task.category}</div>
+                <div id="category_label_task_details_${taskID}" class="story_task_btn">${taskContent.category}</div>
                 <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeUserStoryDialog()" role="button" aria-label="Schließen">
             </div>
 
-            <span id="task_detail_title_${taskList[index].id}" class="user_story_title">${taskList[index].task.title}</span>
-            <p id="task_detail_description_${taskList[index].id}" class="user_story_description">${taskList[index].task.description}</p>
+            <span id="task_detail_title_${taskID}" class="user_story_title">${taskContent.title}</span>
+            <p id="task_detail_description_${taskID}" class="user_story_description">${taskContent.description}</p>
             
             <table class="recommender_table" aria-label="Page and Recipe Recommender details">
                 <tbody>
                     <tr>
                     <th scope="row" class="user_story_description table_spacer">Due Date:</th>
-                    <td class="user_story_description table_spacer">${taskList[index].task.dueDate}</td>
+                    <td class="user_story_description table_spacer">${taskContent.dueDate}</td>
                     </tr>
                     <tr>
                     <th scope="row" class="user_story_description table_spacer">Priority:</th>
-                    <td class="user_story_description table_spacer icon_gap">${taskList[index].task.priority.name}
-                        <img src="./assets/img/prio_${taskList[index].task.priority.name}_${taskList[index].task.priority.color}.svg" alt="Prio Urgent">
+                    <td class="user_story_description table_spacer icon_gap">${taskContent.priority.name}
+                        <img src="./assets/img/prio_${taskContent.priority.name}_${taskContent.priority.color}.svg" alt="Prio Urgent">
                     </td>
                     </tr>
                     <tr>
@@ -26,7 +26,7 @@ function userStoryTemplate(index, taskList, taskID){
                     </tr>
                 </tbody>
             </table>
-            <div id= "assignees_task_details_${taskList[index].id}" class="assigned_user">
+            <div id= "assignees_task_details_${taskID}" class="assigned_user">
             </div>
 
             <p class="user_story_description">Subtasks</p>
