@@ -401,6 +401,20 @@ function cancelEdit(btn) {
 
 
 /**
+ * Listens for the "Enter" key on the subtask input field.
+ * Prevents the default form submission behavior and calls `addSubtask()` when Enter is pressed.
+ *
+ * @param {KeyboardEvent} event - The keyboard event triggered on keydown.
+ */
+subtaskInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addSubtask();
+  }
+});
+
+
+/**
  * Renders the contact list in the task assignment dropdown.
  * Clears the current list and dynamically creates list items for each contact, including their checked state and corresponding icon.
  *
