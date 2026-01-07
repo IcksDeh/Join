@@ -223,13 +223,15 @@ function highlightActiveLink() {
     const currentPath = window.location.pathname;
 
     links.forEach(link => {
+   
         const linkPath = link.getAttribute('href').replace('./', '');
-        const icon = link.querySelector('.icon_sidebar'); 
+        
+    
+        const icon = link.querySelector('.icon_sidebar, .mobile_link_icon'); 
 
         if (currentPath.includes(linkPath)) {
             link.classList.add('active');
             
-        
             if (icon) { 
                 if (linkPath === 'summary.html') {
                     icon.src = './assets/img/navbar_summary_white_mobile.svg';
