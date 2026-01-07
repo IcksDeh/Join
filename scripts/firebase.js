@@ -74,3 +74,10 @@ async function pushToTaskArray(firebaseKeys, responseFirebaseDataToJSON) {
     }
     console.log(taskList);
 }
+
+async function deleteTaskFromFirebase(taskID, path) {
+    let userStorage = await fetch(BASE_URL + path + taskID +".json", {
+        method: "DELETE",
+        });
+    checkStatusTask();
+}
