@@ -155,3 +155,12 @@ function closeUserStoryEditDialog() {
 
   clearInputs();
 }
+
+function deleteTask(taskID){
+  Object.values(taskList).forEach(taskElement =>{
+    console.log(taskElement.id);
+    if(taskElement.id == taskID){
+      deleteTaskFromFirebase(taskID, "tasks/");
+    }
+  })
+}

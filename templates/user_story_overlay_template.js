@@ -35,7 +35,7 @@ function userStoryTemplate(taskContent, taskID){
 
             <div class="bottom_area">
                 <div class="user_story_btn_area">
-                    <button class="delete_edit_btn" onclick="">
+                    <button class="delete_edit_btn" onclick="deleteTask('${taskID}')">
                         <img class="icon default" src="./assets/img/delete.svg" alt="Clear Formular">
                         <img class="icon hover" src="./assets/img/delete_blue.svg" alt="Clear Formular Hover">
                         Delete
