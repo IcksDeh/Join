@@ -22,8 +22,20 @@ function checkStatusTask(){
 
 function loadBoardColumn(taskID, taskContent, index, status){
     let columnElement = document.getElementById('board_column_' +status);
-    columnElement.innerHTML = "";
-    columnElement.classList.remove("no_task_available");      
+
+    if (columnElement.dataset.initialized == "false"){
+        columnElement.innerHTML = "";
+        columnElement.classList.remove("no_task_available");  
+        columnElement.dataset.initialized = "true";  
+    }
+    loadTaskElementinColumn(taskID, taskContent, index, status);
+    loadAssigneesOfTaks(taskList, index, taskID);
+    loadPriorityIcon(taskList, index, taskID);
+    loadCategoryLabelColor(taskList, index, taskID);
+}
+
+function loadTaskElementinColumn(taskID, taskContent, index, status){
+    let columnElement = document.getElementById('board_column_' +status);
     let taskElementofColumnList = document.createElement('div');
     taskElementofColumnList.className = "style_task_card";
     taskElementofColumnList.dataset
@@ -32,9 +44,6 @@ function loadBoardColumn(taskID, taskContent, index, status){
             openUserStoryDialog(index, taskContent, taskID);
         })
     columnElement.appendChild(taskElementofColumnList);
-    loadAssigneesOfTaks(taskList, index, taskID);
-    loadPriorityIcon(taskList, index, taskID);
-    loadCategoryLabelColor(taskList, index, taskID);
 }
 
 function loadTaskTickets(){
