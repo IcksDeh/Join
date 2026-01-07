@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./styles/add_task.css" />
     <link rel="stylesheet" href="./styles/add_task_overlay.css" />
     <link rel="stylesheet" href="./styles/mobile_footer.css">
+    <link rel="stylesheet" href="./styles/mobile_board.css">
 
     <script src="./script.js" defer></script>
     <script src="./scripts/add_task.js" defer></script>
@@ -43,7 +44,11 @@
 
             <main class="margin_left margin_top content_wrapper_sidebar">
               <section class="order_header_board">
-                <h1>Board</h1>
+                <div class="board_mobile_header">
+                  <h1>Board</h1>
+                  <button class="btn_add_task_board_mobile button" onclick="openAddTaskDialog()"><img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
+                </div>
+                
                 <div class="order_header_right_side">
                   
                   <div class="style_searchbar_board">
