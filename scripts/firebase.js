@@ -79,5 +79,7 @@ async function deleteTaskFromFirebase(taskID, path) {
     let userStorage = await fetch(BASE_URL + path + taskID +".json", {
         method: "DELETE",
         });
-    checkStatusTask();
+    closeUserStoryDialog();
+    location.reload();
+
 }
