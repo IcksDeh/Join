@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="./styles/contact_mobile.css">
     <link rel="stylesheet" href="./styles/add_task.css" />
     <link rel="stylesheet" href="./styles/add_edit_contact_overlay.css" />
+    <link rel="stylesheet" href="./styles/mobile_add_edit_contact_overlay.css">
     <link rel="stylesheet" href="./styles/mobile_footer.css">
+
 
     <script src="./script.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
@@ -39,7 +41,7 @@
             </nav>
 
             <main class="contact-page">
-                <div class="contact-list-container">
+                <div class="contact-list-container" id="contact-list-container">
                     <div class="button-container">
                         <button class="contact-btn" id="addNewContactBtn" onclick="openAddContactDialog()">
                             <span>Add new Contact</span>
