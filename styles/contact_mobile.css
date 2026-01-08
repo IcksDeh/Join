@@ -2,11 +2,19 @@
     .contact-headline {
         flex-direction: column;
         align-items: start;
-        gap: 5px;
+        gap: 8px;
+    }
+
+    .contact-headline span::after {
+        display: flex;
+        content: "";
+        margin-top: 16px;
+        border-bottom: 3px solid #29abe2;
+        width: 90px;
     }
 
     .headline-seperator {
-        transform: rotate(90deg);
+        display: none;
     }
 }
 
@@ -14,6 +22,28 @@
 @media (max-width: 600px) {
     .nav_main_content {
         width: 100%;
+
+
+    }
+
+    .contact-headline {
+        padding-top: 48px;
+    }
+
+    .headline button {
+        display: block;
+    }
+
+    .contact-headline span::after {
+        display: flex;
+        content: "";
+        margin-top: 16px;
+        border-bottom: 3px solid #29abe2;
+        width: 90px;
+    }
+
+    .contact-big-information {
+        transform: none;
     }
 
     .contact-page {
@@ -38,16 +68,69 @@
 
     }
 
+    .contact-big {
+        gap: 22px;
+        padding-top: 8px;
+        transform: none;
+    }
+
+    .initals-big {
+        width: 80px;
+    }
+
+
+
+    .changebtns {
+        content-visibility: hidden;
+        background-color: #2A3647;
+        background-image: url(/assets/img/more_vert.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+        position: fixed;
+        bottom: 120px;
+        right: 20px;
+        height: 56px;
+        width: 56px;
+        border-radius: 56px;
+        border: 1px solid #2A3647;
+    }
+
+    .changebtns:hover {
+        background-color: #29ABE2;
+        border: 1px solid #29abe2;
+    }
+
+    .changebtns:active {
+        background-color: #29ABE2;
+        border: 1px solid #29abe2;
+    }
+
+
+    .name-big span {
+        font-weight: 700;
+        font-size: clamp(26px, 7vw, 36px);
+    }
+
+    .contact-deep-info {
+        gap: 22px;
+    }
+
     .contact-btn:active {
         background-color: #29ABE2;
     }
 
-    .contact_list {
-        width: 100vw;
-        padding: 24px;
+    ul li {
+        display: unset;
     }
 
-    .contact-info {
-        display: none;
+    .contact-list-container {
+        width: 100%;
     }
+
+    .contact_list {
+
+        padding-right: 40px;
+    }
+
 }
