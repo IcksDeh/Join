@@ -1,4 +1,5 @@
-console.dirxml(document.getElementById('addNewContactBtn'))
+addEventListener("resize", detectMobile)
+renderMobile()
 
 function getElementsContacts() {
     return {
@@ -32,7 +33,7 @@ function setContactActive(email, element) {
     const isActive = element.classList.contains("active-contact");
     const cInfo = document.getElementById('contact-info')
     const contacts = document.getElementsByClassName("contact-person");
-
+    const selectedContact = contact.find(entry => entry.email === email);
     for (let i = 0; i < contacts.length; i++) {
         contacts[i].classList.remove("active-contact");
     }
@@ -40,13 +41,16 @@ function setContactActive(email, element) {
         cInfo.innerHTML = contactHeadlineTemplate();
         return;
     }
-
+    renderMobileClickedContact(selectedContact)
     element.classList.add("active-contact");
-    // showMobileContact()
-    const selectedContact = contact.find(entry => entry.email === email);
-    cInfo.innerHTML = contactHeadlineTemplate() + contactInitialsTemplate(selectedContact) + contactInfoTemplate(selectedContact)
+    renderContactInfo(selectedContact)
 
     slideContactInfo()
+}
+
+function renderContactInfo(selectedContact) {
+    const cInfo = document.getElementById('contact-info')
+    cInfo.innerHTML = contactHeadlineTemplate() + contactInitialsTemplate(selectedContact) + contactInfoTemplate(selectedContact)
 }
 
 function slideContactInfo() {
@@ -61,21 +65,63 @@ function slideContactInfo() {
 
         bigContact.classList.toggle('slideactive')
         bigContactInfo.classList.toggle('slideactive')
+        checkForBackBtn()
     })
 }
-function detectMobile() {
-    return window.innerWidth <= 600
+
+function checkForBackBtn() {
+    const backBtn = document.getElementById('backBtn')
+    if (backBtn.style.display != "none") {
+        document.getElementById('backBtn').addEventListener("click", clickBack)
+    }
 }
 
-// function showMobileContact() {
-//     const contactList = document.getElementById('contact-list')
-//     const bigContact = document.getElementById('contact-big')
-//     const bigContactInfo = document.getElementById('contact-big-information')
-//     if (detectMobile() == true) {
-//         contactList.classList.toggle('d_none')
+function detectMobile() {
+    return window.innerWidth
+}
 
-//     }
-// }
+function renderMobileClickedContact(selectedContact) {
+    const contactList = document.getElementById('contact-list-container')
+    const contactInfo = document.getElementById('contact-info')
+    if (detectMobile() <= 600) {
+        contactInfo.classList.remove('d_none')
+        contactList.classList.add('d_none')
+        renderContactInfo(selectedContact)
+    }
+    else {
+        contactList.classList.remove('d_none')
+        contactInfo.classList.remove('d_none')
+        renderContactInfo(selectedContact)
+    }
+}
+
+
+
+function clickBack() {
+    const contactList = document.getElementById('contact-list-container')
+    const contactInfo = document.getElementById('contact-info')
+
+    contactList.classList.remove('d_none')
+    contactInfo.classList.add('d_none')
+    const contacts = document.getElementsByClassName("contact-person");
+    for (let i = 0; i < contacts.length; i++) {
+        contacts[i].classList.remove("active-contact");
+    }
+}
+
+function renderMobile() {
+    const contactInfo = document.getElementById('contact-info')
+    const contactList = document.getElementById('contact-list-container')
+    if (detectMobile() <= 600) {
+        contactInfo.classList.add('d_none')
+
+    } else {
+
+        contactInfo.classList.remove('d_none')
+        contactList.classList.remove('d_none')
+    }
+}
+
 
 function sortContactsByFirstName(contacts) {
     return [...contacts].sort((a, b) => {
@@ -89,7 +135,6 @@ function renderContactList() {
     const contacts = sortContactsByFirstName(contact);
     const container = document.getElementById('contact-list');
 
-    // container.innerHTML = addContactButtonTemplate();
     let currentLetter = "";
 
     contacts.forEach((contact) => {
