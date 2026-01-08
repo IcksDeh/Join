@@ -26,6 +26,7 @@ function loadSidebar() {
     }
 }
 
+
 /**
  *  Loads and renders the navbar template into the navbar container.
  *
@@ -191,6 +192,41 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+/**
+ * Highlights the active sidebar link based on the current page path.
+ *
+ * @function highlightActiveLink
+ */
+function highlightActiveLink() {
+    const links = document.querySelectorAll('.link_active');
+    const currentPath = window.location.pathname;
+
+    links.forEach(link => {
+   
+        const linkPath = link.getAttribute('href').replace('./', '');
+        
+    
+        const icon = link.querySelector('.icon_sidebar, .mobile_link_icon'); 
+
+        if (currentPath.includes(linkPath)) {
+            link.classList.add('active');
+            
+            if (icon) { 
+                if (linkPath === 'summary.html') {
+                    icon.src = './assets/img/navbar_summary_white_mobile.svg';
+                } else if (linkPath === 'add_task.html') {
+                    icon.src = './assets/img/add_task_white.svg';
+                } else if (linkPath === 'board.html') {
+                    icon.src = './assets/img/navbar_board_white_mobile.svg';
+                } else if (linkPath === 'contacts.html') {
+                    icon.src = './assets/img/navbar_contacts_white_mobile.svg';
+                }
+            }
+        }
+    });
+}
 
 
 /**
