@@ -1,35 +1,38 @@
 const colors = [
-    "#ff7a00",
-    "#ff5eb3",
-    "#7357ffff",
-    "#9327ff",
-    "#00bee8",
-    "#1fd7c1",
-    "#ff745e",
-    "#ffb073ff",
-    "#fc71ff",
-    "#ffc701",
-    "#0038ff",
-    "#7Ae229",
-    "#ffe62b",
-    "#ff3d00",
-    "#ffa800", 
+  "#ff7a00",
+  "#ff5eb3",
+  "#7357ff",
+  "#9327ff",
+  "#00bee8",
+  "#1fd7c1",
+  "#ff745e",
+  "#ffb073",
+  "#fc71ff",
+  "#ffc701",
+  "#0038ff",
+  "#7Ae229",
+  "#ffe62b",
+  "#ff3d00",
+  "#ffa800", 
 ]
 
 let colorIndex = 0;
 
 // ADD TASK
-const subtaskInput = document.getElementById("subtasks");
-const subtaskList = document.getElementById("subtaskList");
-const subtaskActions = document.querySelector(".subtask_actions");
+// const subtaskInput = document.getElementById("subtasks");
+// const subtaskList = document.getElementById("subtaskList");
+// const subtaskActions = document.querySelector(".subtask_actions");
+// const subtaskInput = document.getElementById("id_subtasks_add_task");
+// const subtaskList = document.getElementById("subtask_list");
+// const subtaskActions = document.getElementById("subtask_actions");
 
-const priorities = [
-  { name: "urgent", color: "red" },
-  { name: "medium", color: "yellow" },
-  { name: "low", color: "green" },
-];
+// const priorities = [
+//   { name: "urgent", color: "red" },
+//   { name: "medium", color: "yellow" },
+//   { name: "low", color: "green" },
+// ];
 
-let selectedAssignees = [];
+// let selectedAssignees = [];
 
 // FIREBASE
 const BASE_URL = "https://join-f5da0-default-rtdb.europe-west1.firebasedatabase.app/";
