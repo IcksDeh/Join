@@ -114,5 +114,84 @@ document.addEventListener("submit", async function (event) {
   if (event.target && event.target.id === "addContactForm") {
     event.preventDefault();
     await getContactData();
+     closeAddContactDialog();
+     showToast();
   }
 });
+
+
+/**
+ * Validates the "Add Contact" form inputs and enables/disables the submit button.
+ * Checks name, email, and phone number validity.
+ *
+ * @returns {boolean} True if the form is valid, otherwise false.
+ */
+function validateAddContactForm() {
+  const name = document.getElementById('id_contact_name')?.value.trim();
+  const email = document.getElementById('id_contact_email')?.value.trim();
+  const phone = document.getElementById('id_contact_phone')?.value.trim();
+  const button = document.getElementById('createContactBtn');
+
+  if (!button) return false;
+
+  const isNameValid = name.length >= 2;
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(phone);
+
+  const isFormValid = isNameValid && isEmailValid && isPhoneValid;
+
+  button.disabled = !isFormValid;
+  return isFormValid;
+}
+
+
+/**
+ * Validates the "Edit Contact" form inputs and enables/disables the save button.
+ * Checks name, email, and phone number validity.
+ *
+ * @returns {boolean} True if the form is valid, otherwise false.
+ */
+function validateEditContactForm() {
+  const name = document.getElementById('name')?.value.trim();
+  const email = document.getElementById('email')?.value.trim();
+  const phone = document.getElementById('phone')?.value.trim();
+  const button = document.getElementById('saveContactBtn');
+
+  if (!button) return false;
+
+  const isNameValid = name.length >= 2;
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(phone);
+
+  const isFormValid = isNameValid && isEmailValid && isPhoneValid;
+
+  button.disabled = !isFormValid;
+  return isFormValid;
+}
+
+
+/**
+ * Handles form submission and runs the corresponding form validator.
+ * Prevents submission if validation fails.
+ */
+document.addEventListener('submit', function (e) {
+  const formValidators = {
+    addContactForm: validateAddContactForm,
+    editContactForm: validateEditContactForm
+  };
+
+  const validator = formValidators[e.target.id];
+
+  if (validator && !validator()) {
+    e.preventDefault();
+  }
+});
+
+
+/**
+ * Runs initial validation on page load to set correct button states.
+ */
+setTimeout(() => {
+  document.getElementById('addContactForm') && validateAddContactForm();
+  document.getElementById('editContactForm') && validateEditContactForm();
+}, 0);

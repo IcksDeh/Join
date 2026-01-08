@@ -3,22 +3,30 @@
 const subtaskInput = document.getElementById("subtasks");
 const subtaskList = document.getElementById("subtaskList");
 const subtaskActions = document.querySelector(".subtask_actions");
+// const subtaskInput = document.getElementById("id_subtasks_add_task");
+// const subtaskList = document.getElementById("subtask_list");
+// const subtaskActions = document.getElementById("subtask_actions");
 
-let editItem = null;
+const priorities = [
+  { name: "urgent", color: "red" },
+  { name: "medium", color: "yellow" },
+  { name: "low", color: "green" },
+];
+
+let selectedAssignees = [];
 
 
 // FUNCTIONS
 
-
 /**
  * Opens the "Add Task" dialog if it is not already open and loads the template.
  * setTimeout removes focus from any active element.
- * 
+ *
  * @function openAddTaskDialog
  * @returns {void} - This function does not return a value.
  */
 function openAddTaskDialog() {
-  const dialog = document.getElementById('addTaskDialog');
+  const dialog = document.getElementById("addTaskDialog");
 
   if (!dialog.open) {
     dialog.innerHTML = addTaskTemplate();
@@ -36,12 +44,12 @@ function openAddTaskDialog() {
 /**
  * Closes the "Add Task" dialog.
  * Removes its content and resets all contact input fields.
- * 
+ *
  * @function closeAddTaskDialog
  * @returns {void} - This function does not return a value.
  */
 function closeAddTaskDialog() {
-  const dialog = document.getElementById('addTaskDialog');
+  const dialog = document.getElementById("addTaskDialog");
   if (!dialog) return;
 
   dialog.close();
@@ -52,51 +60,87 @@ function closeAddTaskDialog() {
 
 
 /**
- * Sets the priority indicator and updates the corresponding button states.
- * Shows the "filled" button for the selected priority and displays the "default" buttons for all other priorities.
+ * Updates the UI to reflect the currently selected priority.
+ * Iterates over all priorities and activates the matching one.
  *
- * @param {"urgent"|"medium"|"low"} level - The priority to activate.
- * @param {Document|HTMLElement} [root=document] - Root element used for DOM queries.
- * @returns {void} - This function does not return a value; it updates the UI only.
+ * @param {string} status - The currently selected priority name.
  */
-function setPriority(level, root = document) {
-  const priorities = ["urgent", "medium", "low"];
-
-  const toggle = (prio, active) => {
-    const def = root.querySelector(`#${prio}_btn_default`);
-    const fill = root.querySelector(`#${prio}_btn_filled`);
-    if (!def || !fill) return;
-
-    def.classList.toggle("d_none", active);
-    fill.classList.toggle("d_none", !active);
-  };
-
-  priorities.forEach(prio => toggle(prio, prio === level));
+function checkPriority(status) {
+  priorities.forEach(({ name, color }) => {
+    updatePriorityButton(name, name === status, color);
+  });
 }
 
 
 /**
- * Calls setPriority("medium") and displays it as "default" button after the DOM is loaded.
+ * Updates the appearance of a priority button and its icon.
+ * Toggles active/inactive styles and switches the icon based on state.
+ *
+ * @param {string} priority - The priority name (e.g. "low", "medium", "urgent").
+ * @param {boolean} isActive - Whether the priority is currently active.
+ * @param {string} color - The default color used for the inactive icon.
+ */
+function updatePriorityButton(priority, isActive, color) {
+  const btn = document.getElementById(`id_${priority}_btn`);
+  const icon = document.getElementById(`id_icon_${priority}_task`);
+
+  btn.classList.toggle(`${priority}_btn_filled`, isActive);
+  btn.classList.toggle(`${priority}_btn_default`, !isActive);
+
+  icon.src = isActive
+    ? `./assets/img/prio_${priority}_white.svg`
+    : `./assets/img/prio_${priority}_${color}.svg`;
+}
+
+
+/**
+ * Calls checkPriority("medium") and displays it as "default" button after the DOM is loaded.
  *
  * @event DOMContentLoaded
  * @returns {void} - This event handler does not return a value.
  */
 document.addEventListener("DOMContentLoaded", () => {
-  setPriority("medium");
+  checkPriority("medium");
 });
 
 
 /**
- * Toggles the visibility of the contacts to assign.
+ * Shows or hides a required field message and toggles an error class based on whether the input is empty and focused.
  *
- * @function toggleContactsList
- * @returns {void} - This function does not return a value. 
+ * @param {HTMLInputElement} input - The input field to validate.
  */
-function toggleContactsList() {
-  let list = document.getElementById("contacts_list");
-    
+function handleRequiredMessage(input) {
+  const message = document.querySelector(`.required_message[data-for="${input.id}"]`);
+
+  if (!message) return;
+
+  if (input === document.activeElement && input.value.trim() === "") {
+    message.style.display = "block";
+    if (input.classList.contains("validate-required")) {
+      input.classList.add("error");
+    }
+  } else {
+    message.style.display = "none";
+    input.classList.remove("error");
+  }
+}
+
+
+/**
+ * Toggles the visibility of a task-related list element.
+ * Shows or hides the corresponding list and triggers additional checks when the list is opened.
+ *
+ * @function toggleListTasks
+ * @param {string} element - The base name of the list to toggle.
+ * @returns {void} - This function does not return a value.
+ */
+function toggleListTasks(element) {
+  let list = document.getElementById(element + "_list_task");
+
   if (list.style.display === "none") {
     list.style.display = "block";
+    checkContactList(element);
+    syncDropdownCheckboxes();
   } else {
     list.style.display = "none";
   }
@@ -104,18 +148,23 @@ function toggleContactsList() {
 
 
 /**
- * Toggles the visibility of the category dropdown list.
+ * Checks whether the contact list is already loaded and loads it if necessary.
+ * If the contacts are not yet available, data is fetched from Firebase before displaying the contacts in the task view.
  *
- * @function toggleCategoryList
- * @returns {void} - This function does not return a value. 
+ * @async
+ * @function checkContactList
+ * @param {string} element - The element identifier used to determine which list to check.
+ * @returns {Promise<void>} - A promise that resolves when the contact list has been checked and rendered.
  */
-function toggleCategoryList() {
-  let list = document.getElementById("category_list");
+async function checkContactList(element){
+  if (element == "contacts"){
+    if (contactsList.length > 0) {
+        showContactsInTasks(); 
+        return;
+    }
     
-  if (list.style.display === "none") {
-    list.style.display = "block";
-  } else {
-    list.style.display = "none";
+    await loadFirebaseData("contacts", contacts);
+    showContactsInTasks();
   }
 }
 
@@ -128,37 +177,42 @@ function toggleCategoryList() {
  */
 function selectCategory(element) {
   document.getElementById("selected_category").innerHTML = element.innerHTML;
-  document.getElementById("category_list").style.display = "none";
+  document.getElementById("category_list_task").style.display = "none";
 }
 
 
 /**
- * Collapses the contacts dropdown list if it is currently expanded.
+ * Collapses the contacts and category dropdown lists if it is currently expanded.
  *
- * @function closeContactsList
+ * @function closeDropdownLists
  * @returns {void} - This function does not return a value.
  */
-function closeContactsList() {
-  const contactsList = document.getElementById("contacts_list");
-
+function closeDropdownLists() {
+  const contactsList = document.getElementById("contacts_list_task");
   if (contactsList) {
     contactsList.style.display = "none";
+  }
+
+  const categoryList = document.getElementById("category_list_task");
+  if (categoryList) {
+    categoryList.style.display = "none";
   }
 }
 
 
 /**
- * Clears specific input fields and resets the priority to "Medium".
+ * Clears specific input fields and resets the priority to "medium".
  * After clearing the fields, the function automatically sets the priority button to "default".
- * 
+ *
  * @function clearInputs
  * @returns {void} - This function does not return a value.
  */
 function clearInputs() {
-  const inputIds = ["title", "description", "due_date", "subtasks"];
+  clearSelectedAssignees();
 
-  inputIds.forEach(id => {
-    const element = document.getElementById(id);
+  const inputIds = ["title", "description", "due_date", "subtasks"];
+  inputIds.forEach((id) => {
+    const element = document.getElementById("id_" + id + "_add_task");
     if (element) {
       if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
         element.value = "";
@@ -169,26 +223,98 @@ function clearInputs() {
   });
 
   document.getElementById("selected_category").innerHTML = "Select task category";
-  closeContactsList()
+  document.getElementById("selected_contacts").innerHTML = "Select contacts to assign";
+  document.getElementById("assigned_contacts_row").innerHTML = "";
+  closeDropdownLists();
   subtaskList.innerHTML = "";
-  setPriority("medium");
+  checkPriority("medium");
+  cancelSubtask();
 }
 
 
 /**
- * Toggles the checked state of the checkbox icon in 'Assigned to' dropdown list.
+ * Toggles the selection state of a contact checkbox in the UI.
+ * Updates the `selectedAssignees` array and refreshes the assigned contacts display.
  *
- * @param {HTMLImageElement} img
- * The image element representing the checkbox icon.
- * Must contain a 'data-checked' attribute ('true' or 'false').
+ * @param {HTMLImageElement} imgElement - The checkbox image element to toggle.
+ * @param {number} index - The index of the contact in the `contactsList` array.
  */
-function toggleCheckedIcon(img) {
-  const checked = img.dataset.checked === "true";
-  img.dataset.checked = !checked;
+function toggleCheckedIcon(imgElement, index) {
+  const contact = contactsList[index];
+  const contactId = contact.id;
+  const isChecked = imgElement.dataset.checked === "true";
 
-  img.src = checked
-    ? "./assets/img/checkbox_unchecked_contact_form.svg"
-    : "./assets/img/checkbox_checked_contact_form.svg";
+  if (isChecked) {
+    selectedAssignees = selectedAssignees.filter(c => c.id !== contactId);
+    imgElement.dataset.checked = "false";
+    imgElement.src = "./assets/img/checkbox_unchecked.svg";
+  } else {
+    if (!selectedAssignees.some(c => c.id === contactId)) {
+      selectedAssignees.push(contact);
+    }
+    imgElement.dataset.checked = "true";
+    imgElement.src = "./assets/img/checkbox_checked.svg";
+  }
+
+  renderAssignedContacts();
+}
+
+
+/**
+ * Renders all selected assignees into the assigned contacts container.
+ * Each assignee is displayed with an initial and a background color corresponding to their profile.
+ */
+function renderAssignedContacts() {
+  const container = document.getElementById("assigned_contacts_row");
+  container.innerHTML = "";
+
+  selectedAssignees.forEach(contact => {
+    container.innerHTML += `
+      <div class="contact_initial_circle assigned_contact"
+        data-assignee-id="${contact.id}"
+        title="${contact.contact.name}"
+        style="background-color:${contact.contact.color}">
+        ${contact.contact.initial}
+      </div>
+    `;
+  });
+}
+
+
+/**
+ * Synchronizes the checkbox icons in the dropdown list with the current selection.
+ * Ensures that each dropdown item accurately reflects whether the corresponding contact is selected.
+ */
+function syncDropdownCheckboxes() {
+  document.querySelectorAll(".dropdown_item_user").forEach(item => {
+    const id = item.dataset.assigneeId;
+    const checkbox = item.querySelector(".checkbox_icon");
+
+    const checked = selectedAssignees.some(c => c.id == id);
+    checkbox.dataset.checked = checked;
+    checkbox.src = checked
+      ? "./assets/img/checkbox_checked.svg"
+      : "./assets/img/checkbox_unchecked.svg";
+  });
+}
+
+
+/**
+ * Clears all selected assignees and resets their checkbox icons in the UI.
+ * Empties the `selectedAssignees` array, unchecks all checkboxes, and clears the assigned contacts display.
+ */
+function clearSelectedAssignees() {
+  selectedAssignees = [];
+
+  document.querySelectorAll(".checkbox_icon").forEach((checkbox) => {
+    checkbox.dataset.checked = "false";
+    checkbox.src = "./assets/img/checkbox_unchecked.svg";
+  });
+
+  const assignedContainer = document.getElementById("assigned_contacts_row");
+  if (assignedContainer) {
+    assignedContainer.innerHTML = "";
+  }
 }
 
 
@@ -213,47 +339,25 @@ function showSubtaskActions() {
 function cancelSubtask() {
   subtaskInput.value = "";
   subtaskActions.style.display = "none";
-  // editItem = null;
   showSubtaskActions();
 }
 
 
 /**
  * Adds a new subtask to the subtask list.
- * Reads the value from the input, creates a list item with edit and delete buttons, and appends it to the subtask list.
+ * Reads the trimmed value from the subtask input field, creates a new list item using the subtask template, and appends it to the subtask list.
+ * After adding the subtask, the input field and related UI elements are reset.
+ *
+ * @function addSubtask
+ * @returns {void} This function does not return a value.
  */
 function addSubtask() {
   const value = subtaskInput.value.trim();
   if (!value) return;
 
-  const li = document.createElement('li');
-  li.className = 'list_element';
-  li.innerHTML = `
-    <div class="list_row">
-      <span class="subtask_text new_subtask">${value}</span>
-      <div class="list_icon_element">
-        <button class="subtask_btn edit_subtask" type="button" onclick="editSubtask(this)">
-          <img class="edit_subtask" src="./assets/img/edit.svg" alt="Edit Subtask">
-        </button>
-        <button class="subtask_btn" type="button" onclick="this.closest('li').remove()">
-          <img class="delete_subtask" src="./assets/img/delete.svg" alt="Delete Subtask">
-        </button>
-      </div>
-    </div>
-
-    <div class="edit_container" style="display:none;">
-      <input type="text" class="subtask_edit_input styled_input" value="${value}" oninput="limitInputLength(this, 25)">
-      <hr class="subtask_edit_hr">
-      <div class="subtask_edit_area">
-        <button class="subtask_edit_btn" type="button" onclick="cancelEdit(this)">
-          <img class="cancel_subtask_edit" src="./assets/img/delete.svg" alt="Delete Subtask">
-        </button>
-        <button class="subtask_edit_btn" type="button" onclick="saveEdit(this)">
-          <img class="submit_subtask" src="./assets/img/check.svg" alt="Submit Edited Version">
-        </button>
-      </div>
-    </div>
-  `;
+  const li = document.createElement("li");
+  li.className = "list_element";
+  li.innerHTML = listSubtaskTemplate(value);
   subtaskList.appendChild(li);
   subtaskInput.value = "";
   cancelSubtask();
@@ -262,37 +366,99 @@ function addSubtask() {
 
 /**
  * Enables edit mode for a subtask.
- * 
+ *
  * @param {HTMLElement} btn - The button that triggers editing.
  */
 function editSubtask(btn) {
-  const li = btn.closest('li');
-  li.querySelector('.edit_container').style.display = 'block';
-  li.querySelector('.list_row').style.display = 'none';
+  const li = btn.closest("li");
+  li.querySelector(".edit_container").style.display = "block";
+  li.querySelector(".list_row").style.display = "none";
 }
 
 
 /**
  * Saves the changes made to a subtask.
- * 
+ *
  * @param {HTMLElement} btn - The button that triggers saving.
  */
 function saveEdit(btn) {
-  const li = btn.closest('li');
-  const newValue = li.querySelector('.subtask_edit_input').value;
-  li.querySelector('.subtask_text').innerText = newValue;
-  li.querySelector('.edit_container').style.display = 'none';
-  li.querySelector('.list_row').style.display = 'flex';
+  const li = btn.closest("li");
+  const newValue = li.querySelector(".subtask_edit_input").value;
+  li.querySelector(".subtask_text").innerText = newValue;
+  li.querySelector(".edit_container").style.display = "none";
+  li.querySelector(".list_row").style.display = "flex";
 }
 
 
 /**
  * Cancels the edit mode and restores the original subtask display.
- * 
+ *
  * @param {HTMLElement} btn - The button that triggers canceling.
  */
 function cancelEdit(btn) {
-  const li = btn.closest('li');
-  li.querySelector('.edit_container').style.display = 'none';
-  li.querySelector('.list_row').style.display = 'flex';
+  const li = btn.closest("li");
+  li.querySelector(".edit_container").style.display = "none";
+  li.querySelector(".list_row").style.display = "flex";
 }
+
+
+/**
+ * Listens for the "Enter" key on the subtask input field.
+ * Prevents the default form submission behavior and calls `addSubtask()` when Enter is pressed.
+ *
+ * @param {KeyboardEvent} event - The keyboard event triggered on keydown.
+ */
+subtaskInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    addSubtask();
+  }
+});
+
+
+/**
+ * Renders the contact list in the task assignment dropdown.
+ * Clears the current list and dynamically creates list items for each contact, including their checked state and corresponding icon.
+ *
+ * @function showContactsInTasks
+ * @returns {void} - This function does not return a value.
+ */
+function showContactsInTasks() {
+  let assigneeList = document.getElementById("contacts_list_task");
+  assigneeList.innerHTML = "";
+
+  for (let index = 0; index < contactsList.length; index++) {
+    console.log(contactsList[index]);
+    const isChecked = contactsList[index].isChecked === true;
+    const checkImg = isChecked
+      ? "./assets/img/checkbox_checked_contact_form.svg"
+      : "./assets/img/checkbox_unchecked_contact_form.svg";
+
+    const checkState = isChecked ? "true" : "false";
+
+    const listElement = document.createElement("li");
+    listElement.className = "dropdown_item";
+
+    listElement.innerHTML = listAssigneeTemplate(
+      contactsList, index, checkImg, checkState
+    );
+    assigneeList.appendChild(listElement);
+  }
+}
+
+
+/**
+ * Handles the click event for the "Create Task" button.
+ * Prevents the default form submission behavior and triggers the task creation process by collecting and processing task data.
+ *
+ * @event click
+ * @listens HTMLButtonElement#click
+ * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
+ */
+document
+  .getElementById("id_btn_create_task")
+  .addEventListener("click", async function (event) {
+    event.preventDefault();
+    await getAddTaskData();
+    showToast()
+  });

@@ -96,5 +96,11 @@
 }
 
 .link_active.active {
-    background-color: #091931; 
+  background-color: #091931; 
+  color: white;
+}
+@media(max-width: 975px) {
+  .style_login_icon_text {
+    padding-left: 42px;
+  }
 }

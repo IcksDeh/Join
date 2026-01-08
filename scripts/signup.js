@@ -1,9 +1,3 @@
-const ICONS = {
-  LOCK: './assets/img/lock_icon.svg',
-  OFF: './assets/img/visibility_off.svg',
-  ON: './assets/img/visibility.svg'
-};
-
 function goToSignup() { window.location.href = "sign_up.html"; }
 function guestLogin() { window.location.href = "summary.html"; }
 
@@ -141,25 +135,15 @@ document.getElementById('signup_btn').addEventListener("click", async function(e
     }
 )
 
-async function getUserData(){
-  const elements = getElementsUser();
- 
-  let userName = elements.name.value;
-  let userEmail = elements.email.value;
-  let userPassword = elements.pass.value;
-  let userColor = getRandomColor();
-  await switchUserData(userName, userEmail, userColor, elements, userPassword);
-  await switchContactsData(userName, userEmail, userColor);
-}
-
 
   // sinnvoll zusammenfassen? 
-  async function switchUserData(userName, userEmail, userColor, elements, userPassword){
+  async function switchUserData(userName, userEmail, userColor, elements, userPassword, userInitials){
    let userData = {
         "name" : userName,
         "eMail" : userEmail,
         "password" : userPassword,
         "color" : userColor,
+        "initial": userInitials
         }   
     await putToStorage("user", userData, elements);
 }

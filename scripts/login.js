@@ -6,15 +6,25 @@ function goToSignup() {
 }
 
 function guestLogin() {
-  window.location.href = "summary.html";
+    let guestUser = {
+        name: "Guest",
+        email: "guest@guest.com",
+        initials: "G",
+
+    };
+    
+    // Αποθήκευση στο localStorage ώστε οι συναρτήσεις load... να τον βλέπουν
+    localStorage.setItem("activeUser", JSON.stringify(guestUser));
+    
+    window.location.href = "summary.html";
 }
 
 // ----------------------
 // Password Icon Paths
 // ----------------------
-const lockIconPath = './assets/img/lock_icon.svg';
-const noVisibilityIconPath = './assets/img/visibility_off.svg';
-const visibilityIconPath = './assets/img/visibility.svg';
+const lockIconPath = "./assets/img/lock_icon.svg";
+const noVisibilityIconPath = "./assets/img/visibility_off.svg";
+const visibilityIconPath = "./assets/img/visibility.svg";
 
 // ----------------------
 // Helper 1: Manages visibility toggling (Click Event)
@@ -23,11 +33,11 @@ function toggleVisibilityState(passwordInput, toggleIcon) {
   // If the field is empty, do nothing
   if (passwordInput.value.length === 0) return;
 
-  if (passwordInput.type === 'password') {
-    passwordInput.type = 'text';
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
     toggleIcon.src = visibilityIconPath;
   } else {
-    passwordInput.type = 'password';
+    passwordInput.type = "password";
     toggleIcon.src = noVisibilityIconPath;
   }
 }
@@ -39,18 +49,18 @@ function handlePasswordInput(passwordInput, toggleIcon) {
   if (passwordInput.value.length > 0) {
     // If the user starts typing and the icon is currently the 'lock', change it to the 'eye'
     // We check the src string to detect the state instead of using a 'hasTyped' variable
-    if (toggleIcon.src.includes('lock_icon')) {
+    if (toggleIcon.src.includes("lock_icon")) {
       toggleIcon.src = noVisibilityIconPath;
-      passwordInput.type = 'password';
+      passwordInput.type = "password";
     }
   } else {
     // If the field becomes empty, revert to the lock icon
     toggleIcon.src = lockIconPath;
-    passwordInput.type = 'password';
+    passwordInput.type = "password";
   }
-  
+
   // Update the signup button state (checking if the function exists first)
-  if (typeof updateSignupButtonState === 'function') {
+  if (typeof updateSignupButtonState === "function") {
     updateSignupButtonState();
   }
 }
@@ -65,17 +75,143 @@ function setupPasswordToggle(passwordId, toggleIconId) {
   if (!passwordInput || !toggleIcon) return;
 
   // Bind Input Event
-  passwordInput.addEventListener('input', () => {
+  passwordInput.addEventListener("input", () => {
     handlePasswordInput(passwordInput, toggleIcon);
   });
 
   // Bind Click Event
-  toggleIcon.addEventListener('click', (event) => {
+  toggleIcon.addEventListener("click", (event) => {
     event.preventDefault();
     toggleVisibilityState(passwordInput, toggleIcon);
   });
 }
 
 // Initialize password toggles
-setupPasswordToggle('auth_password_input', 'toggle_password_icon');
-setupPasswordToggle('auth_confirm_password_input', 'toggle_confirm_password_icon');
+setupPasswordToggle("auth_password_input", "toggle_password_icon");
+setupPasswordToggle(
+  "auth_confirm_password_input",
+  "toggle_confirm_password_icon"
+);
+
+/**
+ * Main Login Function - Coordinator
+ */
+async function login() {
+  let { email, password } = getLoginInputs();
+
+  if (!email || !password) {
+     handleLoginFail();
+    return;
+  }
+
+  try {
+    await processLogin(email, password);
+  } catch (error) {
+    console.error("An error occurred during login.", error);
+  }
+}
+
+/**
+ * Orchestrates the fetch and check logic
+ */
+async function processLogin(email, password) {
+  let usersResponse = await fetchUsers();
+
+  if (!usersResponse) {
+    console.log("Database error: No users found.");
+    return;
+  }
+
+  let user = findUserByCredentials(usersResponse, email, password);
+
+  if (user) {
+    handleLoginSuccess(user);
+  } else {
+    handleLoginFail();
+  }
+}
+
+/**
+ * Retrieves values from input fields
+ */
+function getLoginInputs() {
+  return {
+    email: document.getElementById("auth_input_mail").value,
+    password: document.getElementById("auth_password_input").value,
+  };
+}
+
+/**
+ * Fetches user data from Firebase
+ */
+async function fetchUsers() {
+  let response = await fetch(BASE_URL + "user.json");
+  return await response.json();
+}
+
+/**
+ * Searches for a matching user in the database object
+ */
+function findUserByCredentials(usersResponse, email, password) {
+  for (let key in usersResponse) {
+    let user = usersResponse[key];
+    // Note: Using 'eMail' as per your database structure
+    if (user.eMail === email && user.password === password) {
+      return user;
+    }
+  }
+  return null;
+}
+
+/**
+ * Handles successful login: Saves to storage and redirects
+ */
+function handleLoginSuccess(user) {
+  let activeUser = {
+    name: user.name,
+    email: user.eMail,
+    initials: getInitials(user.name),
+    color: user.color,
+  };
+
+  localStorage.setItem("activeUser", JSON.stringify(activeUser));
+  window.location.href = "summary.html";
+}
+
+/**
+ * Handles failed login (wrong credentials)
+ */
+function handleLoginFail() {
+  let emailInput = document.getElementById("auth_input_mail");
+  let passwordInput = document.getElementById("auth_password_input");
+  let errorMessage = document.getElementById("login_error_message");
+  emailInput.classList.add("input-error");
+  passwordInput.classList.add("input-error");
+  errorMessage.style.display = "block";
+}
+
+function resetLoginError() {
+  let emailInput = document.getElementById("auth_input_mail");
+  let passwordInput = document.getElementById("auth_password_input");
+  let errorMessage = document.getElementById("login_error_message");
+
+  if (
+    emailInput.classList.contains("input-error") ||
+    passwordInput.classList.contains("input-error")
+  ) {
+    emailInput.classList.remove("input-error");
+    passwordInput.classList.remove("input-error");
+    errorMessage.style.display = "none";
+  }
+}
+
+// Function to get initials (e.g., Anja -> A, Sofia Muller -> SM)
+function getInitials(name) {
+  if (!name) return "";
+  let parts = name.split(" ");
+  if (parts.length === 1) {
+    return parts[0].charAt(0).toUpperCase();
+  } else {
+    return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+  }
+}

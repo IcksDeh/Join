@@ -13,21 +13,21 @@ function addContactTemplate(){
                         <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddContactDialog()" role="button" aria-label="Close Dialog">
                     </div>
                     <div class="right_container_wrapper">
-                        <div>
+                        <div class="avatar-wrapper">
                             <img class="contact_user_icon" src="./assets/img/person_grey_circle.svg" alt="User Icon">
                         </div>
                         <div>
                             <div class="input_fields_container">
-                                <input type="text" id="id_contact_name" class="contact_input styled_input" placeholder="Name" oninput="limitInputLength(this, 25)"><br>
-                                <input type="text" id="id_contact_email" class="contact_input styled_input" placeholder="Email" oninput="limitInputLength(this, 25)"><br>
-                                <input type="text" id="id_contact_phone" class="contact_input styled_input" placeholder="Phone" oninput="limitInputLength(this, 25)"><br>
+                                <input type="text" id="id_contact_name" class="contact_input styled_input" placeholder="Name" required oninput="limitInputLength(this, 20); validateAddContactForm()"><br>
+                                <input type="email" id="id_contact_email" class="contact_input styled_input" placeholder="Email" required oninput="limitInputLength(this, 20); validateAddContactForm()"><br>
+                                <input type="tel" id="id_contact_phone" class="contact_input styled_input" placeholder="Phone" required oninput="limitInputLength(this, 17); validateAddContactForm()"><br>
                             </div>
                             <div class="contact_btn_area">
-                                <button type="button" class="outline_btn" onclick="closeAddContactDialog()">Cancel
+                                <button type="button" class="outline_btn show_btn" onclick="closeAddContactDialog()">Cancel
                                     <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                     <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                                 </button>
-                                <button type="submit" id="createContactBtn" class="filled_btn">Create Contact<img src="./assets/img/check_white.svg" alt="Create Task"></button>
+                                <button type="submit" id="createContactBtn" class="filled_btn" disabled>Create Contact<img src="./assets/img/check_white.svg" alt="Create Contact"></button>
                             </div>
                         </div>
                     </div>    
@@ -52,21 +52,21 @@ function editContactTemplate(){
                         <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeEditContactDialog()" role="button" aria-label="Close Dialog">
                     </div>
                     <div class="right_container_wrapper">
-                        <div>
+                        <div class="avatar-wrapper">
                             <div class="initals_big">AM</div>
                         </div>
                         <div>
                             <div class="input_fields_container">
-                                <input type="text" id="name" class="user_input styled_input" placeholder="Anton Mayer" oninput="limitInputLength(this, 25)"><br>
-                                <input type="text" id="email" class="user_input styled_input" placeholder="antonm@gmail.com" oninput="limitInputLength(this, 25)"><br>
-                                <input type="text" id="phone" class="user_input styled_input" placeholder="+49 1111 111 111 11" oninput="limitInputLength(this, 25)"><br>
+                                <input type="text" id="name" class="user_input styled_input" placeholder="Anton Mayer" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
+                                <input type="email" id="email" class="user_input styled_input" placeholder="antonm@gmail.com" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
+                                <input type="tel" id="phone" class="user_input styled_input" placeholder="+49 111 111 11 11" required oninput="limitInputLength(this, 17); validateEditContactForm()"><br>
                             </div>
                             <div class="contact_btn_area">
                                 <button type="button" class="outline_btn" onclick="clearContactInputs()">Delete
                                     <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                     <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                                 </button>
-                                <button type="submit" class="filled_btn">Save<img src="./assets/img/check_white.svg" alt="Create Task"></button>
+                                <button type="submit" id="saveContactBtn" class="filled_btn" disabled>Save<img src="./assets/img/check_white.svg" alt="Save Contact"></button>
                             </div>
                         </div>
                     </div>   

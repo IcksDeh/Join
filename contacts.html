@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/standard.css" />
     <link rel="stylesheet" href="./styles/sidebar.css">
-    <link rel="stylesheet" href="./styles/mobile_sidebar.css">
     <link rel="stylesheet" href="./styles/sidebar_nav_main.css">
     <link rel="stylesheet" href="./styles/navbar.css">
     <link rel="stylesheet" href="./styles/contact.css">
@@ -18,6 +17,7 @@
     <link rel="stylesheet" href="./styles/add_edit_contact_overlay.css" />
     <link rel="stylesheet" href="./styles/mobile_add_edit_contact_overlay.css">
     <link rel="stylesheet" href="./styles/mobile_footer.css">
+    <link rel="stylesheet" href="./styles/toastmessage.css">
 
 
     <script src="./script.js" defer></script>
@@ -28,6 +28,8 @@
     <script src="./scripts/add_edit_contact_overlay.js" defer></script>
     <script src="./scripts/contacts.js" defer></script>
     <script src="./scripts/firebase.js" defer></script>
+    <script src="./scripts/get_data.js" defer></script>
+    <script src="./scripts/variables.js" defer></script>
     <title>Contacts</title>
 </head>
 
@@ -68,6 +70,8 @@
             <dialog class="dialog_contact_container" id="editContactDialog"></dialog>
         </div>
     </div>
+
+    <div id="msgBox" class="toast-message">Contact successfully created</div>
 </body>
 
 </html>

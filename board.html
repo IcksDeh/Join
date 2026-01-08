@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./styles/add_task.css" />
     <link rel="stylesheet" href="./styles/add_task_overlay.css" />
     <link rel="stylesheet" href="./styles/mobile_footer.css">
-    <link rel="stylesheet" href="./styles/mobile_sidebar.css">
+    <link rel="stylesheet" href="./styles/mobile_board.css">
     <script src="./script.js" defer></script>
     <script src="./scripts/add_task.js" defer></script>
     <script src="./scripts/user_story_overlay.js" defer></script>
@@ -25,110 +25,96 @@
     <script src="./templates/summary_content.js" defer></script>
     <script src="./templates/user_story_overlay_template.js" defer></script>
     <script src="./templates/add_task_overlay_template.js" defer></script>
+    <script src="./scripts/get_data.js" defer></script>
+    <script src="./scripts/firebase.js" defer></script>
+    <script src="./scripts/board.js" defer></script>
+    <script src="./templates/board_templates.js" defer></script>
+    <script src="./scripts/variables.js" defer></script>
     <title>Board</title>
   </head>
-  <body onload="init()">
+  <body onload="init(), loadContentBoard()">
     <div class="order_sidebar_main">
-        <aside class="sidebar desktop" id="id_sidebar">    
-        </aside>
+      <aside class="sidebar desktop" id="id_sidebar">    
+      </aside>
 
-        <div class = "nav_main_content">
-            <nav class="nav_bar" id="id_navbar">
-            </nav>
+      <div class = "nav_main_content">
+        <nav class="nav_bar" id="id_navbar">
+        </nav>
 
-            <main class="margin_left margin_top content_wrapper_sidebar">
-              <section class="order_header_board">
-                <h1>Board</h1>
-                <div class="order_header_right_side">
-                  
-                  <div class="style_searchbar_board">
-                    <input class="style_input_searchbar" type="text" placeholder="Find Task">
-                    <div class="border_searchbar"></div>
-                    <div class="style_search_icon_box">
-                      <img class="style_search_icon" src="./assets/img/search.svg" alt="">
-                    </div>
-                  </div>
-                  <button class="btn_add_task_board button" onclick="openAddTaskDialog()">Add Task<img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
+        <main class="margin_left margin_top content_wrapper_sidebar">
+          <section class="order_header_board">
+            <div class="board_mobile_header">
+              <h1>Board</h1>
+              <button class="btn_add_task_board_mobile button" onclick="openAddTaskDialog()"><img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
+            </div>
+            <div class="order_header_right_side">
+              <div class="style_searchbar_board">
+                <input class="style_input_searchbar" type="text" placeholder="Find Task">
+                <div class="border_searchbar"></div>
+                <div class="style_search_icon_box">
+                  <img class="style_search_icon" src="./assets/img/search.svg" alt="">
                 </div>
-              </section> 
-              <section class="order_board_sections">
-                <!-- board -->
-                  <div class="order_elements_in_section">
-                    <div class="order_elements_in_section_header">
-                      <p class="text_section">To Do</p>
-                      <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
-                    </div>
-                    <div class="width_section">
-                      <div class="no_task_availabe">
-                        <p>No tasks in To Do</p>
-                      </div>
-                    </div>
-                  </div>
+              </div>
+              <button class="btn_add_task_board button" onclick="openAddTaskDialog()">Add Task<img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
+            </div>
+          </section> 
 
-                  <div class="order_elements_in_section">
-                    <div class="order_elements_in_section_header">
-                      <p class="text_section">In Progress</p>
-                      <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
-                    </div>
-                    <div class="width_section">
-                      <!-- Task_card -->
-                      <div class="style_task_card" onclick="openUserStoryDialog()">
-                        <div class="label_task_card">
-                            <p class="text_label_task_card">User Story</p>
-                        </div>
-                        <p class="style_text_titel_card"> Hier steht der Titel des Tickets in fett gedruckt</p>
-                        <p class="style_text_description_card">Anschließend ist die Description. Maximal 2-zeilig...</p>
-                        <div class="order_progressbar_counter">
-                          <div class="style_progress_bar"></div>
-                          <div class="order_counter_progress">
-                            <p>1</p>
-                            <p>/</p>
-                            <p>2</p>
-                            <p>Subtasks</p>                      
-                          </div>
-                        </div>
-                        <div class="order_elements_user_icon_priolable"> 
-                          <div class="order_user_icons_task_card">
-                            <div class="user_circle_task_card" style="background-color: aqua;">AM</div>
-                            <div class="user_circle_task_card" style="background-color: blueviolet ;">KK</div>
-                            <div class="user_circle_task_card" style="background-color: chartreuse;">NP</div>
-                            <div class="user_circle_task_card" style="background-color: coral;">T</div>
-                          </div>
-                          <img src="./assets/img/prio_medium_yellow.svg" alt="">
-                        </div>
-                      </div>                    
-                      <!-- End Task Card -->
-                    </div>                                   
-                  </div> 
+          <section class="order_board_sections">
+            <!-- Board -->
+            <!-- To Do -->
+            <div class="order_elements_in_section">
+              <div class="order_elements_in_section_header">
+                <p class="text_section">To Do</p>
+                <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
+              </div>
+              <div class="width_section">
+                <div class="no_task_available" id="board_column_todo" data-initialized = "false">
+                  <p>No tasks in To Do</p>
+                </div>
+              </div>
+            </div>
+            <!-- In Progress-->
+            <div class="order_elements_in_section">
+              <div class="order_elements_in_section_header">
+                <p class="text_section">In Progress</p>
+                <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
+              </div>
+              <div class="width_section">
+                <div class="no_task_available" id="board_column_inProgress" data-initialized = "false">
+                  <p>No tasks in Progress</p>
+                </div>
+              </div>                                   
+            </div> 
+            <!-- Await Feedback -->
+            <div class="order_elements_in_section">
+              <div class="order_elements_in_section_header">
+                <p class="text_section">Await Feedback</p>
+                <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
+              </div>
+              <div class="width_section">
+                <div class="no_task_available" id="board_column_awaitFeedback" data-initialized = "false">
+                  <p>No tasks in Await Feedback</p>
+                </div>
+              </div>
+            </div>
+            <!-- Done -->
+            <div class="order_elements_in_section">
+              <p class="text_section">Done</p>
+              <div class="width_section">
+                <div class="no_task_available" id="board_column_done" data-initialized = "false">
+                  <p>No tasks in Done</p>
+                </div>  
+              </div>                           
+            </div>
+          </section>
+        </main>
+        <footer id="mobile_footer"></footer>
 
-                  <div class="order_elements_in_section">
-                    <div class="order_elements_in_section_header">
-                      <p class="text_section">Await Feedback</p>
-                      <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
-                    </div>
-                   <div class="width_section">
-                      <div class="no_task_availabe">
-                      <p>No tasks in Await Feedback</p>
-                    </div>
-                   </div>
-                    
-                  </div>
-                  <div class="order_elements_in_section">
-                    <p class="text_section">Done</p>
-                    <div class="width_section">
-                      <div class="no_task_availabe">
-                      <p>No tasks in Done</p>
-                      </div>  
-                    </div>                           
-                  </div>
-            </section>
-            </main>
-            <footer id="mobile_footer"></footer>
+        <dialog class="dialog_add_task_container" id="addTaskDialog">
 
-            <dialog class="dialog_add_task_container" id="addTaskDialog"></dialog>
-            <dialog class="dialog_user_story_container" id="userStoryDialog"></dialog>
-        </div>
+        </dialog>
+        <dialog class="dialog_user_story_container" id="userStoryDialog"></dialog>
+      </div>
     </div>
   </body>
-
 </html>

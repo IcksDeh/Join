@@ -92,14 +92,14 @@ h3 {
 /* -----------------------------
   Page Layout / Containers
 ------------------------------*/
-
-.nav_main_content {
-  height: auto;
-  overflow: visible;
-}
-
 .pp_content {
   padding-bottom: 50px;
+}
+
+@media (max-width: 975px) {
+  .design_privacy_legal {
+    width: 200px;
+  }
 }
 
 

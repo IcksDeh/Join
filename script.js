@@ -1,24 +1,3 @@
-const colors = [
-    "#ff7a00",
-    "#ff5eb3",
-    "#6e52ff",
-    "#9327ff",
-    "#00bee8",
-    "#1fd7c1",
-    "#ff745e",
-    "#ffa35e",
-    "#fc71ff",
-    "#ffc701",
-    "#0038ff",
-    "#c3ff2b",
-    "#ffe62b",
-    "#ff4646",
-    "#ffbb2b", 
-]
-
-let colorIndex = 0;
-
-
 function init() {
     loadSidebar();
     loadNavbar();
@@ -38,7 +17,13 @@ function init() {
 function loadSidebar() {
     const sidebar = document.getElementById('id_sidebar');
     sidebar.innerHTML = "";
-    sidebar.innerHTML = sidebarLoginTemplate();
+    let user = JSON.parse(localStorage.getItem('activeUser'));
+
+    if (user) {
+        sidebar.innerHTML = sidebarLoginTemplate();
+    } else {
+        sidebar.innerHTML = sidebarLogOffTemplate();
+    }
 }
 
 
@@ -51,7 +36,14 @@ function loadSidebar() {
 function loadNavbar() {
     const navbar = document.getElementById('id_navbar');
     navbar.innerHTML = "";
-    navbar.innerHTML = navbarTemplate();
+
+    let user = JSON.parse(localStorage.getItem('activeUser'));
+    
+    if (user) {
+        navbar.innerHTML = navbarTemplate(user.initials);
+    } else {
+        navbar.innerHTML = navbarLogOffTemplate();
+    }
 }
 
 
@@ -63,8 +55,17 @@ function loadNavbar() {
  */
 function loadMobileFooter() {
     const footer = document.getElementById('mobile_footer');
+    if (!footer) return;
+
     footer.innerHTML = "";
-    footer.innerHTML = mobileFooterLoginTemplate();
+    
+    let user = JSON.parse(localStorage.getItem('activeUser'));
+
+    if (user) {
+        footer.innerHTML = mobileFooterLoginTemplate();
+    } else {
+        footer.innerHTML = mobileFooterLogoffTemplate();
+    }
 }
 
 
@@ -75,9 +76,31 @@ function loadMobileFooter() {
  *  @returns {void} - This function does not return a value.
  */
 function loadSummary() {
+    let user = JSON.parse(localStorage.getItem('activeUser'));
+    let greetingText = getGreeting(); 
+    let userName = "";
+
+    if (user && user.name !== "Guest") {
+        greetingText = greetingText + ","; 
+        userName = user.name;
+    } else {
+        greetingText = greetingText + "!";
+        userName = ""; 
+    }
+
     const summaryContent = document.getElementById('id_content_summary');
-    summaryContent.innerHTML = "";
-    summaryContent.innerHTML = summaryContentTemplate();
+    summaryContent.innerHTML = summaryContentTemplate(userName, greetingText);
+}
+
+
+/**
+ *  Determines the greeting based on the current time of day.
+ */
+function getGreeting() {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+    return "Good evening";
 }
 
 
@@ -125,10 +148,10 @@ document.querySelectorAll('dialog').forEach(dialog => {
 
 
 /**
- * Navigates to the previously visited page in the browser history.
+ *  Navigates to the previously visited page in the browser history.
  *
- * @function goBack
- * @returns {void} - This function does not return a value.
+ *  @function goBack
+ *  @returns {void} - This function does not return a value.
  */
 function goBack() {
     window.history.back();
@@ -136,56 +159,71 @@ function goBack() {
 
 
 /**
- * Returns the next color from the predefined color list.
- * Cycles through the colors array sequentially and starts again from the beginning once the end is reached.
+ *  Returns the next color from the predefined color list.
+ *  Cycles through the colors array sequentially and starts again from the beginning once the end is reached.
  *
- * @function getRandomColor
- * @returns {string} - A color value from the colors array.
+ *  @function getRandomColor
+ *  @returns {string} - A color value from the colors array.
  */
 function getRandomColor(){
-    const color = colors[colorIndex];
-    colorIndex = (colorIndex + 1) % colors.length;
-    return color;
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
 }
 
 
 /**
- *  Initializes the due date picker with minimum and maximum selectable dates.
- *  Sets the minimum date to today and the maximum date to five years from today once the DOM content has fully loaded.
- *
+ *  Ensures that a date input always has the year 2026, while allowing free selection of month and day.
+ * 
  *  @event DOMContentLoaded
  *  @returns {void} - This handler does not return a value.
  */
 window.addEventListener('DOMContentLoaded', () => {
-    const dueDateInput = document.getElementById('due_date');
+    const dueDateInput = document.getElementById('id_due_date_add_task');
     if (!dueDateInput) return;
 
-    const today = new Date();
-    const isoToday = today.toISOString().split('T')[0];
+    dueDateInput.addEventListener('input', () => {
+        const value = dueDateInput.value;
+        if (!value) return;
 
-    const maxDate = new Date();
-    maxDate.setFullYear(today.getFullYear() + 5);
-
-    dueDateInput.min = isoToday;
-    dueDateInput.max = maxDate.toISOString().split('T')[0];
+        const parts = value.split('-');
+        if (parts.length === 3 && parts[0] !== '2026') {
+            parts[0] = '2026';
+            dueDateInput.value = parts.join('-');
+        }
+    });
 });
 
 
 /**
- *  Highlights the active sidebar or navbar link based on the current URL.
- *  Compares each link's href with the current window location and adds the "active" class to the matching link.
- * 
- *  @function highlightActiveLink
- *  @returns {void} - This function does not return a value.
+ * Highlights the active sidebar link based on the current page path.
+ *
+ * @function highlightActiveLink
  */
 function highlightActiveLink() {
     const links = document.querySelectorAll('.link_active');
     const currentPath = window.location.pathname;
 
     links.forEach(link => {
+   
         const linkPath = link.getAttribute('href').replace('./', '');
+        
+    
+        const icon = link.querySelector('.icon_sidebar, .mobile_link_icon'); 
+
         if (currentPath.includes(linkPath)) {
             link.classList.add('active');
+            
+            if (icon) { 
+                if (linkPath === 'summary.html') {
+                    icon.src = './assets/img/navbar_summary_white_mobile.svg';
+                } else if (linkPath === 'add_task.html') {
+                    icon.src = './assets/img/add_task_white.svg';
+                } else if (linkPath === 'board.html') {
+                    icon.src = './assets/img/navbar_board_white_mobile.svg';
+                } else if (linkPath === 'contacts.html') {
+                    icon.src = './assets/img/navbar_contacts_white_mobile.svg';
+                }
+            }
         }
     });
 }
@@ -204,7 +242,7 @@ function showToast() {
     toast.classList.add("show");
     setTimeout(function() {
         toast.classList.remove("show");
-    }, 800);
+    }, 1400);
 }
 
 
@@ -219,3 +257,34 @@ function limitInputLength(element, maxLength) {
         element.value = element.value.slice(0, maxLength);
     }
 }
+
+
+/**
+ *  Redirects the user to the board page.
+ *
+ *  @function goToBoardPage
+ *  @returns {void} - This function does not return a value.
+ */
+function goToBoardPage() {
+    window.location.href = "board.html";
+}
+
+
+/**
+ *  Closes all dropdown menus when clicking outside of them.
+ *
+ *  @event click
+ *  @param {MouseEvent} event - The click event object.
+ */
+document.addEventListener('click', function (event) {
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+        if (!dropdown.contains(event.target)) {
+            const list = dropdown.querySelector('ul');
+            if (list) {
+                list.style.display = 'none';
+            }
+        }
+    });
+});
