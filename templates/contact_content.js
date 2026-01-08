@@ -87,7 +87,10 @@ function addContactButtonTemplate() {
 function contactHeadlineTemplate() {
     return `
         <div class="contact-headline">
-            <h3>Contacts</h3>
+            <div class="headline">
+                <h3>Contacts</h3>
+                <button id="backBtn"></button>
+            </div>
             <div class="headline-seperator"></div>
             <span>Better with a team</span>
         </div>
