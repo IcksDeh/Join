@@ -99,7 +99,7 @@
   background-color: #091931; 
   color: white;
 }
-@media(max-width: 975px) {
+@media(max-width: 1300px) {
   .style_login_icon_text {
     padding-left: 42px;
   }
