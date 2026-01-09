@@ -100,15 +100,17 @@ h3 {
   .design_privacy_legal {
     width: 200px;
   }
-}
 
-
-@media (max-width:700px) {
   .legal_privacy_main {
-  margin: 100px 40px 10px 50px;
+ margin-left: 50px;
  }
 }
 
+@media (max-width:1000px) {
+ .legal_privacy_main {
+  margin-left: 30px;
+ }
+}
 
 @media (max-width:700px) {
  .legal_privacy_main {
