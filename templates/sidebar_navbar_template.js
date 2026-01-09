@@ -1,6 +1,6 @@
 function sidebarLoginTemplate() {
   return `
-        <a class="sidebar_logo_link" href="index.html"><img class = "logo_invert" src="./assets/img/logo_version2.svg" alt="Join Logo"></a>
+         <a class="sidebar_logo_link" href="index.html"><img class = "logo_invert" src="./assets/img/logo_version2.svg" alt="Join Logo"></a>
         <div class="order_selection_privacy_legal_sidebar">
             <div class="sidebar_selection">
                 <a class="order_icon_selection link_active" href="./summary.html">
@@ -48,7 +48,7 @@ function sidebarLogOffTemplate() {
 function navbarTemplate(userInitials) {
   return `
         <div class="content_wrapper order_content_navbar">  
-            <a href="index.html"><img class="mobile_logo" id="header_logo" src="./assets/img/logo_version_1.svg" alt="logo image"/></a>  
+            <img class="mobile_logo" id="header_logo" src="./assets/img/logo_version_1.svg" alt="logo image"/>
             <p class="text_navbar desktop">Kanban Projekt Management Tool</p>
             <div class="help_user_icon">
                 <a href="./help.html"><img class="help_icon desktop" src="./assets/img/questionmark_small.svg" alt="Help Button"></a>
@@ -68,7 +68,7 @@ function navbarTemplate(userInitials) {
 function navbarLogOffTemplate() {
   return `
         <div class="content_wrapper order_content_navbar">  
-            <a href="index.html"><img class="mobile_logo" id="header_logo" src="./assets/img/logo_version_1.svg" alt="logo image"/></a> 
+            <img class="mobile_logo" id="header_logo" src="./assets/img/logo_version_1.svg" alt="logo image"/> 
             <p class="text_navbar desktop">Kanban Projekt Management Tool</p>
             <div class="help_user_icon">
             </div>
