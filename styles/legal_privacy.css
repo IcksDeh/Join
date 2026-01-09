@@ -96,7 +96,7 @@ h3 {
   padding-bottom: 50px;
 }
 
-@media (max-width: 975px) {
+@media (max-width: 1300px) {
   .design_privacy_legal {
     width: 200px;
   }
