@@ -3,9 +3,6 @@
 const subtaskInput = document.getElementById("subtasks");
 const subtaskList = document.getElementById("subtaskList");
 const subtaskActions = document.querySelector(".subtask_actions");
-// const subtaskInput = document.getElementById("id_subtasks_add_task");
-// const subtaskList = document.getElementById("subtask_list");
-// const subtaskActions = document.getElementById("subtask_actions");
 
 const priorities = [
   { name: "urgent", color: "red" },
@@ -201,28 +198,37 @@ function closeDropdownLists() {
 
 
 /**
- * Clears specific input fields and resets the priority to "medium".
- * After clearing the fields, the function automatically sets the priority button to "default".
- *
- * @function clearInputs
- * @returns {void} - This function does not return a value.
+ * Resets all task input fields to their default state.
+ * Clears input values, removes error styles, hides required messages, and resets the selected category.
  */
-function clearInputs() {
-  clearSelectedAssignees();
-
+function resetInputFields() {
   const inputIds = ["title", "description", "due_date", "subtasks"];
   inputIds.forEach((id) => {
     const element = document.getElementById("id_" + id + "_add_task");
     if (element) {
       if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
         element.value = "";
+        element.classList.remove("error");
       } else {
         element.innerHTML = "";
       }
+      const message = document.querySelector(`.required_message[data-for="id_${id}_add_task"]`);
+      if (message) message.style.display = "none";
     }
   });
+  const categorySpan = document.getElementById("selected_category");
+  categorySpan.innerHTML = "Select task category";
+  categorySpan.style.color = "";
+}
 
-  document.getElementById("selected_category").innerHTML = "Select task category";
+
+/**
+ * Clears and resets the entire "Add Task" form.
+ * Resets input fields, clears assigned contacts and subtasks, closes dropdowns, resets priority, and cancels subtask editing.
+ */
+function clearInputs() {
+  clearSelectedAssignees();
+  resetInputFields();
   document.getElementById("selected_contacts").innerHTML = "Select contacts to assign";
   document.getElementById("assigned_contacts_row").innerHTML = "";
   closeDropdownLists();
@@ -459,6 +465,56 @@ document
   .getElementById("id_btn_create_task")
   .addEventListener("click", async function (event) {
     event.preventDefault();
-    await getAddTaskData();
-    showToast()
+    if (areRequiredFieldsFilled()) {
+      await getAddTaskData();
+      showToast();
+    } else {
+      highlightRequiredFields();
+    }
   });
+
+
+/**
+ * Checks whether all required task fields are filled.
+ * Validates title, due date, and category selection.
+ *
+ * @returns {boolean} True if all required fields are filled, otherwise false.
+ */
+function areRequiredFieldsFilled() {
+  const title = document.getElementById('id_title_add_task').value.trim();
+  const dueDate = document.getElementById('id_due_date_add_task').value.trim();
+  const category = document.getElementById('selected_category').textContent.trim();
+
+  const isTitleFilled = title.length > 0;
+  const isDueDateFilled = dueDate.length > 0;
+  const isCategoryFilled = category !== 'Select task category';
+
+  return isTitleFilled && isDueDateFilled && isCategoryFilled;
+}
+
+
+/**
+ * Highlights missing required fields in the task form.
+ * Adds error styles and displays validation messages for empty inputs and an unselected category.
+ */
+function highlightRequiredFields() {
+  const titleInput = document.getElementById('id_title_add_task');
+  const dueDateInput = document.getElementById('id_due_date_add_task');
+  const categorySpan = document.getElementById('selected_category');
+
+  titleInput.value.trim() === ""
+    ? (titleInput.classList.add('error'),
+      document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "block")
+    : (titleInput.classList.remove('error'),
+      document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "none");
+
+  dueDateInput.value.trim() === ""
+    ? (dueDateInput.classList.add('error'),
+      document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "block")
+    : (dueDateInput.classList.remove('error'),
+      document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "none");
+
+  categorySpan.textContent.trim() === "Select task category"
+    ? (categorySpan.style.color = "#FF3D00")
+    : (categorySpan.style.color = "");
+}

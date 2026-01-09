@@ -108,6 +108,11 @@
         width: 300px;
     }
 
+    .dialog_contact_container::after {
+        height: 200px;
+        width: 300px;
+    }
+
     .close_btn_container_contact_overlay {
         position: absolute;
         top: 15px;
