@@ -32,7 +32,7 @@ function openAddTaskDialog() {
     dialog.innerHTML = addTaskTemplate();
     dialog.showModal();
 
-    setPriority("medium", dialog);
+    checkPriority("medium", dialog);
 
     setTimeout(() => {
       document.activeElement?.blur();
@@ -163,7 +163,7 @@ async function checkContactList(element){
         return;
     }
     
-    await loadFirebaseData("contacts", contacts);
+    await loadFirebaseData("contacts");
     showContactsInTasks();
   }
 }

@@ -11,7 +11,7 @@
   overflow: visible;
 }
 
-@media(max-width: 975px){
+@media(max-width: 1300px){
    .sidebar{
     max-width: 200px;
    } 
