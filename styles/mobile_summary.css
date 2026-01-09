@@ -18,7 +18,7 @@
 
 }
 
-@media(max-width: 975px){
+@media(max-width: 1000px){
     .style_todo_done_box{
         max-width: 150px;
         gap: 8px;
