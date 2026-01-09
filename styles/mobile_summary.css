@@ -1,69 +1,121 @@
-@media (max-width: 1220px){
-    .order_summary_information{
-        flex-direction: column-reverse;
-        justify-content: start;
-        align-items: start;
-        margin-bottom: 30px;
-        gap: 30px;
-    }
-    .order_greeting_username{
-        margin-left: 100px;
-    }
-
-    .summary_header{
-        flex-wrap: wrap;
-        margin-bottom: 50px;
-        gap: 0;
-    }
-
-}
-
-@media(max-width: 1000px){
-    .style_todo_done_box{
-        max-width: 150px;
-        gap: 8px;
-    }
-    .box_prio_tickets{
-        max-width: 320px;
-        gap: 0;
-    }
-
-    .divider_prio_box{
-        margin: 10px;
-    }
-
-    .deadline_information{
-        text-align: center;
-        width: auto;
-    }
-
-    .counter_prio_tickets{
-        gap: 8px;
-        width: 150px;
-        margin-left: 8px;
-    }
-
-    .boxes_last_row{
-        max-width: 100px;
-    }
-
-    .order_ticket_box_below{
-        gap: 9px;
-    }
-}
-
-@media(max-width: 740px){
-  .order_greeting_username{
+@media (max-width: 1220px) {
+  .order_summary_information {
+    flex-direction: column-reverse;
+    justify-content: start;
+    align-items: start;
+    gap: 30px;
+  }
+  .order_greeting_username {
     margin-left: 50px;
+  }
+
+  .summary_header {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    gap: 0;
   }
 }
 
-@media(max-width: 650px){
-    .style_greeting_text{
-        font-size: 36px;
+@media (max-width: 1000px) {
+  .summary_header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .summary_header h1 {
+    order: 1;
+    margin-bottom: 0;
+  }
+
+  .text_header {
+    order: 2;
+  }
+
+  .divider_header {
+    order: 3;
+    border-right: none;
+    height: 0;
+    margin: 0;
+    border-bottom: 3px solid #29abe2;
+    width: 90px;
+  }
+
+  .style_todo_done_box {
+    max-width: 186px;
+    gap: 8px;
+  }
+  .box_prio_tickets {
+    max-width: 396px;
+    gap: 0;
+  }
+
+  .divider_prio_box {
+    margin: 10px;
+  }
+
+  .deadline_information {
+    text-align: center;
+    width: auto;
+  }
+
+  .counter_prio_tickets {
+    gap: 8px;
+    width: 150px;
+    margin-left: 8px;
+  }
+
+  .boxes_last_row {
+    max-width: 116px;
+
+  }
+
+  .order_ticket_box_below {
+    gap: 24px;
+  }
+  .order_greeting_username {
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 700px) {
+  .order_greeting_username {
+    margin-left: 50px;
+  }
+
+  .summary_header {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 650px) {
+  .style_greeting_text {
+    font-size: 36px;
+  }
+
+  .style_username {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 700px) {
+    .nav_main_content {
+        height: 100vh;      
+        overflow-y: auto; 
+        width: 100%;
+        display: block;     
     }
 
-    .style_username{
-        font-size: 48px ;
+    main {
+        height: auto !important; 
+        min-height: calc(100vh - 80px); 
+        padding-bottom: 120px !important; 
+    }
+
+    .order_summary_information {
+        height: auto !important;
+        overflow: visible;
+        margin-bottom: 20px;
     }
 }
