@@ -183,10 +183,11 @@
 }
 
 .style_progress_bar {
-  width: 150px;
+  width: 140px;
   height: 5px;
-  background-color: #4589ff;
+  background-color: #29abe2;
   border-radius: 20px;
+  margin-right: 10px;
 }
 
 .order_counter_progress {
@@ -204,7 +205,9 @@
   border-radius: 50%;
   font-family: "latin_400";
   margin-left: -7px;
-  border: 1px solid white;
+  border: 1.5px solid white;
+  color: white;
+  font-size: 12px;
 }
 
 .order_elements_user_icon_priolable {
