@@ -59,10 +59,10 @@ function userStoryEditTemplate(){
 }
 
 function AssigneesTaskDetailsTemplate(assignee){
-    return `<div class="contact_initial_circle" style="background-color: ${assignee.assigneeColor};">
-                    ${assignee.assigneeInitial} 
-                </div>
-            <p>${assignee.assigneeName}</p>`
+    return `
+        <div class="contact_initial_circle" style="background-color: ${assignee.assigneeColor};">${assignee.assigneeInitial}</div>
+        <p>${assignee.assigneeName}</p>
+    `
 }
 
 function subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex){
