@@ -8,9 +8,9 @@ function taskListElementTemplate(taskID, taskContent){
                         <div class="order_progressbar_counter">
                           <div class="style_progress_bar"></div>
                           <div class="order_counter_progress">
-                            <p>1</p>
+                            <p id="counterDoneSubtasks_${taskID}")></p>
                             <p>/</p>
-                            <p>2</p>
+                            <p id="counterAllSubtasks_${taskID}"></p>
                             <p>Subtasks</p>                      
                           </div>
                         </div>

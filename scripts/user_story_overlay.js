@@ -11,7 +11,6 @@
  */
 async function openUserStoryDialog(taskContent, taskID, taskIndex) {
   await loadFirebaseData("tasks");
-  console.log(taskList);
 
   // Hole die aktuelle Task aus taskList anhand der ID
  const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
@@ -112,7 +111,7 @@ function closeUserStoryDialog() {
  * The image element representing the checkbox icon.
  * Must contain a 'data-checked' attribute ('true' or 'false').
  */
-function toggleCheckedIcon(img, subtaskId, taskID, taskIndex) {
+async function toggleCheckedIcon(img, subtaskId, taskID, taskIndex) {
   const checked = img.dataset.checked === "true";
   img.dataset.checked = !checked;
 
@@ -120,7 +119,10 @@ function toggleCheckedIcon(img, subtaskId, taskID, taskIndex) {
     ? "./assets/img/checkbox_unchecked_contact_form.svg"
     : "./assets/img/checkbox_checked_contact_form.svg";
 
-  updateSubtaskStatus(subtaskId, taskID, !checked, taskIndex);
+  await updateSubtaskStatus(subtaskId, taskID, !checked, taskIndex);
+  await loadFirebaseData("tasks");
+  loadSummarySubtasks(taskID, taskIndex);
+  loadCounterDoneSubtasks(taskID, taskIndex);
 }
 
 
