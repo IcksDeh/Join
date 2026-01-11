@@ -20,7 +20,7 @@ function summaryContentTemplate(userName, greeting) {
             
             <section class="box_prio_tickets margin_left style_boxes" onclick="goToBoardPage()">
                  <div class="counter_prio_tickets">
-                    <img src="./assets/img/summary_prio_icon.svg" alt="Priority Icon">
+                    <img class="board_priority_btn" src="./assets/img/summary_prio_icon.svg" alt="Priority Icon">
                     <div class="order_number_text">
                         <p class="summary_number">3</p>
                         <p class="style_prio_area">Urgent</p>
