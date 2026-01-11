@@ -237,12 +237,18 @@ function highlightActiveLink() {
  *  @returns {void} - This function does not return a value.
  */
 function showToast() {
-    const toast = document.getElementById("msgBox");
+    const msgBox = document.getElementById('msgBox');
+    const overlayElement = document.querySelector('dialog[open]'); 
 
-    toast.classList.add("show");
-    setTimeout(function() {
-        toast.classList.remove("show");
-    }, 1400);
+    if (overlayElement) {
+        overlayElement.appendChild(msgBox);
+    } else {
+        document.body.appendChild(msgBox);
+    }
+    msgBox.classList.add('show');
+    setTimeout(() => {
+        msgBox.classList.remove('show');
+    }, 2000); 
 }
 
 
