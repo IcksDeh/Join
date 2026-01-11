@@ -44,6 +44,8 @@ function loadTaskElementinColumn(taskID, taskContent, index, status){
             openUserStoryDialog(taskContent, taskID, index);
         })
     columnElement.appendChild(taskElementofColumnList);
+    loadSummarySubtasks(taskID, index);
+    loadCounterDoneSubtasks(taskID, index);
 }
 
 function loadAssigneesOfTaks(taskContent, taskID){
@@ -81,4 +83,40 @@ function loadCategoryLabelColor(taskContent, taskID){
     } else {
         categoryLabel.style.backgroundColor = '#ff00d9ff';
     }
+}
+
+function loadSummarySubtasks(taskID, index){
+    const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
+    if (!currrentTaskElement) {
+        console.error("Task mit ID nicht gefunden:", taskID);
+        return;
+    }
+    const currentTask = currrentTaskElement.task;
+    const elementAllSubtasks = document.getElementById("counterAllSubtasks_"+ taskID);
+    let elementSubtasks = currentTask.subtasks;
+    let counterAllSubtaks = 0
+    Object.entries(elementSubtasks).forEach(eachElement => {
+        counterAllSubtaks ++;
+    })
+
+    elementAllSubtasks.innerHTML = counterAllSubtaks;
+
+}
+
+function loadCounterDoneSubtasks(taskID, index){
+    const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
+    if (!currrentTaskElement) {
+        console.error("Task mit ID nicht gefunden:", taskID);
+        return;
+    }
+    const currentTask = currrentTaskElement.task;
+     const elementAllSubtasks = document.getElementById("counterDoneSubtasks_"+ taskID);
+     let elementSubtasks = currentTask.subtasks;
+     let counterDoneSubtasks = 0;
+     Object.values(elementSubtasks).forEach(eachElement => {
+        if(eachElement.done == true){
+            counterDoneSubtasks ++;
+        }
+     })
+     elementAllSubtasks.innerHTML = counterDoneSubtasks;
 }

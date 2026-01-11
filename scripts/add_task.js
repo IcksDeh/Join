@@ -26,7 +26,7 @@ function openAddTaskDialog() {
   const dialog = document.getElementById("addTaskDialog");
 
   if (!dialog.open) {
-    dialog.innerHTML = addTaskTemplate();
+    // dialog.innerHTML = addTaskTemplate();
     dialog.showModal();
 
     checkPriority("medium", dialog);

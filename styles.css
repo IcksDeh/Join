@@ -100,13 +100,19 @@ button {
   
 }
 
-@media(max-width: 740px){
-  .margin_left{
+@media (max-width:1350px) {
+  .margin_left {
     margin-left: 50px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width:1000px) {
+  .margin_left {
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 700px) {
   h1 {
     font-size: 47px;
   }

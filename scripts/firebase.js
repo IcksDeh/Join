@@ -84,7 +84,7 @@ async function deleteTaskFromFirebase(taskID, path) {
 
 }
 
-async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex){
+async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex, taskContent){
     let userStorage = await fetch(BASE_URL + "tasks/" + taskID + "/" + "subtasks/" + subtaskId + "/done.json",{
         method: "PUT",
         headers: {
@@ -92,6 +92,8 @@ async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex){
         },
         body: JSON.stringify(statusSubtask),
     });
+     loadSummarySubtasks(taskContent);
+    loadCounterDoneSubtasks(taskContent);
 }
 
 

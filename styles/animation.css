@@ -67,7 +67,7 @@
 /* =========================================
   MOBILE (< 600px) 
 ========================================= */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   #splash {
     background-color: #2a3647;
   }

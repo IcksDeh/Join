@@ -3,7 +3,6 @@
 
 .dialog_user_story_container {
     width: 500px;
-    min-height: 840px;
     background-color: #fff;
     border-radius: 25px; 
     border: none;
@@ -21,6 +20,8 @@
     flex-direction: column;
     padding-top: 80px;
     width: 100%;
+    height: auto;
+    overflow-y: auto;
 }
 
 #userStoryDialog {

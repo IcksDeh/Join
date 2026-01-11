@@ -11,7 +11,7 @@
   overflow: visible;
 }
 
-@media(max-width: 1300px){
+@media(max-width: 1350px){
    .sidebar{
     max-width: 200px;
    } 
@@ -29,7 +29,7 @@
     }
 }
 
-@media (max-width:600px) {
+@media (max-width:700px) {
  .nav_main_content{
         width: 100%;
     }

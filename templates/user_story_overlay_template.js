@@ -59,15 +59,15 @@ function userStoryEditTemplate(){
 }
 
 function AssigneesTaskDetailsTemplate(assignee){
-    return `<div class="contact_initial_circle" style="background-color: ${assignee.assigneeColor};">
-                    ${assignee.assigneeInitial} 
-                </div>
-            <p>${assignee.assigneeName}</p>`
+    return `
+        <div class="contact_initial_circle" style="background-color: ${assignee.assigneeColor};">${assignee.assigneeInitial}</div>
+        <p>${assignee.assigneeName}</p>
+    `
 }
 
 function subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex){
     return` 
-        <img id="checkbox_subtask_task_detail_${subtaskID}" onclick="toggleCheckedIcon(this, '${subtaskID}', '${taskID}', '${taskIndex}' )" class="checkbox_icon" data-checked="${subtaskContent.done}" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+        <img id="checkbox_subtask_task_detail_${subtaskID}" onclick="toggleCheckedIcon(this, '${subtaskID}', '${taskID}', '${taskIndex}')" class="checkbox_icon" data-checked="${subtaskContent.done}" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
         <p class="user_story_description">${subtaskContent.text}</p>
     `
 }   

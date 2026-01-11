@@ -27,7 +27,7 @@ function getTaskCategory(){
 }
 
 function getAllSubtasks(){
-  const subtasks = {};
+  let subtasks = {};
   document.querySelectorAll('.list_element').forEach(li => {
     let subtaskId = crypto.randomUUID();
     let subtastText = li.querySelector('.subtask_text').textContent.trim();
@@ -37,8 +37,12 @@ function getAllSubtasks(){
       done: false
     };
   });
-  return subtasks;
-}
+  if (Object.keys(subtasks).length === 0){  
+    subtasks = "";
+    return subtasks;
+  } else {
+    return subtasks;
+  }}
 
 function getAssignee(){
   let selectedAssignees = {};
@@ -56,7 +60,12 @@ function getAssignee(){
       assigneeColor : color,
     }
     }})
+    if (Object.keys(selectedAssignees).length === 0){  
+    selectedAssignees = "";
     return selectedAssignees;
+  } else {
+    return selectedAssignees;
+  }
 }
 
 async function switchTaskData (titleTask ="", descriptionTask="", dueDateTask="", priorityTask="",assignedToTask="", categoryTask ="", subtasksTask="", statusTask=""){
