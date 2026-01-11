@@ -1,13 +1,11 @@
-addEventListener("resize", detectMobile)
-renderMobile()
-
-
+window.addEventListener("resize", resizeHandler)
 
 function setContactActive(email, element) {
     const isActive = element.classList.contains("active-contact");
     const cInfo = document.getElementById('contact-info')
     const contacts = document.getElementsByClassName("contact-person");
     const selectedContact = contact.find(entry => entry.email === email);
+
     for (let i = 0; i < contacts.length; i++) {
         contacts[i].classList.remove("active-contact");
     }
@@ -15,10 +13,10 @@ function setContactActive(email, element) {
         cInfo.innerHTML = contactHeadlineTemplate();
         return;
     }
-    renderMobileClickedContact(selectedContact)
+
     element.classList.add("active-contact");
     renderContactInfo(selectedContact)
-
+    renderMobileClickedContact()
     slideContactInfo()
 }
 
@@ -39,63 +37,48 @@ function slideContactInfo() {
 
         bigContact.classList.toggle('slideactive')
         bigContactInfo.classList.toggle('slideactive')
-        checkForBackBtn()
     })
 }
 
 function checkForBackBtn() {
-    const backBtn = document.getElementById('backBtn')
-    if (backBtn.style.display != "none") {
-        document.getElementById('backBtn').addEventListener("click", clickBack)
+    const contactList = document.getElementById('contact-list-container')
+    const contactInfo = document.getElementById('contact-info')
+    const contacts = document.getElementsByClassName("contact-person")
+    if (getViewportSize() <= 768) {
+        contactList.style.display = "flex"
+        contactInfo.style.display = "none"
+        for (let i = 0; i < contacts.length; i++) {
+            contacts[i].classList.remove("active-contact");
+            const cInfo = document.getElementById('contact-info')
+            cInfo.innerHTML = contactHeadlineTemplate()
+        }
+    } else if (getViewportSize() > 768) {
+        contactList.style.display = "flex"
+        contactInfo.style.display = "flex"
     }
 }
 
-function detectMobile() {
+function getViewportSize() {
     return window.innerWidth
 }
 
-function renderMobileClickedContact(selectedContact) {
-    const contactList = document.getElementById('contact-list-container')
-    const contactInfo = document.getElementById('contact-info')
-    if (detectMobile() <= 600) {
-        contactInfo.classList.remove('d_none')
-        contactList.classList.add('d_none')
-        renderContactInfo(selectedContact)
-    }
-    else {
-        contactList.classList.remove('d_none')
-        contactInfo.classList.remove('d_none')
-        renderContactInfo(selectedContact)
-    }
-}
-
-
-
-function clickBack() {
+function renderMobileClickedContact() {
     const contactList = document.getElementById('contact-list-container')
     const contactInfo = document.getElementById('contact-info')
 
-    contactList.classList.remove('d_none')
-    contactInfo.classList.add('d_none')
-    const contacts = document.getElementsByClassName("contact-person");
-    for (let i = 0; i < contacts.length; i++) {
-        contacts[i].classList.remove("active-contact");
-    }
+    contactList.style.display = getViewportSize() <= 768 ? "none" : "flex"
+    contactInfo.style.display = "flex"
 }
 
-function renderMobile() {
-    const contactInfo = document.getElementById('contact-info')
+function resizeHandler() {
     const contactList = document.getElementById('contact-list-container')
-    if (detectMobile() <= 600) {
-        contactInfo.classList.add('d_none')
+    const contactInfo = document.getElementById('contact-info')
 
-    } else {
+    const hasActiveContact = !!document.querySelector(".active-contact")
 
-        contactInfo.classList.remove('d_none')
-        contactList.classList.remove('d_none')
-    }
+    contactList.style.display = (hasActiveContact && (getViewportSize() <= 768)) ? "none" : "flex"
+    contactInfo.style.display = (!hasActiveContact && (getViewportSize() <= 768)) ? "none" : "flex"
 }
-
 
 function sortContactsByFirstName(contacts) {
     return [...contacts].sort((a, b) => {
