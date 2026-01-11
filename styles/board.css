@@ -185,10 +185,17 @@
 
 .style_progress_bar {
   width: 140px;
-  height: 5px;
-  background-color: #29abe2;
+  height: 10px;
+  background-color: transparent;
   border-radius: 20px;
   margin-right: 10px;
+  border: 2px solid #29abe2;
+}
+
+.progressbar_filled{
+  background-color: #29abe2;
+  height: 100%;
+  border-radius: 20px 0 0 20px;
 }
 
 .order_counter_progress {

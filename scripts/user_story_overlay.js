@@ -111,7 +111,7 @@ function closeUserStoryDialog() {
  * The image element representing the checkbox icon.
  * Must contain a 'data-checked' attribute ('true' or 'false').
  */
-async function toggleCheckedIcon(img, subtaskId, taskID, taskIndex) {
+async function toggleCheckedIconSubtasks(img, subtaskId, taskID, taskIndex) {
   const checked = img.dataset.checked === "true";
   img.dataset.checked = !checked;
 
@@ -123,6 +123,7 @@ async function toggleCheckedIcon(img, subtaskId, taskID, taskIndex) {
   await loadFirebaseData("tasks");
   loadSummarySubtasks(taskID, taskIndex);
   loadCounterDoneSubtasks(taskID, taskIndex);
+  loadProgressbar(taskIndex, taskID);
 }
 
 

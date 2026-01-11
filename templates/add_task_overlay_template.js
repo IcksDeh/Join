@@ -145,7 +145,7 @@ function listAssigneeTemplate(contactsList, index, imgPath, checkState){
                 </div>
                 <p class="user_name_assignee_circle">${contactsList[index].contact.name}</p>
             </div>
-            <img onclick="toggleCheckedIcon(this, ${index}); event.stopPropagation();" class="checkbox_icon" data-checked="${checkState}" src="${imgPath}" alt="Checkbox Button">
+            <img onclick="toggleCheckedIcon(this, ${index})" class="checkbox_icon" data-checked="${checkState}" src="${imgPath}" alt="Checkbox Button">
         </div>
     `;
 }

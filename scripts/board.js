@@ -39,6 +39,7 @@ function loadBoardColumn(taskID, taskContent, index, status){
     loadAssigneesOfTaks(taskContent, taskID);
     loadPriorityIcon(taskContent, taskID);
     loadCategoryLabelColor(taskContent, taskID);
+    loadProgressbar(index, taskID);
 }
 
 function loadTaskElementinColumn(taskID, taskContent, index, status){
@@ -136,4 +137,36 @@ function allowDrop(event){
 async function drop(category){
     await updateTaskStatus(category);
     await loadContentBoard();
+}
+
+async function loadProgressbar(index, taskID){
+    await loadFirebaseData('tasks');
+        
+    let progressbarElement = document.getElementById('progressbar_'+ taskID);
+    let sumAllSubtasks = numberAllSubtasks(index);
+    let sumDoneSubtasks = numberDoneSubstask(index);
+    let calculatesSubtaksProgress = sumDoneSubtasks / sumAllSubtasks;
+    let progressPercent = Math.round(calculatesSubtaksProgress * 100);
+    progressbarElement.style.width = progressPercent + '%';
+    
+}
+
+function numberAllSubtasks(index){
+    let numberAllSubtasks = 0;
+    let taskElement = taskList[index].task.subtasks;
+    Object.keys(taskElement).forEach(element =>{
+        numberAllSubtasks ++;
+    })
+    return numberAllSubtasks;
+}
+
+function numberDoneSubstask(index){
+    let doneSubtasks = 0;
+    let taskElement = taskList[index].task.subtasks;
+    Object.values(taskElement).forEach(element =>{
+        if(element.done == true){
+            doneSubtasks ++;
+        }
+    })
+    return doneSubtasks;
 }

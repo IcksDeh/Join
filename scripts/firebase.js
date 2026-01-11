@@ -72,7 +72,6 @@ async function pushToTaskArray(firebaseKeys, responseFirebaseDataToJSON) {
             }
         )
     }
-    console.log(taskList);
 }
 
 async function deleteTaskFromFirebase(taskID, path) {
@@ -92,8 +91,8 @@ async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex, 
         },
         body: JSON.stringify(statusSubtask),
     });
-     loadSummarySubtasks(taskContent);
-    loadCounterDoneSubtasks(taskContent);
+    loadSummarySubtasks(taskID, taskIndex);
+    loadCounterDoneSubtasks(taskID, taskIndex);
 }
 
 async function updateTaskStatus(category){

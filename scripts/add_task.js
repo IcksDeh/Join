@@ -50,7 +50,6 @@ function closeAddTaskDialog() {
   if (!dialog) return;
 
   dialog.close();
-  dialog.innerHTML = "";
 
   clearInputs();
 }
@@ -203,8 +202,8 @@ function closeDropdownLists() {
  */
 function resetInputFields() {
   const inputIds = ["title", "description", "due_date", "subtasks"];
-  inputIds.forEach((id) => {
-    const element = document.getElementById("id_" + id + "_add_task");
+  inputIds.forEach(idElement => {
+    const element = document.getElementById("id_" + idElement + "_add_task");
     if (element) {
       if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
         element.value = "";
@@ -212,7 +211,7 @@ function resetInputFields() {
       } else {
         element.innerHTML = "";
       }
-      const message = document.querySelector(`.required_message[data-for="id_${id}_add_task"]`);
+      const message = document.querySelector(".required_message[data-for=id_" + idElement + "_add_task]");
       if (message) message.style.display = "none";
     }
   });
