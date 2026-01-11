@@ -166,3 +166,18 @@
 
 
 }
+
+@media (max-width:400px) {
+      .style_todo_done_box{
+    max-width: 140px;
+  }
+
+   .box_prio_tickets {
+    max-width: 300px;
+  }
+
+  .boxes_last_row {
+
+    max-width: 85px;
+  }
+}
