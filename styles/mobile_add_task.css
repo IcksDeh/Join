@@ -3,15 +3,15 @@
     padding-left: 50px;
   }
 
-  .medium_btn_filled {
-    font-size: 16px;
-  }
-
+  .urgent_btn_default,
+  .medium_btn_default,
   .low_btn_default {
     font-size: 16px;
   }
 
-  .urgent_btn_default {
+  .urgent_btn_filled,
+  .medium_btn_filled,
+  .low_btn_filled {
     font-size: 16px;
   }
 
