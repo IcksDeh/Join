@@ -48,3 +48,9 @@ const ICONS = {
   OFF: './assets/img/visibility_off.svg',
   ON: './assets/img/visibility.svg'
 };
+
+
+// BOARD
+
+let currentDraggedElementIndex;
+let currentDraggedElementID;

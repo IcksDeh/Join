@@ -67,7 +67,7 @@
                 <p class="text_section">To Do</p>
                 <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
               </div>
-              <div class="width_section">
+              <div class="width_section" ondrop = "drop('todo')" ondragover="allowDrop(event)">
                 <div class="no_task_available" id="board_column_todo" data-initialized= "false">
                   <p>No tasks in To Do</p>
                 </div>
@@ -79,7 +79,7 @@
                 <p class="text_section">In Progress</p>
                 <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
               </div>
-              <div class="width_section">
+              <div class="width_section" ondrop = "drop('inProgress')" ondragover="allowDrop(event)">
                 <div class="no_task_available" id="board_column_inProgress" data-initialized= "false">
                   <p>No tasks in Progress</p>
                 </div>
@@ -91,7 +91,7 @@
                 <p class="text_section">Await Feedback</p>
                 <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
               </div>
-              <div class="width_section">
+              <div class="width_section" ondrop = "drop('awaitFeedback')" ondragover="allowDrop(event)">
                 <div class="no_task_available" id="board_column_awaitFeedback" data-initialized= "false">
                   <p>No tasks in Await Feedback</p>
                 </div>
@@ -100,7 +100,7 @@
             <!-- Done -->
             <div class="order_elements_in_section">
               <p class="text_section">Done</p>
-              <div class="width_section">
+              <div class="width_section" ondrop = "drop('done')" ondragover="allowDrop(event)">
                 <div class="no_task_available" id="board_column_done" data-initialized= "false">
                   <p>No tasks in Done</p>
                 </div>  

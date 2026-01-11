@@ -9,7 +9,7 @@
  * @function openUserStoryDialog
  * @returns {void} - This function does not return a value.
  */
-async function openUserStoryDialog(taskContent, taskID, taskIndex) {
+async function openUserStoryDialog(taskID, taskIndex) {
   await loadFirebaseData("tasks");
 
   // Hole die aktuelle Task aus taskList anhand der ID

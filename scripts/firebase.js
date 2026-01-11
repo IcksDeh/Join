@@ -96,5 +96,16 @@ async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex, 
     loadCounterDoneSubtasks(taskContent);
 }
 
+async function updateTaskStatus(category){
+    let taskElement = await fetch(BASE_URL+ "tasks/"+ currentDraggedElementID + "/statusTask.json",{
+        method: "PUT",
+         headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(category),
+    });
+    
+}
+
 
     

@@ -37,12 +37,7 @@ function loadBoardColumn(taskID, taskContent, index, status){
 function loadTaskElementinColumn(taskID, taskContent, index, status){
     let columnElement = document.getElementById('board_column_' +status);
     let taskElementofColumnList = document.createElement('div');
-    taskElementofColumnList.className = "style_task_card";
-    taskElementofColumnList.dataset
-    taskElementofColumnList.innerHTML = taskListElementTemplate(taskID, taskContent);
-    taskElementofColumnList.addEventListener('click', function(){
-            openUserStoryDialog(taskContent, taskID, index);
-        })
+    taskElementofColumnList.innerHTML = taskListElementTemplate(taskID, index);
     columnElement.appendChild(taskElementofColumnList);
     loadSummarySubtasks(taskID, index);
     loadCounterDoneSubtasks(taskID, index);
@@ -66,11 +61,11 @@ function loadAssigneesOfTaks(taskContent, taskID){
 function loadPriorityIcon(taskContent, taskID){
     let iconPriorityElement = document.getElementById("icon_priority_"+taskID);
     if (taskContent.priority.name === "low"){
-        iconPriorityElement.src = "./assets/img/prio_low_green.svg";
+        iconPriorityElement.src = "../assets/img/prio_low_green.svg";
     } else if (taskContent.priority.name === "medium"){
-        iconPriorityElement.src = "./assets/img/prio_medium_yellow.svg";
+        iconPriorityElement.src = "../assets/img/prio_medium_yellow.svg";
     } else{
-        iconPriorityElement.src = "./assets/img/prio_urgent_red.svg";
+        iconPriorityElement.src = "../assets/img/prio_urgent_red.svg";
     }
 }
 
@@ -119,4 +114,18 @@ function loadCounterDoneSubtasks(taskID, index){
         }
      })
      elementAllSubtasks.innerHTML = counterDoneSubtasks;
+}
+
+function startDragging(index, taskID){
+    currentDraggedElementIndex = index;
+    currentDraggedElementID = taskID;
+
+}
+
+function allowDrop(event){
+    event.preventDefault();
+}
+
+async function drop(category){
+    await updateTaskStatus(category);
 }
