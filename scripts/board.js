@@ -1,4 +1,11 @@
 async function loadContentBoard(){
+    const columns = ['todo', 'inProgress', 'awaitFeedback', 'done'];
+    columns.forEach(status => {
+    const column = document.getElementById('board_column_' + status);
+    if (column) {
+        column.dataset.initialized = "false";
+    }
+    });
     await loadFirebaseData('tasks');
     // loadTaskTickets();
     checkStatusTask();
@@ -128,4 +135,5 @@ function allowDrop(event){
 
 async function drop(category){
     await updateTaskStatus(category);
+    await loadContentBoard();
 }
