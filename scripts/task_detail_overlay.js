@@ -145,7 +145,6 @@ function openTaskDetailEditDialog() {
   const dialog = document.getElementById('taskDetailEditDialog');
     
   if (!dialog.open) {
-    dialog.innerHTML = taskDetailEditTemplate();
     dialog.showModal();
 
     setTimeout(() => {

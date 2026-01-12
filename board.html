@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./styles/summary.css">
     <link rel="stylesheet" href="./styles/board.css">
     <link rel="stylesheet" href="./styles/task_detail_overlay.css" />
+    <link rel="stylesheet" href="./styles/task_detail_edit_overlay.css" />
     <link rel="stylesheet" href="./styles/add_task.css" />
     <link rel="stylesheet" href="./styles/add_task_overlay.css" />
     <link rel="stylesheet" href="./styles/mobile_footer.css">
@@ -125,7 +126,7 @@
                 <section class="formfield_left">
                   <div class="formfield_left_wrapper">
                     <label for="id_title_add_task" class="label_text">Title<sup>*</sup></label><br>
-                    <input type="text" class="add_task_input styled_input validate-required" id="id_title_add_task" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 35)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                    <input type="text" class="add_task_input styled_input validate_required" id="id_title_add_task" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 35)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
                     <span class="required_message" data-for="id_title_add_task">This field is required</span><br>
                   </div>
 
@@ -134,7 +135,7 @@
 
                   <div class="formfield_left_wrapper">
                     <label for="id_due_date_add_task" class="label_text">Due Date<sup>*</sup></label><br>
-                    <input type="date" class="add_task_input styled_input validate-required" id="id_due_date_add_task" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                    <input type="date" class="add_task_input styled_input validate_required" id="id_due_date_add_task" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
                     <span class="required_message" data-for="id_due_date_add_task">This field is required</span><br>
                   </div>
                 </section>
@@ -217,8 +218,84 @@
           </main>
         </dialog>
         <dialog class="dialog_task_detail_container" id="taskDetailDialog"></dialog>
+        <dialog class="dialog_task_detail_edit_container" id="taskDetailEditDialog">
+          <main class="task_detail_edit_wrapper" data-task_detail_information-id="${taskID}">
+            <div class="close_btn_container_task_detail_edit">
+                <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeTaskDetailEditDialog()" role="button" aria-label="Schließen">
+            </div>
+
+            <form class="form_content" id="taskDetailEditForm" novalidate></form>
+              <div class="">
+                <section class="form_wrapper">
+                  <div>
+                    <label for="id_title_add_task" class="label_text_edit">Title<sup>*</sup></label><br>
+                    <input type="text" class="task_detail_edit_input styled_input_edit validate_required" id="id_title_add_task" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 35)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                    <span class="required_message" data-for="id_title_add_task">This field is required</span><br>
+                  </div>
+
+                  <label for="id_description_add_task" class="label_text_edit">Description</label><br>
+                  <textarea class="task_detail_edit_description styled_input_edit_description" id="id_description_add_task" placeholder="Enter a description" oninput="limitInputLength(this, 95)"></textarea><br>
+              
+                  <div>
+                    <label for="id_due_date_add_task" class="label_text_edit">Due Date<sup>*</sup></label><br>
+                    <input type="date" class="task_detail_edit_input styled_input_edit validate_required" id="id_due_date_add_task" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                    <span class="required_message" data-for="id_due_date_add_task">This field is required</span><br>
+                  </div>
+                </section>
+
+                <section class="form_wrapper">
+                  <label class="label_text_edit">Priority</label><br>
+                  <div class="priority_options_edit">
+                    <button type="button" class="urgent_btn_default" id="id_urgent_btn" onclick="checkPriority('urgent')">Urgent
+                      <img id ="id_icon_urgent_task" src="./assets/img/prio_urgent_red.svg" alt="Priority Urgent">
+                    </button>
+                    <button type="button" class="medium_btn_filled" id="id_medium_btn" onclick="checkPriority('medium')">Medium
+                      <img id ="id_icon_medium_task" class="icon hover" src="./assets/img/prio_medium_white.svg" alt="Priority Medium Hover">
+                    </button>
+                    <button type="button" class="low_btn_default" id="id_low_btn" onclick="checkPriority('low')">Low
+                      <img  id ="id_icon_low_task" src="./assets/img/prio_low_green.svg" alt="Priority Low">
+                    </button>
+                  </div>
+
+                  <label class="label_text_edit">Assigned to</label><br>
+                  <div class="dropdown" data-type="contacts">
+                    <div class="dropdown_input task_detail_edit_input styled_input_edit" onclick="toggleListTasks('contacts')">
+                      <span class="dropdown_text" id="selected_contacts">Select contacts to assign</span>
+                      <div class="dropdown_icon"></div>
+                    </div>
+                    <ul class="dropdown_list_contacts" id="contacts_list_task" style="display:none;">
+                    </ul>
+                  </div>
+                  <div class="assigned_contacts_row" id="assigned_contacts_row"></div>
+                  <div class="input_spacer"></div>
+
+                  <section class="subtask_wrapper">
+                    <label for="subtasks" class="label_text_edit">Subtasks</label><br>
+                    <div class="input_container">
+                      <input type="text" id="subtasks" class="task_detail_edit_input styled_input_edit" placeholder="Add new subtask" oninput="limitInputLength(this, 25)">
+                      <div class="subtask_actions">
+                        <button class="subtask_btn" type="button" onclick="cancelSubtask()">
+                          <img class="cancel_subtask" src="./assets/img/close.svg" alt="Cancel Subtask">
+                        </button>
+                        <div class="subtask_divider"></div>
+                        <button class="subtask_btn" type="button" onclick="addSubtask()">
+                          <img class="submit_subtask" src="./assets/img/check.svg" alt="Submit Subtask">
+                        </button>
+                      </div>
+                    </div>
+                    <ul id="subtaskList"></ul>
+                  </section>
+                </section>
+              </div>
+
+              <div class="task_detail_edit_btn">
+                <button type="submit" class="ok_btn">Ok<img src="./assets/img/check_white.svg" alt="Edit Button"></button>
+              </div>
+            </form>
+          </main>
+        </dialog>
       </div>
     </div>
-     <div id="msgBox" class="toast-message toast-message-board" ><p>Task added to board</p> <img src="./assets/img/board_icon.svg" alt="a board icon"></div>
+      <div id="msgBox" class="toast-message toast-message-board" ><p>Task added to board</p> <img src="./assets/img/board_icon.svg" alt="a board icon"></div>
   </body>
 </html>

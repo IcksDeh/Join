@@ -1,6 +1,6 @@
 function taskDetailTemplate(taskContent, taskID){
     return `
-        <main class="task_detail_wrapper" data-task_detail_information-id ="${taskID}">
+        <main class="task_detail_wrapper" data-task_detail_information-id="${taskID}">
             <div class="close_btn_container_task_detail">
                 <div id="category_label_task_details_${taskID}" class="story_task_btn">${taskContent.category}</div>
                 <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeTaskDetailDialog()" role="button" aria-label="Schließen">
@@ -41,7 +41,7 @@ function taskDetailTemplate(taskContent, taskID){
                         Delete
                     </button>
                     <div class="bottom_divider"></div>
-                    <button class="delete_edit_btn" onclick="taskDetailEditTemplate()">
+                    <button class="delete_edit_btn" onclick="openTaskDetailEditDialog()">
                         <img class="icon default" src="./assets/img/edit.svg" alt="Clear Formular">
                         <img class="icon hover" src="./assets/img/edit_blue.svg" alt="Clear Formular Hover">
                         Edit
@@ -52,11 +52,6 @@ function taskDetailTemplate(taskContent, taskID){
     `
 }
 
-function taskDetailEditTemplate(){
-    return `
-
-    `
-}
 
 function AssigneesTaskDetailsTemplate(assignee){
     return `
@@ -64,6 +59,7 @@ function AssigneesTaskDetailsTemplate(assignee){
         <p>${assignee.assigneeName}</p>
     `
 }
+
 
 function subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex){
     return` 

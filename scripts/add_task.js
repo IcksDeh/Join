@@ -111,7 +111,7 @@ function handleRequiredMessage(input) {
 
   if (input === document.activeElement && input.value.trim() === "") {
     message.style.display = "block";
-    if (input.classList.contains("validate-required")) {
+    if (input.classList.contains("validate_required")) {
       input.classList.add("error");
     }
   } else {

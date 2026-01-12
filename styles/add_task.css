@@ -46,7 +46,7 @@ sup {
     position: relative;
 }
 
-.validate-required.error {
+.validate_required.error {
     border-color: #FF3D00 !important;
 }
 

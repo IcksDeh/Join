@@ -12,6 +12,10 @@ main {
   flex: 1;
 }
 
+dialog:not([open]) {
+  display: none;
+}
+
 .content_wrapper {
   max-width: 1440px;
   width: 100%;
