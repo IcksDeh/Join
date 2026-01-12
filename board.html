@@ -51,7 +51,7 @@
             </div>
             <div class="order_header_right_side">
               <div class="style_searchbar_board">
-                <input class="style_input_searchbar" type="text" placeholder="Find Task">
+                <input class="style_input_searchbar" type="text" placeholder="Find Task" onkeyup="filterTasks()">
                 <div class="border_searchbar"></div>
                 <div class="style_search_icon_box">
                   <img class="style_search_icon" src="./assets/img/search.svg" alt="">
@@ -60,6 +60,11 @@
               <button class="btn_add_task_board button" onclick="openAddTaskDialog()">Add Task<img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
             </div>
           </section> 
+
+          
+<div id="no_search_results" style="display: none; text-align: center; margin-top: 32px;">
+    <p style="font-size: 20px; color: #A8A8A8;">No tasks found matching your search.</p>
+</div>
 
           <section class="order_board_sections">
             <!-- Board -->

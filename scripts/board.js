@@ -170,3 +170,44 @@ function numberDoneSubstask(index){
     })
     return doneSubtasks;
 }
+
+/**
+ * Filters tasks based on the search query in the title or description.
+ * Triggered by the onkeyup event in the search input field.
+ */
+function filterTasks() {
+    let searchInput = document.querySelector('.style_input_searchbar');
+    let searchTerm = searchInput.value.toLowerCase();
+    
+    resetBoardHTML();
+    taskList.forEach((taskItem, index) => {
+        let taskContent = taskItem.task;
+        let taskID = taskItem.id;
+        
+        let title = taskContent.title.toLowerCase();
+        let description = taskContent.description.toLowerCase();
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            loadBoardColumn(taskID, taskContent, index, taskContent.statusTask);
+        }
+    });
+}
+
+/**
+ * Resets the HTML of all board columns to the default state.
+ * Re-inserts the placeholder texts and resets the data-initialized attribute.
+ */
+function resetBoardHTML() {
+    const columns = [
+        { id: 'todo', text: 'To Do' },
+        { id: 'inProgress', text: 'Progress' },
+        { id: 'awaitFeedback', text: 'Await Feedback' },
+        { id: 'done', text: 'Done' }
+    ];
+
+    columns.forEach(col => {
+        let columnElement = document.getElementById('board_column_' + col.id);
+        columnElement.innerHTML = `<p>No tasks in ${col.text}</p>`;
+        columnElement.classList.add("no_task_available");
+        columnElement.dataset.initialized = "false";
+    });
+}
