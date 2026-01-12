@@ -19,10 +19,12 @@
     <script src="./templates/sidebar_navbar_template.js" defer></script>
     <script src="./templates/summary_content.js" defer></script>
     <script src="./scripts/variables.js" defer></script>
+    <script src="./scripts/summary.js"></script>
+    <script src="./scripts/firebase.js"></script>
     <title>Summary</title>
 </head>
 
-<body onload="init(), loadSummary()">
+<body onload="init(), loadSummary(), loadNumberofTasks()">
     <div class="order_sidebar_main">
         <aside class="sidebar desktop" id="id_sidebar">
         </aside>
