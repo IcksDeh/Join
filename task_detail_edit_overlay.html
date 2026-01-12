@@ -16,23 +16,23 @@
     <title>User Story</title>
 </head>
 <body>
-    <button class="outline_btn" onclick="openUserStoryEditDialog()">Klicke für Overlay</button>
-    <dialog class="dialog_user_story_container" id="userStoryEditDialog">
-        <main class="user_story_wrapper">
-            <div class="close_btn_container_user_story_edit">
-                <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeUserStoryEditDialog()" role="button" aria-label="Schließen">
+    <button class="outline_btn" onclick="openTaskDetailEditDialog()">Klicke für Overlay</button>
+    <dialog class="dialog_task_detail_container" id="taskDetailEditDialog">
+        <main class="task_detail_wrapper">
+            <div class="close_btn_container_task_detail_edit">
+                <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeTaskDetailEditDialog()" role="button" aria-label="Schließen">
             </div>
 
-            <form class="form_content" id="userStoryEditForm" novalidate>
+            <form class="form_content" id="taskDetailEditForm" novalidate>
                 <section class="form_wrapper">
                     <label for="title" class="label_text_edit">Title<sup>*</sup></label><br>
-                    <input type="text" class="user_story_edit_input styled_input_edit" id="title" placeholder="Title"><br>
+                    <input type="text" class="task_detail_edit_input styled_input_edit" id="title" placeholder="Title"><br>
 
                     <label for="description" class="label_text_edit">Description</label><br>
-                    <textarea class="user_story_edit_description styled_input_edit_description" id="description" placeholder="Description"></textarea><br>
+                    <textarea class="task_detail_edit_description styled_input_edit_description" id="description" placeholder="Description"></textarea><br>
 
                     <label for="due_date" class="label_text_edit">Due date<sup>*</sup></label><br>
-                    <input type="date" id="due_date" class="user_story_edit_input styled_input_edit"><br>
+                    <input type="date" id="due_date" class="task_detail_edit_input styled_input_edit"><br>
 
                     <label for="title" class="label_text_edit">Priority</label><br>
                     <div class="priority_options_edit">
@@ -59,7 +59,7 @@
 
                     <label class="label_text_edit">Assigned to</label><br>
                     <div class="dropdown">
-                        <div class="dropdown_input user_story_edit_input_dropdown styled_input_edit">
+                        <div class="dropdown_input task_detail_edit_input_dropdown styled_input_edit">
                             <span class="dropdown_text">Select contacts to assign</span>
                             <div class="dropdown_icon" onclick="toggleContactsList()"></div>
                         </div>
@@ -98,7 +98,7 @@
                     <label class="label_text_edit">Subtasks</label><br>
                     <div class="input_spacer"></div>
 
-                    <div class="user_story_edit_btn">
+                    <div class="task_detail_edit_btn">
                         <button type="submit" class="ok_btn">Ok<img src="./assets/img/check_white.svg" alt="Edit Button"></button>
                     </div>
                 </section>

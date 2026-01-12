@@ -1,7 +1,8 @@
-// wenn keine Fehler auftauchen, können die 3 Variablen gelöscht werden
+// Wenn keine Fehler auftauchen, können die 3 Variablen gelöscht werden.
 // let newUserID = 0;
 // let user = [];
 // let contacts = [];
+
 
 async function putToStorage(path, Data, elements =""){
     let userStorage = await fetch(BASE_URL + path + ".json", {
@@ -13,32 +14,33 @@ async function putToStorage(path, Data, elements =""){
     );
     
     checkClearElements(path, elements)
-    
 }
+
 
 function checkClearElements(path, elements){
-        if(path == 'user' || path == 'contacts'){
-            clearElements(elements);
-        } else {
-            clearInputs();
-        }
+    if(path == 'user' || path == 'contacts'){
+        clearElements(elements);
+    } else {
+        clearInputs();
+    }
 }
 
+
 function clearElements(elements){
-       Object.values(elements).forEach(element =>{
+    Object.values(elements).forEach(element =>{
         element.value = ""
     })
 }
+
 
 async function loadFirebaseData(path){
     let responseFirebaseData = await fetch(BASE_URL + path + ".json");
     let responseFirebaseDataToJSON = await responseFirebaseData.json();
     let firebaseKeys = Object.keys(responseFirebaseDataToJSON);
     await checkPushToArray(firebaseKeys, responseFirebaseDataToJSON, path);
-    
-
 }
-    
+ 
+
 async function checkPushToArray(firebaseKeys, responseFirebaseDataToJSON,  path){
     if (path == 'contacts'){
         await pushToContactsArray(firebaseKeys, responseFirebaseDataToJSON);
@@ -48,6 +50,7 @@ async function checkPushToArray(firebaseKeys, responseFirebaseDataToJSON,  path)
         await pushToUserArray(firebaseKeys, responseFirebaseDataToJSON); 
     }    
 }
+
 
 async function pushToContactsArray(firebaseKeys, responseFirebaseDataToJSON){
     contactsList = [];   
@@ -62,6 +65,7 @@ async function pushToContactsArray(firebaseKeys, responseFirebaseDataToJSON){
     console.log(contactsList);
 }
 
+
 async function pushToTaskArray(firebaseKeys, responseFirebaseDataToJSON) {
     taskList = [];
     for (let index = 0; index < firebaseKeys.length; index++) {
@@ -74,14 +78,15 @@ async function pushToTaskArray(firebaseKeys, responseFirebaseDataToJSON) {
     }
 }
 
+
 async function deleteTaskFromFirebase(taskID, path) {
     let userStorage = await fetch(BASE_URL + path + taskID +".json", {
         method: "DELETE",
         });
-    closeUserStoryDialog();
+    closeTaskDetailDialog();
     location.reload();
-
 }
+
 
 async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex, taskContent){
     let userStorage = await fetch(BASE_URL + "tasks/" + taskID + "/" + "subtasks/" + subtaskId + "/done.json",{
@@ -95,6 +100,7 @@ async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex, 
     loadCounterDoneSubtasks(taskID, taskIndex);
 }
 
+
 async function updateTaskStatus(category){
     let taskElement = await fetch(BASE_URL+ "tasks/"+ currentDraggedElementID + "/statusTask.json",{
         method: "PUT",
@@ -103,8 +109,4 @@ async function updateTaskStatus(category){
         },
         body: JSON.stringify(category),
     });
-    
-}
-
-
-    
+}   

@@ -1,6 +1,6 @@
 function taskListElementTemplate(taskID, index) {
   return `
-  <div class = "style_task_card" onclick = "openUserStoryDialog('${taskID}', '${index}')" draggable  = "true" ondragstart = "startDragging('${index}','${taskID}')">
+  <div class = "style_task_card" onclick = "openTaskDetailDialog('${taskID}', '${index}')" draggable  = "true" ondragstart = "startDragging('${index}','${taskID}')">
     <div id="category_label_${taskID}" class="label_task_card" data-task-id ="${taskID}">
       <p class="text_label_task_card">${taskList[index].task.category}</p>
     </div>

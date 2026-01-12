@@ -1,7 +1,7 @@
 /* ---------- USER STORY PAGE 1 ---------- */
 /* ------------- DIALOG FORM ------------- */
 
-.dialog_user_story_container {
+.dialog_task_detail_container {
     width: 500px;
     background-color: #fff;
     border-radius: 25px; 
@@ -15,7 +15,7 @@
     overflow-y: auto;
 }
 
-.user_story_wrapper {
+.task_detail_wrapper {
     display: flex;
     flex-direction: column;
     padding-top: 80px;
@@ -24,7 +24,7 @@
     overflow-y: auto;
 }
 
-#userStoryDialog {
+#taskDetailDialog {
     position: fixed;
     top: 50%;
     left: 50%; 
@@ -34,14 +34,14 @@
     border: none;
 }
 
-#userStoryDialog[open] {
+#taskDetailDialog[open] {
     transform: translate(-50%, -50%);
     opacity: 1;
 }
 
 /* ---------- CONTENT AREA ---------- */
 
-.close_btn_container_user_story {
+.close_btn_container_task_detail {
     position: absolute;
     top: 28px;
     left: 32px;
@@ -80,7 +80,7 @@
     padding: 7px 15px;
 }
 
-.user_story_title {
+.task_detail_title {
     color: #000;
     font-family: "latin_700", sans-serif;
     font-size: 50px;
@@ -88,7 +88,7 @@
     margin-bottom: 30px;
 }
 
-.user_story_description {
+.task_detail_description {
     color: #2a3647;
     font-family: "latin_400", sans-serif;
     font-size: 18px;
@@ -178,7 +178,7 @@
     margin-top: 12px;
 }
 
-.user_story_btn_area {
+.task_detail_btn_area {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -234,7 +234,7 @@
 /* ---------- RESPONSIVE ---------- */
 
 @media (max-width: 500px) {
-    .dialog_user_story_container {
+    .dialog_task_detail_container {
         width: 90%;
         max-width: 100%;
         overflow-x: hidden;
@@ -242,33 +242,33 @@
         transform: translateX(-50%);
     }
 
-    #userStoryDialog {
+    #taskDetailDialog {
         transform: translateX(-50%);
     }
 
-    .user_story_wrapper {
+    .task_detail_wrapper {
         width: 100%;
         overflow-x: hidden;
     }
 }
 
 @media (max-width: 400px) {
-    .dialog_user_story_container {
+    .dialog_task_detail_container {
         padding: 25px;   
     }
 
-    .user_story_wrapper {
+    .task_detail_wrapper {
         padding-top: 70px;
         width: 98%;
     }
 
-    .user_story_title {
+    .task_detail_title {
         font-size: 36px;
         margin-bottom: 20px;
         width: 98%;
     }
 
-    .close_btn_container_user_story {
+    .close_btn_container_task_detail {
         position: absolute;
         top: 15px;
         left: 25px;

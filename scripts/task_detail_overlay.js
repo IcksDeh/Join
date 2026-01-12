@@ -3,16 +3,15 @@
 
 
 /**
- * Opens the "User Story" dialog if it is not already open and loads the template.
+ * Opens the "Task Detail" dialog if it is not already open and loads the template.
  * setTimeout removes focus from any active element.
  * 
- * @function openUserStoryDialog
+ * @function openTaskDetailDialog
  * @returns {void} - This function does not return a value.
  */
-async function openUserStoryDialog(taskID, taskIndex) {
+async function openTaskDetailDialog(taskID, taskIndex) {
   await loadFirebaseData("tasks");
 
-  // Hole die aktuelle Task aus taskList anhand der ID
  const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
   if (!currrentTaskElement) {
     console.error("Task mit ID nicht gefunden:", taskID);
@@ -20,9 +19,9 @@ async function openUserStoryDialog(taskID, taskIndex) {
   }
   const currentTask = currrentTaskElement.task;
 
-  const dialog = document.getElementById('userStoryDialog');
+  const dialog = document.getElementById('taskDetailDialog');
   if (!dialog.open) {
-    dialog.innerHTML = userStoryTemplate(currentTask, taskID);
+    dialog.innerHTML = taskDetailTemplate(currentTask, taskID);
     loadAssigneesTaskDetails(currentTask, taskID);
     loadSubtaksTaskDetails(currentTask, taskID, taskIndex);
     colorLabelTaskDetails(currentTask, taskID);
@@ -35,6 +34,7 @@ async function openUserStoryDialog(taskID, taskIndex) {
     }, 0);
   }
 }
+
 
 function loadAssigneesTaskDetails(taskContent, taskID){
     let taskAssigneeElement = document.getElementById("assignees_task_details_"+ taskID);
@@ -49,6 +49,7 @@ function loadAssigneesTaskDetails(taskContent, taskID){
 
     })
   }
+
 
 function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
   let subtaskListElement = document.getElementById("subtasks_task_detail_list");
@@ -65,6 +66,7 @@ function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
   })
 }
 
+
 function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
   let subtaskCheckboxElement = document.getElementById("checkbox_subtask_task_detail_"+ subtaskID);
   if(subtaskContent.done == "false"){
@@ -73,6 +75,7 @@ function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
     subtaskCheckboxElement.src ="../assets/img/checkbox_checked_contact_form.svg";
   }
 }
+
 
 function colorLabelTaskDetails (taskContent, taskID){
   let labelElement = document.getElementById("category_label_task_details_" +taskID)
@@ -90,11 +93,11 @@ function colorLabelTaskDetails (taskContent, taskID){
  * Closes the "User Story" dialog.
  * Removes its content and resets all contact input fields.
  * 
- * @function closeUserStoryDialog
+ * @function closeTaskDetailDialog
  * @returns {void} - This function does not return a value.
  */
-function closeUserStoryDialog() {
-  const dialog = document.getElementById('userStoryDialog');
+function closeTaskDetailDialog() {
+  const dialog = document.getElementById('taskDetailDialog');
   if (!dialog) return;
 
   dialog.close();
@@ -135,14 +138,14 @@ async function toggleCheckedIconSubtasks(img, subtaskId, taskID, taskIndex) {
  * Opens the "User Story" dialog if it is not already open and loads the template.
  * setTimeout removes focus from any active element.
  * 
- * @function openUserStoryEditDialog
+ * @function openTaskDetailEditDialog
  * @returns {void} - This function does not return a value.
  */
-function openUserStoryEditDialog() {
-  const dialog = document.getElementById('userStoryEditDialog');
+function openTaskDetailEditDialog() {
+  const dialog = document.getElementById('taskDetailEditDialog');
     
   if (!dialog.open) {
-    dialog.innerHTML = userStoryEditTemplate();
+    dialog.innerHTML = taskDetailEditTemplate();
     dialog.showModal();
 
     setTimeout(() => {
@@ -158,11 +161,11 @@ function openUserStoryEditDialog() {
  * Closes the "User Story" dialog.
  * Removes its content and resets all contact input fields.
  * 
- * @function closeUserStoryEditDialog
+ * @function closeTaskDetailEditDialog
  * @returns {void} - This function does not return a value.
  */
-function closeUserStoryEditDialog() {
-  const dialog = document.getElementById('userStoryEditDialog');
+function closeTaskDetailEditDialog() {
+  const dialog = document.getElementById('taskDetailEditDialog');
   if (!dialog) return;
 
   dialog.close();
@@ -171,6 +174,13 @@ function closeUserStoryEditDialog() {
   clearInputs();
 }
 
+
+/**
+ * Deletes a task with the given ID from Firebase if it exists in the task list.
+ * Iterates over all tasks in `taskList` and calls `deleteTaskFromFirebase` when a task with a matching ID is found.
+ *
+ * @param {string|number} taskID - The ID of the task to delete.
+ */
 function deleteTask(taskID){
   Object.values(taskList).forEach(taskElement =>{
     console.log(taskElement.id);
