@@ -50,7 +50,6 @@ function closeAddTaskDialog() {
   if (!dialog) return;
 
   dialog.close();
-
   clearInputs();
 }
 
@@ -467,6 +466,7 @@ document
     if (areRequiredFieldsFilled()) {
       await getAddTaskData();
       showToast();
+      closeAddTaskDialog();
     } else {
       highlightRequiredFields();
     }

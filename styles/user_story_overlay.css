@@ -28,7 +28,7 @@
     position: fixed;
     top: 50%;
     left: 50%; 
-    transform: translate(calc(100vw + 50%), -50%);  
+    transform: translate(calc(100vw + 50%), -50%);
     opacity: 0;
     transition: transform 0.5s ease, opacity 0.5s ease;
     border: none;
@@ -78,7 +78,6 @@
     font-size: 20px;
     border-radius: 10px;
     padding: 7px 15px;
-
 }
 
 .user_story_title {
@@ -120,8 +119,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: start;
-    width: 100%;
-    margin: 12px 8px;
+    width: 98%;
+    margin: 12px 0 12px 8px;
 }
 
 .user_info {
@@ -138,7 +137,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    width: 100%;
+    width: 98%;
     gap: 4px;
     margin-top: 12px;
     padding: 2px 8px;
@@ -230,4 +229,58 @@
     width: 2px;          
     height: 35px;
     background-color: #e0e0e0; 
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 500px) {
+    .dialog_user_story_container {
+        width: 90%;
+        max-width: 100%;
+        overflow-x: hidden;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #userStoryDialog {
+        transform: translateX(-50%);
+    }
+
+    .user_story_wrapper {
+        width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 400px) {
+    .dialog_user_story_container {
+        padding: 25px;   
+    }
+
+    .user_story_wrapper {
+        padding-top: 70px;
+        width: 98%;
+    }
+
+    .user_story_title {
+        font-size: 36px;
+        margin-bottom: 20px;
+        width: 98%;
+    }
+
+    .close_btn_container_user_story {
+        position: absolute;
+        top: 15px;
+        left: 25px;
+        right: 25px;
+    }
+
+    .recommender_table th {
+        width: 100px;
+        white-space: nowrap;
+    }
+    
+    .delete_edit_btn {
+        padding: 0;
+    }
 }
