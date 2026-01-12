@@ -95,6 +95,7 @@
   justify-content: flex-start;
   flex-direction: column;
   width: 22%;
+  
 }
 
 .text_section {
@@ -107,6 +108,7 @@
 .width_section {
   width: 100%;
   margin-top: 20px;
+  height: 100vh;
 }
 
 .no_task_available {
