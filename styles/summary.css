@@ -176,3 +176,59 @@
     font-size: 18px;
     color: #2a3647;
 }
+
+
+/* Animation Keyframes Summary*/
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade_in_animation {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.fade_out_animation {
+    animation: fadeOut 1s ease-in-out forwards;
+}
+
+.mobile_greeting_overlay {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 96px;
+    left: 0;
+    right: 0;
+    bottom: 80px; 
+    background-color: rgb(246, 247, 248); 
+    z-index: 50;
+    margin: 0 !important;
+    text-align: center;
+}
+
+@media (min-width: 700px) and (max-width: 1220px) {
+    .mobile_greeting_overlay {
+        left: 200px;
+        bottom: 0;
+    }
+}
+
+.mobile_greeting_overlay .style_greeting_text {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+.mobile_greeting_overlay .style_username {
+    font-size: 48px;
+    color: #29abe2;
+}
+
+.d_none {
+    display: none !important;
+}

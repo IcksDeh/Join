@@ -12,10 +12,8 @@ function guestLogin() {
         initials: "G",
 
     };
-    
-    // Αποθήκευση στο localStorage ώστε οι συναρτήσεις load... να τον βλέπουν
     localStorage.setItem("activeUser", JSON.stringify(guestUser));
-    
+    localStorage.setItem("showMobileGreeting", "true"); 
     window.location.href = "summary.html";
 }
 
@@ -175,6 +173,7 @@ function handleLoginSuccess(user) {
   };
 
   localStorage.setItem("activeUser", JSON.stringify(activeUser));
+  localStorage.setItem("showMobileGreeting", "true"); 
   window.location.href = "summary.html";
 }
 

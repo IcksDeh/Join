@@ -90,6 +90,9 @@ function loadSummary() {
 
     const summaryContent = document.getElementById('id_content_summary');
     summaryContent.innerHTML = summaryContentTemplate(userName, greetingText);
+    const shouldShowAnimation = localStorage.getItem("showMobileGreeting") === "true";
+        handleSummaryView(shouldShowAnimation);
+
 }
 
 

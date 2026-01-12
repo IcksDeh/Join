@@ -1,6 +1,6 @@
 function summaryContentTemplate(userName, greeting) {
     return `
-        <div>
+        <div id="id_summary_metrics_container">
             <section class="order_todo_done_box margin_left">
                 <div class="style_todo_done_box style_boxes style_done_box_hover" onclick="goToBoardPage()">
                     <img class="img_summary_edit_check_icon" src="./assets/img/summary_edit_icon.svg" alt="Edit Icon">
@@ -49,11 +49,10 @@ function summaryContentTemplate(userName, greeting) {
             </section>
         </div>
 
-        <div class="order_greeting_username">
+       
+        <div id="id_summary_greeting_container" class="order_greeting_username">
             <p class="style_greeting_text">${greeting}</p>
             <h1 class="style_username">${userName}</h1>
         </div>
     `;
 }
-
-

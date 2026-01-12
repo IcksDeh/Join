@@ -14,6 +14,9 @@
     margin-bottom: 20px;
     gap: 0;
   }
+  .summary_header {
+    display: none;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -42,7 +45,6 @@
     width: 90px;
   }
 
-
   .divider_prio_box {
     margin: 10px;
   }
@@ -65,19 +67,17 @@
     margin-left: 30px;
   }
 
-    .style_todo_done_box{
+  .style_todo_done_box {
     max-width: 215px;
   }
 
-   .box_prio_tickets {
+  .box_prio_tickets {
     max-width: 450px;
   }
 
   .boxes_last_row {
-
     max-width: 135px;
   }
-  
 }
 
 @media (max-width: 700px) {
@@ -89,7 +89,7 @@
     margin-top: 40px;
   }
 
- .style_greeting_text {
+  .style_greeting_text {
     font-size: 36px;
   }
 
@@ -130,13 +130,13 @@
     margin-bottom: 20px;
   }
 
-  .style_todo_done_box{
+  .style_todo_done_box {
     height: 110px;
     max-width: 186px;
     gap: 8px;
   }
 
-   .box_prio_tickets {
+  .box_prio_tickets {
     height: 110px;
     max-width: 396px;
     gap: 0;
@@ -157,27 +157,24 @@
     margin-bottom: 0;
   }
 
-   .style_text {
+  .style_text {
     font-size: 16px;
   }
   .text_header {
     font-size: 20px;
   }
-
-
 }
 
-@media (max-width:400px) {
-      .style_todo_done_box{
+@media (max-width: 400px) {
+  .style_todo_done_box {
     max-width: 140px;
   }
 
-   .box_prio_tickets {
+  .box_prio_tickets {
     max-width: 300px;
   }
 
   .boxes_last_row {
-
     max-width: 85px;
   }
 }
