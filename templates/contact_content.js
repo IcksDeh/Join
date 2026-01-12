@@ -1,74 +1,11 @@
-const contact = [
-    {
-        "name": "Max Mustermann",
-        "email": "max.mustermann@gmail.com",
-        "phone": "+49 170 1234567",
-        "color": "#F44336"
-    },
-    {
-        "name": "Anna Schmidt",
-        "email": "anna.schmidt@yahoo.de",
-        "phone": "+49 151 2345678",
-        "color": "#E91E63"
-    },
-    {
-        "name": "Lukas Weber",
-        "email": "lukas.weber@outlook.com",
-        "phone": "+49 160 3456789",
-        "color": "#9C27B0"
-    },
-    {
-        "name": "Laura Fischer",
-        "email": "laura.fischer@web.de",
-        "phone": "+49 171 4567890",
-        "color": "#673AB7"
-    },
-    {
-        "name": "Tim Schneider",
-        "email": "tim.schneider@icloud.com",
-        "phone": "+49 152 5678901",
-        "color": "#3F51B5"
-    },
-    {
-        "name": "Sophie Bauer",
-        "email": "sophie.bauer@gmx.de",
-        "phone": "+49 176 6789012",
-        "color": "#2196F3"
-    },
-    {
-        "name": "Jonas Hoffmann",
-        "email": "jonas.hoffmann@t-online.de",
-        "phone": "+49 157 7890123",
-        "color": "#03A9F4"
-    },
-    {
-        "name": "Marie Klein",
-        "email": "marie.klein@protonmail.com",
-        "phone": "+49 159 8901234",
-        "color": "#009688"
-    },
-    {
-        "name": "Paul Richter",
-        "email": "paul.richter@zoho.com",
-        "phone": "+49 172 9012345",
-        "color": "#4CAF50"
-    },
-    {
-        "name": "Lisa Wagner",
-        "email": "lisa.wagner@mail.de",
-        "phone": "+49 175 0123456",
-        "color": "#FF9800"
-    }
-]
-
 function loadContactListItem(c) {
     return `        
         <li>
-            <button class="contact-person" onclick="setContactActive('${c.email}', this)" id="contact-${c.email}">
-                <span class="initals">${c.name.split(" ").map(word => word[0]).join("")}</span>
+            <button class="contact-person" onclick="setContactActive('${c.eMail}', this)" id="contact-${c.eMail}">
+                <span class="initals" style="background-color: ${c.color};">${getContactInitials(c.name)}</span>
                 <div class="small-info">
                     <h3>${c.name}</h3>
-                    <a href="mailto:${c.email}">${c.email}</a>
+                    <a href="mailto:${c.eMail}">${c.eMail}</a>
                 </div>
             </button>
         </li>
@@ -101,16 +38,18 @@ function contactHeadlineTemplate() {
 function contactInitialsTemplate(c) {
     return `
         <div class="contact-big" id="contact-big">
-            <div class="initals-big">${c.name.split(" ").map(word => word[0]).join("")}</div>
+            <div class="initals-big" style="background-color: ${c.color};">${getContactInitials(c.name)}</div>
             <div class="name-big">
                 <span id="contactDetailName">${c.name}</span>
-                <div class="changebtns">
-                    <button id="editContactBtn" class="edit_btn" onclick="openEditContactDialog()">
-                        <img src="./assets/img/edit.svg" alt="Edit" />Edit
-                    </button>
-                    <button id="deleteContactBtn" class="delete_btn">
-                        <img src="./assets/img/delete.svg" alt="Delete" />Delete
-                    </button>
+                <div class="changebtns" id="changeContactBtns">
+                    <div id="changebtnsPopover">
+                        <button id="editContactBtn" class="edit_btn" onclick="openEditContactDialog()">
+                            <img src="./assets/img/edit.svg" alt="Edit" />Edit
+                        </button>
+                        <button id="deleteContactBtn" class="delete_btn">
+                            <img src="./assets/img/delete.svg" alt="Delete" />Delete
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,11 +64,11 @@ function contactInfoTemplate(c) {
             <div class="contact-deep-info">
                 <div class="contact-mail">
                     <span>E-Mail</span>
-                    <a id="contactDetailMail" href="mailto:${c.email}">${c.email}</a>
+                    <a id="contactDetailMail" href="mailto:${c.eMail}">${c.eMail}</a>
                 </div>
                 <div class="contact-phone">
                     <span>Phone</span>
-                    <a id="contactDetailPhone" href="tel:${c.phone}">${c.phone}</a>
+                    <a id="contactDetailPhone" href="tel:${c.phoneNumber}">${c.phoneNumber}</a>
                 </div>
             </div>
         </div>

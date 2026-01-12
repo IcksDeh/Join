@@ -1,11 +1,13 @@
 window.addEventListener("resize", resizeHandler)
 
+const contactsArray = [];
+
 function setContactActive(email, element) {
     const isActive = element.classList.contains("active-contact");
     const cInfo = document.getElementById('contact-info')
     const contacts = document.getElementsByClassName("contact-person");
-    const selectedContact = contact.find(entry => entry.email === email);
-
+    const selectedContact = contactsArray.find(entry => entry.eMail === email);
+    console.log(contactsArray);
     for (let i = 0; i < contacts.length; i++) {
         contacts[i].classList.remove("active-contact");
     }
@@ -44,7 +46,7 @@ function checkForBackBtn() {
     const contactList = document.getElementById('contact-list-container')
     const contactInfo = document.getElementById('contact-info')
     const contacts = document.getElementsByClassName("contact-person")
-    if (getViewportSize() <= 768) {
+    if (getViewportSize() <= 700) {
         contactList.style.display = "flex"
         contactInfo.style.display = "none"
         for (let i = 0; i < contacts.length; i++) {
@@ -52,10 +54,24 @@ function checkForBackBtn() {
             const cInfo = document.getElementById('contact-info')
             cInfo.innerHTML = contactHeadlineTemplate()
         }
-    } else if (getViewportSize() > 768) {
+    } else if (getViewportSize() > 700) {
         contactList.style.display = "flex"
         contactInfo.style.display = "flex"
     }
+}
+
+function changeBtnsPopover() {
+    const changeContactBtns = document.getElementById('changeContactBtns')
+    const popover = document.getElementById('changebtnsPopover')
+    changeContactBtns.addEventListener('click', () => {
+        changeContactBtns.classList.toggle('active-popover');
+    })
+
+    document.addEventListener('mouseup', function (e) {
+        if (!changeContactBtns.contains(e.target)) {
+            changeContactBtns.classList.remove('active-popover');
+        }
+    })
 }
 
 function getViewportSize() {
@@ -65,9 +81,11 @@ function getViewportSize() {
 function renderMobileClickedContact() {
     const contactList = document.getElementById('contact-list-container')
     const contactInfo = document.getElementById('contact-info')
-
-    contactList.style.display = getViewportSize() <= 768 ? "none" : "flex"
+    const button = document.getElementById('addNewContactBtn')
+    contactList.style.display = getViewportSize() <= 700 ? "none" : "flex"
     contactInfo.style.display = "flex"
+    changeBtnsPopover()
+
 }
 
 function resizeHandler() {
@@ -76,33 +94,46 @@ function resizeHandler() {
 
     const hasActiveContact = !!document.querySelector(".active-contact")
 
-    contactList.style.display = (hasActiveContact && (getViewportSize() <= 768)) ? "none" : "flex"
-    contactInfo.style.display = (!hasActiveContact && (getViewportSize() <= 768)) ? "none" : "flex"
+    contactList.style.display = (hasActiveContact && (getViewportSize() <= 700)) ? "none" : "flex"
+    contactInfo.style.display = (!hasActiveContact && (getViewportSize() <= 700)) ? "none" : "flex"
 }
 
-function sortContactsByFirstName(contacts) {
-    return [...contacts].sort((a, b) => {
+function sortContactsByFirstName(element) {
+    return [...element].sort((a, b) => {
         const firstNameA = a.name.split(" ")[0].toUpperCase();
         const firstNameB = b.name.split(" ")[0].toUpperCase();
         return firstNameA.localeCompare(firstNameB);
     });
 }
 
-function renderContactList() {
-    const contacts = sortContactsByFirstName(contact);
+async function getContactListData() {
+    return await loadFirebaseData('contacts');
+
+}
+
+async function renderContactList() {
+    await getContactListData()
     const container = document.getElementById('contact-list');
+
 
     let currentLetter = "";
 
-    contacts.forEach((contact) => {
-        const firstName = contact.name.split(" ")[0];
+    contactsList.forEach(element => {
+        contactsArray.push(element.contact);
+    });
+    console.log(contactsArray);
+    contactsArray.sort((a, b) => a.name.localeCompare(b.name))
+    for (let i = 0; i < contactsArray.length; i++) {
+        const firstName = contactsArray[i].name.split(" ")[0];
         const firstLetter = firstName[0].toUpperCase();
+
 
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
             container.innerHTML += contactSeperatorTemplate(currentLetter);
         }
 
-        container.innerHTML += loadContactListItem(contact);
-    });
+        container.innerHTML += loadContactListItem(contactsArray[i]);
+    }
+
 }
