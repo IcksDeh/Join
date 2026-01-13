@@ -132,8 +132,10 @@ document.getElementById('signup_btn').addEventListener("click", async function(e
     event.preventDefault();
     await getUserData();
     showToast(); 
-    }
-)
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 2000);
+});
 
 
   // sinnvoll zusammenfassen? 
