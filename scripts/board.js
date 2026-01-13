@@ -173,13 +173,14 @@ function numberDoneSubstask(index){
 
 /**
  * Filters tasks based on the search query in the title or description.
- * Triggered by the onkeyup event in the search input field.
+ * Shows "Keine Ergebnisse gefunden" if search yields no hits in a column.
  */
 function filterTasks() {
     let searchInput = document.querySelector('.style_input_searchbar');
     let searchTerm = searchInput.value.toLowerCase();
-    
-    resetBoardHTML();
+    let placeholderMessage = searchTerm.length > 0 ? "Keine Ergebnisse gefunden" : null;
+    resetBoardHTML(placeholderMessage);
+
     taskList.forEach((taskItem, index) => {
         let taskContent = taskItem.task;
         let taskID = taskItem.id;
@@ -193,20 +194,21 @@ function filterTasks() {
 }
 
 /**
- * Resets the HTML of all board columns to the default state.
- * Re-inserts the placeholder texts and resets the data-initialized attribute.
+ * Resets the HTML of all board columns.
+ * @param {string|null} customMessage
  */
-function resetBoardHTML() {
+function resetBoardHTML(customMessage = null) {
     const columns = [
         { id: 'todo', text: 'To Do' },
         { id: 'inProgress', text: 'Progress' },
         { id: 'awaitFeedback', text: 'Await Feedback' },
         { id: 'done', text: 'Done' }
     ];
-
     columns.forEach(col => {
         let columnElement = document.getElementById('board_column_' + col.id);
-        columnElement.innerHTML = `<p>No tasks in ${col.text}</p>`;
+        let message = customMessage ? customMessage : `No tasks in ${col.text}`;
+
+        columnElement.innerHTML = `<div class="no_task_message">${message}</div>`;
         columnElement.classList.add("no_task_available");
         columnElement.dataset.initialized = "false";
     });
