@@ -221,7 +221,7 @@
         <dialog class="dialog_task_detail_edit_container" id="taskDetailEditDialog">
           <main class="task_detail_edit_wrapper" data-task_detail_information-id="${taskID}">
             <div class="close_btn_container_task_detail_edit">
-                <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeTaskDetailEditDialog()" role="button" aria-label="Schließen">
+              <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeTaskDetailEditDialog()" role="button" aria-label="Schließen">
             </div>
 
             <form class="form_content" id="taskDetailEditForm" novalidate></form>
@@ -238,7 +238,7 @@
               
                   <div>
                     <label for="id_due_date_add_task" class="label_text_edit">Due Date<sup>*</sup></label><br>
-                    <input type="date" class="task_detail_edit_input styled_input_edit validate_required" id="id_due_date_add_task" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                    <input type="date" class="task_detail_edit_input styled_input_edit validate_required" id="id_due_date_task_detail_edit" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
                     <span class="required_message" data-for="id_due_date_add_task">This field is required</span><br>
                   </div>
                 </section>

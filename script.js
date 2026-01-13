@@ -181,18 +181,20 @@ function getRandomColor(){
  *  @returns {void} - This handler does not return a value.
  */
 window.addEventListener('DOMContentLoaded', () => {
-    const dueDateInput = document.getElementById('id_due_date_add_task');
-    if (!dueDateInput) return;
-
-    dueDateInput.addEventListener('input', () => {
-        const value = dueDateInput.value;
-        if (!value) return;
-
-        const parts = value.split('-');
-        if (parts.length === 3 && parts[0] !== '2026') {
-            parts[0] = '2026';
-            dueDateInput.value = parts.join('-');
-        }
+    const dueDateInputIds = ['id_due_date_add_task', 'id_due_date_task_detail_edit'];
+    
+    dueDateInputIds.forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+        input.addEventListener('input', () => {
+            const value = input.value;
+            if (!value) return;
+            const parts = value.split('-');
+            if (parts.length === 3 && parts[0] !== '2026') {
+                parts[0] = '2026';
+                input.value = parts.join('-');
+            }
+        });
     });
 });
 

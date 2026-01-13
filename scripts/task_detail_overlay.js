@@ -1,5 +1,4 @@
-// USER STORY DIALOG
-// PAGE 1
+// TASK DETAIL DIALOG
 
 
 /**
@@ -36,21 +35,50 @@ async function openTaskDetailDialog(taskID, taskIndex) {
 }
 
 
+/**
+ * Closes the "User Story" dialog.
+ * Removes its content and resets all contact input fields.
+ * 
+ * @function closeTaskDetailDialog
+ * @returns {void} - This function does not return a value.
+ */
+function closeTaskDetailDialog() {
+  const dialog = document.getElementById('taskDetailDialog');
+  if (!dialog) return;
+
+  dialog.close();
+}
+
+
+/**
+ * Loads and renders all assignees for a task in the task details view.
+ * Creates and appends assignee UI elements based on the task content.
+ *
+ * @param {Object} taskContent - The task data object.
+ * @param {string|number} taskID - The unique ID of the task.
+ */
 function loadAssigneesTaskDetails(taskContent, taskID){
-    let taskAssigneeElement = document.getElementById("assignees_task_details_"+ taskID);
-    let assigneeList = taskContent.assignees;
-    Object.values(assigneeList)
-        .forEach(assignee => {
-          console.log(assignee)
-        let assigneeHTMLElement = document.createElement('div');
-        assigneeHTMLElement.className = "user_info";
-        assigneeHTMLElement.innerHTML = AssigneesTaskDetailsTemplate(assignee);
-        taskAssigneeElement.appendChild(assigneeHTMLElement);
+  let taskAssigneeElement = document.getElementById("assignees_task_details_"+ taskID);
+  let assigneeList = taskContent.assignees;
+  Object.values(assigneeList)
+    .forEach(assignee => {
+      console.log(assignee)
+    let assigneeHTMLElement = document.createElement('div');
+    assigneeHTMLElement.className = "user_info";
+    assigneeHTMLElement.innerHTML = AssigneesTaskDetailsTemplate(assignee);
+    taskAssigneeElement.appendChild(assigneeHTMLElement);
+  })
+}
 
-    })
-  }
 
-
+/**
+ * Loads and renders all subtasks for a task in the task details view.
+ * Creates subtask elements, appends them to the list, and updates checkbox states.
+ *
+ * @param {Object} taskContent - The task data object.
+ * @param {string|number} taskID - The unique ID of the task.
+ * @param {number} taskIndex - The index of the task in the task list.
+ */
 function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
   let subtaskListElement = document.getElementById("subtasks_task_detail_list");
   let subtaskList = taskContent.subtasks;
@@ -67,6 +95,12 @@ function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
 }
 
 
+/**
+ * Updates the checkbox icon for a subtask based on its completion status.
+ *
+ * @param {string|number} subtaskID - The unique ID of the subtask.
+ * @param {Object} subtaskContent - The subtask data object.
+ */
 function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
   let subtaskCheckboxElement = document.getElementById("checkbox_subtask_task_detail_"+ subtaskID);
   if(subtaskContent.done == "false"){
@@ -77,33 +111,22 @@ function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
 }
 
 
+/**
+ * Sets the category label color in the task details view.
+ * Applies a background color based on the task category.
+ *
+ * @param {Object} taskContent - The task data object.
+ * @param {string|number} taskID - The unique ID of the task.
+ */
 function colorLabelTaskDetails (taskContent, taskID){
   let labelElement = document.getElementById("category_label_task_details_" +taskID)
-    if (taskContent.category === "Technical Task"){
-        labelElement.style.backgroundColor = '#1FD7C1';
-    } else if( taskContent.category === "User Story"){
-        labelElement.style.backgroundColor = '#0038FF';
-    } else {
-        labelElement.style.backgroundColor = '#ff00d9ff';
-    }
+  if (taskContent.category === "Technical Task"){
+    labelElement.style.backgroundColor = '#1FD7C1';
+  } else if( taskContent.category === "User Story"){
+    labelElement.style.backgroundColor = '#0038FF';
+  } else {
+    labelElement.style.backgroundColor = '#ff00d9';
   }
-
-
-/**
- * Closes the "User Story" dialog.
- * Removes its content and resets all contact input fields.
- * 
- * @function closeTaskDetailDialog
- * @returns {void} - This function does not return a value.
- */
-function closeTaskDetailDialog() {
-  const dialog = document.getElementById('taskDetailDialog');
-  if (!dialog) return;
-
-  dialog.close();
-  dialog.innerHTML = "";
-
-  clearContactInputs();
 }
 
 
@@ -130,8 +153,23 @@ async function toggleCheckedIconSubtasks(img, subtaskId, taskID, taskIndex) {
 }
 
 
-// USER STORY EDIT DIALOG
-// PAGE 2
+/**
+ * Deletes a task with the given ID from Firebase if it exists in the task list.
+ * Iterates over all tasks in `taskList` and calls `deleteTaskFromFirebase` when a task with a matching ID is found.
+ *
+ * @param {string|number} taskID - The ID of the task to delete.
+ */
+function deleteTask(taskID){
+  Object.values(taskList).forEach(taskElement =>{
+    console.log(taskElement.id);
+    if(taskElement.id == taskID){
+      deleteTaskFromFirebase(taskID, "tasks/");
+    }
+  })
+}
+
+
+// TASK DETAIL EDIT DIALOG
 
 
 /**
@@ -142,8 +180,9 @@ async function toggleCheckedIconSubtasks(img, subtaskId, taskID, taskIndex) {
  * @returns {void} - This function does not return a value.
  */
 function openTaskDetailEditDialog() {
+  document.getElementById('taskDetailDialog').close();
   const dialog = document.getElementById('taskDetailEditDialog');
-    
+
   if (!dialog.open) {
     dialog.showModal();
 
@@ -168,23 +207,5 @@ function closeTaskDetailEditDialog() {
   if (!dialog) return;
 
   dialog.close();
-  dialog.innerHTML = "";
-
   clearInputs();
-}
-
-
-/**
- * Deletes a task with the given ID from Firebase if it exists in the task list.
- * Iterates over all tasks in `taskList` and calls `deleteTaskFromFirebase` when a task with a matching ID is found.
- *
- * @param {string|number} taskID - The ID of the task to delete.
- */
-function deleteTask(taskID){
-  Object.values(taskList).forEach(taskElement =>{
-    console.log(taskElement.id);
-    if(taskElement.id == taskID){
-      deleteTaskFromFirebase(taskID, "tasks/");
-    }
-  })
 }
