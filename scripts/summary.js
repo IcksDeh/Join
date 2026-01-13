@@ -3,7 +3,7 @@ async function loadNumberofTasks(){
     loadSumAllTasks();
     loadSumOfEachTask();
     loadUrgentTasks();
-    loadearliestDueDate();
+    loadEarliestDueDate();
     
 }
 
@@ -38,16 +38,20 @@ function loadUrgentTasks(){
     taskHTMLElement.innerHTML = sumUrgentTasks;
 }
 
-function loadearliestDueDate(){
+function loadEarliestDueDate(){
     let dueDateHTMLElement = document.getElementById("id_summary_dueDate");
-    let allDueDates = []
-    let earliestdueDate = 0;
-    taskList.forEach(taskElement =>{
-        let urgentTask = taskElement.task.priority.name
-        if(urgentTask == "urgent"){
-            allDueDates.push(taskElement.task.dueDate);
-        }
-        let dueDateTask = taskElement.task.dueDate;
-    
-    })
+    let now = new Date();
+    let urgentDueDates = taskList
+        .filter(taskElement => taskElement.task.priority.name === "urgent" && new Date(taskElement.task.dueDate) >= now)
+        .map(taskElement => new Date(taskElement.task.dueDate));
+      if (urgentDueDates.length === 0) {
+        dueDateHTMLElement.textContent = "No Urgent Task available";
+        return;
+    }
+    const earliestDueDate = urgentDueDates.reduce((closest, current) => {
+        return Math.abs(current - now) < Math.abs(closest - now)
+            ? current
+            : closest;
+    });
+    dueDateHTMLElement.innerHTML =earliestDueDate.toISOString().split("T")[0];
 }
