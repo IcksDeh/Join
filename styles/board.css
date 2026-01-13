@@ -80,6 +80,7 @@
   width: 100%;
   gap: 30px;
   margin-top: 50px;
+  height: auto;
   min-height: calc(100vh - 200px); 
 }
 
@@ -92,11 +93,9 @@
 
 .order_elements_in_section {
   display: flex;
-  align-items: start;
-  justify-content: flex-start;
   flex-direction: column;
   width: 22%;
-  
+  height: auto; 
 }
 
 .text_section {
@@ -109,7 +108,8 @@
 .width_section {
   width: 100%;
   margin-top: 20px;
-  height: 100vh;
+  flex: 1; 
+  min-height: 100px; 
 }
 
 .no_task_available {
