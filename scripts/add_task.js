@@ -59,9 +59,14 @@ function closeAddTaskDialog() {
  *
  * @param {string} status - The currently selected priority name.
  */
-function checkPriority(status) {
+// function checkPriority(status) {
+//   priorities.forEach(({ name, color }) => {
+//     updatePriorityButton(name, name === status, color);
+//   });
+// }
+function checkPriority(status, prefix = 'id') {
   priorities.forEach(({ name, color }) => {
-    updatePriorityButton(name, name === status, color);
+    updatePriorityButton(name, name === status, color, prefix);
   });
 }
 
@@ -74,10 +79,22 @@ function checkPriority(status) {
  * @param {boolean} isActive - Whether the priority is currently active.
  * @param {string} color - The default color used for the inactive icon.
  */
-function updatePriorityButton(priority, isActive, color) {
-  const btn = document.getElementById(`id_${priority}_btn`);
-  const icon = document.getElementById(`id_icon_${priority}_task`);
+// function updatePriorityButton(priority, isActive, color) {
+//   const btn = document.getElementById(`id_${priority}_btn`);
+//   const icon = document.getElementById(`id_icon_${priority}_task`);
 
+//   btn.classList.toggle(`${priority}_btn_filled`, isActive);
+//   btn.classList.toggle(`${priority}_btn_default`, !isActive);
+
+//   icon.src = isActive
+//     ? `./assets/img/prio_${priority}_white.svg`
+//     : `./assets/img/prio_${priority}_${color}.svg`;
+// }
+function updatePriorityButton(priority, isActive, color, prefix) {
+  const btn = document.getElementById(`${prefix}_${priority}_btn`);
+  const icon = document.getElementById(`${prefix}_icon_${priority}_task`);
+
+  if (!btn || !icon) return;
   btn.classList.toggle(`${priority}_btn_filled`, isActive);
   btn.classList.toggle(`${priority}_btn_default`, !isActive);
 
@@ -94,7 +111,8 @@ function updatePriorityButton(priority, isActive, color) {
  * @returns {void} - This event handler does not return a value.
  */
 document.addEventListener("DOMContentLoaded", () => {
-  checkPriority("medium");
+  // checkPriority("medium");
+  checkPriority('medium', 'task_detail');
 });
 
 

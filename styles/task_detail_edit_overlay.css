@@ -206,14 +206,14 @@ input[type="date"]:-ms-input-placeholder {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.09);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.10);
     margin-bottom: 5px;
 }
 
 .urgent_btn_default:hover,
 .medium_btn_default:hover,
 .low_btn_default:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
 }
 
 .urgent_btn_filled {

@@ -205,7 +205,7 @@ function openTaskDetailEditDialog() {
 function closeTaskDetailEditDialog() {
   const dialog = document.getElementById('taskDetailEditDialog');
   if (!dialog) return;
-
+  
   dialog.close();
   clearInputs();
 }
