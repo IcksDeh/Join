@@ -47,7 +47,11 @@ sup {
 }
 
 .validate_required.error {
-    border-color: #FF3D00 !important;
+    border: 2px solid #FF3D00 !important;
+}
+
+.validate_required.error:focus {
+    border: 2px solid #FF3D00 !important;
 }
 
 .required_message {

@@ -145,6 +145,46 @@ sup {
     padding-top: 8px;
 }
 
+
+
+
+
+.form_wrapper {
+    padding-top: 35px;
+}
+
+.form_required_wrapper {
+    position: relative;
+}
+
+.required_message {
+    position: absolute;
+    left: 0;
+    bottom: 18px; 
+    display: none;
+    color: #FF3D00;
+    font-size: 12pt;
+}
+
+.edit_wrapper .required_message_edit {
+    position: static;
+    display: block;
+    color: #FF3D00;
+    font-size: 12pt;
+}
+
+.required_message.active {
+    display: block;
+}
+
+.validate_edit_required.error {
+    border: 2px solid #FF3D00 !important;
+}
+
+.validate_edit_required.error:focus {
+    border: 2px solid #FF3D00 !important;
+}
+
 #due_date {
     background: url("../assets/img/event.svg") no-repeat right 16px center;
     background-color: white;

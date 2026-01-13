@@ -496,16 +496,37 @@ document
  *
  * @returns {boolean} True if all required fields are filled, otherwise false.
  */
+// function areRequiredFieldsFilled() {
+//   const title = document.getElementById('id_title_add_task').value.trim();
+//   const dueDate = document.getElementById('id_due_date_add_task').value.trim();
+//   const category = document.getElementById('selected_category').textContent.trim();
+
+//   const isTitleFilled = title.length > 0;
+//   const isDueDateFilled = dueDate.length > 0;
+//   const isCategoryFilled = category !== 'Select task category';
+
+//   return isTitleFilled && isDueDateFilled && isCategoryFilled;
+// }
 function areRequiredFieldsFilled() {
   const title = document.getElementById('id_title_add_task').value.trim();
   const dueDate = document.getElementById('id_due_date_add_task').value.trim();
   const category = document.getElementById('selected_category').textContent.trim();
+  const titleEdit = document.getElementById('id_title_task_detail_edit').value.trim();
+  const dueDateEdit = document.getElementById('id_due_date_task_detail_edit').value.trim();
 
   const isTitleFilled = title.length > 0;
   const isDueDateFilled = dueDate.length > 0;
   const isCategoryFilled = category !== 'Select task category';
+  const isTitleEditFilled = titleEdit.length > 0;
+  const isDueDateEditFilled = dueDateEdit.length > 0;
 
-  return isTitleFilled && isDueDateFilled && isCategoryFilled;
+  return (
+    isTitleFilled && 
+    isDueDateFilled &&
+    isCategoryFilled &&
+    isTitleEditFilled &&
+    isDueDateEditFilled
+  );
 }
 
 
@@ -513,22 +534,57 @@ function areRequiredFieldsFilled() {
  * Highlights missing required fields in the task form.
  * Adds error styles and displays validation messages for empty inputs and an unselected category.
  */
+// function highlightRequiredFields() {
+//   const titleInput = document.getElementById('id_title_add_task');
+//   const dueDateInput = document.getElementById('id_due_date_add_task');
+//   const categorySpan = document.getElementById('selected_category');
+
+//   titleInput.value.trim() === ""
+//     ? (titleInput.classList.add('error'),
+//       document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "block")
+//     : (titleInput.classList.remove('error'),
+//       document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "none");
+
+//   dueDateInput.value.trim() === ""
+//     ? (dueDateInput.classList.add('error'),
+//       document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "block")
+//     : (dueDateInput.classList.remove('error'),
+//       document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "none");
+
+//   categorySpan.textContent.trim() === "Select task category"
+//     ? (categorySpan.style.color = "#FF3D00")
+//     : (categorySpan.style.color = "");
+// }
 function highlightRequiredFields() {
   const titleInput = document.getElementById('id_title_add_task');
   const dueDateInput = document.getElementById('id_due_date_add_task');
   const categorySpan = document.getElementById('selected_category');
+  const titleEdit = document.getElementById('id_title_task_detail_edit');
+  const dueDateEdit = document.getElementById('id_due_date_task_detail_edit');
 
   titleInput.value.trim() === ""
     ? (titleInput.classList.add('error'),
-      document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "block")
+       document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "block")
     : (titleInput.classList.remove('error'),
-      document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "none");
+       document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "none");
 
   dueDateInput.value.trim() === ""
     ? (dueDateInput.classList.add('error'),
-      document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "block")
+       document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "block")
     : (dueDateInput.classList.remove('error'),
-      document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "none");
+       document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "none");
+
+  titleEdit.value.trim() === ""
+    ? (titleEdit.classList.add('error'),
+       document.querySelector('.required_message[data-for="id_title_task_detail_edit"]').style.display = "block")
+    : (titleEdit.classList.remove('error'),
+       document.querySelector('.required_message[data-for="id_title_task_detail_edit"]').style.display = "none");
+
+  dueDateEdit.value.trim() === ""
+    ? (dueDateEdit.classList.add('error'),
+       document.querySelector('.required_message[data-for="id_due_date_task_detail_edit"]').style.display = "block")
+    : (dueDateEdit.classList.remove('error'),
+       document.querySelector('.required_message[data-for="id_due_date_task_detail_edit"]').style.display = "none");
 
   categorySpan.textContent.trim() === "Select task category"
     ? (categorySpan.style.color = "#FF3D00")

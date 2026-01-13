@@ -209,3 +209,22 @@ function closeTaskDetailEditDialog() {
   dialog.close();
   clearInputs();
 }
+
+
+/**
+ * Handles submission of the edit task form.
+ * Prevents default form submission, validates required fields, collects task data, and closes the edit dialog on success.
+ *
+ * @param {SubmitEvent} [event] - The form submit event.
+ * @returns {Promise<void>} - Resolves when the task data is processed.
+ */
+async function submitEditTask(event) {
+  if (event) event.preventDefault();
+  const form = document.querySelector('.form_wrapper');
+
+  highlightRequiredFields(form);
+  if (!areRequiredFieldsFilled(form)) return;
+
+  await getAddTaskData();
+  closeTaskDetailEditDialog();
+}
