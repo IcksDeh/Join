@@ -106,6 +106,10 @@
     padding-left: 4px;
   }
 
+  .styled_input_description::placeholder {
+    font-size: 16px;
+  }
+
   .styled_input_description {
     font-size: 16px;
     padding-left: 4px;
