@@ -1,10 +1,10 @@
 .order_summary_information{
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    margin-right: 80px;
+    justify-content: space-between;
     align-items: center;
     gap: 60px;
-    margin-right: 30px;
     margin-bottom: 50px;
 }
 
