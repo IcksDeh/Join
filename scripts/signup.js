@@ -14,6 +14,7 @@ function getElementsUser() {
   };
 }
 
+
 // ---------------- Password Icon Logic (Visuals Only) ----------------
 function toggleIconState(input, icon) {
   if (input.value.length === 0) return;
@@ -22,6 +23,7 @@ function toggleIconState(input, icon) {
   input.type = isPass ? 'text' : 'password';
   icon.src = isPass ? ICONS.ON : ICONS.OFF;
 }
+
 
 function updateIconOnInput(input, icon) {
   if (input.value.length > 0) {
@@ -35,6 +37,7 @@ function updateIconOnInput(input, icon) {
   }
 }
 
+
 function setupToggle(inputId, iconId) {
   const input = document.getElementById(inputId);
   const icon = document.getElementById(iconId);
@@ -47,6 +50,7 @@ function setupToggle(inputId, iconId) {
   });
 }
 
+
 // ---------------- Validation Logic ----------------
 function isValid(els) {
   return (
@@ -57,6 +61,7 @@ function isValid(els) {
     els.checkbox.checked
   );
 }
+
 
 function updateBtn(els) {
   const valid = isValid(els);
@@ -72,6 +77,7 @@ function updateBtn(els) {
     els.btn.style.cursor = 'not-allowed';
   }
 }
+
 
 function handlePasswordMatch(els) {
   const password = els.pass.value;
@@ -93,6 +99,7 @@ function handlePasswordMatch(els) {
   updateBtn(els);
 }
 
+
 // ---------------- Event Listeners ----------------
 function addBasicListeners(els) {
   const check = () => updateBtn(els);
@@ -111,6 +118,7 @@ function addPasswordListeners(els) {
   });
 }
 
+
 // ---------------- Initialization ----------------
 function initSignupForm() {
   const els = getElementsUser();
@@ -127,7 +135,6 @@ function initSignupForm() {
 }
 
 initSignupForm();
-
 document.getElementById('signup_btn').addEventListener("click", async function(event){
     event.preventDefault();
     await getUserData();

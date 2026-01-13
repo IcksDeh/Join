@@ -1,6 +1,7 @@
 let animationTimeout1;
 let animationTimeout2;
 
+
 /**
  * Orchestrates the mobile greeting animation sequence.
  */
@@ -22,6 +23,7 @@ function runMobileGreetingAnimation() {
     }, 2500);
 }
 
+
 /**
  * Resets the layout immediately without animation (used on resize/refresh).
  */
@@ -37,6 +39,8 @@ function updateLayoutWithoutAnimation() {
         header.style.display = ''; 
     }
 }
+
+
 /**
  * helper: Retrieves the necessary DOM elements.
  */
@@ -48,6 +52,7 @@ function getSummaryElements() {
     };
 }
 
+
 /**
  * helper: Sets the initial state for the animation (hides content, shows greeting).
  */
@@ -58,6 +63,7 @@ function setInitialAnimationState(metrics, greeting, header) {
     greeting.classList.add('mobile_greeting_overlay');
     greeting.classList.add('fade_in_animation');
 }
+
 
 /**
  * helper: Finalizes the animation by hiding greeting and showing content.
@@ -78,6 +84,7 @@ function finalizeMobileAnimation(metrics, greeting, header) {
     }
 }
 
+
 /**
  * helper: Clears timeouts and removes animation classes.
  */
@@ -94,6 +101,7 @@ function resetAnimationClasses(metrics, greeting, header) {
     }
 }
 
+
 /**
  * helper: Applies visibility based on screen width (Desktop vs Mobile).
  */
@@ -108,6 +116,7 @@ function applyResponsiveVisibility(metrics, greeting) {
     }
 }
 
+
 /**
  * Decides whether to run the animation or update the static layout.
  */
@@ -121,6 +130,7 @@ function handleSummaryView(shouldShowAnimation) {
     localStorage.removeItem("showMobileGreeting");
     window.addEventListener('resize', updateLayoutWithoutAnimation);
 }
+
 
 /**
  * Helper to prepare the greeting text and username.
