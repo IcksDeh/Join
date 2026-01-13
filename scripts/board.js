@@ -178,7 +178,7 @@ function numberDoneSubstask(index){
 function filterTasks() {
     let searchInput = document.querySelector('.style_input_searchbar');
     let searchTerm = searchInput.value.toLowerCase();
-    let placeholderMessage = searchTerm.length > 0 ? "Keine Ergebnisse gefunden" : null;
+    let placeholderMessage = searchTerm.length > 0 ? "No results found" : null;
     resetBoardHTML(placeholderMessage);
 
     taskList.forEach((taskItem, index) => {
