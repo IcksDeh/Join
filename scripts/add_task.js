@@ -645,21 +645,22 @@ if (subtaskInputEdit) {
  * @listens HTMLButtonElement#click
  * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
  */
-document
-  .getElementById("id_btn_create_task")
-  .addEventListener("click", async function (event) {
+document.getElementById("id_btn_create_task").addEventListener("click", async function (event) {
     event.preventDefault();
     const status = this.dataset.taskParam;
 
     if (areRequiredFieldsFilled()) {
       await getAddTaskData(status);
       showToast();
-      closeAddTaskDialog();
-      loadContentBoard();
+      setTimeout(() => {
+          closeAddTaskDialog();
+          loadContentBoard();
+      }, 1000);
+      
     } else {
       highlightRequiredFields();
     }
-  });
+});
 
 
 /**
