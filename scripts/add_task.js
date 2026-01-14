@@ -684,8 +684,6 @@ function highlightRequiredFields() {
   const titleInput = document.getElementById('id_title_add_task');
   const dueDateInput = document.getElementById('id_due_date_add_task');
   const categorySpan = document.getElementById('selected_category');
-  const titleEdit = document.getElementById('id_title_task_detail_edit');
-  const dueDateEdit = document.getElementById('id_due_date_task_detail_edit');
 
   titleInput.value.trim() === ""
     ? (titleInput.classList.add('error'),
@@ -698,18 +696,6 @@ function highlightRequiredFields() {
        document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "block")
     : (dueDateInput.classList.remove('error'),
        document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "none");
-
-  titleEdit.value.trim() === ""
-    ? (titleEdit.classList.add('error'),
-       document.querySelector('.required_message[data-for="id_title_task_detail_edit"]').style.display = "block")
-    : (titleEdit.classList.remove('error'),
-       document.querySelector('.required_message[data-for="id_title_task_detail_edit"]').style.display = "none");
-
-  dueDateEdit.value.trim() === ""
-    ? (dueDateEdit.classList.add('error'),
-       document.querySelector('.required_message[data-for="id_due_date_task_detail_edit"]').style.display = "block")
-    : (dueDateEdit.classList.remove('error'),
-       document.querySelector('.required_message[data-for="id_due_date_task_detail_edit"]').style.display = "none");
 
   categorySpan.textContent.trim() === "Select task category"
     ? (categorySpan.style.color = "#FF3D00")

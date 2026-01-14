@@ -243,6 +243,32 @@ function areRequiredEditFieldsFilled() {
 
 
 /**
+ * Highlights missing required fields in the task form.
+ * Adds error styles and displays validation messages for empty inputs and an unselected category.
+ */
+function highlightRequiredEditFields() {
+  const titleEdit = document.getElementById('id_title_task_detail_edit');
+  const dueDateEdit = document.getElementById('id_due_date_task_detail_edit');
+
+  titleEdit.value.trim() === ""
+    ? (titleEdit.classList.add('error'),
+       document.querySelector('.required_message[data-for="id_title_task_detail_edit"]').style.display = "block")
+    : (titleEdit.classList.remove('error'),
+       document.querySelector('.required_message[data-for="id_title_task_detail_edit"]').style.display = "none");
+
+  dueDateEdit.value.trim() === ""
+    ? (dueDateEdit.classList.add('error'),
+       document.querySelector('.required_message[data-for="id_due_date_task_detail_edit"]').style.display = "block")
+    : (dueDateEdit.classList.remove('error'),
+       document.querySelector('.required_message[data-for="id_due_date_task_detail_edit"]').style.display = "none");
+
+  categorySpan.textContent.trim() === "Select task category"
+    ? (categorySpan.style.color = "#FF3D00")
+    : (categorySpan.style.color = "");
+}
+
+
+/**
  * Handles submission of the edit task form.
  * Prevents default form submission, validates required fields, collects task data, and closes the edit dialog on success.
  *
@@ -272,7 +298,7 @@ form.addEventListener('input', () => {
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
-  highlightRequiredFields(form); // Lays in add_task.js
+  highlightRequiredEditFields(form); // Lays in add_task.js
   if (!areRequiredEditFieldsFilled(form)) {
     return;
   }
