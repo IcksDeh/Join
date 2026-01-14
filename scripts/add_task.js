@@ -481,8 +481,10 @@ function showContactsInTasksEdit() {
  * @returns {void} - This function does not return a value.
  */
 function selectCategory(element) {
-  document.getElementById("selected_category").innerHTML = element.innerHTML;
+  const categorySpan = document.getElementById("selected_category");
+  categorySpan.innerHTML = element.innerHTML;
   document.getElementById("category_list_task").style.display = "none";
+  categorySpan.style.color = ""; 
 }
 
 
