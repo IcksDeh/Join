@@ -23,7 +23,7 @@ async function openTaskDetailDialog(taskID, taskIndex) {
 
   const dialog = document.getElementById('taskDetailDialog');
   if (!dialog.open) {
-    dialog.innerHTML = taskDetailTemplate(currentTask, taskID);
+    dialog.innerHTML = taskDetailTemplate(currentTask, taskID, taskIndex);
     loadAssigneesTaskDetails(currentTask, taskID);
     loadSubtaksTaskDetails(currentTask, taskID, taskIndex);
     colorLabelTaskDetails(currentTask, taskID);
@@ -189,12 +189,18 @@ function deleteTask(taskID){
  * @function openTaskDetailEditDialog
  * @returns {void} - This function does not return a value.
  */
-function openTaskDetailEditDialog() {
+async function openTaskDetailEditDialog(taskID, index) {
   document.getElementById('taskDetailDialog').close();
   const dialog = document.getElementById('taskDetailEditDialog');
 
   if (!dialog.open) {
     dialog.showModal();
+    await loadFirebaseData("tasks");
+
+    const currentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
+    const currentTask = currentTaskElement.task;
+    console.log(currentTask);
+    loadPrefillContent(currentTask);
 
     setTimeout(() => {
       if (document.activeElement) {
@@ -203,6 +209,52 @@ function openTaskDetailEditDialog() {
     }, 0);
   }
 }
+
+
+function loadPrefillContent(currentTask){
+  let prefilltitle = loadPrefillTitle(currentTask);
+  let prefillDescription = loadPrefillDescription(currentTask);
+  let prefillDueDate = loadPrefillDueDate(currentTask);
+  let prefillPriority = loadPrefillPriority(currentTask);
+  let prefillAssignee = loadPrefillAssignee(currentTask);
+  let prefillSubtasks = loadPrefillSubtasks(currentTask);
+
+}
+
+
+function loadPrefillTitle(currentTask){
+    let titleHTML = document.getElementById('id_title_task_detail_edit');
+    titleHTML.value = currentTask.title;
+  
+}
+
+function loadPrefillDescription(currentTask){
+  let descriptionHTML = document.getElementById('id_description_task_detail_edit');
+  descriptionHTML.value = currentTask.description;
+
+}
+
+function loadPrefillDueDate(currentTask){
+  let dueDateHTML = document.getElementById('id_due_date_task_detail_edit');
+  dueDateHTML.value = currentTask.dueDate;
+
+}
+
+function loadPrefillPriority(currentTask){
+  let priorityName = currentTask.priority.name;
+  // let priorityColor = currentTask.priority.color;
+  checkPriority(priorityName, "task_detail");
+}
+
+function loadPrefillAssignee(currentTask){
+
+}
+
+function loadPrefillSubtasks(currentTask){
+
+}
+
+
 
 
 /**

@@ -1,4 +1,4 @@
-function taskDetailTemplate(taskContent, taskID){
+function taskDetailTemplate(taskContent, taskID, taskIndex){
     return `
         <main class="task_detail_wrapper" data-task_detail_information-id="${taskID}">
             <div class="close_btn_container_task_detail">
@@ -41,7 +41,7 @@ function taskDetailTemplate(taskContent, taskID){
                         Delete
                     </button>
                     <div class="bottom_divider"></div>
-                    <button class="delete_edit_btn" onclick="openTaskDetailEditDialog()">
+                    <button class="delete_edit_btn" onclick="openTaskDetailEditDialog('${taskID}' , '${taskIndex}')">
                         <img class="icon default" src="./assets/img/edit.svg" alt="Clear Formular">
                         <img class="icon hover" src="./assets/img/edit_blue.svg" alt="Clear Formular Hover">
                         Edit
