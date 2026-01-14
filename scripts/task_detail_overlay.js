@@ -298,7 +298,7 @@ form.addEventListener('input', () => {
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
-  highlightRequiredEditFields(form); // Lays in add_task.js
+  highlightRequiredEditFields(form);
   if (!areRequiredEditFieldsFilled(form)) {
     return;
   }
