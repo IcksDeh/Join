@@ -496,38 +496,38 @@ document
  *
  * @returns {boolean} True if all required fields are filled, otherwise false.
  */
-// function areRequiredFieldsFilled() {
-//   const title = document.getElementById('id_title_add_task').value.trim();
-//   const dueDate = document.getElementById('id_due_date_add_task').value.trim();
-//   const category = document.getElementById('selected_category').textContent.trim();
-
-//   const isTitleFilled = title.length > 0;
-//   const isDueDateFilled = dueDate.length > 0;
-//   const isCategoryFilled = category !== 'Select task category';
-
-//   return isTitleFilled && isDueDateFilled && isCategoryFilled;
-// }
 function areRequiredFieldsFilled() {
   const title = document.getElementById('id_title_add_task').value.trim();
   const dueDate = document.getElementById('id_due_date_add_task').value.trim();
   const category = document.getElementById('selected_category').textContent.trim();
-  const titleEdit = document.getElementById('id_title_task_detail_edit').value.trim();
-  const dueDateEdit = document.getElementById('id_due_date_task_detail_edit').value.trim();
 
   const isTitleFilled = title.length > 0;
   const isDueDateFilled = dueDate.length > 0;
   const isCategoryFilled = category !== 'Select task category';
-  const isTitleEditFilled = titleEdit.length > 0;
-  const isDueDateEditFilled = dueDateEdit.length > 0;
 
-  return (
-    isTitleFilled && 
-    isDueDateFilled &&
-    isCategoryFilled &&
-    isTitleEditFilled &&
-    isDueDateEditFilled
-  );
+  return isTitleFilled && isDueDateFilled && isCategoryFilled;
 }
+// function areRequiredFieldsFilled() {
+//   const title = document.getElementById('id_title_add_task').value.trim();
+//   const dueDate = document.getElementById('id_due_date_add_task').value.trim();
+//   const category = document.getElementById('selected_category').textContent.trim();
+//   const titleEdit = document.getElementById('id_title_task_detail_edit').value.trim();
+//   const dueDateEdit = document.getElementById('id_due_date_task_detail_edit').value.trim();
+
+//   const isTitleFilled = title.length > 0;
+//   const isDueDateFilled = dueDate.length > 0;
+//   const isCategoryFilled = category !== 'Select task category';
+//   const isTitleEditFilled = titleEdit.length > 0;
+//   const isDueDateEditFilled = dueDateEdit.length > 0;
+
+//   return (
+//     isTitleFilled && 
+//     isDueDateFilled &&
+//     isCategoryFilled &&
+//     isTitleEditFilled &&
+//     isDueDateEditFilled
+//   );
+// }
 
 
 /**
