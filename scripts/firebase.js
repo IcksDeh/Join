@@ -76,6 +76,7 @@ async function pushToTaskArray(firebaseKeys, responseFirebaseDataToJSON) {
             }
         )
     }
+    
 }
 
 

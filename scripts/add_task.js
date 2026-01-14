@@ -655,6 +655,7 @@ document
       await getAddTaskData(status);
       showToast();
       closeAddTaskDialog();
+      loadContentBoard();
     } else {
       highlightRequiredFields();
     }
