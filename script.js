@@ -175,29 +175,54 @@ function getRandomColor(){
 
 
 /**
- *  Ensures that a date input always has the year 2026, while allowing free selection of month and day.
- * 
- *  @event DOMContentLoaded
- *  @returns {void} - This handler does not return a value.
+ * Validates date on typing and on blur. Keeps it red if invalid.
  */
-window.addEventListener('DOMContentLoaded', () => {
-    const dueDateInputIds = ['id_due_date_add_task', 'id_due_date_task_detail_edit'];
-    
-    dueDateInputIds.forEach(id => {
-        const input = document.getElementById(id);
-        if (!input) return;
-        input.addEventListener('input', () => {
-            const value = input.value;
-            if (!value) return;
-            const parts = value.split('-');
-            if (parts.length === 3 && parts[0] !== '2026') {
-                parts[0] = '2026';
-                input.value = parts.join('-');
-            }
-        });
+function setupDateValidation() {
+    const input = document.getElementById('id_due_date_add_task');
+    if (!input) return;
+    input.min = "2026-01-01"; input.max = "9999-12-31";
+
+    const validate = () => {
+        const msg = document.querySelector('.required_message[data-for="id_due_date_add_task"]');
+        const isInvalid = !input.value || input.value < "2026-01-01"; // Error if empty or old year
+        
+        input.classList.toggle('error', isInvalid); // Add/Keep red class
+        if (msg) {
+            msg.innerText = input.value ? "Date must be 2026 or later" : "This field is required";
+            msg.style.display = isInvalid ? "block" : "none";
+        }
+    };
+    input.addEventListener('input', validate);
+    input.addEventListener('blur', validate); // Check again when clicking outside
+}
+
+/**
+ * Opens picker only on icon click. Does NOT clear errors on click.
+ */
+function setupDateClickBehavior() {
+    const input = document.getElementById('id_due_date_add_task');
+    if (!input) return;
+
+    input.addEventListener('click', function(e) {
+        // Only open picker if clicking the icon area (right 45px)
+        if ((this.offsetWidth - e.offsetX) < 45) {
+            e.preventDefault();
+            if (typeof this.showPicker === "function") this.showPicker();
+        }
     });
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupDateValidation();
+    setupDateClickBehavior();
 });
 
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+    setupDateValidation();
+    setupDateClickBehavior();
+});
 
 /**
  * Highlights the active sidebar link based on the current page path.

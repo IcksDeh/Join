@@ -671,11 +671,12 @@ document.getElementById("id_btn_create_task").addEventListener("click", async fu
  */
 function areRequiredFieldsFilled() {
   const title = document.getElementById('id_title_add_task').value.trim();
-  const dueDate = document.getElementById('id_due_date_add_task').value.trim();
+  const dueDateInput = document.getElementById('id_due_date_add_task'); 
   const category = document.getElementById('selected_category').textContent.trim();
 
   const isTitleFilled = title.length > 0;
-  const isDueDateFilled = dueDate.length > 0;
+  const isDueDateFilled = dueDateInput.value.length > 0 && dueDateInput.value >= "2026-01-01";
+  
   const isCategoryFilled = category !== 'Select task category';
 
   return isTitleFilled && isDueDateFilled && isCategoryFilled;
@@ -687,23 +688,20 @@ function areRequiredFieldsFilled() {
  * Adds error styles and displays validation messages for empty inputs and an unselected category.
  */
 function highlightRequiredFields() {
-  const titleInput = document.getElementById('id_title_add_task');
-  const dueDateInput = document.getElementById('id_due_date_add_task');
-  const categorySpan = document.getElementById('selected_category');
+    const titleInput = document.getElementById('id_title_add_task');
+    const dateInput = document.getElementById('id_due_date_add_task');
+    const category = document.getElementById('selected_category');
+    const dateMsg = document.querySelector('.required_message[data-for="id_due_date_add_task"]');
+    const isTitleEmpty = titleInput.value.trim() === "";
+    titleInput.classList.toggle('error', isTitleEmpty);
+    document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = isTitleEmpty ? "block" : "none";
+    const isDateError = !dateInput.value || dateInput.value < "2026-01-01";
+    
+    dateInput.classList.toggle('error', isDateError);
+    if (dateMsg) {
+        dateMsg.style.display = isDateError ? "block" : "none";
+        dateMsg.innerText = dateInput.value ? "Date must be 2026 or later" : "This field is required";
+    }
 
-  titleInput.value.trim() === ""
-    ? (titleInput.classList.add('error'),
-       document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "block")
-    : (titleInput.classList.remove('error'),
-       document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "none");
-
-  dueDateInput.value.trim() === ""
-    ? (dueDateInput.classList.add('error'),
-       document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "block")
-    : (dueDateInput.classList.remove('error'),
-       document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "none");
-
-  categorySpan.textContent.trim() === "Select task category"
-    ? (categorySpan.style.color = "#FF3D00")
-    : (categorySpan.style.color = "");
+    category.style.color = category.textContent.trim() === "Select task category" ? "#FF3D00" : "";
 }
