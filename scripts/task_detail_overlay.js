@@ -1,5 +1,8 @@
 // TASK DETAIL DIALOG
 
+// -------------------------
+// OPEN & CLOSE FUNCTIONS
+// -------------------------
 
 /**
  * Opens the "Task Detail" dialog if it is not already open and loads the template.
@@ -11,7 +14,7 @@
 async function openTaskDetailDialog(taskID, taskIndex) {
   await loadFirebaseData("tasks");
 
- const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
+ const currrentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
   if (!currrentTaskElement) {
     console.error("Task mit ID nicht gefunden:", taskID);
     return;
@@ -50,6 +53,10 @@ function closeTaskDetailDialog() {
 }
 
 
+// -------------------------
+// TASK CONTENT FUNCTIONS
+// -------------------------
+
 /**
  * Loads and renders all assignees for a task in the task details view.
  * Creates and appends assignee UI elements based on the task content.
@@ -58,7 +65,7 @@ function closeTaskDetailDialog() {
  * @param {string|number} taskID - The unique ID of the task.
  */
 function loadAssigneesTaskDetails(taskContent, taskID){
-  let taskAssigneeElement = document.getElementById("assignees_task_details_"+ taskID);
+  let taskAssigneeElement = document.getElementById("assignees_task_details_" + taskID);
   let assigneeList = taskContent.assignees;
   Object.values(assigneeList)
     .forEach(assignee => {
@@ -102,7 +109,7 @@ function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
  * @param {Object} subtaskContent - The subtask data object.
  */
 function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
-  let subtaskCheckboxElement = document.getElementById("checkbox_subtask_task_detail_"+ subtaskID);
+  let subtaskCheckboxElement = document.getElementById("checkbox_subtask_task_detail_" + subtaskID);
   if(subtaskContent.done == "false"){
     subtaskCheckboxElement.src = "../assets/img/checkbox_unchecked_contact_form.svg";
   } else {
@@ -119,7 +126,7 @@ function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
  * @param {string|number} taskID - The unique ID of the task.
  */
 function colorLabelTaskDetails (taskContent, taskID){
-  let labelElement = document.getElementById("category_label_task_details_" +taskID)
+  let labelElement = document.getElementById("category_label_task_details_" + taskID)
   if (taskContent.category === "Technical Task"){
     labelElement.style.backgroundColor = '#1FD7C1';
   } else if( taskContent.category === "User Story"){
@@ -171,6 +178,9 @@ function deleteTask(taskID){
 
 // TASK DETAIL EDIT DIALOG
 
+// --------------------------
+// OPEN & CLOSE FUNCTIONS
+// --------------------------
 
 /**
  * Opens the "User Story" dialog if it is not already open and loads the template.
@@ -211,6 +221,10 @@ function closeTaskDetailEditDialog() {
 }
 
 
+// ---------------------------------
+// SUBMIT BUTTON & REQUIRED FIELDS
+// ---------------------------------
+
 /**
  * Checks whether all required task fields are filled.
  * Validates title, and due date selection.
@@ -247,8 +261,8 @@ function areRequiredEditFieldsFilled() {
 // }
 
 
-// Submit Button
-// Test needed when Firebase is added
+// SUBMIT BUTTON
+// Needs to be tested when Firebase is added
 const form = document.querySelector('.form_wrapper');
 const submitBtn = document.getElementById('editTaskSubmitBtn');
 
