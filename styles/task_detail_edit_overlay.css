@@ -296,6 +296,11 @@ input[type="date"]:-ms-input-placeholder {
 .dropdown {
     width: 100%; 
 }
+
+/* .dropdown_edit {
+  position: relative;
+  width: 100%;
+} */
  
 .dropdown_input {
     display: flex;
@@ -345,6 +350,21 @@ textarea:focus {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* .dropdown_list_contacts_edit {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1100;
+    display: none;
+    width: 100%;
+    max-height: 148px;
+    overflow-y: auto;
+    background: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+} */
+
 .dropdown_item {
     padding-left: 20px;
     padding-top: 10px;
@@ -384,6 +404,16 @@ textarea:focus {
 .checkbox_icon:hover {
     content: url("../assets/img/checkbox_unchecked_hover.svg");
 }
+
+/* .add_task_input_edit {
+    width: 100%;
+    padding-right: 60px;
+    box-sizing: border-box;
+}
+
+.add_task_input_edit:focus + .subtask_actions {
+    opacity: 1;
+} */
 
 /* ---------- SCROLL BAR SMALL ---------- */
 

@@ -8,7 +8,6 @@ const subtaskList = document.getElementById("subtaskList");
 const subtaskListEdit = document.getElementById("subtaskList_edit"); // New
 const subtaskActions = document.querySelector(".subtask_actions");
 
-
 const priorities = [
   { name: "urgent", color: "red" },
   { name: "medium", color: "yellow" },
@@ -16,6 +15,7 @@ const priorities = [
 ];
 
 let selectedAssignees = [];
+let selectedAssigneesEdit = [];
 
 
 // --------------------------------
@@ -261,10 +261,17 @@ async function checkContactList(element){
         showContactsInTasks(); 
         return;
     }
-    
     await loadFirebaseData("contacts");
     showContactsInTasks();
   }
+}
+
+
+// NEW - EDIT DIALOG
+async function checkContactListEdit() {
+  if (contactsList.length === 0) await loadFirebaseData("contacts");
+  showContactsInTasks("contacts_list_task_edit", selectedAssigneesEdit);
+  renderAssignedContacts("assigned_contacts_row_edit", selectedAssigneesEdit);
 }
 
 
@@ -295,6 +302,40 @@ function toggleCheckedIcon(imgElement, index) {
 }
 
 
+// NEW - EDIT DIALOG
+function toggleCheckedIconEdit(imgElement, index) {
+  const contact = contactsList[index];
+  const contactId = contact.id;
+  const isChecked = imgElement.dataset.checked === "true";
+
+  if (isChecked) {
+    selectedAssignees = selectedAssignees.filter(c => c.id !== contactId);
+    imgElement.dataset.checked = "false";
+    imgElement.src = "./assets/img/checkbox_unchecked.svg";
+  } else {
+    if (!selectedAssignees.some(c => c.id === contactId)) {
+      selectedAssignees.push(contact);
+    }
+    imgElement.dataset.checked = "true";
+    imgElement.src = "./assets/img/checkbox_checked.svg";
+  }
+  renderAssignedContactsEdit();
+}
+
+
+// NEW - EDIT DIALOG
+function toggleListTasksEdit() {
+  const dropdownList = document.getElementById("contacts_list_task_edit");
+  if (!dropdownList) return;
+  if (dropdownList.style.display === "none" || dropdownList.style.display === "") {
+    dropdownList.style.display = "block";
+    showContactsInTasksEdit();
+  } else {
+    dropdownList.style.display = "none";
+  }
+}
+
+
 /**
  * Renders all selected assignees into the assigned contacts container.
  * Each assignee is displayed with an initial and a background color corresponding to their profile.
@@ -305,6 +346,25 @@ function renderAssignedContacts() {
 
   selectedAssignees.forEach(contact => {
     container.innerHTML += `
+      <div class="contact_initial_circle assigned_contact"
+        data-assignee-id="${contact.id}"
+        title="${contact.contact.name}"
+        style="background-color:${contact.contact.color}">
+        ${contact.contact.initial}
+      </div>
+    `;
+  });
+}
+
+
+// NEW - EDIT DIALOG
+function renderAssignedContactsEdit() {
+  const containerEdit = document.getElementById("assigned_contacts_row_edit");
+  if (!containerEdit) return;
+  containerEdit.innerHTML = "";
+
+  selectedAssignees.forEach(contact => {
+    containerEdit.innerHTML += `
       <div class="contact_initial_circle assigned_contact"
         data-assignee-id="${contact.id}"
         title="${contact.contact.name}"
@@ -380,6 +440,30 @@ function showContactsInTasks() {
       contactsList, index, checkImg, checkState
     );
     assigneeList.appendChild(listElement);
+  }
+}
+
+
+// NEW - EDIT DIALOG
+function showContactsInTasksEdit() {
+  const assigneeListEdit = document.getElementById("contacts_list_task_edit");
+  if (!assigneeListEdit) return;
+  assigneeListEdit.innerHTML = "";
+
+  for (let index = 0; index < contactsList.length; index++) {
+    const contact = contactsList[index];
+    const isChecked = selectedAssigneesEdit.some(c => c.id === contact.id);
+    const checkImg = isChecked
+      ? "./assets/img/checkbox_checked_contact_form.svg"
+      : "./assets/img/checkbox_unchecked_contact_form.svg";
+
+    const checkState = isChecked ? "true" : "false";
+
+    const listElement = document.createElement("li");
+    listElement.className = "dropdown_item";
+
+    listElement.innerHTML = listAssigneeTemplate(contact, index, checkImg, checkState, true);
+    assigneeListEdit.appendChild(listElement);
   }
 }
 
