@@ -1,7 +1,7 @@
 function loadContactListItem(c) {
     return `        
         <li>
-            <button class="contact-person" onclick="setContactActive('${c.eMail}', this)" id="contact-${c.eMail}">
+            <button class="contact-person" onclick="setContactActive('${c.id}', this)" id="contact-${c.id}">
                 <span class="initals" style="background-color: ${c.color};">${getContactInitials(c.name)}</span>
                 <div class="small-info">
                     <h3>${c.name}</h3>
@@ -43,10 +43,10 @@ function contactInitialsTemplate(c) {
                 <span id="contactDetailName">${c.name}</span>
                 <div class="changebtns" id="changeContactBtns">
                     <div id="changebtnsPopover">
-                        <button id="editContactBtn" class="edit_btn" onclick="openEditContactDialog()">
+                        <button id="editContactBtn" class="edit_btn" onclick="openEditContactDialog('${c.id}', this)">
                             <img src="./assets/img/edit.svg" alt="Edit" />Edit
                         </button>
-                        <button id="deleteContactBtn" class="delete_btn">
+                        <button id="deleteContactBtn" class="delete_btn" onclick="deleteContact('${c.id}')">
                             <img src="./assets/img/delete.svg" alt="Delete" />Delete
                         </button>
                     </div>

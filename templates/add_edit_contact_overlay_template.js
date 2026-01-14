@@ -1,4 +1,4 @@
-function addContactTemplate(){
+function addContactTemplate() {
     return `
         <main class="contact_overlay_wrapper">
             <section class="contact_left_container">
@@ -38,7 +38,7 @@ function addContactTemplate(){
 }
 
 
-function editContactTemplate(){
+function editContactTemplate(c) {
     return `
         <main class="contact_overlay_wrapper">
             <section class="contact_left_container">
@@ -53,20 +53,20 @@ function editContactTemplate(){
                     </div>
                     <div class="right_container_wrapper">
                         <div class="avatar-wrapper">
-                            <div class="initals_big">AM</div>
+                            <div class="initals_big" style="background-color: ${c.color};">${getContactInitials(c.name)}</div>
                         </div>
                         <div>
                             <div class="input_fields_container">
-                                <input type="text" id="name" class="user_input styled_input" placeholder="Anton Mayer" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
-                                <input type="email" id="email" class="user_input styled_input" placeholder="antonm@gmail.com" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
-                                <input type="tel" id="phone" class="user_input styled_input" placeholder="+49 111 111 11 11" required oninput="limitInputLength(this, 17); validateEditContactForm()"><br>
+                                <input type="text" id="input-name" class="user_input styled_input" placeholder="${c.name}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
+                                <input type="email" id="input-email" class="user_input styled_input" placeholder="${c.eMail}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
+                                <input type="tel" id="input-phone" class="user_input styled_input" placeholder="${c.phoneNumber}" required oninput="limitInputLength(this, 17); validateEditContactForm()"><br>
                             </div>
                             <div class="contact_btn_area">
                                 <button type="button" class="outline_btn" onclick="clearContactInputs()">Delete
                                     <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                     <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                                 </button>
-                                <button type="submit" id="saveContactBtn" class="filled_btn" disabled>Save<img src="./assets/img/check_white.svg" alt="Save Contact"></button>
+                                <button type="submit" id="saveContactBtn" class="filled_btn" onclick="updateContact('-' + ${c.id})">Save<img src="./assets/img/check_white.svg" alt="Save Contact"></button>
                             </div>
                         </div>
                     </div>   
