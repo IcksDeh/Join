@@ -145,10 +145,6 @@ sup {
     padding-top: 8px;
 }
 
-
-
-
-
 .form_wrapper {
     padding-top: 35px;
 }
@@ -442,9 +438,7 @@ textarea:focus {
     display: flex;
     align-items: center; 
     justify-content: center;
-    gap: 6px; 
     margin-top: 20px;
-    margin-bottom: 10px;
 }
 
 .ok_btn:hover {

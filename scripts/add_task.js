@@ -1,8 +1,13 @@
+// -------------
 // VARIABLES
+// -------------
 
 const subtaskInput = document.getElementById("subtasks");
+const subtaskInputEdit = document.getElementById("subtasks_edit"); // New
 const subtaskList = document.getElementById("subtaskList");
+const subtaskListEdit = document.getElementById("subtaskList_edit"); // New
 const subtaskActions = document.querySelector(".subtask_actions");
+
 
 const priorities = [
   { name: "urgent", color: "red" },
@@ -13,7 +18,9 @@ const priorities = [
 let selectedAssignees = [];
 
 
-// FUNCTIONS
+// --------------------------------
+// OPEN & CLOSE DIALOG FUNCTIONS
+// --------------------------------
 
 /**
  * Opens the "Add Task" dialog if it is not already open and loads the template.
@@ -52,6 +59,55 @@ function closeAddTaskDialog() {
   clearInputs();
 }
 
+
+// --------------------------------
+// RESET & CLEAR INPUT FUNCTIONS
+// --------------------------------
+
+/**
+ * Resets all task input fields to their default state.
+ * Clears input values, removes error styles, hides required messages, and resets the selected category.
+ */
+function resetInputFields() {
+  const inputIds = ["title", "description", "due_date", "subtasks"];
+  inputIds.forEach(idElement => {
+    const element = document.getElementById("id_" + idElement + "_add_task");
+    if (element) {
+      if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+        element.value = "";
+        element.classList.remove("error");
+      } else {
+        element.innerHTML = "";
+      }
+      const message = document.querySelector(".required_message[data-for=id_" + idElement + "_add_task]");
+      if (message) message.style.display = "none";
+    }
+  });
+  const categorySpan = document.getElementById("selected_category");
+  categorySpan.innerHTML = "Select task category";
+  categorySpan.style.color = "";
+}
+
+
+/**
+ * Clears and resets the entire "Add Task" form.
+ * Resets input fields, clears assigned contacts and subtasks, closes dropdowns, resets priority, and cancels subtask editing.
+ */
+function clearInputs() {
+  clearSelectedAssignees();
+  resetInputFields();
+  document.getElementById("selected_contacts").innerHTML = "Select contacts to assign";
+  document.getElementById("assigned_contacts_row").innerHTML = "";
+  closeDropdownLists();
+  subtaskList.innerHTML = "";
+  checkPriority("medium");
+  cancelSubtask();
+}
+
+
+// ----------------------------
+// CHECK PRIORITY FUNCTIONS
+// ----------------------------
 
 /**
  * Updates the UI to reflect the currently selected priority.
@@ -116,6 +172,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// ---------------------
+// REQUIRED MESSAGES
+// ---------------------
+
 /**
  * Shows or hides a required field message and toggles an error class based on whether the input is empty and focused.
  *
@@ -137,6 +197,10 @@ function handleRequiredMessage(input) {
   }
 }
 
+
+// -----------------------------------
+// TOGGLES & CLOSES DROPDOWN LISTS
+// -----------------------------------
 
 /**
  * Toggles the visibility of a task-related list element.
@@ -160,40 +224,6 @@ function toggleListTasks(element) {
 
 
 /**
- * Checks whether the contact list is already loaded and loads it if necessary.
- * If the contacts are not yet available, data is fetched from Firebase before displaying the contacts in the task view.
- *
- * @async
- * @function checkContactList
- * @param {string} element - The element identifier used to determine which list to check.
- * @returns {Promise<void>} - A promise that resolves when the contact list has been checked and rendered.
- */
-async function checkContactList(element){
-  if (element == "contacts"){
-    if (contactsList.length > 0) {
-        showContactsInTasks(); 
-        return;
-    }
-    
-    await loadFirebaseData("contacts");
-    showContactsInTasks();
-  }
-}
-
-
-/**
- * Selects category element via onclick. Hides the category list after selection.
- *
- * @param {HTMLElement} element - The clicked category element.
- * @returns {void} - This function does not return a value.
- */
-function selectCategory(element) {
-  document.getElementById("selected_category").innerHTML = element.innerHTML;
-  document.getElementById("category_list_task").style.display = "none";
-}
-
-
-/**
  * Collapses the contacts and category dropdown lists if it is currently expanded.
  *
  * @function closeDropdownLists
@@ -212,44 +242,29 @@ function closeDropdownLists() {
 }
 
 
+// -----------------------
+// ASSIGNEES FUNCTIONS
+// -----------------------
+
 /**
- * Resets all task input fields to their default state.
- * Clears input values, removes error styles, hides required messages, and resets the selected category.
+ * Checks whether the contact list is already loaded and loads it if necessary.
+ * If the contacts are not yet available, data is fetched from Firebase before displaying the contacts in the task view.
+ *
+ * @async
+ * @function checkContactList
+ * @param {string} element - The element identifier used to determine which list to check.
+ * @returns {Promise<void>} - A promise that resolves when the contact list has been checked and rendered.
  */
-function resetInputFields() {
-  const inputIds = ["title", "description", "due_date", "subtasks"];
-  inputIds.forEach(idElement => {
-    const element = document.getElementById("id_" + idElement + "_add_task");
-    if (element) {
-      if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
-        element.value = "";
-        element.classList.remove("error");
-      } else {
-        element.innerHTML = "";
-      }
-      const message = document.querySelector(".required_message[data-for=id_" + idElement + "_add_task]");
-      if (message) message.style.display = "none";
+async function checkContactList(element){
+  if (element == "contacts"){
+    if (contactsList.length > 0) {
+        showContactsInTasks(); 
+        return;
     }
-  });
-  const categorySpan = document.getElementById("selected_category");
-  categorySpan.innerHTML = "Select task category";
-  categorySpan.style.color = "";
-}
-
-
-/**
- * Clears and resets the entire "Add Task" form.
- * Resets input fields, clears assigned contacts and subtasks, closes dropdowns, resets priority, and cancels subtask editing.
- */
-function clearInputs() {
-  clearSelectedAssignees();
-  resetInputFields();
-  document.getElementById("selected_contacts").innerHTML = "Select contacts to assign";
-  document.getElementById("assigned_contacts_row").innerHTML = "";
-  closeDropdownLists();
-  subtaskList.innerHTML = "";
-  checkPriority("medium");
-  cancelSubtask();
+    
+    await loadFirebaseData("contacts");
+    showContactsInTasks();
+  }
 }
 
 
@@ -276,7 +291,6 @@ function toggleCheckedIcon(imgElement, index) {
     imgElement.dataset.checked = "true";
     imgElement.src = "./assets/img/checkbox_checked.svg";
   }
-
   renderAssignedContacts();
 }
 
@@ -340,13 +354,67 @@ function clearSelectedAssignees() {
 
 
 /**
+ * Renders the contact list in the task assignment dropdown.
+ * Clears the current list and dynamically creates list items for each contact, including their checked state and corresponding icon.
+ *
+ * @function showContactsInTasks
+ * @returns {void} - This function does not return a value.
+ */
+function showContactsInTasks() {
+  let assigneeList = document.getElementById("contacts_list_task");
+  assigneeList.innerHTML = "";
+
+  for (let index = 0; index < contactsList.length; index++) {
+    console.log(contactsList[index]);
+    const isChecked = contactsList[index].isChecked === true;
+    const checkImg = isChecked
+      ? "./assets/img/checkbox_checked_contact_form.svg"
+      : "./assets/img/checkbox_unchecked_contact_form.svg";
+
+    const checkState = isChecked ? "true" : "false";
+
+    const listElement = document.createElement("li");
+    listElement.className = "dropdown_item";
+
+    listElement.innerHTML = listAssigneeTemplate(
+      contactsList, index, checkImg, checkState
+    );
+    assigneeList.appendChild(listElement);
+  }
+}
+
+
+// -----------------------------------
+// CATEGORY LIST
+// -----------------------------------
+
+/**
+ * Selects category element via onclick. Hides the category list after selection.
+ *
+ * @param {HTMLElement} element - The clicked category element.
+ * @returns {void} - This function does not return a value.
+ */
+function selectCategory(element) {
+  document.getElementById("selected_category").innerHTML = element.innerHTML;
+  document.getElementById("category_list_task").style.display = "none";
+}
+
+
+// -----------------------
+// SUBTASK FUNCTIONS
+// -----------------------
+
+/**
  * Shows the subtask action buttons and sets the display style to flex.
  *
  * @function showSubtaskActions
  * @returns {void} - This function does not return a value.
  */
+// function showSubtaskActions() {
+//   subtaskActions.style.display = "flex";
+// }
 function showSubtaskActions() {
-  subtaskActions.style.display = "flex";
+  if (subtaskActions) subtaskActions.style.display = "flex";
 }
 
 
@@ -357,9 +425,15 @@ function showSubtaskActions() {
  * @function cancelSubtask
  * @returns {void} - This function does not return a value.
  */
+// function cancelSubtask() {
+//   subtaskInput.value = "";
+//   subtaskActions.style.display = "none";
+//   showSubtaskActions();
+// }
 function cancelSubtask() {
-  subtaskInput.value = "";
-  subtaskActions.style.display = "none";
+  if (subtaskInput) subtaskInput.value = "";
+  if (subtaskInputEdit) subtaskInputEdit.value = "";
+  if (subtaskActions) subtaskActions.style.display = "none";
   showSubtaskActions();
 }
 
@@ -372,15 +446,34 @@ function cancelSubtask() {
  * @function addSubtask
  * @returns {void} This function does not return a value.
  */
-function addSubtask() {
-  const value = subtaskInput.value.trim();
-  if (!value) return;
+// function addSubtask() {
+//   const value = subtaskInput.value.trim();
+//   if (!value) return;
 
+//   const li = document.createElement("li");
+//   li.className = "list_element";
+//   li.innerHTML = listSubtaskTemplate(value);
+//   subtaskList.appendChild(li);
+//   subtaskInput.value = "";
+//   cancelSubtask();
+// }
+function addSubtask() {
+  const input = subtaskInputEdit?.value.trim()
+    ? subtaskInputEdit
+    : subtaskInput;
+
+  const list = input === subtaskInputEdit
+    ? subtaskListEdit
+    : subtaskList;
+
+  if (!input || !list) return;
+  const value = input.value.trim();
+  if (!value) return;
   const li = document.createElement("li");
   li.className = "list_element";
   li.innerHTML = listSubtaskTemplate(value);
-  subtaskList.appendChild(li);
-  subtaskInput.value = "";
+  list.appendChild(li);
+  input.value = "";
   cancelSubtask();
 }
 
@@ -424,7 +517,7 @@ function cancelEdit(btn) {
 
 
 /**
- * Listens for the "Enter" key on the subtask input field.
+ * Listens for the "Enter" key on the Subtask input field.
  * Prevents the default form submission behavior and calls `addSubtask()` when Enter is pressed.
  *
  * @param {KeyboardEvent} event - The keyboard event triggered on keydown.
@@ -438,34 +531,24 @@ subtaskInput.addEventListener("keydown", function (event) {
 
 
 /**
- * Renders the contact list in the task assignment dropdown.
- * Clears the current list and dynamically creates list items for each contact, including their checked state and corresponding icon.
+ * Listens for the "Enter" key on the Subtask Edit input field.
+ * Prevents the default form submission behavior and calls `addSubtask()` when Enter is pressed.
  *
- * @function showContactsInTasks
- * @returns {void} - This function does not return a value.
+ * @param {KeyboardEvent} event - The keyboard event triggered on keydown.
  */
-function showContactsInTasks() {
-  let assigneeList = document.getElementById("contacts_list_task");
-  assigneeList.innerHTML = "";
-
-  for (let index = 0; index < contactsList.length; index++) {
-    console.log(contactsList[index]);
-    const isChecked = contactsList[index].isChecked === true;
-    const checkImg = isChecked
-      ? "./assets/img/checkbox_checked_contact_form.svg"
-      : "./assets/img/checkbox_unchecked_contact_form.svg";
-
-    const checkState = isChecked ? "true" : "false";
-
-    const listElement = document.createElement("li");
-    listElement.className = "dropdown_item";
-
-    listElement.innerHTML = listAssigneeTemplate(
-      contactsList, index, checkImg, checkState
-    );
-    assigneeList.appendChild(listElement);
-  }
+if (subtaskInputEdit) {
+  subtaskInputEdit.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      addSubtask();
+    }
+  });
 }
+
+
+// --------------------------------------------------
+// CREATE TASK BUTTON & REQUIRED FIELDS FUNCTIONS
+// --------------------------------------------------
 
 
 /**
@@ -507,54 +590,12 @@ function areRequiredFieldsFilled() {
 
   return isTitleFilled && isDueDateFilled && isCategoryFilled;
 }
-// function areRequiredFieldsFilled() {
-//   const title = document.getElementById('id_title_add_task').value.trim();
-//   const dueDate = document.getElementById('id_due_date_add_task').value.trim();
-//   const category = document.getElementById('selected_category').textContent.trim();
-//   const titleEdit = document.getElementById('id_title_task_detail_edit').value.trim();
-//   const dueDateEdit = document.getElementById('id_due_date_task_detail_edit').value.trim();
-
-//   const isTitleFilled = title.length > 0;
-//   const isDueDateFilled = dueDate.length > 0;
-//   const isCategoryFilled = category !== 'Select task category';
-//   const isTitleEditFilled = titleEdit.length > 0;
-//   const isDueDateEditFilled = dueDateEdit.length > 0;
-
-//   return (
-//     isTitleFilled && 
-//     isDueDateFilled &&
-//     isCategoryFilled &&
-//     isTitleEditFilled &&
-//     isDueDateEditFilled
-//   );
-// }
 
 
 /**
  * Highlights missing required fields in the task form.
  * Adds error styles and displays validation messages for empty inputs and an unselected category.
  */
-// function highlightRequiredFields() {
-//   const titleInput = document.getElementById('id_title_add_task');
-//   const dueDateInput = document.getElementById('id_due_date_add_task');
-//   const categorySpan = document.getElementById('selected_category');
-
-//   titleInput.value.trim() === ""
-//     ? (titleInput.classList.add('error'),
-//       document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "block")
-//     : (titleInput.classList.remove('error'),
-//       document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = "none");
-
-//   dueDateInput.value.trim() === ""
-//     ? (dueDateInput.classList.add('error'),
-//       document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "block")
-//     : (dueDateInput.classList.remove('error'),
-//       document.querySelector('.required_message[data-for="id_due_date_add_task"]').style.display = "none");
-
-//   categorySpan.textContent.trim() === "Select task category"
-//     ? (categorySpan.style.color = "#FF3D00")
-//     : (categorySpan.style.color = "");
-// }
 function highlightRequiredFields() {
   const titleInput = document.getElementById('id_title_add_task');
   const dueDateInput = document.getElementById('id_due_date_add_task');

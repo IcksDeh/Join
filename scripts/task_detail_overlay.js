@@ -212,19 +212,56 @@ function closeTaskDetailEditDialog() {
 
 
 /**
+ * Checks whether all required task fields are filled.
+ * Validates title, and due date selection.
+ *
+ * @returns {boolean} True if all required fields are filled, otherwise false.
+ */
+function areRequiredEditFieldsFilled() {
+  const title = document.getElementById('id_title_task_detail_edit').value.trim();
+  const dueDate = document.getElementById('id_due_date_task_detail_edit').value.trim();
+
+  const isTitleFilled = title.length > 0;
+  const isDueDateFilled = dueDate.length > 0;
+
+  return isTitleFilled && isDueDateFilled;
+}
+
+
+/**
  * Handles submission of the edit task form.
  * Prevents default form submission, validates required fields, collects task data, and closes the edit dialog on success.
  *
  * @param {SubmitEvent} [event] - The form submit event.
  * @returns {Promise<void>} - Resolves when the task data is processed.
  */
-async function submitEditTask(event) {
-  if (event) event.preventDefault();
-  const form = document.querySelector('.form_wrapper');
+// async function submitEditTask(event) {
+//   if (event) event.preventDefault();
+//   const form = document.querySelector('.form_wrapper');
 
-  highlightRequiredFields(form);
-  if (!areRequiredFieldsFilled(form)) return;
+//   highlightRequiredFields(form); // Lays in add_task.js
+//   if (!areRequiredEditFieldsFilled(form)) return;
 
+//   await getAddTaskData();
+//   closeTaskDetailEditDialog();
+// }
+
+
+// Submit Button
+// Test needed when Firebase is added
+const form = document.querySelector('.form_wrapper');
+const submitBtn = document.getElementById('editTaskSubmitBtn');
+
+form.addEventListener('input', () => {
+  submitBtn.disabled = !areRequiredEditFieldsFilled(form);
+});
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  highlightRequiredFields(form); // Lays in add_task.js
+  if (!areRequiredEditFieldsFilled(form)) {
+    return;
+  }
   await getAddTaskData();
   closeTaskDetailEditDialog();
-}
+});
