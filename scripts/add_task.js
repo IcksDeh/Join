@@ -29,8 +29,10 @@ let selectedAssigneesEdit = [];
  * @function openAddTaskDialog
  * @returns {void} - This function does not return a value.
  */
-function openAddTaskDialog() {
+function openAddTaskDialog(status) {
   const dialog = document.getElementById("addTaskDialog");
+  const btn = document.getElementById("id_btn_create_task");
+  btn.dataset.taskParam = status;
 
   if (!dialog.open) {
     dialog.showModal();
@@ -647,8 +649,10 @@ document
   .getElementById("id_btn_create_task")
   .addEventListener("click", async function (event) {
     event.preventDefault();
+    const status = this.dataset.taskParam;
+
     if (areRequiredFieldsFilled()) {
-      await getAddTaskData();
+      await getAddTaskData(status);
       showToast();
       closeAddTaskDialog();
     } else {

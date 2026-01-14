@@ -47,7 +47,7 @@
           <section class="order_header_board">
             <div class="board_mobile_header">
               <h1>Board</h1>
-              <button class="btn_add_task_board_mobile button" onclick="openAddTaskDialog()"><img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
+              <button class="btn_add_task_board_mobile button" onclick="openAddTaskDialog('todo')"><img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
             </div>
             <div class="order_header_right_side">
               <div class="style_searchbar_board">
@@ -57,7 +57,7 @@
                   <img class="style_search_icon" src="./assets/img/search.svg" alt="">
                 </div>
               </div>
-              <button class="btn_add_task_board button" onclick="openAddTaskDialog()">Add Task<img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
+              <button class="btn_add_task_board button" onclick="openAddTaskDialog('todo')">Add Task<img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
             </div>
           </section> 
 
@@ -67,7 +67,7 @@
             <div class="order_elements_in_section">
               <div class="order_elements_in_section_header">
                 <p class="text_section">To Do</p>
-                <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
+                <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog('todo')" role="button" aria-label="Add Task">
               </div>
               <div class="width_section" ondrop="drop('todo')" ondragover="allowDrop(event)">
                 <div class="no_task_available" id="board_column_todo" data-initialized= "false">
@@ -79,7 +79,7 @@
             <div class="order_elements_in_section">
               <div class="order_elements_in_section_header">
                 <p class="text_section">In Progress</p>
-                <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
+                <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog('inProgress')" role="button" aria-label="Add Task">
               </div>
               <div class="width_section" ondrop="drop('inProgress')" ondragover="allowDrop(event)">
                 <div class="no_task_available" id="board_column_inProgress" data-initialized= "false">
@@ -91,7 +91,7 @@
             <div class="order_elements_in_section">
               <div class="order_elements_in_section_header">
                 <p class="text_section">Await Feedback</p>
-                <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog()" role="button" aria-label="Add Task">
+                <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog('awaitFeedback')" role="button" aria-label="Add Task">
               </div>
               <div class="width_section" ondrop="drop('awaitFeedback')" ondragover="allowDrop(event)">
                 <div class="no_task_available" id="board_column_awaitFeedback" data-initialized= "false">

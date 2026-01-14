@@ -1,6 +1,6 @@
 //TASK
 
-async function getAddTaskData() {
+async function getAddTaskData(status = "todo") {
   let titleTask = document.getElementById('id_title_add_task').value;
   let descriptionTask = document.getElementById('id_description_add_task').value;
   let dueDateTask = document.getElementById('id_due_date_add_task').value;
@@ -8,7 +8,7 @@ async function getAddTaskData() {
   let assignedToTask = getAssignee();
   let categoryTask = getTaskCategory();
   let subtasksTask = getAllSubtasks();
-  let statusTask = "todo";
+  let statusTask = status;
 
   await switchTaskData(titleTask, descriptionTask, dueDateTask, priorityTask, assignedToTask, categoryTask, subtasksTask, statusTask);
 }
