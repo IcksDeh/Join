@@ -1,15 +1,9 @@
-async function loadContentBoard(){
-    const columns = ['todo', 'inProgress', 'awaitFeedback', 'done'];
-    columns.forEach(status => {
-    const column = document.getElementById('board_column_' + status);
-    if (column) {
-        column.dataset.initialized = "false";
-    }
-    });
+async function loadContentBoard() {
+    resetBoardHTML(); 
     await loadFirebaseData('tasks');
-    // loadTaskTickets();
     checkStatusTask();
 }
+
 
 function checkStatusTask(){
     Object.entries(taskList).forEach((taskElementofColumn, index) =>{
