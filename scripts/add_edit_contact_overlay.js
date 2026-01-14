@@ -7,7 +7,7 @@
  */
 function openAddContactDialog() {
   const dialog = document.getElementById('addContactDialog');
-    
+
   if (!dialog.open) {
     dialog.innerHTML = addContactTemplate();
     dialog.showModal();
@@ -34,7 +34,7 @@ function closeAddContactDialog() {
 
   dialog.close();
   dialog.innerHTML = "";
-
+  renderContactList()
   clearContactInputs();
 }
 
@@ -46,11 +46,11 @@ function closeAddContactDialog() {
  * @function openEditContactDialog
  * @returns {void} - This function does not return a value.
  */
-function openEditContactDialog() {
+function openEditContactDialog(id) {
   const dialog = document.getElementById('editContactDialog');
-    
+  const selectedContact = contactsArray.find(entry => entry.id == id);
   if (!dialog.open) {
-    dialog.innerHTML = editContactTemplate();
+    dialog.innerHTML = editContactTemplate(selectedContact);
     dialog.showModal();
 
     setTimeout(() => {
@@ -61,6 +61,34 @@ function openEditContactDialog() {
   }
 }
 
+function updateContactInFirebase(id, updatedContact) {
+  return fetch(BASE_URL + "contacts/" + id + ".json"), {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updatedContact),
+  };
+}
+
+function getUpdatedContactData(id) {
+  const nameInput = document.getElementById('input-name').value;
+  const emailInput = document.getElementById('input-email').value;
+  const phoneInput = document.getElementById('input-phone').value;
+  const updatedContact = {
+    name: nameInput,
+    eMail: emailInput,
+    phoneNumber: phoneInput
+  };
+
+  return updateContactInFirebase(id, updatedContact);
+}
+
+async function updateContact(id) {
+  await getUpdatedContactData(id);
+  closeEditContactDialog();
+  // showToastUpdate();
+}
 
 /**
  * Closes the "Edit Contact" dialog.
@@ -114,8 +142,8 @@ document.addEventListener("submit", async function (event) {
   if (event.target && event.target.id === "addContactForm") {
     event.preventDefault();
     await getContactData();
-     closeAddContactDialog();
-     showToast();
+    closeAddContactDialog();
+    showToast();
   }
 });
 
@@ -152,20 +180,19 @@ function validateAddContactForm() {
  * @returns {boolean} True if the form is valid, otherwise false.
  */
 function validateEditContactForm() {
-  const name = document.getElementById('name')?.value.trim();
-  const email = document.getElementById('email')?.value.trim();
-  const phone = document.getElementById('phone')?.value.trim();
-  const button = document.getElementById('saveContactBtn');
+  const contactName = document.getElementById('input-name')?.value.trim();
+  const contactEmail = document.getElementById('input-email')?.value.trim();
+  const contactPhone = document.getElementById('input-phone')?.value.trim();
+  const submitbutton = document.getElementById('saveContactBtn');
 
-  if (!button) return false;
-
-  const isNameValid = name.length >= 2;
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(phone);
+  if (!submitbutton) return false;
+  const isNameValid = true
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail);
+  const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(contacthone);
 
   const isFormValid = isNameValid && isEmailValid && isPhoneValid;
 
-  button.disabled = !isFormValid;
+  submitbutton.disabled = !isFormValid;
   return isFormValid;
 }
 

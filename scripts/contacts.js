@@ -2,11 +2,11 @@ window.addEventListener("resize", resizeHandler)
 
 const contactsArray = [];
 
-function setContactActive(email, element) {
+function setContactActive(id, element) {
     const isActive = element.classList.contains("active-contact");
     const cInfo = document.getElementById('contact-info')
     const contacts = document.getElementsByClassName("contact-person");
-    const selectedContact = contactsArray.find(entry => entry.eMail === email);
+    const selectedContact = contactsArray.find(entry => entry.id == id);
     console.log(contactsArray);
     for (let i = 0; i < contacts.length; i++) {
         contacts[i].classList.remove("active-contact");
@@ -112,15 +112,14 @@ async function getContactListData() {
 }
 
 async function renderContactList() {
-    await getContactListData()
+    contactsArray.length = 0;
+    await getContactListData();
     const container = document.getElementById('contact-list');
-
+    container.innerHTML = "";
 
     let currentLetter = "";
+    pushToLocalContacts()
 
-    contactsList.forEach(element => {
-        contactsArray.push(element.contact);
-    });
     console.log(contactsArray);
     contactsArray.sort((a, b) => a.name.localeCompare(b.name))
     for (let i = 0; i < contactsArray.length; i++) {
@@ -135,5 +134,49 @@ async function renderContactList() {
 
         container.innerHTML += loadContactListItem(contactsArray[i]);
     }
+
+}
+
+function pushToLocalContacts() {
+    contactsList.forEach(element => {
+        let obj = {
+            id: element.id,
+            name: element.contact.name,
+            eMail: element.contact.eMail,
+            phoneNumber: element.contact.phoneNumber,
+            color: element.contact.color
+        }
+        contactsArray.push(obj);
+    });
+}
+
+async function deleteContact(ident) {
+    const idContactStorage = contactsArray.find(entry => entry.id == ident);
+    const contactsListStorage = contactsList.find(entry => entry.id == idContactStorage.id);
+    const indexInContactsArray = contactsArray.findIndex(entry => entry.id == ident);
+
+    if (idContactStorage.id === contactsListStorage.id) {
+        console.log(idContactStorage);
+        contactsArray.splice(indexInContactsArray, 1);
+        deleteContactFromFirebase(contactsListStorage.id)
+        console.log(contactsListStorage);
+        console.log(contactsArray)
+        await renderContactList()
+
+        console.log(contactsListStorage.id);
+        const cInfo = document.getElementById('contact-info')
+        cInfo.innerHTML = contactHeadlineTemplate()
+    } else {
+        console.log(idContactStorage);
+        console.log(contactsListStorage);
+
+
+    }
+}
+
+async function deleteContactFromFirebase(contactID) {
+    let userStorage = await fetch(BASE_URL + "contacts/" + contactID + ".json", {
+        method: "DELETE",
+    });
 
 }
