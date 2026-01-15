@@ -43,12 +43,12 @@
                         <section class="formfield_left">
                             <div class="formfield_left_wrapper">
                                 <label for="id_title_add_task" class="label_text">Title<sup>*</sup></label><br>
-                                <input type="text" class="add_task_input styled_input validate_required" id="id_title_add_task" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 35)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                                <input type="text" class="add_task_input styled_input validate_required" id="id_title_add_task" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 30)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
                                 <span class="required_message" data-for="id_title_add_task">This field is required</span><br>
                             </div>
 
                             <label for="id_description_add_task" class="label_text">Description</label><br>
-                            <textarea class="add_task_description styled_input_description" id="id_description_add_task" placeholder="Enter a description" oninput="limitInputLength(this, 95)"></textarea><br>
+                            <textarea class="add_task_description styled_input_description" id="id_description_add_task" placeholder="Enter a description" oninput="limitInputLength(this, 90)"></textarea><br>
 
                             <div class="formfield_left_wrapper">
                                 <label for="id_due_date_add_task" class="label_text">Due Date<sup>*</sup></label><br>
@@ -101,7 +101,7 @@
                             <section class="subtask_wrapper">
                                 <label for="subtasks" class="label_text">Subtasks</label><br>
                                 <div class="input_container">
-                                    <input type="text" id="subtasks" class="add_task_input styled_input" placeholder="Add new subtask" oninput="limitInputLength(this, 25)">
+                                    <input type="text" id="subtasks" class="add_task_input styled_input" placeholder="Add new subtask" oninput="limitInputLength(this, 20)">
                                     <div class="subtask_actions">
                                         <button class="subtask_btn" type="button" onclick="cancelSubtask()">
                                             <img class="cancel_subtask" src="./assets/img/close.svg" alt="Cancel Subtask">
