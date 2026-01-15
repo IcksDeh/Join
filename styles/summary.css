@@ -1,10 +1,9 @@
 .order_summary_information{
     display: flex;
     flex-direction: row;
-    margin-right: 80px;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    gap: 60px;
+    gap: 80px;
     margin-bottom: 50px;
 }
 
