@@ -145,7 +145,7 @@
     max-width: unset !important;
     height: 110px;
     margin-left: 0;
-    margin-top: 15px;
+
     flex: 1;
   }
 
@@ -202,19 +202,6 @@
   .style_prio_area,
   .date_of_deadline {
     font-size: 16px !important;
-  }
-
-  .date_of_deadline {
-    font-weight: 700;
-  }
-
-  .order_todo_done_box,
-  .order_ticket_box_below {
-    gap: 8px;
-  }
-
-  .style_boxes {
-    margin-top: 10px;
   }
 
   .img_summary_edit_check_icon,
