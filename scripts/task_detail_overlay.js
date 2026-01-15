@@ -195,6 +195,7 @@ async function openTaskDetailEditDialog(taskID, index) {
 
   if (!dialog.open) {
     dialog.showModal();
+    initDialogInputs();
     await loadFirebaseData("tasks");
 
     const currentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
@@ -256,7 +257,6 @@ function loadPrefillSubtasks(currentTask){
 
 
 
-
 /**
  * Closes the "User Story" dialog.
  * Removes its content and resets all contact input fields.
@@ -270,6 +270,23 @@ function closeTaskDetailEditDialog() {
   
   dialog.close();
   clearInputs();
+}
+
+
+/**
+ * Initializes dialog inputs to be read-only by default and makes them editable on focus.
+ */
+function initDialogInputs() {
+  const dialog = document.getElementById('taskDetailEditDialog');
+  const inputs = dialog.querySelectorAll('input, textarea');
+
+  inputs.forEach(input => {
+    input.readOnly = true;
+
+    input.addEventListener('focus', function() {
+      this.readOnly = false;
+    });
+  });
 }
 
 
