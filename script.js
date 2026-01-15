@@ -36,7 +36,6 @@ function loadSidebar() {
 function loadNavbar() {
     const navbar = document.getElementById('id_navbar');
     navbar.innerHTML = "";
-
     let user = JSON.parse(localStorage.getItem('activeUser'));
     
     if (user) {
@@ -56,11 +55,9 @@ function loadNavbar() {
 function loadMobileFooter() {
     const footer = document.getElementById('mobile_footer');
     if (!footer) return;
-
     footer.innerHTML = "";
     
     let user = JSON.parse(localStorage.getItem('activeUser'));
-
     if (user) {
         footer.innerHTML = mobileFooterLoginTemplate();
     } else {
@@ -91,8 +88,7 @@ function loadSummary() {
     const summaryContent = document.getElementById('id_content_summary');
     summaryContent.innerHTML = summaryContentTemplate(userName, greetingText);
     const shouldShowAnimation = localStorage.getItem("showMobileGreeting") === "true";
-        handleSummaryView(shouldShowAnimation);
-
+    handleSummaryView(shouldShowAnimation);
 }
 
 
@@ -175,85 +171,59 @@ function getRandomColor(){
 
 
 /**
- * Validates date on typing and on blur. Keeps it red if invalid.
+ * Sets up validation for date input fields in task forms.
+ * Limits dates to a minimum of "2026-01-01" and a maximum of "2030-12-31".
  */
-// function setupDateValidation() {
-//     const input = document.getElementById('id_due_date_add_task');
-//     if (!input) return;
-//     input.min = "2026-01-01"; input.max = "9999-12-31";
-
-//     const validate = () => {
-//         const msg = document.querySelector('.required_message[data-for="id_due_date_add_task"]');
-//         const isInvalid = !input.value || input.value < "2026-01-01"; // Error if empty or old year
-        
-//         input.classList.toggle('error', isInvalid); // Add/Keep red class
-//         if (msg) {
-//             msg.innerText = input.value ? "Date must be 2026 or later" : "This field is required";
-//             msg.style.display = isInvalid ? "block" : "none";
-//         }
-//     };
-//     input.addEventListener('input', validate);
-//     input.addEventListener('blur', validate); // Check again when clicking outside
-// }
 function setupDateValidation() {
-  const ids = ['id_due_date_add_task', 'id_due_date_task_detail_edit'];
+    const ids = ['id_due_date_add_task', 'id_due_date_task_detail_edit'];
 
-  ids.forEach(id => {
-    const input = document.getElementById(id);
-    if (!input) return;
-    input.min = "2026-01-01"; input.max = "9999-12-31";
+    ids.forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+        input.min = "2026-01-01"; input.max = "2030-12-31";
 
-    const validate = () => {
-      const msg = document.querySelector(`.required_message[data-for="${id}"]`);
-      const isInvalid = !input.value || input.value < "2026-01-01";
-      input.classList.toggle('error', isInvalid);
-      if (msg) {
-        msg.innerText = input.value
-          ? "Date must be 2026 or later"
-          : "This field is required";
-        msg.classList.toggle('active', isInvalid);
-      }
-    };
-    input.addEventListener('input', validate);
-    input.addEventListener('blur', validate);
-  });
+        const validate = () => {
+        const msg = document.querySelector(`.required_message[data-for="${id}"]`);
+        const isInvalid = !input.value || input.value < "2026-01-01";
+        input.classList.toggle('error', isInvalid);
+        if (msg) {
+            msg.innerText = input.value
+            ? "Date must be 2026 or later"
+            : "This field is required";
+            msg.classList.toggle('active', isInvalid);
+        }
+        };
+        input.addEventListener('input', validate);
+        input.addEventListener('blur', validate);
+    });
 }
 
 
 /**
- * Opens picker only on icon click. Does NOT clear errors on click.
+ * Adds custom click behavior to date input fields.
+ * When the user clicks near the right edge of the input (last 45px), this triggers the native date picker if available.
  */
-// function setupDateClickBehavior() {
-//     const input = document.getElementById('id_due_date_add_task');
-//     if (!input) return;
-
-//     input.addEventListener('click', function(e) {
-//         // Only open picker if clicking the icon area (right 45px)
-//         if ((this.offsetWidth - e.offsetX) < 45) {
-//             e.preventDefault();
-//             if (typeof this.showPicker === "function") this.showPicker();
-//         }
-//     });
-// }
 function setupDateClickBehavior() {
-  const ids = ['id_due_date_add_task', 'id_due_date_task_detail_edit'];
+    const ids = ['id_due_date_add_task', 'id_due_date_task_detail_edit'];
 
-  ids.forEach(id => {
-    const input = document.getElementById(id);
-    if (!input) return;
+    ids.forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
 
-    input.addEventListener('pointerdown', function (e) {
-      if ((this.offsetWidth - e.offsetX) < 45) {
-        if (typeof this.showPicker === "function" && e.isTrusted) {
-          this.showPicker();
+        input.addEventListener('pointerdown', function (e) {
+        if ((this.offsetWidth - e.offsetX) < 45) {
+            if (typeof this.showPicker === "function" && e.isTrusted) {
+            this.showPicker();
+            }
         }
-      }
+        });
     });
-  });
 }
 
 
-// Initialize on load
+/**
+ * Initializes date input behavior on page load.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     setupDateValidation();
     setupDateClickBehavior();
