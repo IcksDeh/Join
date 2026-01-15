@@ -1,3 +1,7 @@
+/**
+ * Loads the entire content board.
+ * Clears the board, fetches the latest tasks from Firebase, and populates each column based on task status.
+ */
 async function loadContentBoard() {
     resetBoardHTML(); 
     await loadFirebaseData('tasks');
@@ -5,6 +9,9 @@ async function loadContentBoard() {
 }
 
 
+/**
+ * Iterates through all tasks and calls loadBoardColumn to place each task in the correct column based on its status.
+ */
 function checkStatusTask(){
     Object.entries(taskList).forEach((taskElementofColumn, index) =>{
         taskID = taskElementofColumn[1].id;
@@ -21,6 +28,16 @@ function checkStatusTask(){
     })
 }
 
+
+/**
+ * Loads a specific task into its corresponding column.
+ * Initializes the column if it's not yet initialized, then renders task content, assignees, priority icon, category label, and progress bar.
+ *
+ * @param {string} taskID - The unique ID of the task.
+ * @param {Object} taskContent - The task data object.
+ * @param {number} index - Index of the task in taskList.
+ * @param {string} status - The status of the column.
+ */
 function loadBoardColumn(taskID, taskContent, index, status){
     let columnElement = document.getElementById('board_column_' +status);
 
@@ -36,6 +53,16 @@ function loadBoardColumn(taskID, taskContent, index, status){
     loadProgressbar(index, taskID);
 }
 
+
+/**
+ * Creates a task element and appends it to the corresponding column.
+ * Also loads the subtasks summary and the done subtasks counter.
+ *
+ * @param {string} taskID - The unique ID of the task.
+ * @param {Object} taskContent - The task data object.
+ * @param {number} index - Index of the task in the task list.
+ * @param {string} status - The status of the column.
+ */
 function loadTaskElementinColumn(taskID, taskContent, index, status){
     let columnElement = document.getElementById('board_column_' +status);
     let taskElementofColumnList = document.createElement('div');
@@ -45,6 +72,14 @@ function loadTaskElementinColumn(taskID, taskContent, index, status){
     loadCounterDoneSubtasks(taskID, index);
 }
 
+
+/**
+ * Loads assignee avatars into a task card.
+ * Displays up to 5 assignees, each with a colored circle and initials.
+ *
+ * @param {Object} taskContent - The task data object containing assignees.
+ * @param {string} taskID - The unique ID of the task.
+ */
 function loadAssigneesOfTaks(taskContent, taskID){
     let taskAssigneeElement = document.getElementById("board_assignee_"+ taskID);
     let assigneeList = taskContent.assignees;
@@ -56,10 +91,16 @@ function loadAssigneesOfTaks(taskContent, taskID){
         assigneeHTMLElement.style.backgroundColor = assignee.assigneeColor;
         assigneeHTMLElement.innerHTML = assignee.assigneeInitial;
         taskAssigneeElement.appendChild(assigneeHTMLElement);
-
     }) 
 }
 
+
+/**
+ * Sets the priority icon for a task based on its priority level.
+ *
+ * @param {Object} taskContent - The task data object containing priority information.
+ * @param {string} taskID - The unique ID of the task.
+ */
 function loadPriorityIcon(taskContent, taskID){
     let iconPriorityElement = document.getElementById("icon_priority_"+taskID);
     if (taskContent.priority.name === "low"){
@@ -71,6 +112,13 @@ function loadPriorityIcon(taskContent, taskID){
     }
 }
 
+
+/**
+ * Sets the background color of a task's category label based on its category.
+ *
+ * @param {Object} taskContent - The task data object containing category information.
+ * @param {string} taskID - The unique ID of the task.
+ */
 function loadCategoryLabelColor(taskContent, taskID){
     let categoryLabel = document.getElementById("category_label_"+taskID);
     if (taskContent.category === "Technical Task"){
@@ -78,10 +126,16 @@ function loadCategoryLabelColor(taskContent, taskID){
     } else if(taskContent.category === "User Story"){
         categoryLabel.style.backgroundColor = '#0038FF';
     } else {
-        categoryLabel.style.backgroundColor = '#ff00d9ff';
+        categoryLabel.style.backgroundColor = '#ff5eb3';
     }
 }
 
+
+/**
+ * Updates the total number of subtasks for a task and displays it in the corresponding element.
+ *
+ * @param {string} taskID - The unique ID of the task.
+ */
 function loadSummarySubtasks(taskID, index){
     const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
     if (!currrentTaskElement) {
@@ -95,11 +149,15 @@ function loadSummarySubtasks(taskID, index){
     Object.entries(elementSubtasks).forEach(eachElement => {
         counterAllSubtaks ++;
     })
-
     elementAllSubtasks.innerHTML = counterAllSubtaks;
-
 }
 
+
+/**
+ * Updates the number of completed subtasks for a task and displays it in the corresponding element.
+ *
+ * @param {string} taskID - The unique ID of the task.
+ */
 function loadCounterDoneSubtasks(taskID, index){
     const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
     if (!currrentTaskElement) {
@@ -107,32 +165,60 @@ function loadCounterDoneSubtasks(taskID, index){
         return;
     }
     const currentTask = currrentTaskElement.task;
-     const elementAllSubtasks = document.getElementById("counterDoneSubtasks_"+ taskID);
-     let elementSubtasks = currentTask.subtasks;
-     let counterDoneSubtasks = 0;
-     Object.values(elementSubtasks).forEach(eachElement => {
+    const elementAllSubtasks = document.getElementById("counterDoneSubtasks_"+ taskID);
+    let elementSubtasks = currentTask.subtasks;
+    let counterDoneSubtasks = 0;
+    Object.values(elementSubtasks).forEach(eachElement => {
         if(eachElement.done == true){
             counterDoneSubtasks ++;
         }
-     })
-     elementAllSubtasks.innerHTML = counterDoneSubtasks;
+    })
+    elementAllSubtasks.innerHTML = counterDoneSubtasks;
 }
 
+
+/**
+ * Sets the currently dragged task.
+ *
+ * @param {number} index - The index of the task in the task list.
+ * @param {string} taskID - The unique ID of the task being dragged.
+ */
 function startDragging(index, taskID){
     currentDraggedElementIndex = index;
     currentDraggedElementID = taskID;
-
 }
 
+
+/**
+ * Allows dropping an element on a drop target by preventing the default behavior.
+ *
+ * @param {DragEvent} event - The dragover event triggered on the drop target.
+ */
 function allowDrop(event){
     event.preventDefault();
 }
 
+
+/**
+ * Handles dropping a task onto a category column.
+ * Updates the task's status and reloads the content board.
+ *
+ * @async
+ * @param {string} category - The target category/status where the task is dropped.
+ */
 async function drop(category){
     await updateTaskStatus(category);
     await loadContentBoard();
 }
 
+
+/**
+ * Loads the progress bar for a specific task by calculating the percentage of completed subtasks and updating the corresponding progress bar element.
+ *
+ * @async
+ * @param {number} index - The index of the task in the task list.
+ * @param {string} taskID - The unique ID of the task, used to find the progress bar element.
+ */
 async function loadProgressbar(index, taskID){
     await loadFirebaseData('tasks');
         
@@ -145,6 +231,13 @@ async function loadProgressbar(index, taskID){
     
 }
 
+
+/**
+ * Counts the total number of subtasks for a given task.
+ *
+ * @param {number} index - The index of the task in the task list.
+ * @returns {number} - The total number of subtasks.
+ */
 function numberAllSubtasks(index){
     let numberAllSubtasks = 0;
     let taskElement = taskList[index].task.subtasks;
@@ -154,6 +247,13 @@ function numberAllSubtasks(index){
     return numberAllSubtasks;
 }
 
+
+/**
+ * Counts the number of completed subtasks for a given task.
+ *
+ * @param {number} index - The index of the task in the task list.
+ * @returns {number} - The number of completed subtasks.
+ */
 function numberDoneSubstask(index){
     let doneSubtasks = 0;
     let taskElement = taskList[index].task.subtasks;
@@ -164,6 +264,7 @@ function numberDoneSubstask(index){
     })
     return doneSubtasks;
 }
+
 
 /**
  * Filters tasks based on the search query in the title or description.
@@ -187,6 +288,7 @@ function filterTasks() {
     });
 }
 
+
 /**
  * Resets the HTML of all board columns.
  * @param {string|null} customMessage
@@ -207,3 +309,25 @@ function resetBoardHTML(customMessage = null) {
         columnElement.dataset.initialized = "false";
     });
 }
+
+
+/**
+ * Checks if the "Add Task" dialog is currently visible and if the screen width is less than 700 pixels.
+ * If both conditions are met, it redirects the user to the "add_task.html" page.
+ * This function is triggered on page load and window resize.
+ *
+ * @function
+ */
+function checkOverlayRedirect() {
+    const overlay = document.getElementById('addTaskDialog');
+    
+    if (!overlay) return;
+    const style = window.getComputedStyle(overlay);
+    if (style.display === 'none' || style.visibility === 'hidden') return;
+
+    if (window.innerWidth < 700) {
+        window.location.href = "add_task.html";
+    }
+}
+window.addEventListener('load', checkOverlayRedirect);
+window.addEventListener('resize', checkOverlayRedirect);

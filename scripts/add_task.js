@@ -24,19 +24,24 @@ let selectedAssigneesEdit = [];
 
 /**
  * Opens the "Add Task" dialog if it is not already open and loads the template.
+ * Checks the window width to determine whether to redirect to a mobile page.
  * setTimeout removes focus from any active element.
  *
  * @function openAddTaskDialog
  * @returns {void} - This function does not return a value.
  */
 function openAddTaskDialog(status) {
+  if (window.innerWidth < 700) {
+    window.location.href = "add_task.html";
+    return;
+  }
+
   const dialog = document.getElementById("addTaskDialog");
   const btn = document.getElementById("id_btn_create_task");
   btn.dataset.taskParam = status;
 
   if (!dialog.open) {
     dialog.showModal();
-
     checkPriority("medium", dialog);
 
     setTimeout(() => {
@@ -513,11 +518,6 @@ function showSubtaskActions() {
  * @function cancelSubtask
  * @returns {void} - This function does not return a value.
  */
-// function cancelSubtask() {
-//   subtaskInput.value = "";
-//   subtaskActions.style.display = "none";
-//   showSubtaskActions();
-// }
 function cancelSubtask() {
   if (subtaskInput) subtaskInput.value = "";
   if (subtaskInputEdit) subtaskInputEdit.value = "";
@@ -534,17 +534,6 @@ function cancelSubtask() {
  * @function addSubtask
  * @returns {void} This function does not return a value.
  */
-// function addSubtask() {
-//   const value = subtaskInput.value.trim();
-//   if (!value) return;
-
-//   const li = document.createElement("li");
-//   li.className = "list_element";
-//   li.innerHTML = listSubtaskTemplate(value);
-//   subtaskList.appendChild(li);
-//   subtaskInput.value = "";
-//   cancelSubtask();
-// }
 function addSubtask() {
   const input = subtaskInputEdit?.value.trim()
     ? subtaskInputEdit

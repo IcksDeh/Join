@@ -18,29 +18,15 @@ const colors = [
 
 let colorIndex = 0;
 
-// ADD TASK
-// const subtaskInput = document.getElementById("subtasks");
-// const subtaskList = document.getElementById("subtaskList");
-// const subtaskActions = document.querySelector(".subtask_actions");
-// const subtaskInput = document.getElementById("id_subtasks_add_task");
-// const subtaskList = document.getElementById("subtask_list");
-// const subtaskActions = document.getElementById("subtask_actions");
-
-// const priorities = [
-//   { name: "urgent", color: "red" },
-//   { name: "medium", color: "yellow" },
-//   { name: "low", color: "green" },
-// ];
-
-// let selectedAssignees = [];
 
 // FIREBASE
 const BASE_URL = "https://join-f5da0-default-rtdb.europe-west1.firebasedatabase.app/";
 
-// GET DATA
 
+// GET DATA
 let contactsList = [];
 let taskList = [];
+
 
 // SIGN UP
 const ICONS = {
@@ -51,6 +37,5 @@ const ICONS = {
 
 
 // BOARD
-
 let currentDraggedElementIndex;
 let currentDraggedElementID;
