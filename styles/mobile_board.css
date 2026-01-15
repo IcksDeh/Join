@@ -84,6 +84,10 @@
     gap: 15px;
   }
 
+  .margin_top {
+    margin-top: 40px;
+  }
+
   .order_header_board h1 {
     margin-top: 10px;
   }
