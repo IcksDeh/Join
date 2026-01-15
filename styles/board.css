@@ -248,3 +248,14 @@
   width: 100%;
 }
 
+.style_input_searchbar:focus,
+.style_input_searchbar:active,
+.style_input_searchbar:focus-visible {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.style_searchbar_board:focus-within {
+    border: 2px solid #29abe2 !important; 
+}
