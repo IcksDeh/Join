@@ -145,13 +145,7 @@
     height: 116px;
     max-width: 116px;
   }
-
-  .order_summary_information {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
+  
   .summary_header {
     margin-bottom: 0;
   }
@@ -175,5 +169,9 @@
 
   .boxes_last_row {
     max-width: 85px;
+  }
+
+  .margin_left {
+    margin-left: 10px;
   }
 }
