@@ -177,52 +177,88 @@ function getRandomColor(){
 /**
  * Validates date on typing and on blur. Keeps it red if invalid.
  */
+// function setupDateValidation() {
+//     const input = document.getElementById('id_due_date_add_task');
+//     if (!input) return;
+//     input.min = "2026-01-01"; input.max = "9999-12-31";
+
+//     const validate = () => {
+//         const msg = document.querySelector('.required_message[data-for="id_due_date_add_task"]');
+//         const isInvalid = !input.value || input.value < "2026-01-01"; // Error if empty or old year
+        
+//         input.classList.toggle('error', isInvalid); // Add/Keep red class
+//         if (msg) {
+//             msg.innerText = input.value ? "Date must be 2026 or later" : "This field is required";
+//             msg.style.display = isInvalid ? "block" : "none";
+//         }
+//     };
+//     input.addEventListener('input', validate);
+//     input.addEventListener('blur', validate); // Check again when clicking outside
+// }
 function setupDateValidation() {
-    const input = document.getElementById('id_due_date_add_task');
+  const ids = ['id_due_date_add_task', 'id_due_date_task_detail_edit'];
+
+  ids.forEach(id => {
+    const input = document.getElementById(id);
     if (!input) return;
     input.min = "2026-01-01"; input.max = "9999-12-31";
 
     const validate = () => {
-        const msg = document.querySelector('.required_message[data-for="id_due_date_add_task"]');
-        const isInvalid = !input.value || input.value < "2026-01-01"; // Error if empty or old year
-        
-        input.classList.toggle('error', isInvalid); // Add/Keep red class
-        if (msg) {
-            msg.innerText = input.value ? "Date must be 2026 or later" : "This field is required";
-            msg.style.display = isInvalid ? "block" : "none";
-        }
+      const msg = document.querySelector(`.required_message[data-for="${id}"]`);
+      const isInvalid = !input.value || input.value < "2026-01-01";
+      input.classList.toggle('error', isInvalid);
+      if (msg) {
+        msg.innerText = input.value
+          ? "Date must be 2026 or later"
+          : "This field is required";
+        msg.classList.toggle('active', isInvalid);
+      }
     };
     input.addEventListener('input', validate);
-    input.addEventListener('blur', validate); // Check again when clicking outside
+    input.addEventListener('blur', validate);
+  });
 }
+
 
 /**
  * Opens picker only on icon click. Does NOT clear errors on click.
  */
+// function setupDateClickBehavior() {
+//     const input = document.getElementById('id_due_date_add_task');
+//     if (!input) return;
+
+//     input.addEventListener('click', function(e) {
+//         // Only open picker if clicking the icon area (right 45px)
+//         if ((this.offsetWidth - e.offsetX) < 45) {
+//             e.preventDefault();
+//             if (typeof this.showPicker === "function") this.showPicker();
+//         }
+//     });
+// }
 function setupDateClickBehavior() {
-    const input = document.getElementById('id_due_date_add_task');
+  const ids = ['id_due_date_add_task', 'id_due_date_task_detail_edit'];
+
+  ids.forEach(id => {
+    const input = document.getElementById(id);
     if (!input) return;
 
-    input.addEventListener('click', function(e) {
-        // Only open picker if clicking the icon area (right 45px)
-        if ((this.offsetWidth - e.offsetX) < 45) {
-            e.preventDefault();
-            if (typeof this.showPicker === "function") this.showPicker();
+    input.addEventListener('pointerdown', function (e) {
+      if ((this.offsetWidth - e.offsetX) < 45) {
+        if (typeof this.showPicker === "function" && e.isTrusted) {
+          this.showPicker();
         }
+      }
     });
+  });
 }
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    setupDateValidation();
-    setupDateClickBehavior();
-});
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
     setupDateValidation();
     setupDateClickBehavior();
 });
+
 
 /**
  * Highlights the active sidebar link based on the current page path.
@@ -234,10 +270,7 @@ function highlightActiveLink() {
     const currentPath = window.location.pathname;
 
     links.forEach(link => {
-   
         const linkPath = link.getAttribute('href').replace('./', '');
-        
-    
         const icon = link.querySelector('.icon_sidebar, .mobile_link_icon'); 
 
         if (currentPath.includes(linkPath)) {

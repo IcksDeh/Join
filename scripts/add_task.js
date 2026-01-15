@@ -638,7 +638,6 @@ if (subtaskInputEdit) {
 // CREATE TASK BUTTON & REQUIRED FIELDS FUNCTIONS
 // --------------------------------------------------
 
-
 /**
  * Handles the click event for the "Create Task" button.
  * Prevents the default form submission behavior and triggers the task creation process by collecting and processing task data.
