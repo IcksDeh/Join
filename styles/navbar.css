@@ -65,6 +65,10 @@
 
 /* ---------- MENU NAVBAR ---------- */
 
+.content_wrapper.order_content_navbar {
+  position: relative;
+}
+
 .menu_navbar {
   position: absolute;
   right: 0;
@@ -116,5 +120,12 @@
 
   .mobile_logo {
     display: flex;
+  }
+
+  .menu_navbar {
+    position: absolute;
+    right: 0;
+    z-index: 9999;
+    top: 60px;
   }
 }
