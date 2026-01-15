@@ -1,7 +1,7 @@
 function loadContactListItem(c) {
     return `        
         <li>
-            <button class="contact-person" onclick="setContactActive('${c.id}', this)" id="contact-${c.id}">
+            <button class="contact-person" onclick="setContactActive('${c.id}', this)" id="${c.id}">
                 <span class="initals" style="background-color: ${c.color};">${getContactInitials(c.name)}</span>
                 <div class="small-info">
                     <h3>${c.name}</h3>

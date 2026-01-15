@@ -24,7 +24,14 @@ function setContactActive(id, element) {
 
 function renderContactInfo(selectedContact) {
     const cInfo = document.getElementById('contact-info')
+    cInfo.innerHTML = ""
     cInfo.innerHTML = contactHeadlineTemplate() + contactInitialsTemplate(selectedContact) + contactInfoTemplate(selectedContact)
+}
+
+function renderLocalContactInfo(id) {
+    const selectedContact = contactsArray.find(entry => entry.id == id);
+    renderContactInfo(selectedContact)
+    slideContactInfo()
 }
 
 function slideContactInfo() {
@@ -107,7 +114,26 @@ function sortContactsByFirstName(element) {
 }
 
 async function getContactListData() {
+
     return await loadFirebaseData('contacts');
+
+}
+
+function renderLocalContactList() {
+    const container = document.getElementById('contact-list');
+    container.innerHTML = "";
+    let currentLetter = "";
+    for (let i = 0; i < contactsArray.length; i++) {
+        const firstName = contactsArray[i].name.split(" ")[0];
+        const firstLetter = firstName[0].toUpperCase();
+
+        if (firstLetter !== currentLetter) {
+            currentLetter = firstLetter;
+            container.innerHTML += contactSeperatorTemplate(currentLetter);
+        }
+
+        container.innerHTML += loadContactListItem(contactsArray[i]);
+    }
 
 }
 
@@ -118,14 +144,13 @@ async function renderContactList() {
     container.innerHTML = "";
 
     let currentLetter = "";
-    pushToLocalContacts()
+    setTimeout(pushToLocalContacts(), 5000);
 
     console.log(contactsArray);
-    contactsArray.sort((a, b) => a.name.localeCompare(b.name))
+
     for (let i = 0; i < contactsArray.length; i++) {
         const firstName = contactsArray[i].name.split(" ")[0];
         const firstLetter = firstName[0].toUpperCase();
-
 
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
@@ -147,7 +172,11 @@ function pushToLocalContacts() {
             color: element.contact.color
         }
         contactsArray.push(obj);
-    });
+    })
+    // Sort Contacts by first name
+
+    contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+    console.log(contactsArray);
 }
 
 async function deleteContact(ident) {
@@ -156,14 +185,10 @@ async function deleteContact(ident) {
     const indexInContactsArray = contactsArray.findIndex(entry => entry.id == ident);
 
     if (idContactStorage.id === contactsListStorage.id) {
-        console.log(idContactStorage);
         contactsArray.splice(indexInContactsArray, 1);
         deleteContactFromFirebase(contactsListStorage.id)
-        console.log(contactsListStorage);
-        console.log(contactsArray)
-        await renderContactList()
+        await renderLocalContactList()
 
-        console.log(contactsListStorage.id);
         const cInfo = document.getElementById('contact-info')
         cInfo.innerHTML = contactHeadlineTemplate()
     } else {

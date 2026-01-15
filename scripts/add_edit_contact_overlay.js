@@ -61,17 +61,43 @@ function openEditContactDialog(id) {
   }
 }
 
-function updateContactInFirebase(id, updatedContact) {
-  return fetch(BASE_URL + "contacts/" + id + ".json"), {
-    method: 'PUT',
+async function updateContactInFirebase(id, updatedContact) {
+  singleContact = fetch(BASE_URL + "contacts/" + id + ".json", {
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(updatedContact),
-  };
+  });
+  singleContact.then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP Fehler! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+    .then(data => {
+      console.log("Erfolgreich geupdatet:", data);
+    })
+    .catch(error => {
+      console.error("Fehler beim PATCH:", error);
+    });
 }
 
-function getUpdatedContactData(id) {
+function updateContactById(id, updatedContact) {
+  let contactData = contactsArray.find(entry => entry.id == id);
+  if (contactData) {
+    contactData.name = updatedContact.name;
+    contactData.eMail = updatedContact.eMail;
+    contactData.phoneNumber = updatedContact.phoneNumber;
+    contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+    console.log("Lokale Daten aktualisiert:", contactData);
+  } else {
+    console.error("Kontakt nicht gefunden mit ID:", id);
+  }
+
+}
+
+async function getUpdatedContactData(id) {
   const nameInput = document.getElementById('input-name').value;
   const emailInput = document.getElementById('input-email').value;
   const phoneInput = document.getElementById('input-phone').value;
@@ -80,14 +106,35 @@ function getUpdatedContactData(id) {
     eMail: emailInput,
     phoneNumber: phoneInput
   };
+  updateContactById(id, updatedContact);
 
-  return updateContactInFirebase(id, updatedContact);
+  return await updateContactInFirebase(id, updatedContact);
 }
 
 async function updateContact(id) {
+  validateEditContactForm()
   await getUpdatedContactData(id);
   closeEditContactDialog();
-  // showToastUpdate();
+  renderLocalContactList()
+  renderLocalContactInfo(id);
+  showToastUpdate();
+}
+
+function showToastUpdate() {
+  const msgBox = document.getElementById('msgBox');
+  const overlayElement = document.querySelector('dialog[open]');
+
+  if (overlayElement) {
+    overlayElement.appendChild(msgBox);
+  } else {
+    document.body.appendChild(msgBox);
+    msgBox.innerHTML = "Contact updated successfully!";
+  }
+  msgBox.classList.add('show');
+  setTimeout(() => {
+    msgBox.innerHTML = "Contact successfully created!";
+    msgBox.classList.remove('show');
+  }, 2000);
 }
 
 /**
@@ -186,9 +233,9 @@ function validateEditContactForm() {
   const submitbutton = document.getElementById('saveContactBtn');
 
   if (!submitbutton) return false;
-  const isNameValid = true
+  const isNameValid = contactName.length >= 2;
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail);
-  const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(contacthone);
+  const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(contactPhone);
 
   const isFormValid = isNameValid && isEmailValid && isPhoneValid;
 
@@ -201,24 +248,27 @@ function validateEditContactForm() {
  * Handles form submission and runs the corresponding form validator.
  * Prevents submission if validation fails.
  */
-document.addEventListener('submit', function (e) {
-  const formValidators = {
-    addContactForm: validateAddContactForm,
-    editContactForm: validateEditContactForm
-  };
+// document.addEventListener('submit', function (event) {
+//   if (event.target && event.target.id === 'editContactForm') {
+//     const formValidators = {
+//       addContactForm: validateAddContactForm(),
+//       editContactForm: validateEditContactForm()
+//     };
+//     console.log(formValidators);
 
-  const validator = formValidators[e.target.id];
+//     const validator = formValidators[event.target.id];
 
-  if (validator && !validator()) {
-    e.preventDefault();
-  }
-});
+//     if (!validator) {
+//       event.preventDefault();
+//     }
+//   }
+// });
 
 
 /**
  * Runs initial validation on page load to set correct button states.
  */
-setTimeout(() => {
-  document.getElementById('addContactForm') && validateAddContactForm();
-  document.getElementById('editContactForm') && validateEditContactForm();
-}, 0);
+// setTimeout(() => {
+//   document.getElementById('addContactForm') && validateAddContactForm();
+//   document.getElementById('editContactForm') && validateEditContactForm();
+// }, 0);

@@ -57,16 +57,18 @@ function editContactTemplate(c) {
                         </div>
                         <div>
                             <div class="input_fields_container">
-                                <input type="text" id="input-name" class="user_input styled_input" placeholder="${c.name}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
-                                <input type="email" id="input-email" class="user_input styled_input" placeholder="${c.eMail}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
-                                <input type="tel" id="input-phone" class="user_input styled_input" placeholder="${c.phoneNumber}" required oninput="limitInputLength(this, 17); validateEditContactForm()"><br>
+                                <input type="text" id="input-name" class="user_input styled_input" placeholder="${c.name}" value="${c.name}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
+                                <input type="email" id="input-email" class="user_input styled_input" placeholder="${c.eMail}" value="${c.eMail}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
+                                <input type="tel" id="input-phone" class="user_input styled_input" placeholder="${c.phoneNumber}" value="${c.phoneNumber}" required oninput="limitInputLength(this, 17); validateEditContactForm()"><br>
                             </div>
                             <div class="contact_btn_area">
                                 <button type="button" class="outline_btn" onclick="clearContactInputs()">Delete
                                     <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                     <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                                 </button>
-                                <button type="submit" id="saveContactBtn" class="filled_btn" onclick="updateContact('-' + ${c.id})">Save<img src="./assets/img/check_white.svg" alt="Save Contact"></button>
+                                <button id="saveContactBtn" class="filled_btn" onclick='updateContact("${c.id}")'>Save
+                                    <img src="./assets/img/check_white.svg" alt="Save Contact">
+                                </button>
                             </div>
                         </div>
                     </div>   
