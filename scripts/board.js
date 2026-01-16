@@ -74,24 +74,61 @@ function loadTaskElementinColumn(taskID, taskContent, index, status){
 
 
 /**
- * Loads assignee avatars into a task card.
- * Displays up to 5 assignees, each with a colored circle and initials.
- *
- * @param {Object} taskContent - The task data object containing assignees.
- * @param {string} taskID - The unique ID of the task.
+ * Main function to load assignees.
+ * Coordinates the rendering of visible avatars and the overflow counter.
  */
-function loadAssigneesOfTaks(taskContent, taskID){
-    let taskAssigneeElement = document.getElementById("board_assignee_"+ taskID);
-    let assigneeList = taskContent.assignees;
-    Object.values(assigneeList)
-        .slice(0,5)
-        .forEach(assignee => {
-        let assigneeHTMLElement = document.createElement('div');
-        assigneeHTMLElement.className = "user_circle_task_card";
-        assigneeHTMLElement.style.backgroundColor = assignee.assigneeColor;
-        assigneeHTMLElement.innerHTML = assignee.assigneeInitial;
-        taskAssigneeElement.appendChild(assigneeHTMLElement);
-    }) 
+function loadAssigneesOfTaks(taskContent, taskID) {
+    let taskAssigneeElement = document.getElementById("board_assignee_" + taskID);
+    taskAssigneeElement.innerHTML = ""; 
+
+    let assigneeList = Object.values(taskContent.assignees || {});
+    let maxVisible = 2;
+
+    renderVisibleAssignees(assigneeList, maxVisible, taskAssigneeElement);
+    renderOverflowCounter(assigneeList.length, maxVisible, taskAssigneeElement);
+}
+
+
+/**
+ * Renders the visible assignee avatars (up to maxVisible).
+ *
+ * @param {Array} assigneeList - Array of assignee objects.
+ * @param {number} maxVisible - Maximum number of avatars to show.
+ * @param {HTMLElement} container - The DOM element to append to.
+ */
+function renderVisibleAssignees(assigneeList, maxVisible, container) {
+    let countToRender = Math.min(assigneeList.length, maxVisible);
+
+    for (let i = 0; i < countToRender; i++) {
+        let assignee = assigneeList[i];
+        let avatar = document.createElement('div');
+        avatar.className = "user_circle_task_card";
+        avatar.style.backgroundColor = assignee.assigneeColor;
+        avatar.innerHTML = assignee.assigneeInitial;
+        container.appendChild(avatar);
+    }
+}
+
+
+/**
+ * Renders the overflow counter (e.g., "+2") if there are more assignees than maxVisible.
+ *
+ * @param {number} totalAssignees - Total count of assignees.
+ * @param {number} maxVisible - Limit before overflow triggers.
+ * @param {HTMLElement} container - The DOM element to append to.
+ */
+function renderOverflowCounter(totalAssignees, maxVisible, container) {
+    if (totalAssignees > maxVisible) {
+        let remaining = totalAssignees - maxVisible;
+        let overflowCircle = document.createElement('div');
+        
+        overflowCircle.className = "user_circle_task_card";
+        overflowCircle.style.backgroundColor ="#29abe2"  
+        overflowCircle.style.color = 'white';
+        overflowCircle.innerHTML = `+${remaining}`;
+        
+        container.appendChild(overflowCircle);
+    }
 }
 
 
