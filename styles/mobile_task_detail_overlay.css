@@ -19,7 +19,7 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .dialog_task_detail_container {
         padding: 20px;   
     }
@@ -53,6 +53,12 @@
 }
 
 /* ---------- TASK DETAIL EDIT OVERLAY ---------- */
+
+@media (max-width: 1000px) {
+    .list_icon_element {
+        margin-right: 0px;
+    }
+}
 
 @media (max-width: 420px) {
     .dialog_task_detail_edit_container {
@@ -107,7 +113,17 @@
         font-size: 16px;
     }
 
-    #subtaskList_edit {
-        font-size: 16px; 
+    .add_task_input_edit::placeholder {
+        padding-left: 12px;
+    }
+
+    .edit_container input.subtask_edit_input {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 340px) {
+    .mobile_editing {
+        font-size: 14px;   
     }
 }

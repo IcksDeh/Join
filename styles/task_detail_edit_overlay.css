@@ -15,7 +15,6 @@
 .task_detail_edit_wrapper {
     display: flex;
     flex-direction: column;
-    padding-top: 35px;
     width: 100%;
     height: auto;
     overflow-y: auto;
@@ -47,12 +46,13 @@
     width: 20%;
     padding-left: 0px;
     margin-top: 16px;
+    height: 30px;
 }
 
 .form_content {
     width: 100%;
-    margin-top: -45px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    height: auto;
 }
 
 .form_wrapper {
@@ -182,34 +182,6 @@ sup {
 #id_due_date_task_detail_edit {
     background: url("../assets/img/event.svg") no-repeat right 16px center;
     background-color: white;
-}
-
-/* Removes the standard browser icon for date picker */
-/* Chrome, Safari, Edge */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-}
-
-/* Firefox */
-input[type="date"]::-moz-calendar-picker-indicator {
-    display: none;
-}
-
-/* Older Browser */
-input[type="date"]::-ms-input-placeholder {
-    display: none;
-}
-
-input[type="date"]::placeholder,
-input[type="date"]::-webkit-input-placeholder,
-input[type="date"]::-moz-placeholder,
-input[type="date"]:-ms-input-placeholder {
-    color: #d1d1d1;
-    font-size: 20px;
-    font-family: "latin_400", sans-serif;
-    font-weight: 400;
-    padding-top: 8px;
 }
 
 /* ---------- PRIORITY BOTTON AREA ---------- */
@@ -383,6 +355,26 @@ textarea:focus {
     content: url("../assets/img/checkbox_unchecked_hover.svg");
 }
 
+.add_task_input_edit {
+    background-color: white;
+    border-radius: 8px;
+    width: 100%;
+    height: 48px;
+    padding-left: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+
+.add_task_input_edit::placeholder {
+    color: #d1d1d1;
+    font-size: 20px;
+    font-family: "latin_400", sans-serif;
+    font-weight: 400;
+    padding-left: 12px;
+}
+
 /* ---------- SCROLL BAR SMALL ---------- */
 
 .dropdown_list_contacts::-webkit-scrollbar {
@@ -405,17 +397,27 @@ textarea:focus {
 
 /* ---------- SCROLL BAR BIG ---------- */
 
-.dialog_task_detail_edit_container::-webkit-scrollbar {
+.scroll_container_edit {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 14px;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: #d5d5d5 transparent;
+    /* scroll-padding-top: 35px; */
+}
+
+.scroll_container_edit::-webkit-scrollbar {
     width: 8px;
     background: transparent; 
 }
 
-.dialog_task_detail_edit_container::-webkit-scrollbar-thumb {
+.scroll_container_edit::-webkit-scrollbar-thumb {
     background: #d5d5d5;
     border-radius: 6px;
 }
 
-.dialog_task_detail_edit_container::-webkit-scrollbar-thumb:hover {
+.scroll_container_edit::-webkit-scrollbar-thumb:hover {
     background: #c8c8c8;
 }
 
