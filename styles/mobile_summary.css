@@ -181,12 +181,10 @@
     margin-left: 0 !important;
   }
 
-  
   .style_prio_area {
-    white-space: nowrap; 
+    white-space: nowrap;
   }
 
-  
   .box_prio_tickets {
     gap: 0;
   }
@@ -196,7 +194,6 @@
   .summary_number {
     font-size: 36px !important;
   }
-
 
   .style_text,
   .style_prio_area,
@@ -232,12 +229,19 @@
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
-
 }
 
 @media (max-width: 334px) {
   .box_prio_tickets {
     padding: 0;
-}
+  }
 
+  .counter_prio_tickets {
+    width: 110px;
+    margin-left: 0;
+  }
+
+  .divider_prio_box {
+    margin: 2px;
+  }
 }
