@@ -145,6 +145,34 @@ sup {
     background-color: white;
 }
 
+/* Removes the standard browser icon for date picker */
+/* Chrome, Safari, Edge */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/* Firefox */
+input[type="date"]::-moz-calendar-picker-indicator {
+    display: none;
+}
+
+/* Older Browser */
+input[type="date"]::-ms-input-placeholder {
+    display: none;
+}
+
+input[type="date"]::placeholder,
+input[type="date"]::-webkit-input-placeholder,
+input[type="date"]::-moz-placeholder,
+input[type="date"]:-ms-input-placeholder {
+    color: #d1d1d1;
+    font-size: 20px;
+    font-family: "latin_400", sans-serif;
+    font-weight: 400;
+    padding-top: 8px;
+}
+
 /* ---------- DROPDOWN INPUTS ---------- */
 
 .dropdown {
