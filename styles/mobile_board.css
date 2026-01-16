@@ -39,8 +39,14 @@
     overflow-x: auto;
     overflow-y: hidden;
     gap: 20px;
-    width: 100%;
     padding-bottom: 10px;
+    width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  [id^="board_column_"]::-webkit-scrollbar {
+    display: none;
   }
 
   .style_task_card {
@@ -100,22 +106,6 @@
     width: 100%;
   }
 
-  [id^="board_column_"] {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: flex-start;
-    overflow-x: auto;
-    overflow-y: hidden;
-    gap: 20px;
-    padding-bottom: 10px;
-    width: 100%;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  [id^="board_column_"]::-webkit-scrollbar {
-    display: none;
-  }
 
   .no_task_available {
     justify-content: center;
