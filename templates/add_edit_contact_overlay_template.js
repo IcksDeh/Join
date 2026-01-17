@@ -62,7 +62,7 @@ function editContactTemplate(c) {
                                 <input type="tel" id="input-phone" class="user_input styled_input" placeholder="${c.phoneNumber}" value="${c.phoneNumber}" required oninput="limitInputLength(this, 17); validateEditContactForm()"><br>
                             </div>
                             <div class="contact_btn_area">
-                                <button type="button" class="outline_btn" onclick="clearContactInputs()">Delete
+                                <button type="button" class="outline_btn" onclick="deleteContact('${c.id}')">Delete
                                     <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                     <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                                 </button>

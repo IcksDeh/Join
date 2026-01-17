@@ -66,4 +66,15 @@ function subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex
         <img id="checkbox_subtask_task_detail_${subtaskID}" onclick="toggleCheckedIconSubtasks(this, '${subtaskID}', '${taskID}', '${taskIndex}')" class="checkbox_icon" data-checked="${subtaskContent.done}" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
         <p class="task_detail_description">${subtaskContent.text}</p>
     `
-}   
+}  
+
+function loadAssigneeBubblesToPrefill(element){
+    return `
+      <div class="contact_initial_circle assigned_contact"
+        data-assignee-id="${element[1].id}"
+        title="${element[1].name}"
+        style="background-color:${element[1].assigneeColor}">
+        ${element[1].assigneeInitial}
+      </div>
+    `
+}

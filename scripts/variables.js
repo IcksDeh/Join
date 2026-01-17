@@ -39,6 +39,7 @@ const ICONS = {
 // BOARD
 let currentDraggedElementIndex;
 let currentDraggedElementID;
+let prefillAssigneeCheckbox = [];
 
 // ADD TASK
 const subtaskInput = document.getElementById("subtasks");

@@ -263,14 +263,9 @@ function loadPrefillAssignee(currentTask){
   assigneeContainer.innerHTML = "";
   let prefillAssignees = currentTask.assignees
   Object.entries(prefillAssignees).forEach(element =>{
-    assigneeContainer.innerHTML += `
-      <div class="contact_initial_circle assigned_contact"
-        data-assignee-id="${element[1].id}"
-        title="${element[1].name}"
-        style="background-color:${element[1].assigneeColor}">
-        ${element[1].assigneeInitial}
-      </div>
-    `;
+    prefillAssigneeCheckbox.push(element[0])
+    console.log(prefillAssigneeCheckbox);
+  assigneeContainer.innerHTML += loadAssigneeBubblesToPrefill(element);
   })
 }
 
