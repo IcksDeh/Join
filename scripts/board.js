@@ -93,7 +93,7 @@ function loadAssigneesOfTaks(taskContent, taskID) {
 
     let noValidAssignees = Object.entries(assignees).forEach(([assigneeID])=>{
         if (!existingContactsIds.includes(assigneeID)){
-            // deleteAssigneeInTaskList();
+            deleteAssigneeInTaskList(assigneeID, 'tasks/', taskID);
         }
     })
 

@@ -87,6 +87,12 @@ async function deleteTaskFromFirebase(taskID, path) {
     location.reload();
 }
 
+async function deleteAssigneeInTaskList(assigneeID, path, taskID){
+    let userstorage = await fetch (BASE_URL + path + taskID + "/assignees/" + assigneeID + ".json", {
+        method: "DELETE",
+    })
+}
+
 
 async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex, taskContent){
     let userStorage = await fetch(BASE_URL + "tasks/" + taskID + "/" + "subtasks/" + subtaskId + "/done.json",{
