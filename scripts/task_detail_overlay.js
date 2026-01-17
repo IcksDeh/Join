@@ -259,7 +259,19 @@ function loadPrefillPriority(currentTask){
 }
 
 function loadPrefillAssignee(currentTask){
-
+  const assigneeContainer = document.getElementById("assigned_contacts_row_edit");
+  assigneeContainer.innerHTML = "";
+  let prefillAssignees = currentTask.assignees
+  Object.entries(prefillAssignees).forEach(element =>{
+    assigneeContainer.innerHTML += `
+      <div class="contact_initial_circle assigned_contact"
+        data-assignee-id="${element[1].id}"
+        title="${element[1].name}"
+        style="background-color:${element[1].assigneeColor}">
+        ${element[1].assigneeInitial}
+      </div>
+    `;
+  })
 }
 
 function loadPrefillSubtasks(currentTask){
