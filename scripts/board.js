@@ -80,14 +80,9 @@ function loadTaskElementinColumn(taskID, taskContent, index, status){
  */
 function loadAssigneesOfTaks(taskContent, taskID) {
     let taskAssigneeElement = document.getElementById("board_assignee_" + taskID);
-
     taskAssigneeElement.innerHTML = "";
-
     let assignees = taskContent.assignees || {};
-    let maxVisible = 2;
-
     let existingContactsIds = contactsList.map(contact => contact.id);
-
     let validAssignees = Object.entries(assignees)
         .filter(([assigneesId]) => existingContactsIds.includes(assigneesId))
 
@@ -96,10 +91,8 @@ function loadAssigneesOfTaks(taskContent, taskID) {
             deleteAssigneeInTaskList(assigneeID, 'tasks/', taskID);
         }
     })
-
-    renderVisibleAssignees(validAssignees, maxVisible, taskAssigneeElement);
-    renderOverflowCounter(noValidAssignees, maxVisible, taskAssigneeElement);
-
+    renderVisibleAssignees(validAssignees, 2, taskAssigneeElement);
+    renderOverflowCounter(noValidAssignees, 2, taskAssigneeElement);
 }
 
 

@@ -263,7 +263,18 @@ function loadPrefillAssignee(currentTask){
 }
 
 function loadPrefillSubtasks(currentTask){
-
+  let subtaskElements = currentTask.subtasks;
+  let substaskHTML = subtaskListEdit;
+  substaskHTML.innerHTML ="";
+  console.log(subtaskElements);
+  Object.entries(subtaskElements).forEach(element =>{
+    
+    let contentSubtask = element[1].text;
+    const li = document.createElement("li");
+    li.className = "list_element";
+    li.innerHTML = listSubtaskTemplate(contentSubtask);
+    substaskHTML.appendChild(li);
+  })
 }
 
 
