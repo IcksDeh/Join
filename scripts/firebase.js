@@ -62,7 +62,6 @@ async function pushToContactsArray(firebaseKeys, responseFirebaseDataToJSON){
             }
         )
     }
-    console.log(contactsList);
 }
 
 

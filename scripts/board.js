@@ -5,6 +5,7 @@
 async function loadContentBoard() {
     resetBoardHTML(); 
     await loadFirebaseData('tasks');
+    await loadFirebaseData('contacts');
     checkStatusTask();
 }
 
@@ -79,14 +80,28 @@ function loadTaskElementinColumn(taskID, taskContent, index, status){
  */
 function loadAssigneesOfTaks(taskContent, taskID) {
     let taskAssigneeElement = document.getElementById("board_assignee_" + taskID);
-    taskAssigneeElement.innerHTML = ""; 
 
-    let assigneeList = Object.values(taskContent.assignees || {});
+    taskAssigneeElement.innerHTML = "";
+
+    let assignees = taskContent.assignees || {};
     let maxVisible = 2;
 
-    renderVisibleAssignees(assigneeList, maxVisible, taskAssigneeElement);
-    renderOverflowCounter(assigneeList.length, maxVisible, taskAssigneeElement);
+    let existingContactsIds = contactsList.map(contact => contact.id);
+
+    let validAssignees = Object.entries(assignees)
+        .filter(([assigneesId]) => existingContactsIds.includes(assigneesId))
+
+    let noValidAssignees = Object.entries(assignees).forEach(([assigneeID])=>{
+        if (!existingContactsIds.includes(assigneeID)){
+            // deleteAssigneeInTaskList();
+        }
+    })
+
+    renderVisibleAssignees(validAssignees, maxVisible, taskAssigneeElement);
+    renderOverflowCounter(noValidAssignees, maxVisible, taskAssigneeElement);
+
 }
+
 
 
 /**
@@ -103,8 +118,8 @@ function renderVisibleAssignees(assigneeList, maxVisible, container) {
         let assignee = assigneeList[i];
         let avatar = document.createElement('div');
         avatar.className = "user_circle_task_card";
-        avatar.style.backgroundColor = assignee.assigneeColor;
-        avatar.innerHTML = assignee.assigneeInitial;
+        avatar.style.backgroundColor = assignee[1].assigneeColor;
+        avatar.innerHTML = assignee[1].assigneeInitial;
         container.appendChild(avatar);
     }
 }

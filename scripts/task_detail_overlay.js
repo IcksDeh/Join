@@ -64,7 +64,11 @@ function closeTaskDetailDialog() {
  * @param {Object} taskContent - The task data object.
  * @param {string|number} taskID - The unique ID of the task.
  */
-function loadAssigneesTaskDetails(taskContent, taskID){
+
+  
+
+
+ function loadAssigneesTaskDetails(taskContent, taskID){
   let taskAssigneeElement = document.getElementById("assignees_task_details_" + taskID);
   let assigneeList = taskContent.assignees;
   Object.values(assigneeList)
@@ -76,6 +80,13 @@ function loadAssigneesTaskDetails(taskContent, taskID){
     taskAssigneeElement.appendChild(assigneeHTMLElement);
   })
 }
+
+
+
+
+
+
+
 
 
 /**
