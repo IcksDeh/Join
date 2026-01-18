@@ -84,6 +84,7 @@ function loadAssigneesOfTaks(taskContent, taskID) {
     let assignees = taskContent.assignees || {};
     let existingContactsIds = contactsList.map(contact => contact.id);
     
+
     let validAssignees = Object.entries(assignees)
         .filter(([assigneesId]) => existingContactsIds.includes(assigneesId));
 
@@ -320,33 +321,52 @@ function numberDoneSubstask(index){
 
 
 /**
- * Filters tasks based on the search query in the title or description.
- * Shows "Keine Ergebnisse gefunden" if search yields no hits in a column.
+ * Main function to initiate filtering.
+ * Handles UI reset and error message display.
  */
 function filterTasks() {
-    let searchInput = document.querySelector('.style_input_searchbar');
-    let searchTerm = searchInput.value.toLowerCase();
-    let placeholderMessage = searchTerm.length > 0 ? "No results found" : null;
-    resetBoardHTML(placeholderMessage);
+    let searchTerm = document.querySelector('.style_input_searchbar').value.toLowerCase();
+    let msgBox = document.getElementById('searchMsg');
+    
+    resetBoardHTML();
 
-    taskList.forEach((taskItem, index) => {
-        let taskContent = taskItem.task;
-        let taskID = taskItem.id;
-        
-        let title = taskContent.title.toLowerCase();
-        let description = taskContent.description.toLowerCase();
-        if (title.includes(searchTerm) || description.includes(searchTerm)) {
-            loadBoardColumn(taskID, taskContent, index, taskContent.statusTask);
-        }
-    });
+    let matchCount = findAndDisplayTasks(searchTerm);
+
+    if (searchTerm.length > 0 && matchCount === 0) {
+        msgBox.innerHTML = "No results found";
+    } else {
+        msgBox.innerHTML = "";
+    }
 }
 
 
 /**
- * Resets the HTML of all board columns.
- * @param {string|null} customMessage
+ * Iterates through the task list and loads matching tasks to the board.
+ * @param {string} searchTerm - The string to search for.
+ * @returns {number} - The count of tasks found.
  */
-function resetBoardHTML(customMessage = null) {
+function findAndDisplayTasks(searchTerm) {
+    let matchCount = 0;
+    
+    taskList.forEach((taskItem, index) => {
+        let taskContent = taskItem.task;
+        let title = taskContent.title.toLowerCase();
+        let description = taskContent.description.toLowerCase();
+
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            loadBoardColumn(taskItem.id, taskContent, index, taskContent.statusTask);
+            matchCount++;
+        }
+    });
+    return matchCount;
+}
+
+
+/**
+ * Resets the HTML of all board columns to their default "No tasks" state.
+ * Removed the customMessage parameter as requested.
+ */
+function resetBoardHTML() {
     const columns = [
         { id: 'todo', text: 'To Do' },
         { id: 'inProgress', text: 'Progress' },
@@ -355,7 +375,8 @@ function resetBoardHTML(customMessage = null) {
     ];
     columns.forEach(col => {
         let columnElement = document.getElementById('board_column_' + col.id);
-        let message = customMessage ? customMessage : `No tasks in ${col.text}`;
+        // Επαναφέρουμε το default μήνυμα (π.χ. "No tasks in To Do")
+        let message = `No tasks in ${col.text}`;
 
         columnElement.innerHTML = `<div class="no_task_message">${message}</div>`;
         columnElement.classList.add("no_task_available");

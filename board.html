@@ -52,11 +52,12 @@
             </div>
             <div class="order_header_right_side">
               <div class="style_searchbar_board">
-                <input class="style_input_searchbar" type="text" placeholder="Find Task" onkeyup="filterTasks()"">
+                <input class="style_input_searchbar" type="text" placeholder="Find Task" onkeyup="filterTasks()">
                 <div class="border_searchbar"></div>
                 <div class="style_search_icon_box">
                   <img class="style_search_icon" src="./assets/img/search.svg" alt="">
                 </div>
+                <div id="searchMsg" class="search-error-message"></div>
               </div>
               <button class="btn_add_task_board button" onclick="openAddTaskDialog('todo')">Add Task<img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
             </div>

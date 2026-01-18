@@ -259,3 +259,16 @@
 .style_searchbar_board:focus-within {
     border: 2px solid #29abe2 !important; 
 }
+
+.style_searchbar_board {
+    position: relative; 
+}
+
+.search-error-message {
+    position: absolute;
+    top: 48px; 
+    left: 0;
+    color: #FF3D00;
+    font-size: 12pt;
+    pointer-events: none;
+}
