@@ -230,9 +230,9 @@ async function checkContactList(element, id){
         showContactsInTasks(id); 
         return;
     }
-  }
-   await loadFirebaseData("contacts");
+  await loadFirebaseData("contacts");
    showContactsInTasks(id);
+  }
 }
 
 
