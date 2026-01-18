@@ -179,13 +179,13 @@ function handleRequiredMessage(input) {
  * @param {string} element - The base name of the list to toggle.
  * @returns {void} - This function does not return a value.
  */
-function toggleListTasks(element) {
-  let list = document.getElementById(element + "_list_task");
+function toggleListTasks(element, elementId) {
+  let list = document.getElementById(element + "_list_task_" + elementId);
 
   if (list.style.display === "none") {
     list.style.display = "block";
-    checkContactList(element);
-    syncDropdownCheckboxes();
+    checkContactList(element, elementId);
+    syncDropdownCheckboxes(elementId);
   } else {
     list.style.display = "none";
   }
@@ -224,24 +224,24 @@ function closeDropdownLists() {
  * @param {string} element - The element identifier used to determine which list to check.
  * @returns {Promise<void>} - A promise that resolves when the contact list has been checked and rendered.
  */
-async function checkContactList(element){
+async function checkContactList(element, id){
   if (element == "contacts"){
     if (contactsList.length > 0) {
-        showContactsInTasks(); 
+        showContactsInTasks(id); 
         return;
     }
-    await loadFirebaseData("contacts");
-    showContactsInTasks();
   }
+   await loadFirebaseData("contacts");
+   showContactsInTasks(id);
 }
 
 
-// NEW - EDIT DIALOG
-async function checkContactListEdit() {
-  if (contactsList.length === 0) await loadFirebaseData("contacts");
-  showContactsInTasks("contacts_list_task_edit", selectedAssigneesEdit);
-  renderAssignedContacts("assigned_contacts_row_edit", selectedAssigneesEdit);
-}
+// // NEW - EDIT DIALOG
+// async function checkContactListEdit() {
+//   if (contactsList.length === 0) await loadFirebaseData("contacts");
+//   showContactsInTasks("contacts_list_task_edit", selectedAssigneesEdit);
+//   renderAssignedContacts("assigned_contacts_row_edit", selectedAssigneesEdit);
+// }
 
 
 /**
@@ -251,110 +251,61 @@ async function checkContactListEdit() {
  * @param {HTMLImageElement} imgElement - The checkbox image element to toggle.
  * @param {number} index - The index of the contact in the `contactsList` array.
  */
-function toggleCheckedIcon(imgElement, index) {
+function toggleCheckedIcon(imgElement, index, elementId) {
   const contact = contactsList[index];
   const contactId = contact.id;
   const isChecked = imgElement.dataset.checked === "true";
+  let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
 
   if (isChecked) {
-    selectedAssignees = selectedAssignees.filter(c => c.id !== contactId);
+    assigneeList = assigneeList.filter(c => c.id !== contactId);
     imgElement.dataset.checked = "false";
     imgElement.src = "./assets/img/checkbox_unchecked.svg";
   } else {
-    if (!selectedAssignees.some(c => c.id === contactId)) {
-      selectedAssignees.push(contact);
+    if (!assigneeList.some(c => c.id === contactId)) {
+      assigneeList.push(contact);
     }
     imgElement.dataset.checked = "true";
     imgElement.src = "./assets/img/checkbox_checked.svg";
   }
-  renderAssignedContacts();
+  renderAssignedContacts(elementId);
 }
-
-
-// NEW - EDIT DIALOG
-function toggleCheckedIconEdit(imgElement, index) {
-  const contact = contactsList[index];
-  const contactId = contact.id;
-  const isChecked = imgElement.dataset.checked === "true";
-
-  if (isChecked) {
-    selectedAssignees = selectedAssignees.filter(c => c.id !== contactId);
-    imgElement.dataset.checked = "false";
-    imgElement.src = "./assets/img/checkbox_unchecked.svg";
-  } else {
-    if (!selectedAssignees.some(c => c.id === contactId)) {
-      selectedAssignees.push(contact);
-    }
-    imgElement.dataset.checked = "true";
-    imgElement.src = "./assets/img/checkbox_checked.svg";
-  }
-  renderAssignedContactsEdit();
-}
-
-
-// NEW - EDIT DIALOG
-function toggleListTasksEdit() {
-  const dropdownList = document.getElementById("contacts_list_task_edit");
-  if (!dropdownList) return;
-  if (dropdownList.style.display === "none" || dropdownList.style.display === "") {
-    dropdownList.style.display = "block";
-    showContactsInTasksEdit();
-  } else {
-    dropdownList.style.display = "none";
-  }
-}
-
 
 /**
  * Renders all selected assignees into the assigned contacts container.
  * Each assignee is displayed with an initial and a background color corresponding to their profile.
  */
-function renderAssignedContacts() {
-  const container = document.getElementById("assigned_contacts_row");
+function renderAssignedContacts(elementId) {
+  const container = document.getElementById("assigned_contacts_row_" + elementId);
   container.innerHTML = "";
+  let assigneeList = elementId === "default" ? selectedAssignees: selectedAssigneesEdit;
+  console.log(assigneeList);
 
-  selectedAssignees.forEach(contact => {
-    container.innerHTML += `
-      <div class="contact_initial_circle assigned_contact"
-        data-assignee-id="${contact.id}"
-        title="${contact.contact.name}"
-        style="background-color:${contact.contact.color}">
-        ${contact.contact.initial}
-      </div>
-    `;
-  });
+   assigneeList.forEach(contact => {
+      container.innerHTML += 
+      `
+        <div class="contact_initial_circle assigned_contact"
+          data-assignee-id="${contact.id}"
+          title="${contact.contact.name}"
+          style="background-color:${contact.contact.color}">
+          ${contact.contact.initial}
+        </div>
+      `;
+    });
+  
 }
-
-
-// NEW - EDIT DIALOG
-function renderAssignedContactsEdit() {
-  const containerEdit = document.getElementById("assigned_contacts_row_edit");
-  if (!containerEdit) return;
-  containerEdit.innerHTML = "";
-
-  selectedAssignees.forEach(contact => {
-    containerEdit.innerHTML += `
-      <div class="contact_initial_circle assigned_contact"
-        data-assignee-id="${contact.id}"
-        title="${contact.contact.name}"
-        style="background-color:${contact.contact.color}">
-        ${contact.contact.initial}
-      </div>
-    `;
-  });
-}
-
 
 /**
  * Synchronizes the checkbox icons in the dropdown list with the current selection.
  * Ensures that each dropdown item accurately reflects whether the corresponding contact is selected.
  */
-function syncDropdownCheckboxes() {
+function syncDropdownCheckboxes(elementId) {
   document.querySelectorAll(".dropdown_item_user").forEach(item => {
     const id = item.dataset.assigneeId;
     const checkbox = item.querySelector(".checkbox_icon");
+    let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
 
-    const checked = selectedAssignees.some(c => c.id == id);
+    const checked = assigneeList.some(c => c.id == id);
     checkbox.dataset.checked = checked;
     checkbox.src = checked
       ? "./assets/img/checkbox_checked.svg"
@@ -389,8 +340,8 @@ function clearSelectedAssignees() {
  * @function showContactsInTasks
  * @returns {void} - This function does not return a value.
  */
-function showContactsInTasks() {
-  let assigneeList = document.getElementById("contacts_list_task");
+function showContactsInTasks(id) {
+  let assigneeList = document.getElementById("contacts_list_task_"+id);
   assigneeList.innerHTML = "";
 
   for (let index = 0; index < contactsList.length; index++) {
@@ -405,36 +356,11 @@ function showContactsInTasks() {
     const listElement = document.createElement("li");
     listElement.className = "dropdown_item";
 
-    listElement.innerHTML = listAssigneeTemplate(
-      contactsList, index, checkImg, checkState
-    );
+    listElement.innerHTML = listAssigneeTemplate(contactsList, index, checkImg, checkState, id);
     assigneeList.appendChild(listElement);
   }
 }
 
-
-// NEW - EDIT DIALOG
-function showContactsInTasksEdit() {
-  const assigneeListEdit = document.getElementById("contacts_list_task_edit");
-  if (!assigneeListEdit) return;
-  assigneeListEdit.innerHTML = "";
-
-  for (let index = 0; index < contactsList.length; index++) {
-    const contact = contactsList[index];
-    const isChecked = selectedAssigneesEdit.some(c => c.id === contact.id);
-    const checkImg = isChecked
-      ? "./assets/img/checkbox_checked_contact_form.svg"
-      : "./assets/img/checkbox_unchecked_contact_form.svg";
-
-    const checkState = isChecked ? "true" : "false";
-
-    const listElement = document.createElement("li");
-    listElement.className = "dropdown_item";
-
-    listElement.innerHTML = listAssigneeTemplate(contact, index, checkImg, checkState, true);
-    assigneeListEdit.appendChild(listElement);
-  }
-}
 
 
 // -----------------------------------

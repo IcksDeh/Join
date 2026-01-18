@@ -75,14 +75,14 @@
 
                             <label class="label_text">Assigned to</label><br>
                             <div class="dropdown" data-type="contacts">
-                                <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('contacts')">
+                                <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('contacts', 'default')">
                                     <span class="dropdown_text" id="selected_contacts">Select contacts to assign</span>
                                     <div class="dropdown_icon"></div>
                                 </div>
-                                <ul class="dropdown_list_contacts" id="contacts_list_task" style="display:none;">
+                                <ul class="dropdown_list_contacts" id="contacts_list_task_default" style="display:none;">
                                 </ul>
                             </div>
-                            <div class="assigned_contacts_row" id="assigned_contacts_row"></div>
+                            <div class="assigned_contacts_row" id="assigned_contacts_row_default"></div>
                             <div class="input_spacer"></div>
 
                             <label class="label_text">Category<sup>*</sup></label><br>
