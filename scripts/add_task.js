@@ -268,7 +268,13 @@ function toggleCheckedIcon(imgElement, index, elementId) {
     imgElement.dataset.checked = "true";
     imgElement.src = "./assets/img/checkbox_checked.svg";
   }
+  if (elementId === "default") {
+    selectedAssignees = assigneeList;
+  } else {
+    selectedAssigneesEdit = assigneeList;
+  }
   renderAssignedContacts(elementId);
+
 }
 
 /**
