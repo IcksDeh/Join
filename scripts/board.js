@@ -261,6 +261,30 @@ async function drop(category){
 }
 
 
+// Wir nutzen "...ids", um alle Argumente, die übergeben werden, als Array zu erhalten
+function highlight(...ids) {
+    ids.forEach((id) => {
+        // Wir müssen das Präfix "board_column_" hinzufügen, damit es zur HTML ID passt
+        let element = document.getElementById('board_column_' + id);
+        if (element) {
+            element.classList.add('drag_area_highlight'); // KEIN PUNKT HIER!
+        }
+    });
+}
+
+
+// Du brauchst auch eine Funktion, um das Highlight wieder zu entfernen (z.B. bei ondragleave oder ondrop)
+function removeHighlight(...ids) {
+    ids.forEach((id) => {
+        let element = document.getElementById('board_column_' + id);
+        if (element) {
+            element.classList.remove('drag_area_highlight');
+        }
+    });
+}
+
+
+
 /**
  * Loads the progress bar for a specific task by calculating the percentage of completed subtasks and updating the corresponding progress bar element.
  *

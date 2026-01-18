@@ -71,7 +71,10 @@
                 <p class="text_section">To Do</p>
                 <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog('todo')" role="button" aria-label="Add Task">
               </div>
-              <div class="width_section" ondrop="drop('todo')" ondragover="allowDrop(event)">
+              <div class="width_section"  
+                  ondrop="drop('todo'); removeHighlight('todo')" 
+                  ondragover="allowDrop(event); highlight('todo')" 
+                  ondragleave="removeHighlight('todo')">
                 <div class="no_task_available" id="board_column_todo" data-initialized= "false">
                   <p>No tasks in To Do</p>
                 </div>
@@ -83,7 +86,10 @@
                 <p class="text_section">In Progress</p>
                 <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog('inProgress')" role="button" aria-label="Add Task">
               </div>
-              <div class="width_section" ondrop="drop('inProgress')" ondragover="allowDrop(event)">
+              <div class="width_section" 
+                  ondrop="drop('inProgress'); removeHighlight('inProgress')" 
+                  ondragover="allowDrop(event); highlight('inProgress')" 
+                  ondragleave="removeHighlight('inProgress')">
                 <div class="no_task_available" id="board_column_inProgress" data-initialized= "false">
                   <p>No tasks in Progress</p>
                 </div>
@@ -95,7 +101,10 @@
                 <p class="text_section">Await Feedback</p>
                 <img class="img_add_btn" src="./assets/img/add_square_default.svg" alt="Add Task Button" onclick="openAddTaskDialog('awaitFeedback')" role="button" aria-label="Add Task">
               </div>
-              <div class="width_section" ondrop="drop('awaitFeedback')" ondragover="allowDrop(event)">
+              <div class="width_section"  
+                 ondrop="drop('awaitFeedback'); removeHighlight('awaitFeedback')" 
+                 ondragover="allowDrop(event); highlight('awaitFeedback')" 
+                 ondragleave="removeHighlight('awaitFeedback')">
                 <div class="no_task_available" id="board_column_awaitFeedback" data-initialized= "false">
                   <p>No tasks in Await Feedback</p>
                 </div>
@@ -104,7 +113,10 @@
             <!-- Done -->
             <div class="order_elements_in_section">
               <p class="text_section">Done</p>
-              <div class="width_section" ondrop="drop('done')" ondragover="allowDrop(event)">
+              <div class="width_section" 
+                   ondrop="drop('done'); removeHighlight('done')" 
+                   ondragover="allowDrop(event); highlight('done')" 
+                   ondragleave="removeHighlight('done')">
                 <div class="no_task_available" id="board_column_done" data-initialized= "false">
                   <p>No tasks in Done</p>
                 </div>  

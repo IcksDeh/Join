@@ -110,6 +110,8 @@
   margin-top: 20px;
   flex: 1; 
   min-height: 100px; 
+  transition: all 100ms ease-in-out;
+  border: 2px solid transparent;  
 }
 
 .no_task_available {
@@ -271,4 +273,18 @@
     color: #FF3D00;
     font-size: 12pt;
     pointer-events: none;
+}
+
+.drag_area_highlight {
+
+  border: 2px dashed #a8a8a8; 
+  border-radius: 30px; 
+  
+  background-color: rgba(0, 0, 0, 0.05); 
+}
+
+.drag_area_highlight {
+    border: 2px dashed #4589FF;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
 }
