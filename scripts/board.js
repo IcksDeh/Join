@@ -131,7 +131,6 @@ function renderVisibleAssignees(assigneeList, maxVisible, container) {
  */
 function renderOverflowCounter(totalAssignees, maxVisible, container) {
     if (totalAssignees > maxVisible) {
-         console.log("Creating overflow circle...");
         let remaining = totalAssignees - maxVisible;
         let overflowCircle = document.createElement('div');
         
@@ -143,10 +142,6 @@ function renderOverflowCounter(totalAssignees, maxVisible, container) {
         container.appendChild(overflowCircle);
     }
 }
-
-
-
-
 
 
 /**
