@@ -83,16 +83,19 @@ function loadAssigneesOfTaks(taskContent, taskID) {
     taskAssigneeElement.innerHTML = "";
     let assignees = taskContent.assignees || {};
     let existingContactsIds = contactsList.map(contact => contact.id);
+    
     let validAssignees = Object.entries(assignees)
-        .filter(([assigneesId]) => existingContactsIds.includes(assigneesId))
+        .filter(([assigneesId]) => existingContactsIds.includes(assigneesId));
 
-    let noValidAssignees = Object.entries(assignees).forEach(([assigneeID])=>{
+    
+    Object.entries(assignees).forEach(([assigneeID])=>{
         if (!existingContactsIds.includes(assigneeID)){
             deleteAssigneeInTaskList(assigneeID, 'tasks/', taskID);
         }
-    })
+    });
+
     renderVisibleAssignees(validAssignees, 2, taskAssigneeElement);
-    renderOverflowCounter(noValidAssignees, 2, taskAssigneeElement);
+    renderOverflowCounter(validAssignees.length, 2, taskAssigneeElement);
 }
 
 
@@ -127,6 +130,7 @@ function renderVisibleAssignees(assigneeList, maxVisible, container) {
  */
 function renderOverflowCounter(totalAssignees, maxVisible, container) {
     if (totalAssignees > maxVisible) {
+         console.log("Creating overflow circle...");
         let remaining = totalAssignees - maxVisible;
         let overflowCircle = document.createElement('div');
         
@@ -138,6 +142,10 @@ function renderOverflowCounter(totalAssignees, maxVisible, container) {
         container.appendChild(overflowCircle);
     }
 }
+
+
+
+
 
 
 /**
