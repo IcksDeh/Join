@@ -232,9 +232,37 @@ function loadCounterDoneSubtasks(taskID, index){
  * @param {number} index - The index of the task in the task list.
  * @param {string} taskID - The unique ID of the task being dragged.
  */
-function startDragging(index, taskID){
+function startDragging(event,index, taskID){
     currentDraggedElementIndex = index;
     currentDraggedElementID = taskID;
+    let card = event.target;
+    
+
+    if (!card.classList.contains('style_task_card')) {
+        card = card.closest('.style_task_card');
+    }
+
+    if (card) {
+        card.classList.add('dragged_task_visual');
+    }
+}
+
+
+/**
+ * Removes the visual feedback when dragging stops.
+ * 
+ * @param {DragEvent} event - The drag event.
+ */
+function stopDragging(event) {
+    let card = event.target;
+    
+    if (!card.classList.contains('style_task_card')) {
+        card = card.closest('.style_task_card');
+    }
+
+    if (card) {
+        card.classList.remove('dragged_task_visual');
+    }
 }
 
 
