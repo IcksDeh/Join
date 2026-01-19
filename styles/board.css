@@ -111,7 +111,7 @@
   flex: 1; 
   min-height: 100px; 
   transition: all 100ms ease-in-out;
-  border: 2px solid transparent;  
+  border: 1.5px solid transparent;  
 }
 
 .no_task_available {
@@ -284,7 +284,7 @@
 }
 
 .drag_area_highlight {
-    border: 2px dashed #4589FF;
+    border:1.5px dashed #acacac;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
 }
