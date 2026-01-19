@@ -7,6 +7,7 @@ async function loadContentBoard() {
     await loadFirebaseData('tasks');
     await loadFirebaseData('contacts');
     checkStatusTask();
+    initMobileDragAndDrop(); 
 }
 
 

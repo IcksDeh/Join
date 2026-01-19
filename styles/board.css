@@ -81,7 +81,7 @@
   gap: 30px;
   margin-top: 50px;
   height: auto;
-  min-height: calc(100vh - 200px); 
+  min-height: calc(100vh - 200px);
 }
 
 .order_elements_in_section_header {
@@ -95,7 +95,7 @@
   display: flex;
   flex-direction: column;
   width: 22%;
-  height: auto; 
+  height: auto;
 }
 
 .text_section {
@@ -108,10 +108,10 @@
 .width_section {
   width: 100%;
   margin-top: 20px;
-  flex: 1; 
-  min-height: 100px; 
+  flex: 1;
+  min-height: 100px;
   transition: all 100ms ease-in-out;
-  border: 1.5px solid transparent;  
+  border: 1.5px solid transparent;
 }
 
 .no_task_available {
@@ -196,7 +196,7 @@
   border: 2px solid #29abe2;
 }
 
-.progressbar_filled{
+.progressbar_filled {
   background-color: #29abe2;
   height: 100%;
   border-radius: 20px 0 0 20px;
@@ -253,49 +253,68 @@
 .style_input_searchbar:focus,
 .style_input_searchbar:active,
 .style_input_searchbar:focus-visible {
-    outline: none !important;
-    border: none !important;
-    box-shadow: none !important;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .style_searchbar_board:focus-within {
-    border: 2px solid #29abe2 !important; 
+  border: 2px solid #29abe2 !important;
 }
 
 .style_searchbar_board {
-    position: relative; 
+  position: relative;
 }
 
 .search-error-message {
-    position: absolute;
-    top: 48px; 
-    left: 0;
-    color: #FF3D00;
-    font-size: 12pt;
-    pointer-events: none;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  color: #ff3d00;
+  font-size: 12pt;
+  pointer-events: none;
 }
 
 .drag_area_highlight {
+  border: 2px dashed #a8a8a8;
+  border-radius: 30px;
 
-  border: 2px dashed #a8a8a8; 
-  border-radius: 30px; 
-  
-  background-color: rgba(0, 0, 0, 0.05); 
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .drag_area_highlight {
-    border:1.5px dashed #acacac;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
+  border: 1.5px dashed #acacac;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
 }
 
 .dragged_task_visual {
-    transform: rotate(4deg) scale(0.95); 
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-    transition: all 0.1s ease-in-out;
-    opacity: 0.8;
-    cursor: grabbing;
-    z-index: 1000; 
-    margin: 5px; 
+  transform: rotate(4deg) scale(0.95);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.1s ease-in-out;
+  opacity: 0.8;
+  cursor: grabbing;
+  z-index: 1000;
+  margin: 5px;
 }
 
+.mobile-drag-clone {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.9;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transform: rotate(3deg) scale(1.05);
+  transition: none;
+}
+
+.mobile-drag-active-original {
+  opacity: 0.4;
+  background-color: #f0f0f0;
+}
+
+.style_task_card {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
