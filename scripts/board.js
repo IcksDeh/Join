@@ -83,16 +83,20 @@ function loadAssigneesOfTaks(taskContent, taskID) {
     taskAssigneeElement.innerHTML = "";
     let assignees = taskContent.assignees || {};
     let existingContactsIds = contactsList.map(contact => contact.id);
-    let validAssignees = Object.entries(assignees)
-        .filter(([assigneesId]) => existingContactsIds.includes(assigneesId))
+    
 
-    let noValidAssignees = Object.entries(assignees).forEach(([assigneeID])=>{
+    let validAssignees = Object.entries(assignees)
+        .filter(([assigneesId]) => existingContactsIds.includes(assigneesId));
+
+    
+    Object.entries(assignees).forEach(([assigneeID])=>{
         if (!existingContactsIds.includes(assigneeID)){
             deleteAssigneeInTaskList(assigneeID, 'tasks/', taskID);
         }
-    })
+    });
+
     renderVisibleAssignees(validAssignees, 2, taskAssigneeElement);
-    renderOverflowCounter(noValidAssignees, 2, taskAssigneeElement);
+    renderOverflowCounter(validAssignees.length, 2, taskAssigneeElement);
 }
 
 
@@ -149,11 +153,11 @@ function renderOverflowCounter(totalAssignees, maxVisible, container) {
 function loadPriorityIcon(taskContent, taskID){
     let iconPriorityElement = document.getElementById("icon_priority_"+taskID);
     if (taskContent.priority.name === "low"){
-        iconPriorityElement.src = "../assets/img/prio_low_green.svg";
+        iconPriorityElement.src = "./assets/img/prio_low_green.svg";
     } else if (taskContent.priority.name === "medium"){
-        iconPriorityElement.src = "../assets/img/prio_medium_yellow.svg";
+        iconPriorityElement.src = "./assets/img/prio_medium_yellow.svg";
     } else{
-        iconPriorityElement.src = "../assets/img/prio_urgent_red.svg";
+        iconPriorityElement.src = "./assets/img/prio_urgent_red.svg";
     }
 }
 
@@ -257,6 +261,30 @@ async function drop(category){
 }
 
 
+// Wir nutzen "...ids", um alle Argumente, die übergeben werden, als Array zu erhalten
+function highlight(...ids) {
+    ids.forEach((id) => {
+        // Wir müssen das Präfix "board_column_" hinzufügen, damit es zur HTML ID passt
+        let element = document.getElementById('board_column_' + id);
+        if (element) {
+            element.classList.add('drag_area_highlight'); // KEIN PUNKT HIER!
+        }
+    });
+}
+
+
+// Du brauchst auch eine Funktion, um das Highlight wieder zu entfernen (z.B. bei ondragleave oder ondrop)
+function removeHighlight(...ids) {
+    ids.forEach((id) => {
+        let element = document.getElementById('board_column_' + id);
+        if (element) {
+            element.classList.remove('drag_area_highlight');
+        }
+    });
+}
+
+
+
 /**
  * Loads the progress bar for a specific task by calculating the percentage of completed subtasks and updating the corresponding progress bar element.
  *
@@ -312,33 +340,52 @@ function numberDoneSubstask(index){
 
 
 /**
- * Filters tasks based on the search query in the title or description.
- * Shows "Keine Ergebnisse gefunden" if search yields no hits in a column.
+ * Main function to initiate filtering.
+ * Handles UI reset and error message display.
  */
 function filterTasks() {
-    let searchInput = document.querySelector('.style_input_searchbar');
-    let searchTerm = searchInput.value.toLowerCase();
-    let placeholderMessage = searchTerm.length > 0 ? "No results found" : null;
-    resetBoardHTML(placeholderMessage);
+    let searchTerm = document.querySelector('.style_input_searchbar').value.toLowerCase();
+    let msgBox = document.getElementById('searchMsg');
+    
+    resetBoardHTML();
 
-    taskList.forEach((taskItem, index) => {
-        let taskContent = taskItem.task;
-        let taskID = taskItem.id;
-        
-        let title = taskContent.title.toLowerCase();
-        let description = taskContent.description.toLowerCase();
-        if (title.includes(searchTerm) || description.includes(searchTerm)) {
-            loadBoardColumn(taskID, taskContent, index, taskContent.statusTask);
-        }
-    });
+    let matchCount = findAndDisplayTasks(searchTerm);
+
+    if (searchTerm.length > 0 && matchCount === 0) {
+        msgBox.innerHTML = "No results found";
+    } else {
+        msgBox.innerHTML = "";
+    }
 }
 
 
 /**
- * Resets the HTML of all board columns.
- * @param {string|null} customMessage
+ * Iterates through the task list and loads matching tasks to the board.
+ * @param {string} searchTerm - The string to search for.
+ * @returns {number} - The count of tasks found.
  */
-function resetBoardHTML(customMessage = null) {
+function findAndDisplayTasks(searchTerm) {
+    let matchCount = 0;
+    
+    taskList.forEach((taskItem, index) => {
+        let taskContent = taskItem.task;
+        let title = taskContent.title.toLowerCase();
+        let description = taskContent.description.toLowerCase();
+
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            loadBoardColumn(taskItem.id, taskContent, index, taskContent.statusTask);
+            matchCount++;
+        }
+    });
+    return matchCount;
+}
+
+
+/**
+ * Resets the HTML of all board columns to their default "No tasks" state.
+ * Removed the customMessage parameter as requested.
+ */
+function resetBoardHTML() {
     const columns = [
         { id: 'todo', text: 'To Do' },
         { id: 'inProgress', text: 'Progress' },
@@ -347,7 +394,8 @@ function resetBoardHTML(customMessage = null) {
     ];
     columns.forEach(col => {
         let columnElement = document.getElementById('board_column_' + col.id);
-        let message = customMessage ? customMessage : `No tasks in ${col.text}`;
+        // Επαναφέρουμε το default μήνυμα (π.χ. "No tasks in To Do")
+        let message = `No tasks in ${col.text}`;
 
         columnElement.innerHTML = `<div class="no_task_message">${message}</div>`;
         columnElement.classList.add("no_task_available");
