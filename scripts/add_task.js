@@ -100,7 +100,8 @@ function clearInputs() {
   clearSelectedAssignees();
   resetInputFields();
   document.getElementById("selected_contacts").innerHTML = "Select contacts to assign";
-  document.getElementById("assigned_contacts_row").innerHTML = "";
+  // document.getElementById("assigned_contacts_row").innerHTML = "";
+  document.getElementById("assigned_contacts_row_default").innerHTML = "";
   closeDropdownLists();
   subtaskList.innerHTML = "";
   checkPriority("medium");
