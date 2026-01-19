@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./styles/mobile_add_task.css">
 
     <script src="script.js" defer></script>
-    <script src="./scripts/add_task.js" defer></script>
+    <script src="./scripts/add_task.js"defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
     <script src="./scripts/firebase.js" defer></script>
     <script src="./templates/add_task_overlay_template.js" defer></script>
@@ -24,7 +24,7 @@
     <script src="./scripts/variables.js" defer></script>
     <title>Add Task</title>
 </head>
-<body onload="init()">
+<body onload="init(), loadEventlistener('default')">
     <div class="order_sidebar_main">
         <aside class="sidebar desktop" id="id_sidebar">
         </aside>

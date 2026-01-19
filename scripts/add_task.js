@@ -542,43 +542,68 @@ if (subtaskInputEdit) {
  * @listens HTMLButtonElement#click
  * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
  */
-document.getElementById("id_btn_create_task_overlay").addEventListener("click", async function (event) {
-  event.preventDefault();
-  const statusTasks = this.dataset.taskParam;
+// document.getElementById("id_btn_create_task_overlay").addEventListener("click", async function (event) {
+//   event.preventDefault();
+//   const statusTasks = this.dataset.taskParam;
 
-  if (areRequiredFieldsFilled('overlay')) {
-    await getAddTaskData(statusTasks, 'overlay');
-    showToast();
-    setTimeout(() => {
-      closeAddTaskDialog('overlay');
-      loadContentBoard();
-      window.location.href = "board.html";
-    }, 1000);
+//   if (areRequiredFieldsFilled('overlay')) {
+//     await getAddTaskData(statusTasks, 'overlay');
+//     showToast();
+//     setTimeout(() => {
+//       closeAddTaskDialog('overlay');
+//       loadContentBoard();
+//       window.location.href = "board.html";
+//     }, 1000);
 
+//   } else {
+//     highlightRequiredFields();
+//   }
+// });
+
+
+// document.getElementById("id_btn_create_task_default").addEventListener("click", async function (event) {
+//   event.preventDefault();
+//   const statusTasks = this.dataset.taskParam;
+
+//   if (areRequiredFieldsFilled('overlay')) {
+//     await getAddTaskData(statusTasks, 'overlay');
+//     showToast();
+//     setTimeout(() => {
+//       closeAddTaskDialog('overlay');
+//       loadContentBoard();
+//       window.location.href = "board.html";
+//     }, 1000);
+
+//   } else {
+//     highlightRequiredFields();
+//   }
+// });
+
+function loadEventlistener(HTMLid){
+    const createBtn = document.getElementById("id_btn_create_task_"+ HTMLid);
+    
+    if(createBtn){ // Sicherheit prüfen
+    createBtn.addEventListener("click", async function (event) {
+      event.preventDefault(); // Form nicht standardmäßig submitten
+
+      const statusTasks = this.dataset.taskParam;
+
+      if (areRequiredFieldsFilled('overlay')) {
+        await getAddTaskData(statusTasks, 'overlay');
+        showToast();
+        setTimeout(() => {
+          closeAddTaskDialog('overlay');
+          loadContentBoard();
+          window.location.href = "board.html";
+        }, 1000);
+      } else {
+        highlightRequiredFields();
+      }
+    });
   } else {
-    highlightRequiredFields();
-  }
-});
-
-
-document.getElementById("id_btn_create_task_default").addEventListener("click", async function (event) {
-  event.preventDefault();
-  const statusTasks = this.dataset.taskParam;
-
-  if (areRequiredFieldsFilled('overlay')) {
-    await getAddTaskData(statusTasks, 'overlay');
-    showToast();
-    setTimeout(() => {
-      closeAddTaskDialog('overlay');
-      loadContentBoard();
-      window.location.href = "board.html";
-    }, 1000);
-
-  } else {
-    highlightRequiredFields();
-  }
-});
-
+    console.warn("Button 'id_btn_create_task_default' nicht gefunden");   
+}
+}
 
 
 /**
