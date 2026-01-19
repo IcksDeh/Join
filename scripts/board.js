@@ -153,11 +153,11 @@ function renderOverflowCounter(totalAssignees, maxVisible, container) {
 function loadPriorityIcon(taskContent, taskID){
     let iconPriorityElement = document.getElementById("icon_priority_"+taskID);
     if (taskContent.priority.name === "low"){
-        iconPriorityElement.src = "../assets/img/prio_low_green.svg";
+        iconPriorityElement.src = "./assets/img/prio_low_green.svg";
     } else if (taskContent.priority.name === "medium"){
-        iconPriorityElement.src = "../assets/img/prio_medium_yellow.svg";
+        iconPriorityElement.src = "./assets/img/prio_medium_yellow.svg";
     } else{
-        iconPriorityElement.src = "../assets/img/prio_urgent_red.svg";
+        iconPriorityElement.src = "./assets/img/prio_urgent_red.svg";
     }
 }
 
