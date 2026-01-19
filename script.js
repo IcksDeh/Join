@@ -3,8 +3,6 @@ function init() {
     loadNavbar();
     loadMobileFooter();
     highlightActiveLink();
-    // loadFirebaseData("user", user);
-    // loadFirebaseData("contacts", contacts);
 }
 
 
@@ -327,3 +325,4 @@ document.addEventListener('click', function (event) {
         }
     });
 });
+

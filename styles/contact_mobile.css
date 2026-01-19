@@ -1,19 +1,4 @@
-@media (max-width: 1300px) {
-    .contact-headline {
-        padding-top: 80px;
-
-        h3 {
-            font-size: 40px;
-        }
-
-        span {
-            font-size: 22px;
-        }
-
-    }
-}
-
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
     .contact-list-container {
         width: 400px;
     }
@@ -21,10 +6,9 @@
     .contact-info {
         padding-left: 35px;
     }
-}
 
-@media (max-width: 1000px) {
     .contact-headline {
+        padding-top: 60px;
         flex-direction: column;
         align-items: start;
         gap: 16px;
@@ -42,6 +26,16 @@
         display: none;
     }
 
+}
+
+@media (max-width: 1060px) {
+    .initals-big {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+    }
+
+
     .contact-list-container {
         width: 350px;
     }
@@ -49,9 +43,18 @@
     .contact-info {
         padding-left: 35px;
     }
+
+    .contact-big {
+        gap: 32px;
+    }
+
+    .name-big span {
+        font-size: 34px;
+
+    }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
     #changebtnsPopover {
         gap: 16px;
     }
@@ -86,10 +89,48 @@
     }
 }
 
+@media (max-width: 768px) {
+    .contact-list-container {
+        width: 130px;
+    }
+
+    .button-container {
+        padding-right: 16px;
+    }
+
+    .contact-btn span {
+        display: none;
+    }
+
+    .contact-person {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .beginning-letter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 8px;
+    }
+
+    .small-info {
+        display: none
+    }
+}
+
 @media (max-width: 700px) {
+    .small-info {
+        display: block;
+    }
 
     .contact-list-container {
         width: 100%;
+    }
+
+    .contact-person {
+        align-items: center;
+        justify-content: start;
     }
 
     .headline button {
@@ -233,6 +274,12 @@
 
     ul li {
         display: unset;
+    }
+
+    .beginning-letter {
+        display: block;
+        width: 22px;
+        height: 40px;
     }
 
 }
