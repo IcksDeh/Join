@@ -432,7 +432,6 @@ textarea:focus {
     box-sizing: border-box;
     scrollbar-width: thin;
     scrollbar-color: #d5d5d5 transparent;
-    /* scroll-padding-top: 35px; */
 }
 
 .scroll_container_edit::-webkit-scrollbar {
