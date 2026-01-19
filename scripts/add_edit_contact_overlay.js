@@ -104,7 +104,8 @@ async function getUpdatedContactData(id) {
   const updatedContact = {
     name: nameInput,
     eMail: emailInput,
-    phoneNumber: phoneInput
+    phoneNumber: phoneInput,
+    initial: getContactInitials(nameInput),
   };
   updateContactById(id, updatedContact);
 
