@@ -66,8 +66,6 @@ function closeTaskDetailDialog() {
  */
 
   
-
-
  function loadAssigneesTaskDetails(taskContent, taskID){
   let taskAssigneeElement = document.getElementById("assignees_task_details_" + taskID);
   let assigneeList = taskContent.assignees;
@@ -80,13 +78,6 @@ function closeTaskDetailDialog() {
     taskAssigneeElement.appendChild(assigneeHTMLElement);
   })
 }
-
-
-
-
-
-
-
 
 
 /**
@@ -242,8 +233,8 @@ function loadPrefillContent(currentTask){
  */
 
 function loadPrefillTitle(currentTask){
-    let titleHTML = document.getElementById('id_title_task_detail_edit');
-    titleHTML.value = currentTask.title;
+  let titleHTML = document.getElementById('id_title_task_detail_edit');
+  titleHTML.value = currentTask.title;
   
 }
 
@@ -322,7 +313,6 @@ function loadPrefillSubtasks(currentTask){
     substaskHTML.appendChild(li);
   })
 }
-
 
 
 /**
