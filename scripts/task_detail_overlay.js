@@ -255,12 +255,19 @@ function loadPrefillPriority(currentTask){
 function loadPrefillAssignee(currentTask){
   const assigneeContainer = document.getElementById("assigned_contacts_row_edit");
   assigneeContainer.innerHTML = "";
-  prefillAssigneeCheckbox = [];
+  
+  selectedAssigneesEdit =[];
+
   let prefillAssignees = currentTask.assignees;
-  Object.entries(prefillAssignees).forEach(element =>{
-    prefillAssigneeCheckbox.push(element[0])
-    console.log(prefillAssigneeCheckbox);
-  assigneeContainer.innerHTML += loadAssigneeBubblesToPrefill(element);
+  Object.entries(prefillAssignees).forEach(([id, contact]) =>{
+
+  assigneeContainer.innerHTML += loadAssigneeBubblesToPrefill([id, contact]);
+  selectedAssigneesEdit.push({
+    id: id,
+    contact: contact
+  })
+  let contactInList = contactsList.find(c => c.id ===id);
+  if (contactInList) contactsList.isChecked = true;
   })
 }
 
