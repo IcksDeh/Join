@@ -110,6 +110,8 @@
   margin-top: 20px;
   flex: 1; 
   min-height: 100px; 
+  transition: all 100ms ease-in-out;
+  border: 1.5px solid transparent;  
 }
 
 .no_task_available {
@@ -258,4 +260,31 @@
 
 .style_searchbar_board:focus-within {
     border: 2px solid #29abe2 !important; 
+}
+
+.style_searchbar_board {
+    position: relative; 
+}
+
+.search-error-message {
+    position: absolute;
+    top: 48px; 
+    left: 0;
+    color: #FF3D00;
+    font-size: 12pt;
+    pointer-events: none;
+}
+
+.drag_area_highlight {
+
+  border: 2px dashed #a8a8a8; 
+  border-radius: 30px; 
+  
+  background-color: rgba(0, 0, 0, 0.05); 
+}
+
+.drag_area_highlight {
+    border:1.5px dashed #acacac;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
 }
