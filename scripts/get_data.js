@@ -1,27 +1,27 @@
 //TASK
 
-async function getAddTaskData(status = "todo") {
-  let titleTask = document.getElementById('id_title_add_task').value;
-  let descriptionTask = document.getElementById('id_description_add_task').value;
-  let dueDateTask = document.getElementById('id_due_date_add_task').value;
-  let priorityTask = getPriority();
+async function getAddTaskData(status = "todo", HTMLid) {
+  let titleTask = document.getElementById('id_title_add_task_' + HTMLid).value;
+  let descriptionTask = document.getElementById('id_description_add_task_' + HTMLid).value;
+  let dueDateTask = document.getElementById('id_due_date_add_task_'+ HTMLid).value;
+  let priorityTask = getPriority(HTMLid);
   let assignedToTask = getAssignee();
-  let categoryTask = getTaskCategory();
+  let categoryTask = getTaskCategory(HTMLid);
   let subtasksTask = getAllSubtasks();
   let statusTask = status;
 
-  await switchTaskData(titleTask, descriptionTask, dueDateTask, priorityTask, assignedToTask, categoryTask, subtasksTask, statusTask);
+  await switchTaskData(titleTask, descriptionTask, dueDateTask, priorityTask, assignedToTask, categoryTask, subtasksTask, statusTask, HTMLid);
 }
 
-function getPriority() {
+function getPriority(HTMLid) {
   return priorities.find(({ name }) => {
-    const priorityElement = document.getElementById('id_' + name + '_btn');
+    const priorityElement = document.getElementById('id_' + name + '_btn_'+ HTMLid);
     return priorityElement?.classList.contains(name + '_btn_filled');
   }) || null;
 }
 
-function getTaskCategory() {
-  const categoryElement = document.getElementById('selected_category');
+function getTaskCategory(HTMLid) {
+  const categoryElement = document.getElementById('selected_category_'+HTMLid);
   let categoryContent = categoryElement.textContent;
   return categoryContent;
 }
@@ -70,7 +70,7 @@ function getAssignee() {
   }
 }
 
-async function switchTaskData(titleTask = "", descriptionTask = "", dueDateTask = "", priorityTask = "", assignedToTask = "", categoryTask = "", subtasksTask = "", statusTask = "") {
+async function switchTaskData(titleTask = "", descriptionTask = "", dueDateTask = "", priorityTask = "", assignedToTask = "", categoryTask = "", subtasksTask = "", statusTask = "", HTMLid) {
   let taskData = {
     "title": titleTask,
     "description": descriptionTask,
@@ -81,7 +81,7 @@ async function switchTaskData(titleTask = "", descriptionTask = "", dueDateTask 
     "subtasks": subtasksTask,
     "statusTask": statusTask,
   }
-  await putToStorage("tasks", taskData);
+  await putToStorage("tasks", taskData,elements ='', HTMLid);
 }
 
 //Contacts

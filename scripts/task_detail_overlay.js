@@ -261,6 +261,7 @@ function loadPrefillPriority(currentTask){
 function loadPrefillAssignee(currentTask){
   const assigneeContainer = document.getElementById("assigned_contacts_row_edit");
   assigneeContainer.innerHTML = "";
+  prefillAssigneeCheckbox = [];
   let prefillAssignees = currentTask.assignees;
   Object.entries(prefillAssignees).forEach(element =>{
     prefillAssigneeCheckbox.push(element[0])

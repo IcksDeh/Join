@@ -42,18 +42,18 @@
                     <div class="add_task_form_container">
                         <section class="formfield_left">
                             <div class="formfield_left_wrapper">
-                                <label for="id_title_add_task" class="label_text">Title<sup>*</sup></label><br>
-                                <input type="text" class="add_task_input styled_input validate_required" id="id_title_add_task" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 30)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
-                                <span class="required_message" data-for="id_title_add_task">This field is required</span><br>
+                                <label for="id_title_add_task_default" class="label_text">Title<sup>*</sup></label><br>
+                                <input type="text" class="add_task_input styled_input validate_required" id="id_title_add_task_default" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 30)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                                <span class="required_message" data-for="id_title_add_task_default">This field is required</span><br>
                             </div>
 
                             <label for="id_description_add_task" class="label_text">Description</label><br>
-                            <textarea class="add_task_description styled_input_description" id="id_description_add_task" placeholder="Enter a description" oninput="limitInputLength(this, 90)"></textarea><br>
+                            <textarea class="add_task_description styled_input_description" id="id_description_add_task_default" placeholder="Enter a description" oninput="limitInputLength(this, 90)"></textarea><br>
 
                             <div class="formfield_left_wrapper">
-                                <label for="id_due_date_add_task" class="label_text">Due Date<sup>*</sup></label><br>
-                                <input type="date" class="add_task_input styled_input validate_required" id="id_due_date_add_task" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
-                                <span class="required_message" data-for="id_due_date_add_task">This field is required</span><br>
+                                <label for="id_due_date_add_task_default" class="label_text">Due Date<sup>*</sup></label><br>
+                                <input type="date" class="add_task_input styled_input validate_required" id="id_due_date_add_task_default" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
+                                <span class="required_message" data-for="id_due_date_add_task_default">This field is required</span><br>
                             </div>
                         </section>
 
@@ -76,7 +76,7 @@
                             <label class="label_text">Assigned to</label><br>
                             <div class="dropdown" data-type="contacts">
                                 <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('contacts', 'default')">
-                                    <span class="dropdown_text" id="selected_contacts">Select contacts to assign</span>
+                                    <span class="dropdown_text" id="selected_contacts_default">Select contacts to assign</span>
                                     <div class="dropdown_icon"></div>
                                 </div>
                                 <ul class="dropdown_list_contacts" id="contacts_list_task_default" style="display:none;">
@@ -87,13 +87,13 @@
 
                             <label class="label_text">Category<sup>*</sup></label><br>
                             <div class="dropdown" data-type="category">
-                                <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('category')">
-                                    <span class="dropdown_text" id="selected_category">Select task category</span>
+                                <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('category', 'default')">
+                                    <span class="dropdown_text" id="selected_category_default">Select task category</span>
                                     <div class="dropdown_icon"></div>
                                 </div>
-                                <ul class="dropdown_list" id="category_list_task" style="display:none;">
-                                    <li class="dropdown_item" onclick="selectCategory(this)">Technical Task</li>
-                                    <li class="dropdown_item" onclick="selectCategory(this)">User Story</li>
+                                <ul class="dropdown_list" id="category_list_task_default" style="display:none;">
+                                    <li class="dropdown_item" onclick="selectCategory(this, 'default')">Technical Task</li>
+                                    <li class="dropdown_item" onclick="selectCategory(this, 'default')">User Story</li>
                                 </ul>
                             </div>
                             <div class="input_spacer"></div>
@@ -117,6 +117,7 @@
                             <p class="required-mobile"><sup>*</sup>This field is required</p> 
 
                         </section>
+
                     </div>
 
                     <div class="add_task_bottom_area">
@@ -128,7 +129,7 @@
                                 <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                 <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                             </button>
-                            <button type="submit" id="id_btn_create_task" class="create_task_btn">Create Task<img src="./assets/img/check_white.svg" alt="Create Task"></button>
+                            <button type="submit" id="id_btn_create_task_default" class="create_task_btn">Create Task<img src="./assets/img/check_white.svg" alt="Create Task"></button>
                         </div>
                     </div>
                 </form>

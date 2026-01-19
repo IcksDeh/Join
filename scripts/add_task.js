@@ -17,7 +17,7 @@ function openAddTaskDialog(status) {
   }
 
   const dialog = document.getElementById("addTaskDialog");
-  const btn = document.getElementById("id_btn_create_task");
+  const btn = document.getElementById("id_btn_create_task_overlay");
   btn.dataset.taskParam = status;
 
   if (!dialog.open) {
@@ -38,12 +38,12 @@ function openAddTaskDialog(status) {
  * @function closeAddTaskDialog
  * @returns {void} - This function does not return a value.
  */
-function closeAddTaskDialog() {
+function closeAddTaskDialog(HTMLid) {
   const dialog = document.getElementById("addTaskDialog");
   if (!dialog) return;
 
   dialog.close();
-  clearInputs();
+  clearInputs(HTMLid);
 }
 
 
@@ -55,10 +55,10 @@ function closeAddTaskDialog() {
  * Resets all task input fields to their default state.
  * Clears input values, removes error styles, hides required messages, and resets the selected category.
  */
-function resetInputFields() {
+function resetInputFields(HTMLid) {
   const inputIds = ["title", "description", "due_date", "subtasks"];
   inputIds.forEach(idElement => {
-    const element = document.getElementById("id_" + idElement + "_add_task");
+    const element = document.getElementById("id_" + idElement + "_add_task_"+ HTMLid);
     if (element) {
       if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
         element.value = "";
@@ -70,7 +70,7 @@ function resetInputFields() {
       if (message) message.style.display = "none";
     }
   });
-  const categorySpan = document.getElementById("selected_category");
+  const categorySpan = document.getElementById("selected_category_"+HTMLid);
   categorySpan.innerHTML = "Select task category";
   categorySpan.style.color = "";
 }
@@ -80,11 +80,11 @@ function resetInputFields() {
  * Clears and resets the entire "Add Task" form.
  * Resets input fields, clears assigned contacts and subtasks, closes dropdowns, resets priority, and cancels subtask editing.
  */
-function clearInputs() {
+function clearInputs(HTMLid) {
   clearSelectedAssignees();
-  resetInputFields();
+  resetInputFields(HTMLid);
   document.getElementById("selected_contacts").innerHTML = "Select contacts to assign";
-  document.getElementById("assigned_contacts_row").innerHTML = "";
+  document.getElementById("assigned_contacts_row_" + HTMLid).innerHTML = "";
   closeDropdownLists();
   subtaskList.innerHTML = "";
   checkPriority("medium");
@@ -179,13 +179,13 @@ function handleRequiredMessage(input) {
  * @param {string} element - The base name of the list to toggle.
  * @returns {void} - This function does not return a value.
  */
-function toggleListTasks(element, elementId) {
-  let list = document.getElementById(element + "_list_task_" + elementId);
+function toggleListTasks(element, HTMLid) {
+  let list = document.getElementById(element + "_list_task_" + HTMLid);
 
   if (list.style.display === "none") {
     list.style.display = "block";
-    checkContactList(element, elementId);
-    syncDropdownCheckboxes(elementId);
+    checkContactList(element, HTMLid);
+    syncDropdownCheckboxes(HTMLid);
   } else {
     list.style.display = "none";
   }
@@ -224,25 +224,16 @@ function closeDropdownLists() {
  * @param {string} element - The element identifier used to determine which list to check.
  * @returns {Promise<void>} - A promise that resolves when the contact list has been checked and rendered.
  */
-async function checkContactList(element, id){
+async function checkContactList(element, HTMLid){
   if (element == "contacts"){
     if (contactsList.length > 0) {
-        showContactsInTasks(id); 
+        showContactsInTasks(HTMLid); 
         return;
     }
   await loadFirebaseData("contacts");
-   showContactsInTasks(id);
+   showContactsInTasks(HTMLid);
   }
 }
-
-
-// // NEW - EDIT DIALOG
-// async function checkContactListEdit() {
-//   if (contactsList.length === 0) await loadFirebaseData("contacts");
-//   showContactsInTasks("contacts_list_task_edit", selectedAssigneesEdit);
-//   renderAssignedContacts("assigned_contacts_row_edit", selectedAssigneesEdit);
-// }
-
 
 /**
  * Toggles the selection state of a contact checkbox in the UI.
@@ -298,7 +289,6 @@ function renderAssignedContacts(elementId) {
         </div>
       `;
     });
-  
 }
 
 /**
@@ -346,13 +336,18 @@ function clearSelectedAssignees() {
  * @function showContactsInTasks
  * @returns {void} - This function does not return a value.
  */
-function showContactsInTasks(id) {
-  let assigneeList = document.getElementById("contacts_list_task_"+id);
+function showContactsInTasks(HTMLid) {
+  console.log(prefillAssigneeCheckbox);
+  
+  let assigneeList = document.getElementById("contacts_list_task_"+HTMLid);
   assigneeList.innerHTML = "";
 
   for (let index = 0; index < contactsList.length; index++) {
     console.log(contactsList[index]);
-    const isChecked = contactsList[index].isChecked === true;
+    if (prefillAssigneeCheckbox.includes(contactsList[index].id)){
+      contactsList[index].isChecked = true;
+    }
+    isChecked = contactsList[index].isChecked === true;
     const checkImg = isChecked
       ? "./assets/img/checkbox_checked_contact_form.svg"
       : "./assets/img/checkbox_unchecked_contact_form.svg";
@@ -362,9 +357,11 @@ function showContactsInTasks(id) {
     const listElement = document.createElement("li");
     listElement.className = "dropdown_item";
 
-    listElement.innerHTML = listAssigneeTemplate(contactsList, index, checkImg, checkState, id);
+    listElement.innerHTML = listAssigneeTemplate(contactsList, index, checkImg, checkState, HTMLid);
     assigneeList.appendChild(listElement);
   }
+
+  prefillAssigneeCheckbox = [];
 }
 
 
@@ -379,10 +376,10 @@ function showContactsInTasks(id) {
  * @param {HTMLElement} element - The clicked category element.
  * @returns {void} - This function does not return a value.
  */
-function selectCategory(element) {
-  const categorySpan = document.getElementById("selected_category");
+function selectCategory(element, HTMLid) {
+  const categorySpan = document.getElementById("selected_category_" + HTMLid);
   categorySpan.innerHTML = element.innerHTML;
-  document.getElementById("category_list_task").style.display = "none";
+  document.getElementById("category_list_task_" + HTMLid).style.display = "none";
   categorySpan.style.color = ""; 
 }
 
@@ -529,15 +526,15 @@ if (subtaskInputEdit) {
  * @listens HTMLButtonElement#click
  * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
  */
-document.getElementById("id_btn_create_task").addEventListener("click", async function (event) {
+document.getElementById("id_btn_create_task_overlay").addEventListener("click", async function (event) {
   event.preventDefault();
-  const status = this.dataset.taskParam;
+  const statusTasks = this.dataset.taskParam;
 
-  if (areRequiredFieldsFilled()) {
-    await getAddTaskData(status);
+  if (areRequiredFieldsFilled('overlay')) {
+    await getAddTaskData(statusTasks, 'overlay');
     showToast();
     setTimeout(() => {
-      closeAddTaskDialog();
+      closeAddTaskDialog('overlay');
       loadContentBoard();
       window.location.href = "board.html";
     }, 1000);
@@ -548,16 +545,36 @@ document.getElementById("id_btn_create_task").addEventListener("click", async fu
 });
 
 
+document.getElementById("id_btn_create_task_default").addEventListener("click", async function (event) {
+  event.preventDefault();
+  const statusTasks = this.dataset.taskParam;
+
+  if (areRequiredFieldsFilled('overlay')) {
+    await getAddTaskData(statusTasks, 'overlay');
+    showToast();
+    setTimeout(() => {
+      closeAddTaskDialog('overlay');
+      loadContentBoard();
+      window.location.href = "board.html";
+    }, 1000);
+
+  } else {
+    highlightRequiredFields();
+  }
+});
+
+
+
 /**
  * Checks whether all required task fields are filled.
  * Validates title, due date, and category selection.
  *
  * @returns {boolean} True if all required fields are filled, otherwise false.
  */
-function areRequiredFieldsFilled() {
-  const title = document.getElementById('id_title_add_task').value.trim();
-  const dueDateInput = document.getElementById('id_due_date_add_task'); 
-  const category = document.getElementById('selected_category').textContent.trim();
+function areRequiredFieldsFilled(HTMLid) {
+  const title = document.getElementById('id_title_add_task_'+ HTMLid).value.trim();
+  const dueDateInput = document.getElementById('id_due_date_add_task_' + HTMLid); 
+  const category = document.getElementById('selected_category_'+ HTMLid).textContent.trim();
 
   const isTitleFilled = title.length > 0;
   const isDueDateFilled = dueDateInput.value.length > 0 && dueDateInput.value >= "2026-01-01";
@@ -573,13 +590,13 @@ function areRequiredFieldsFilled() {
  * Adds error styles and displays validation messages for empty inputs and an unselected category.
  */
 function highlightRequiredFields() {
-    const titleInput = document.getElementById('id_title_add_task');
-    const dateInput = document.getElementById('id_due_date_add_task');
-    const category = document.getElementById('selected_category');
-    const dateMsg = document.querySelector('.required_message[data-for="id_due_date_add_task"]');
+    const titleInput = document.getElementById('id_title_add_task_'+ HTMLid);
+    const dateInput = document.getElementById('id_due_date_add_task_'+ HTMLid);
+    const category = document.getElementById('selected_category_'+ HTMLid);
+    const dateMsg = document.querySelector('.required_message[data-for="id_due_date_add_task_overlay"]');
     const isTitleEmpty = titleInput.value.trim() === "";
     titleInput.classList.toggle('error', isTitleEmpty);
-    document.querySelector('.required_message[data-for="id_title_add_task"]').style.display = isTitleEmpty ? "block" : "none";
+    document.querySelector('.required_message[data-for="id_title_add_task_overlay"]').style.display = isTitleEmpty ? "block" : "none";
     const isDateError = !dateInput.value || dateInput.value < "2026-01-01";
     
     dateInput.classList.toggle('error', isDateError);
