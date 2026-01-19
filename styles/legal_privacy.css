@@ -89,6 +89,10 @@ h3 {
   padding-bottom: 32px;
 }
 
+.link_active.active {
+  width: 300px;
+}
+
 /* -----------------------------
   Page Layout / Containers
 ------------------------------*/
@@ -104,6 +108,10 @@ h3 {
   .legal_privacy_main {
  margin-left: 50px;
  }
+
+ .link_active.active {
+  width: 200px;
+}
 }
 
 @media (max-width:1000px) {
