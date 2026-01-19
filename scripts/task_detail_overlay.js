@@ -222,7 +222,10 @@ async function openTaskDetailEditDialog(taskID, index) {
   }
 }
 
-
+/** Loads and pre-fills the edit task dialog with existing task data.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
 function loadPrefillContent(currentTask){
   let prefilltitle = loadPrefillTitle(currentTask);
   let prefillDescription = loadPrefillDescription(currentTask);
@@ -233,6 +236,10 @@ function loadPrefillContent(currentTask){
 
 }
 
+/** Pre-fills the title input in the edit task dialog.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
 
 function loadPrefillTitle(currentTask){
     let titleHTML = document.getElementById('id_title_task_detail_edit');
@@ -240,11 +247,21 @@ function loadPrefillTitle(currentTask){
   
 }
 
+/** Pre-fills the description input in the edit task dialog.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
+
 function loadPrefillDescription(currentTask){
   let descriptionHTML = document.getElementById('id_description_task_detail_edit');
   descriptionHTML.value = currentTask.description;
 
 }
+
+/** Pre-fills the due date input in the edit task dialog.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
 
 function loadPrefillDueDate(currentTask){
   let dueDateHTML = document.getElementById('id_due_date_task_detail_edit');
@@ -252,13 +269,21 @@ function loadPrefillDueDate(currentTask){
 
 }
 
+/** Pre-fills the priority selection in the edit task dialog.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
+
 function loadPrefillPriority(currentTask){
   let priorityName = currentTask.priority.name;
   // let priorityColor = currentTask.priority.color;
   checkPriority(priorityName, "task_detail");
 }
 
-
+/** Pre-fills the assignee selection in the edit task dialog.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
 function loadPrefillAssignee(currentTask){
   const assigneeContainer = document.getElementById("assigned_contacts_row_edit");
   assigneeContainer.innerHTML = "";
@@ -277,6 +302,11 @@ function loadPrefillAssignee(currentTask){
   if (contactInList) contactsList.isChecked = true;
   })
 }
+
+/** Pre-fills the subtasks in the edit task dialog.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
 
 function loadPrefillSubtasks(currentTask){
   let subtaskElements = currentTask.subtasks;
