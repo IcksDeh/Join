@@ -13,14 +13,12 @@
  */
 async function openTaskDetailDialog(taskID, taskIndex) {
   await loadFirebaseData("tasks");
-
- const currrentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
+  const currrentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
   if (!currrentTaskElement) {
     console.error("Task mit ID nicht gefunden:", taskID);
     return;
   }
   const currentTask = currrentTaskElement.task;
-
   const dialog = document.getElementById('taskDetailDialog');
   if (!dialog.open) {
     dialog.innerHTML = taskDetailTemplate(currentTask, taskID, taskIndex);
@@ -28,7 +26,6 @@ async function openTaskDetailDialog(taskID, taskIndex) {
     loadSubtaksTaskDetails(currentTask, taskID, taskIndex);
     colorLabelTaskDetails(currentTask, taskID);
     dialog.showModal();
-
     setTimeout(() => {
       if (document.activeElement) {
         document.activeElement.blur();
@@ -48,7 +45,6 @@ async function openTaskDetailDialog(taskID, taskIndex) {
 function closeTaskDetailDialog() {
   const dialog = document.getElementById('taskDetailDialog');
   if (!dialog) return;
-
   dialog.close();
 }
 
@@ -64,9 +60,7 @@ function closeTaskDetailDialog() {
  * @param {Object} taskContent - The task data object.
  * @param {string|number} taskID - The unique ID of the task.
  */
-
-  
- function loadAssigneesTaskDetails(taskContent, taskID){
+function loadAssigneesTaskDetails(taskContent, taskID){
   let taskAssigneeElement = document.getElementById("assignees_task_details_" + taskID);
   let assigneeList = taskContent.assignees;
   Object.values(assigneeList)
@@ -149,7 +143,6 @@ function colorLabelTaskDetails (taskContent, taskID){
 async function toggleCheckedIconSubtasks(img, subtaskId, taskID, taskIndex) {
   const checked = img.dataset.checked === "true";
   img.dataset.checked = !checked;
-
   img.src = checked
     ? "./assets/img/checkbox_unchecked_contact_form.svg"
     : "./assets/img/checkbox_checked_contact_form.svg";
@@ -214,6 +207,10 @@ async function openTaskDetailEditDialog(taskID, index) {
 }
 
 
+/**
+ * Loads all prefill values for the task edit form.
+ * @param {Object} currentTask - The task object containing prefill data.
+ */
 function loadPrefillContent(currentTask){
   let prefilltitle = loadPrefillTitle(currentTask);
   let prefillDescription = loadPrefillDescription(currentTask);
@@ -221,30 +218,43 @@ function loadPrefillContent(currentTask){
   let prefillPriority = loadPrefillPriority(currentTask);
   let prefillAssignee = loadPrefillAssignee(currentTask);
   let prefillSubtasks = loadPrefillSubtasks(currentTask);
-
 }
 
 
+/**
+ * Prefills the task title input field.
+ * @param {Object} currentTask - The task object.
+ */
 function loadPrefillTitle(currentTask){
   let titleHTML = document.getElementById('id_title_task_detail_edit');
   titleHTML.value = currentTask.title;
-  
 }
 
+
+/**
+ * Prefills the task description input field.
+ * @param {Object} currentTask - The task object.
+ */
 function loadPrefillDescription(currentTask){
   let descriptionHTML = document.getElementById('id_description_task_detail_edit');
   descriptionHTML.value = currentTask.description;
-
 }
 
 
+/**
+ * Prefills the task due date input field.
+ * @param {Object} currentTask - The task object.
+ */
 function loadPrefillDueDate(currentTask){
   let dueDateHTML = document.getElementById('id_due_date_task_detail_edit');
   dueDateHTML.value = currentTask.dueDate;
-
 }
 
 
+/**
+ * Prefills the task priority selection.
+ * @param {Object} currentTask - The task object.
+ */
 function loadPrefillPriority(currentTask){
   let priorityName = currentTask.priority.name;
   // let priorityColor = currentTask.priority.color;
@@ -252,15 +262,16 @@ function loadPrefillPriority(currentTask){
 }
 
 
+/**
+ * Prefills the assignees section of the task edit form.
+ * @param {Object} currentTask - The task object.
+ */
 function loadPrefillAssignee(currentTask){
   const assigneeContainer = document.getElementById("assigned_contacts_row_edit");
   assigneeContainer.innerHTML = "";
-  
   selectedAssigneesEdit =[];
-
   let prefillAssignees = currentTask.assignees;
   Object.entries(prefillAssignees).forEach(([id, contact]) =>{
-
   assigneeContainer.innerHTML += loadAssigneeBubblesToPrefill([id, contact]);
   selectedAssigneesEdit.push({
     id: id,
@@ -272,13 +283,16 @@ function loadPrefillAssignee(currentTask){
 }
 
 
+/**
+ * Prefills the subtask list of the task edit form.
+ * @param {Object} currentTask - The task object.
+ */
 function loadPrefillSubtasks(currentTask){
   let subtaskElements = currentTask.subtasks;
   let substaskHTML = subtaskListEdit;
   substaskHTML.innerHTML ="";
   console.log(subtaskElements);
-  Object.entries(subtaskElements).forEach(element =>{
-    
+  Object.entries(subtaskElements).forEach(element => {
     let contentSubtask = element[1].text;
     const li = document.createElement("li");
     li.className = "list_element";
@@ -298,7 +312,6 @@ function loadPrefillSubtasks(currentTask){
 function closeTaskDetailEditDialog() {
   const dialog = document.getElementById('taskDetailEditDialog');
   if (!dialog) return;
-  
   dialog.close();
   clearInputs();
 }
@@ -310,10 +323,8 @@ function closeTaskDetailEditDialog() {
 function initDialogInputs() {
   const dialog = document.getElementById('taskDetailEditDialog');
   const inputs = dialog.querySelectorAll('input, textarea');
-
   inputs.forEach(input => {
     input.readOnly = true;
-
     input.addEventListener('focus', function() {
       this.readOnly = false;
     });
@@ -334,10 +345,8 @@ function initDialogInputs() {
 function areRequiredEditFieldsFilled() {
   const title = document.getElementById('id_title_task_detail_edit').value.trim();
   const dueDate = document.getElementById('id_due_date_task_detail_edit').value.trim();
-
   const isTitleFilled = title.length > 0;
   const isDueDateFilled = dueDate.length > 0;
-
   return isTitleFilled && isDueDateFilled;
 }
 
