@@ -104,7 +104,7 @@ function clearInputs(HTMLid) {
   document.getElementById("assigned_contacts_row_" + HTMLid).innerHTML = "";
   closeDropdownLists();
   subtaskList.innerHTML = "";
-  checkPriority("medium");
+  checkPriority("medium", HTMLid);
   cancelSubtask();
 }
 
@@ -354,16 +354,12 @@ function clearSelectedAssignees() {
  * @returns {void} - This function does not return a value.
  */
 function showContactsInTasks(HTMLid) {
-  console.log(prefillAssigneeCheckbox);
   
   let assigneeList = document.getElementById("contacts_list_task_"+HTMLid);
   assigneeList.innerHTML = "";
 
   for (let index = 0; index < contactsList.length; index++) {
-    console.log(contactsList[index]);
-    if (prefillAssigneeCheckbox.includes(contactsList[index].id)){
-      contactsList[index].isChecked = true;
-    }
+
     isChecked = contactsList[index].isChecked === true;
     const checkImg = isChecked
       ? "./assets/img/checkbox_checked_contact_form.svg"
@@ -377,10 +373,36 @@ function showContactsInTasks(HTMLid) {
     listElement.innerHTML = listAssigneeTemplate(contactsList, index, checkImg, checkState, HTMLid);
     assigneeList.appendChild(listElement);
   }
-
-  prefillAssigneeCheckbox = [];
 }
 
+
+// function showContactsInTasks(HTMLid) {
+//   console.log(prefillAssigneeCheckbox);
+  
+//   let assigneeList = document.getElementById("contacts_list_task_"+HTMLid);
+//   assigneeList.innerHTML = "";
+
+//   for (let index = 0; index < contactsList.length; index++) {
+//     console.log(contactsList[index]);
+//     if (prefillAssigneeCheckbox.includes(contactsList[index].id)){
+//       contactsList[index].isChecked = true;
+//     }
+//     isChecked = contactsList[index].isChecked === true;
+//     const checkImg = isChecked
+//       ? "./assets/img/checkbox_checked_contact_form.svg"
+//       : "./assets/img/checkbox_unchecked_contact_form.svg";
+
+//     const checkState = isChecked ? "true" : "false";
+
+//     const listElement = document.createElement("li");
+//     listElement.className = "dropdown_item";
+
+//     listElement.innerHTML = listAssigneeTemplate(contactsList, index, checkImg, checkState, HTMLid);
+//     assigneeList.appendChild(listElement);
+//   }
+
+//   prefillAssigneeCheckbox = [];
+// }
 
 
 // -----------------------------------
