@@ -140,7 +140,12 @@ sup {
     padding-top: 8px;
 }
 
-#id_due_date_add_task {
+#id_due_date_add_task_default {
+    background: url("../assets/img/event.svg") no-repeat right 16px center;
+    background-color: white;
+}
+
+#id_due_date_add_task_overlay {
     background: url("../assets/img/event.svg") no-repeat right 16px center;
     background-color: white;
 }

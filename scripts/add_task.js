@@ -119,9 +119,9 @@ function clearInputs(HTMLid) {
  *
  * @param {string} status - The currently selected priority name.
  */
-function checkPriority(status, prefix = 'id') {
+function checkPriority(status,suffix, prefix = 'id',) {
   priorities.forEach(({ name, color }) => {
-    updatePriorityButton(name, name === status, color, prefix);
+    updatePriorityButton(name, name === status, color, prefix, suffix);
   });
 }
 
@@ -134,9 +134,9 @@ function checkPriority(status, prefix = 'id') {
  * @param {boolean} isActive - Whether the priority is currently active.
  * @param {string} color - The default color used for the inactive icon.
  */
-function updatePriorityButton(priority, isActive, color, prefix) {
-  const btn = document.getElementById(`${prefix}_${priority}_btn`);
-  const icon = document.getElementById(`${prefix}_icon_${priority}_task`);
+function updatePriorityButton(priority, isActive, color, prefix, suffix) {
+  const btn = document.getElementById(`${prefix}_${priority}_btn_${suffix}`);
+  const icon = document.getElementById(`${prefix}_icon_${priority}_task_${suffix}`);
 
   if (!btn || !icon) return;
   btn.classList.toggle(`${priority}_btn_filled`, isActive);
@@ -543,42 +543,6 @@ if (subtaskInputEdit) {
  * @listens HTMLButtonElement#click
  * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
  */
-// document.getElementById("id_btn_create_task_overlay").addEventListener("click", async function (event) {
-//   event.preventDefault();
-//   const statusTasks = this.dataset.taskParam;
-
-//   if (areRequiredFieldsFilled('overlay')) {
-//     await getAddTaskData(statusTasks, 'overlay');
-//     showToast();
-//     setTimeout(() => {
-//       closeAddTaskDialog('overlay');
-//       loadContentBoard();
-//       window.location.href = "board.html";
-//     }, 1000);
-
-//   } else {
-//     highlightRequiredFields();
-//   }
-// });
-
-
-// document.getElementById("id_btn_create_task_default").addEventListener("click", async function (event) {
-//   event.preventDefault();
-//   const statusTasks = this.dataset.taskParam;
-
-//   if (areRequiredFieldsFilled('overlay')) {
-//     await getAddTaskData(statusTasks, 'overlay');
-//     showToast();
-//     setTimeout(() => {
-//       closeAddTaskDialog('overlay');
-//       loadContentBoard();
-//       window.location.href = "board.html";
-//     }, 1000);
-
-//   } else {
-//     highlightRequiredFields();
-//   }
-// });
 
 function loadEventlistener(HTMLid){
     const createBtn = document.getElementById("id_btn_create_task_"+ HTMLid);
@@ -589,12 +553,14 @@ function loadEventlistener(HTMLid){
 
       const statusTasks = this.dataset.taskParam;
 
-      if (areRequiredFieldsFilled('overlay')) {
-        await getAddTaskData(statusTasks, 'overlay');
+      if (areRequiredFieldsFilled(HTMLid)) {
+        await getAddTaskData(statusTasks, HTMLid);
         showToast();
         setTimeout(() => {
           closeAddTaskDialog('overlay');
-          loadContentBoard();
+          if (HTMLid === "overlay"){
+            loadContentBoard();
+          }
           window.location.href = "board.html";
         }, 1000);
       } else {
@@ -605,7 +571,6 @@ function loadEventlistener(HTMLid){
     console.warn("Button 'id_btn_create_task_default' nicht gefunden");   
 }
 }
-
 
 /**
  * Checks whether all required task fields are filled.
