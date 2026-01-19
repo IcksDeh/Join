@@ -122,9 +122,9 @@ function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
 function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
   let subtaskCheckboxElement = document.getElementById("checkbox_subtask_task_detail_" + subtaskID);
   if(subtaskContent.done == "false"){
-    subtaskCheckboxElement.src = "../assets/img/checkbox_unchecked_contact_form.svg";
+    subtaskCheckboxElement.src = "./assets/img/checkbox_unchecked_contact_form.svg";
   } else {
-    subtaskCheckboxElement.src ="../assets/img/checkbox_checked_contact_form.svg";
+    subtaskCheckboxElement.src ="./assets/img/checkbox_checked_contact_form.svg";
   }
 }
 
