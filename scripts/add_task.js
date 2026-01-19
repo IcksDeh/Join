@@ -196,7 +196,9 @@ function handleRequiredMessage(input) {
  * @returns {void} - This function does not return a value.
  */
 function toggleListTasks(element, elementId) {
-  let list = document.getElementById(element + "_list_task_" + elementId);
+  // let list = document.getElementById(element + "_list_task_" + elementId);
+  let list = document.getElementById(elementId ? element + "_list_task_" + elementId : element + "_list_task");
+  if (!list) return;
 
   if (list.style.display === "none") {
     list.style.display = "block";
