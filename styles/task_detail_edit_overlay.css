@@ -80,7 +80,6 @@ sup {
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 20px;
-    margin-bottom: 10px;
 }
 
 .task_detail_edit_input::placeholder {
@@ -358,8 +357,8 @@ textarea:focus {
 
 .dropdown_item_user {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
 }
 
@@ -405,21 +404,21 @@ textarea:focus {
 
 /* ---------- SCROLL BAR SMALL ---------- */
 
-.dropdown_list_contacts::-webkit-scrollbar {
+.dropdown_list_contacts_task_detail_edit::-webkit-scrollbar {
     width: 8px;
     background: transparent; 
 }
 
-.dropdown_list_contacts::-webkit-scrollbar-track {
+.dropdown_list_contacts_task_detail_edit::-webkit-scrollbar-track {
     border-radius: 4px;
 }
 
-.dropdown_list_contacts::-webkit-scrollbar-thumb {
+.dropdown_list_contacts_task_detail_edit::-webkit-scrollbar-thumb {
     background: #d5d5d5;
     border-radius: 4px;
 }
 
-.dropdown_list_contacts::-webkit-scrollbar-thumb:hover {
+.dropdown_list_contacts_task_detail_edit::-webkit-scrollbar-thumb:hover {
     background: #c8c8c8;
 }
 
