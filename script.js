@@ -173,7 +173,7 @@ function getRandomColor(){
  * Limits dates to a minimum of "2026-01-01" and a maximum of "2030-12-31".
  */
 function setupDateValidation() {
-    const ids = ['id_due_date_add_task', 'id_due_date_task_detail_edit'];
+    const ids = ['id_due_date_add_task_default','id_due_date_add_task_overlay', 'id_due_date_task_detail_edit'];
 
     ids.forEach(id => {
         const input = document.getElementById(id);
@@ -202,7 +202,7 @@ function setupDateValidation() {
  * When the user clicks near the right edge of the input (last 45px), this triggers the native date picker if available.
  */
 function setupDateClickBehavior() {
-    const ids = ['id_due_date_add_task', 'id_due_date_task_detail_edit'];
+    const ids = ['id_due_date_add_task_default','id_due_date_add_task_overlay', 'id_due_date_task_detail_edit'];
 
     ids.forEach(id => {
         const input = document.getElementById(id);
