@@ -87,8 +87,12 @@ function resetInputFields(HTMLid) {
     }
   });
   const categorySpan = document.getElementById("selected_category_" + HTMLid);
-  categorySpan.innerHTML = "Select task category";
-  categorySpan.style.color = "";
+  // categorySpan.innerHTML = "Select task category";
+  // categorySpan.style.color = "";
+    if (categorySpan) {
+    categorySpan.innerHTML = "Select task category";
+    categorySpan.style.color = "";
+  }
 }
 
 
@@ -252,6 +256,7 @@ async function checkContactList(element, HTMLid){
   }
 }
 
+
 /**
  * Toggles the selection state of a contact checkbox in the UI.
  * Updates the `selectedAssignees` array and refreshes the assigned contacts display.
@@ -282,8 +287,8 @@ function toggleCheckedIcon(imgElement, index, elementId) {
     selectedAssigneesEdit = assigneeList;
   }
   renderAssignedContacts(elementId);
-
 }
+
 
 /**
  * Renders all selected assignees into the assigned contacts container.
@@ -307,6 +312,7 @@ function renderAssignedContacts(elementId) {
       `;
     });
 }
+
 
 /**
  * Synchronizes the checkbox icons in the dropdown list with the current selection.
@@ -345,6 +351,7 @@ function clearSelectedAssignees() {
   }
 }
 
+
 /**
  * Renders the contact list in the task assignment dropdown.
  * Clears the current list and dynamically creates list items for each contact, including their checked state and corresponding icon.
@@ -374,6 +381,7 @@ function showContactsInTasks(HTMLid) {
   }
 }
 
+
 // -----------------------------------
 // CATEGORY LIST
 // -----------------------------------
@@ -390,6 +398,7 @@ function selectCategory(element, HTMLid) {
   document.getElementById("category_list_task_" + HTMLid).style.display = "none";
   categorySpan.style.color = ""; 
 }
+
 
 // -----------------------
 // SUBTASK FUNCTIONS
@@ -408,6 +417,7 @@ function showSubtaskActions() {
   if (subtaskActions) subtaskActions.style.display = "flex";
 }
 
+
 /**
  * Cancels the current subtask input.
  * Clears the input field, hides the subtask action buttons and resets the currently edited item.
@@ -421,6 +431,7 @@ function cancelSubtask() {
   if (subtaskActions) subtaskActions.style.display = "none";
   showSubtaskActions();
 }
+
 
 /**
  * Adds a new subtask to the subtask list.
@@ -450,6 +461,7 @@ function addSubtask() {
   cancelSubtask();
 }
 
+
 /**
  * Enables edit mode for a subtask.
  *
@@ -460,6 +472,7 @@ function editSubtask(btn) {
   li.querySelector(".edit_container").style.display = "block";
   li.querySelector(".list_row").style.display = "none";
 }
+
 
 /**
  * Saves the changes made to a subtask.
@@ -474,6 +487,7 @@ function saveEdit(btn) {
   li.querySelector(".list_row").style.display = "flex";
 }
 
+
 /**
  * Cancels the edit mode and restores the original subtask display.
  *
@@ -484,6 +498,7 @@ function cancelEdit(btn) {
   li.querySelector(".edit_container").style.display = "none";
   li.querySelector(".list_row").style.display = "flex";
 }
+
 
 /**
  * Listens for the "Enter" key on the Subtask input field.
@@ -497,6 +512,7 @@ subtaskInput.addEventListener("keydown", function (event) {
     addSubtask();
   }
 });
+
 
 /**
  * Listens for the "Enter" key on the Subtask Edit input field.
@@ -512,6 +528,7 @@ if (subtaskInputEdit) {
     }
   });
 }
+
 
 // --------------------------------------------------
 // CREATE TASK BUTTON & REQUIRED FIELDS FUNCTIONS
@@ -552,6 +569,7 @@ function loadEventlistener(HTMLid){
   }
 }
 
+
 /**
  * Checks whether all required task fields are filled.
  * Validates title, due date, and category selection.
@@ -570,6 +588,7 @@ function areRequiredFieldsFilled(HTMLid) {
 
   return isTitleFilled && isDueDateFilled && isCategoryFilled;
 }
+
 
 /**
  * Highlights missing required fields in the task form.
@@ -590,6 +609,5 @@ function highlightRequiredFields() {
     dateMsg.style.display = isDateError ? "block" : "none";
     dateMsg.innerText = dateInput.value ? "Date must be 2026 or later" : "This field is required";
   }
-
   category.style.color = category.textContent.trim() === "Select task category" ? "#FF3D00" : "";
 }
