@@ -424,21 +424,3 @@ function checkOverlayRedirect() {
 }
 window.addEventListener('load', checkOverlayRedirect);
 window.addEventListener('resize', checkOverlayRedirect);
-
-document.getElementById("id_btn_create_task_overlay").addEventListener("click", async function (event) {
-  event.preventDefault();
-  const statusTasks = this.dataset.taskParam;
-
-  if (areRequiredFieldsFilled('overlay')) {
-    await getAddTaskData(statusTasks, 'overlay');
-    showToast();
-    setTimeout(() => {
-      closeAddTaskDialog('overlay');
-      loadContentBoard();
-      window.location.href = "board.html";
-    }, 1000);
-
-  } else {
-    highlightRequiredFields();
-  }
-});
