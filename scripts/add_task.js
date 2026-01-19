@@ -536,17 +536,15 @@ if (subtaskInputEdit) {
 // --------------------------------------------------
 
 /**
- * Handles the click event for the Add Task Overlay "Create Task" button.
+ * Handles the click event for the "Create Task" button.
  * Prevents the default form submission behavior and triggers the task creation process by collecting and processing task data.
  *
  * @event click
  * @listens HTMLButtonElement#click
  * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
  */
-
 function loadEventlistener(HTMLid){
-    const createBtn = document.getElementById("id_btn_create_task_"+ HTMLid);
-    
+  const createBtn = document.getElementById("id_btn_create_task_" + HTMLid);
     if(createBtn){ // Sicherheit prüfen
     createBtn.addEventListener("click", async function (event) {
       event.preventDefault(); // Form nicht standardmäßig submitten
@@ -569,7 +567,7 @@ function loadEventlistener(HTMLid){
     });
   } else {
     console.warn("Button 'id_btn_create_task_default' nicht gefunden");   
-}
+  }
 }
 
 /**
@@ -597,20 +595,20 @@ function areRequiredFieldsFilled(HTMLid) {
  * Adds error styles and displays validation messages for empty inputs and an unselected category.
  */
 function highlightRequiredFields() {
-    const titleInput = document.getElementById('id_title_add_task_'+ HTMLid);
-    const dateInput = document.getElementById('id_due_date_add_task_'+ HTMLid);
-    const category = document.getElementById('selected_category_'+ HTMLid);
-    const dateMsg = document.querySelector('.required_message[data-for="id_due_date_add_task_overlay"]');
-    const isTitleEmpty = titleInput.value.trim() === "";
-    titleInput.classList.toggle('error', isTitleEmpty);
-    document.querySelector('.required_message[data-for="id_title_add_task_overlay"]').style.display = isTitleEmpty ? "block" : "none";
-    const isDateError = !dateInput.value || dateInput.value < "2026-01-01";
+  const titleInput = document.getElementById('id_title_add_task_'+ HTMLid);
+  const dateInput = document.getElementById('id_due_date_add_task_'+ HTMLid);
+  const category = document.getElementById('selected_category_'+ HTMLid);
+  const dateMsg = document.querySelector('.required_message[data-for="id_due_date_add_task_overlay"]');
+  const isTitleEmpty = titleInput.value.trim() === "";
+  titleInput.classList.toggle('error', isTitleEmpty);
+  document.querySelector('.required_message[data-for="id_title_add_task_overlay"]').style.display = isTitleEmpty ? "block" : "none";
+  const isDateError = !dateInput.value || dateInput.value < "2026-01-01";
     
-    dateInput.classList.toggle('error', isDateError);
-    if (dateMsg) {
-        dateMsg.style.display = isDateError ? "block" : "none";
-        dateMsg.innerText = dateInput.value ? "Date must be 2026 or later" : "This field is required";
-    }
+  dateInput.classList.toggle('error', isDateError);
+  if (dateMsg) {
+    dateMsg.style.display = isDateError ? "block" : "none";
+    dateMsg.innerText = dateInput.value ? "Date must be 2026 or later" : "This field is required";
+  }
 
-    category.style.color = category.textContent.trim() === "Select task category" ? "#FF3D00" : "";
+  category.style.color = category.textContent.trim() === "Select task category" ? "#FF3D00" : "";
 }
