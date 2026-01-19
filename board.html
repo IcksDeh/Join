@@ -175,7 +175,7 @@
                   <label class="label_text">Assigned to</label><br>
                   <div class="dropdown" data-type="contacts">
                     <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('contacts', 'overlay')">
-                      <span class="dropdown_text" id="selected_contacts">Select contacts to assign</span>
+                      <span class="dropdown_text" id="selected_contacts_overlay">Select contacts to assign</span>
                       <div class="dropdown_icon"></div>
                     </div>
                     <ul class="dropdown_list_contacts" id="contacts_list_task_overlay" style="display:none;">
@@ -223,7 +223,7 @@
                   <p><sup>*</sup>This field is required</p>
                 </div>
                 <div class="add_task_btn_area">
-                  <button type="button" class="clear_btn" onclick="clearInputs()">Clear
+                  <button type="button" class="clear_btn" onclick="clearInputs('overlay')">Clear
                     <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                     <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                   </button>
