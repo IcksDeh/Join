@@ -15,7 +15,6 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    /* padding-right: min(40px, calc(40/1440 * 100vw)); */
     padding-right: 40px;
 }
 
@@ -23,11 +22,9 @@
     display: flex;
     background-color: white;
     flex-direction: column;
-    /* padding-left: min(40px, calc(40/1440 * 100vw)); */
     padding-left: 40px;
     padding-right: 0;
     box-shadow: 4px 0px 6px 0px #00000014;
-    /* width: min(430px, calc(430/1440 * 100vw)); */
     width: 430px;
     height: 100%;
 }
@@ -44,7 +41,7 @@
     display: flex;
     font-family: "latin_700";
     font-weight: 700;
-    font-size: clamp(16px, calc(21/1440 * 100vw), 21px);
+    font-size: 21px;
     color: white;
     text-align: center;
     align-items: center;
@@ -52,7 +49,7 @@
     height: 56px;
     background-color: #2a3647;
     border-radius: 10px;
-    padding: clamp(1px, calc(12/1440 * 100vw), 12px);
+    padding: 12px;
     gap: 16px;
     line-height: 120%;
     margin-top: 22.5px;
@@ -61,8 +58,7 @@
 }
 
 .button-container {
-    /* padding-right: min(54px, calc(54/1440 * 100vw)); */
-    padding-right: 54px;
+    padding-right: 40px;
     display: flex
 }
 
@@ -91,7 +87,6 @@
     line-height: 120%;
     letter-spacing: 0%;
     justify-content: left;
-    /* left: min(39px, calc(39/1440 * 100vw)); */
     left: 39px;
 }
 
@@ -107,9 +102,6 @@
     flex-direction: row;
     padding-top: 16px;
     padding-bottom: 16px;
-    /* padding-left: min(24px, calc(24/1440 * 100vw));
-    padding-right: min(24px, calc(24/1440 * 100vw));
-    gap: min(35px, calc(35/1440 * 100vw)); */
     padding-left: 24px;
     padding-right: 24px;
     gap: 35px;
@@ -150,9 +142,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(27px, calc(47/1440 * 100vw), 47px);
-    width: clamp(80px, calc(120/1440 * 100vw), 120px);
-    height: clamp(80px, calc(120/1440 * 100vw), 120px);
+    font-size: 47px;
+    width: 120px;
+    height: 120px;
     aspect-ratio: 1 / 1;
     border-radius: 70px;
     color: white;
@@ -185,22 +177,20 @@
 
 .contact-headline {
     display: flex;
-    /* gap: min(30px, calc(30/1440 * 100vw));*/
     gap: 30px;
-    /* padding-top: min(110px, calc(110/1440 * 100vw)); */
     padding-top: 110px;
     align-items: center;
 
 }
 
 .contact-headline h3 {
-    font-size: clamp(47px, 6vw, 61px);
+    font-size: 61px;
     line-height: 120%;
     font-weight: bold;
 }
 
 .contact-headline span {
-    font-size: clamp(20px, 3vw, 27px);
+    font-size: 27px;
 }
 
 .headline {
@@ -211,7 +201,6 @@
         display: none;
         position: fixed;
         top: 122px;
-        /* right: min(55px, 6%); */
         right: 55px;
         background-image: url(/assets/img/arrow_backwards_blue.svg);
         background-color: transparent;
@@ -235,8 +224,6 @@
     box-sizing: border-box;
     overflow: hidden;
     flex-direction: column;
-    /* padding-left: min(55px, calc(55/1440 * 100vw / 2)); */
-    /* gap: min(32px, calc(32/1440 * 100vw)); */
     padding-left: 55px;
     gap: 32px;
 }
@@ -244,35 +231,32 @@
 .contact-big {
     transform: translateX(200vw);
     display: flex;
-    align-items: center;
-    /* padding-top: min(32px, calc(1440/32 * 1/32 * 1%)); */
-    /* padding-right: min(55px, calc(55/1440 * 100vw)); */
     padding-top: 32px;
     padding-right: 55px;
-    gap: clamp(12px, calc(54/1440 * 100vw / 2), 54px);
+    gap: 54px;
 }
 
 .name-big {
     display: flex;
     flex-direction: column;
+    align-self: center;
 }
 
 .name-big span {
-    font-size: clamp(26px, calc(47/1440 * 100vw), 47px);
+    font-size: 47px;
     font-weight: 500;
 }
 
 .changebtns {
     display: flex;
     flex-direction: row;
-    /* gap: min(30px, calc(30/1440 * 100vw)); */
     gap: 30px;
+
 }
 
 #changebtnsPopover {
     display: flex;
     flex-direction: row;
-    /* gap: min(30px, calc(30/1440 * 100vw)); */
     gap: 30px;
 }
 
@@ -283,7 +267,6 @@
     border: 0;
     font-size: 16px;
     font-weight: 400;
-    /* gap: min(13px, calc(13/1440 * 100vw)); */
     gap: 13px;
     cursor: pointer;
 
@@ -306,11 +289,11 @@
 }
 
 .edit_btn:hover img {
-    filter: invert(35%) sepia(99%) saturate(3301%) hue-rotate(194deg) brightness(98%) contrast(101%);
+    filter: brightness(0) saturate(100%) invert(59%) sepia(77%) saturate(1434%) hue-rotate(165deg) brightness(92%) contrast(92%);
 }
 
 .delete_btn:hover img {
-    filter: invert(35%) sepia(99%) saturate(3301%) hue-rotate(194deg) brightness(98%) contrast(101%);
+    filter: brightness(0) saturate(100%) invert(59%) sepia(77%) saturate(1434%) hue-rotate(165deg) brightness(92%) contrast(92%);
 }
 
 .contact-big-information {
