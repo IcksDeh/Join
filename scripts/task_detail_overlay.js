@@ -220,6 +220,10 @@ function loadPrefillContent(currentTask){
   let prefillSubtasks = loadPrefillSubtasks(currentTask);
 }
 
+/** Pre-fills the title input in the edit task dialog.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
 
 /**
  * Prefills the task title input field.
@@ -240,6 +244,10 @@ function loadPrefillDescription(currentTask){
   descriptionHTML.value = currentTask.description;
 }
 
+/** Pre-fills the due date input in the edit task dialog.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
 
 /**
  * Prefills the task due date input field.
@@ -250,6 +258,10 @@ function loadPrefillDueDate(currentTask){
   dueDateHTML.value = currentTask.dueDate;
 }
 
+/** Pre-fills the priority selection in the edit task dialog.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
 
 /**
  * Prefills the task priority selection.
@@ -282,6 +294,10 @@ function loadPrefillAssignee(currentTask){
   })
 }
 
+/** Pre-fills the subtasks in the edit task dialog.
+ *
+ * @param {Object} currentTask - The current task data object.
+ */
 
 /**
  * Prefills the subtask list of the task edit form.

@@ -1,4 +1,7 @@
 //TASK
+/**
+ * Gathers data from the "Add Task" form and prepares it for storage.
+ * @param {string} status - The status of the task (default is "todo"). */
 
 async function getAddTaskData(status = "todo", HTMLid) {
   let titleTask = document.getElementById('id_title_add_task_' + HTMLid).value;
@@ -12,6 +15,10 @@ async function getAddTaskData(status = "todo", HTMLid) {
 
   await switchTaskData(titleTask, descriptionTask, dueDateTask, priorityTask, assignedToTask, categoryTask, subtasksTask, statusTask, HTMLid);
 }
+/**
+ * Retrieves the selected priority from the task form based on the provided HTML ID.
+ * @param {string} HTMLid - The HTML ID suffix used to identify the priority buttons.
+ * @returns {Object|null} The priority object if found, otherwise null.*/
 
 function getPriority(HTMLid) {
   return priorities.find(({ name }) => {
@@ -20,11 +27,18 @@ function getPriority(HTMLid) {
   }) || null;
 }
 
+/** Retrieves the selected task category from the task form based on the provided HTML ID.
+ * @param {string} HTMLid - The HTML ID suffix used to identify the category element.
+ * @returns {string} The selected category content. */
+
 function getTaskCategory(HTMLid) {
   const categoryElement = document.getElementById('selected_category_'+HTMLid);
   let categoryContent = categoryElement.textContent;
   return categoryContent;
 }
+
+/** Gathers all subtasks from the task form.
+ * @returns {Object|string} An object containing subtasks if any exist, otherwise an empty string. */
 
 function getAllSubtasks() {
   let subtasks = {};
@@ -44,6 +58,9 @@ function getAllSubtasks() {
     return subtasks;
   }
 }
+
+/** Gathers selected assignees from the task form.
+ * @returns {Object|string} An object containing selected assignees if any exist, otherwise an empty string. */
 
 function getAssignee() {
   let selectedAssignees = {};
@@ -70,6 +87,11 @@ function getAssignee() {
   }
 }
 
+//TASK SWITCH DATA
+/** Updates or creates task data in storage.
+ * @param {string} titleTask - The title of the task.
+ * @param {string} descriptionTask - The description of the task. */
+
 async function switchTaskData(titleTask = "", descriptionTask = "", dueDateTask = "", priorityTask = "", assignedToTask = "", categoryTask = "", subtasksTask = "", statusTask = "", HTMLid) {
   let taskData = {
     "title": titleTask,
@@ -85,6 +107,8 @@ async function switchTaskData(titleTask = "", descriptionTask = "", dueDateTask 
 }
 
 //Contacts
+/** Retrieves the input elements for contact data.
+ * @returns {Object} An object containing references to the name, email, and phone number input elements. */
 
 function getElementsContacts() {
   return {
@@ -94,6 +118,7 @@ function getElementsContacts() {
   };
 }
 
+/** Gathers data from the "Add Contact" form and prepares it for storage. */
 async function getContactData() {
   const elements = getElementsContacts();
   let contactName = elements.name.value;
@@ -105,10 +130,38 @@ async function getContactData() {
   await switchContactsData(contactName, contactEmail, contactColor, contactInitals, elements, contactPhonenumber,)
 }
 
+//TASK EDIT
+/** Gathers data from the "Edit Task" form and prepares it for storage.
+ * @param {string} taskID - The unique identifier of the task to be edited. */
+
+function saveChangesTask(taskID){
+  let titleTask = document.getElementById('id_title_add_task_' + HTMLid).value;
+  let descriptionTask = document.getElementById('id_description_add_task_' + HTMLid).value;
+  let dueDateTask = document.getElementById('id_due_date_add_task_'+ HTMLid).value;
+  let priorityTask = getPriority(HTMLid);
+  let assignedToTask = getAssignee();
+  let categoryTask = getTaskCategory(HTMLid);
+  let subtasksTask = getAllSubtasks();
+  let statusTask = status;
+}
+
+/** Extracts initials from a contact's name.
+ * @param {string} contactName - The full name of the contact.
+ * @returns {string} The initials of the contact in uppercase. */
+
 function getContactInitials(contactName) {
   let contactInitials = contactName.split(" ").map(word => word[0]).join("").toUpperCase();
   return contactInitials;
 }
+
+//CONTACTS SWITCH DATA
+/** Updates or creates contact data in storage.
+ * @param {string} contactName - The name of the contact.
+ * @param {string} contactEmail - The email of the contact.
+ * @param {string} contactColor - The color associated with the contact.
+ * @param {string} contactInitals - The initials of the contact.
+ * @param {Object} elements - Optional elements related to the contact.
+ * @param {string} contactPhonenumber - The phone number of the contact. */
 
 async function switchContactsData(contactName, contactEmail, contactColor, contactInitals, elements = "", contactPhonenumber = "") {
   let contactData = {
@@ -122,6 +175,7 @@ async function switchContactsData(contactName, contactEmail, contactColor, conta
 }
 
 //USER
+/** Gathers data from the "User" form and prepares it for storage. */
 
 async function getUserData() {
   const elements = getElementsUser();

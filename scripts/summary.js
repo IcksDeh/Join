@@ -1,3 +1,6 @@
+/**
+ * Loads and displays various task summaries on the summary page.
+ */
 async function loadNumberofTasks(){
     await loadFirebaseData('tasks')
     loadSumAllTasks();
@@ -7,11 +10,14 @@ async function loadNumberofTasks(){
     
 }
 
+/** Loads and displays the total number of tasks. */
 function loadSumAllTasks(){
     let allTaskSummaryElement = document.getElementById('id_summary_allTasks');
     let sumAllTasks = taskList.length;
     allTaskSummaryElement.innerHTML = sumAllTasks;
 }
+
+/** Loads and displays the number of tasks for each status category. */
 
 function loadSumOfEachTask(){
 let status = ['todo', 'done', 'inProgress', 'awaitFeedback'];
@@ -28,6 +34,8 @@ let status = ['todo', 'done', 'inProgress', 'awaitFeedback'];
     })
 }
 
+/** Loads and displays the number of urgent tasks. */
+
 function loadUrgentTasks(){
     let sumUrgentTasks = 0;
     taskList.forEach(taskElement =>{
@@ -38,6 +46,7 @@ function loadUrgentTasks(){
     taskHTMLElement.innerHTML = sumUrgentTasks;
 }
 
+/** Loads and displays the earliest due date among urgent tasks. */
 function loadEarliestDueDate(){
     let dueDateHTMLElement = document.getElementById("id_summary_dueDate");
     let now = new Date();

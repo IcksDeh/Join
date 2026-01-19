@@ -1,8 +1,4 @@
-// Wenn keine Fehler auftauchen, können die 3 Variablen gelöscht werden.
-// let newUserID = 0;
-// let user = [];
-// let contacts = [];
-
+// Firebase base URL
 
 async function putToStorage(path, Data, elements ="", HTMLid){
     let userStorage = await fetch(BASE_URL + path + ".json", {

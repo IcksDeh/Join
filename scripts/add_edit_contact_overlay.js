@@ -61,6 +61,14 @@ function openEditContactDialog(id) {
   }
 }
 
+/**
+ * Updates a contact in Firebase using a PATCH request.
+ * @function updateContactInFirebase
+ * @param {string} id - The ID of the contact to update.
+ * @param {Object} updatedContact - The updated contact data.
+ * @returns {Promise<void>} A promise that resolves when the update is complete.
+ */
+
 async function updateContactInFirebase(id, updatedContact) {
   singleContact = fetch(BASE_URL + "contacts/" + id + ".json", {
     method: 'PATCH',
@@ -83,6 +91,10 @@ async function updateContactInFirebase(id, updatedContact) {
     });
 }
 
+/**
+ * Updates a contact in the local contacts array by ID.
+ * @function updateContactById  */
+
 function updateContactById(id, updatedContact) {
   let contactData = contactsArray.find(entry => entry.id == id);
   if (contactData) {
@@ -96,6 +108,11 @@ function updateContactById(id, updatedContact) {
   }
 
 }
+/** * Retrieves updated contact data from input fields and updates the contact in Firebase.
+ * @function getUpdatedContactData
+ * @param {string} id - The ID of the contact to update.
+ * @returns {Promise<void>} A promise that resolves when the update is complete.
+ */
 
 async function getUpdatedContactData(id) {
   const nameInput = document.getElementById('input-name').value;
@@ -112,6 +129,12 @@ async function getUpdatedContactData(id) {
   return await updateContactInFirebase(id, updatedContact);
 }
 
+/** * Updates a contact by ID after validating the edit form.
+ * Closes the edit dialog, re-renders the contact list and info, and shows a toast notification.
+ * @function updateContact
+ * @param {string} id - The ID of the contact to update.
+ * @returns {Promise<void>} A promise that resolves when the update is complete.
+ */
 async function updateContact(id) {
   validateEditContactForm()
   await getUpdatedContactData(id);
@@ -120,6 +143,11 @@ async function updateContact(id) {
   renderLocalContactInfo(id);
   showToastUpdate();
 }
+
+/** * Displays a toast notification indicating a contact has been updated.
+ * The message is shown for 2 seconds before reverting to the creation message.
+ * @function showToastUpdate
+ */
 
 function showToastUpdate() {
   const msgBox = document.getElementById('msgBox');

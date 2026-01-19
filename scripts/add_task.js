@@ -345,7 +345,6 @@ function clearSelectedAssignees() {
   }
 }
 
-
 /**
  * Renders the contact list in the task assignment dropdown.
  * Clears the current list and dynamically creates list items for each contact, including their checked state and corresponding icon.
@@ -392,7 +391,6 @@ function selectCategory(element, HTMLid) {
   categorySpan.style.color = ""; 
 }
 
-
 // -----------------------
 // SUBTASK FUNCTIONS
 // -----------------------
@@ -410,7 +408,6 @@ function showSubtaskActions() {
   if (subtaskActions) subtaskActions.style.display = "flex";
 }
 
-
 /**
  * Cancels the current subtask input.
  * Clears the input field, hides the subtask action buttons and resets the currently edited item.
@@ -424,7 +421,6 @@ function cancelSubtask() {
   if (subtaskActions) subtaskActions.style.display = "none";
   showSubtaskActions();
 }
-
 
 /**
  * Adds a new subtask to the subtask list.
@@ -454,7 +450,6 @@ function addSubtask() {
   cancelSubtask();
 }
 
-
 /**
  * Enables edit mode for a subtask.
  *
@@ -465,7 +460,6 @@ function editSubtask(btn) {
   li.querySelector(".edit_container").style.display = "block";
   li.querySelector(".list_row").style.display = "none";
 }
-
 
 /**
  * Saves the changes made to a subtask.
@@ -480,7 +474,6 @@ function saveEdit(btn) {
   li.querySelector(".list_row").style.display = "flex";
 }
 
-
 /**
  * Cancels the edit mode and restores the original subtask display.
  *
@@ -491,7 +484,6 @@ function cancelEdit(btn) {
   li.querySelector(".edit_container").style.display = "none";
   li.querySelector(".list_row").style.display = "flex";
 }
-
 
 /**
  * Listens for the "Enter" key on the Subtask input field.
@@ -505,7 +497,6 @@ subtaskInput.addEventListener("keydown", function (event) {
     addSubtask();
   }
 });
-
 
 /**
  * Listens for the "Enter" key on the Subtask Edit input field.
@@ -521,7 +512,6 @@ if (subtaskInputEdit) {
     }
   });
 }
-
 
 // --------------------------------------------------
 // CREATE TASK BUTTON & REQUIRED FIELDS FUNCTIONS
@@ -580,7 +570,6 @@ function areRequiredFieldsFilled(HTMLid) {
 
   return isTitleFilled && isDueDateFilled && isCategoryFilled;
 }
-
 
 /**
  * Highlights missing required fields in the task form.
