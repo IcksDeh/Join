@@ -57,9 +57,9 @@ function editContactTemplate(c) {
                         </div>
                         <div>
                             <div class="input_fields_container">
-                                <input type="text" id="input-name" class="user_input styled_input" placeholder="Name" value="${c.name}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
-                                <input type="email" id="input-email" class="user_input styled_input" placeholder="Email" value="${c.eMail}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
-                                <input type="tel" id="input-phone" class="user_input styled_input" placeholder="Phone Number" value="${c.phoneNumber}" required oninput="limitInputLength(this, 17); validateEditContactForm()"><br>
+                                <input type="text" id="input-name" class="user_input styled_input" placeholder="${c.name}" value="${c.name}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
+                                <input type="email" id="input-email" class="user_input styled_input" placeholder="${c.eMail}" value="${c.eMail}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
+                                <input type="tel" id="input-phone" class="user_input styled_input" placeholder="${c.phoneNumber}" value="${c.phoneNumber}" required oninput="limitInputLength(this, 17); validateEditContactForm()"><br>
                             </div>
                             <div class="contact_btn_area">
                                 <button type="button" class="outline_btn" onclick="deleteContact('${c.id}')">Delete
