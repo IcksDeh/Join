@@ -1,7 +1,7 @@
 const subtaskInput = document.getElementById("subtasks");
-const subtaskInputEdit = document.getElementById("subtasks_edit"); // New
+const subtaskInputEdit = document.getElementById("subtasks_edit");
 const subtaskList = document.getElementById("subtaskList");
-const subtaskListEdit = document.getElementById("subtaskList_edit"); // New
+const subtaskListEdit = document.getElementById("subtaskList_edit");
 const subtaskActions = document.querySelector(".subtask_actions");
 
 const priorities = [
@@ -74,7 +74,7 @@ function closeAddTaskDialog(HTMLid) {
 function resetInputFields(HTMLid) {
   const inputIds = ["title", "description", "due_date", "subtasks"];
   inputIds.forEach(idElement => {
-    const element = document.getElementById("id_" + idElement + "_add_task_"+ HTMLid);
+    const element = document.getElementById("id_" + idElement + "_add_task_" + HTMLid);
     if (element) {
       if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
         element.value = "";
@@ -86,7 +86,7 @@ function resetInputFields(HTMLid) {
       if (message) message.style.display = "none";
     }
   });
-  const categorySpan = document.getElementById("selected_category_"+HTMLid);
+  const categorySpan = document.getElementById("selected_category_" + HTMLid);
   categorySpan.innerHTML = "Select task category";
   categorySpan.style.color = "";
 }
@@ -99,7 +99,8 @@ function resetInputFields(HTMLid) {
 function clearInputs(HTMLid) {
   clearSelectedAssignees();
   resetInputFields(HTMLid);
-  document.getElementById("selected_contacts_"+ HTMLid).innerHTML = "Select contacts to assign";
+  // document.getElementById("selected_contacts").innerHTML = "Select contacts to assign";
+  document.getElementById("selected_contacts_" + HTMLid).innerHTML = "Select contacts to assign";
   document.getElementById("assigned_contacts_row_" + HTMLid).innerHTML = "";
   closeDropdownLists();
   subtaskList.innerHTML = "";
@@ -535,7 +536,7 @@ if (subtaskInputEdit) {
 // --------------------------------------------------
 
 /**
- * Handles the click event for the "Create Task" button.
+ * Handles the click event for the Add Task Overlay "Create Task" button.
  * Prevents the default form submission behavior and triggers the task creation process by collecting and processing task data.
  *
  * @event click
