@@ -66,8 +66,6 @@ function closeTaskDetailDialog() {
  */
 
   
-
-
  function loadAssigneesTaskDetails(taskContent, taskID){
   let taskAssigneeElement = document.getElementById("assignees_task_details_" + taskID);
   let assigneeList = taskContent.assignees;
@@ -80,13 +78,6 @@ function closeTaskDetailDialog() {
     taskAssigneeElement.appendChild(assigneeHTMLElement);
   })
 }
-
-
-
-
-
-
-
 
 
 /**
@@ -235,8 +226,8 @@ function loadPrefillContent(currentTask){
 
 
 function loadPrefillTitle(currentTask){
-    let titleHTML = document.getElementById('id_title_task_detail_edit');
-    titleHTML.value = currentTask.title;
+  let titleHTML = document.getElementById('id_title_task_detail_edit');
+  titleHTML.value = currentTask.title;
   
 }
 
@@ -246,17 +237,20 @@ function loadPrefillDescription(currentTask){
 
 }
 
+
 function loadPrefillDueDate(currentTask){
   let dueDateHTML = document.getElementById('id_due_date_task_detail_edit');
   dueDateHTML.value = currentTask.dueDate;
 
 }
 
+
 function loadPrefillPriority(currentTask){
   let priorityName = currentTask.priority.name;
   // let priorityColor = currentTask.priority.color;
   checkPriority(priorityName, "task_detail");
 }
+
 
 function loadPrefillAssignee(currentTask){
   const assigneeContainer = document.getElementById("assigned_contacts_row_edit");
@@ -269,6 +263,7 @@ function loadPrefillAssignee(currentTask){
   assigneeContainer.innerHTML += loadAssigneeBubblesToPrefill(element);
   })
 }
+
 
 function loadPrefillSubtasks(currentTask){
   let subtaskElements = currentTask.subtasks;
@@ -284,7 +279,6 @@ function loadPrefillSubtasks(currentTask){
     substaskHTML.appendChild(li);
   })
 }
-
 
 
 /**

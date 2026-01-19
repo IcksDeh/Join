@@ -120,10 +120,31 @@
     .edit_container input.subtask_edit_input {
         font-size: 16px;
     }
+
+    .user_info_taks_detail_edit {
+        gap: 10px;
+    }
+
+    .user_name_assignee_circle_taks_detail_edit {
+        font-size: 16px;
+    }
+
+    .dropdown_list_contacts_task_detail_edit {
+        border: 1px solid #ccc !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .checkbox_icon_taks_detail_edit {
+        padding-right: 14px;
+    }
 }
 
 @media (max-width: 340px) {
     .mobile_editing {
         font-size: 14px;   
+    }
+
+    .user_name_assignee_circle_taks_detail_edit {
+        font-size: 14px;
     }
 }
