@@ -155,7 +155,7 @@ function taskEditDialogTemplate(taskID, index){
         </div>
 
         <div class="task_detail_edit_btn">
-          <button id="editTaskSubmitBtn" type="submit" class="ok_btn">Ok<img src="./assets/img/check_white.svg" alt="Edit Button"></button>
+          <button id="editTaskSubmitBtn" type="click" class="ok_btn" onclick = "saveChangesTask('${taskID}', '${index}')">Ok<img src="./assets/img/check_white.svg" alt="Edit Button"></button>
         </div>
       </form>
     </main>

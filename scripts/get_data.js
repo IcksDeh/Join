@@ -134,16 +134,39 @@ async function getContactData() {
 /** Gathers data from the "Edit Task" form and prepares it for storage.
  * @param {string} taskID - The unique identifier of the task to be edited. */
 
-function saveChangesTask(taskID){
-  let titleTask = document.getElementById('id_title_add_task_' + HTMLid).value;
-  let descriptionTask = document.getElementById('id_description_add_task_' + HTMLid).value;
-  let dueDateTask = document.getElementById('id_due_date_add_task_'+ HTMLid).value;
+async function saveChangesTask(taskID,  index, HTMLid){
+  let titleTask = document.getElementById('id_title_task_detail_edit').value;
+  let descriptionTask = document.getElementById('id_description_task_detail_edit').value;
+  let dueDateTask = document.getElementById('id_due_date_task_detail_edit').value;
   let priorityTask = getPriority(HTMLid);
   let assignedToTask = getAssignee();
-  let categoryTask = getTaskCategory(HTMLid);
-  let subtasksTask = getAllSubtasks();
-  let statusTask = status;
+  let categoryTask = taskList[index].task.category;
+  let subtasksTask = getSubtaskEditTask(taskID, index);
+  let statusTask = taskList[index].task.statusTask;
+
+await switchTaskData(titleTask, descriptionTask, dueDateTask, priorityTask, assignedToTask, categoryTask, subtasksTask, statusTask, HTMLid);
 }
+
+function getSubtaskEditTask(taskID, index){
+  let subtasks = {};
+    document.querySelectorAll('.list_element').forEach(li => {
+      
+      let subtaskId = crypto.randomUUID();
+      let subtastText = li.querySelector('.subtask_text').textContent.trim();
+
+      subtasks[subtaskId] = {
+        text: subtastText,
+        done: false
+      };
+    });
+    if (Object.keys(subtasks).length === 0) {
+      subtasks = "";
+      return subtasks;
+    } else {
+      return subtasks;
+    }
+  }
+
 
 /** Extracts initials from a contact's name.
  * @param {string} contactName - The full name of the contact.

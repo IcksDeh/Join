@@ -215,6 +215,7 @@ async function openTaskDetailEditDialog(taskID, index) {
   if (!dialog.open) {
     dialog.showModal();
     dialog.innerHTML = taskEditDialogTemplate(taskID, index);
+    loadEventlistenerTaskEditDialog(taskID, index);
     setupDateValidation();
     setupDateClickBehavior();
     initDialogInputs();
@@ -447,3 +448,10 @@ form.addEventListener('submit', async (event) => {
 });
 }
 
+function loadEventlistenerTaskEditDialog(taskID,  index){
+  const okBtn = document.getElementById('editTaskSubmitBtn')
+  okBtn.addEventListener('click', async function(event) {
+    event.preventDefault();
+    await saveChangesTask(taskID,  index, 'task_detail');
+  })
+}
