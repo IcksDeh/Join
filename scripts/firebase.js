@@ -1,6 +1,6 @@
 // Firebase base URL
 
-async function putToStorage(path, Data, elements ="", HTMLid){
+async function postToStorage(path, Data, elements ="", HTMLid){
     let userStorage = await fetch(BASE_URL + path + ".json", {
         method: "POST",
         headers: {
@@ -10,6 +10,17 @@ async function putToStorage(path, Data, elements ="", HTMLid){
     );
     
     checkClearElements(path, elements, HTMLid)
+}
+
+async function putToStorage(path, Data ,elements ='', HTMLid, taskID){
+    let userStorage = await fetch(BASE_URL + path + "/" + taskID + ".json", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"},
+        body: JSON.stringify(Data),    
+        }
+    );
+    // checkClearElements(path, elements, HTMLid)
 }
 
 
