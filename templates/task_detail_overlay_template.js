@@ -1,40 +1,42 @@
 function taskDetailTemplate(taskContent, taskID, taskIndex){
   return `
     <main class="task_detail_wrapper" data-task_detail_information-id="${taskID}">
-      <div class="close_btn_container_task_detail">
+      <div class="close_btn_container_task_detail no_scroll">
         <div id="category_label_task_details_${taskID}" class="story_task_btn">${taskContent.category}</div>
         <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeTaskDetailDialog()" role="button" aria-label="Schließen">
       </div>
 
-      <span id="task_detail_title_${taskID}" class="task_detail_title">${taskContent.title}</span>
-      <p id="task_detail_description_${taskID}" class="task_detail_description">${taskContent.description}</p>
-            
-      <table class="recommender_table" aria-label="Page and Recipe Recommender details">
-        <tbody>
-          <tr>
-          <th scope="row" class="task_detail_description table_spacer">Due Date:</th>
-          <td class="task_detail_description table_spacer">${taskContent.dueDate}</td>
-          </tr>
-          <tr>
-          <th scope="row" class="task_detail_description table_spacer">Priority:</th>
-          <td class="task_detail_description table_spacer icon_gap">${taskContent.priority.name}
-            <img src="./assets/img/prio_${taskContent.priority.name}_${taskContent.priority.color}.svg" alt="Prio Urgent">
-          </td>
-          </tr>
-          <tr>
-          <th scope="row" class="task_detail_description table_spacer">Assigned to:</th>
-          </tr>
-        </tbody>
-      </table>
-      <div id="assignees_task_details_${taskID}" class="assigned_user">
-      </div>
+      <div class="scroll_container">
+        <span id="task_detail_title_${taskID}" class="task_detail_title">${taskContent.title}</span>
+        <p id="task_detail_description_${taskID}" class="task_detail_description">${taskContent.description}</p>
+              
+        <table class="recommender_table" aria-label="Page and Recipe Recommender details">
+          <tbody>
+            <tr>
+            <th scope="row" class="task_detail_description table_spacer">Due Date:</th>
+            <td class="task_detail_description table_spacer">${taskContent.dueDate}</td>
+            </tr>
+            <tr>
+            <th scope="row" class="task_detail_description table_spacer">Priority:</th>
+            <td class="task_detail_description table_spacer icon_gap">${taskContent.priority.name}
+              <img src="./assets/img/prio_${taskContent.priority.name}_${taskContent.priority.color}.svg" alt="Prio Urgent">
+            </td>
+            </tr>
+            <tr>
+            <th scope="row" class="task_detail_description table_spacer">Assigned to:</th>
+            </tr>
+          </tbody>
+        </table>
+        <div id="assignees_task_details_${taskID}" class="assigned_user">
+        </div>
 
-      <p class="task_detail_description">Subtasks</p>
-      <div id="subtasks_task_detail_list">
+        <p class="task_detail_description">Subtasks</p>
+        <div id="subtasks_task_detail_list">
+        </div>
       </div>
 
       <div class="bottom_area">
-        <div class="task_detail_btn_area">
+        <div class="task_detail_btn_area no_scroll">
           <button class="delete_edit_btn" onclick="deleteTask('${taskID}')">
             <img class="icon default" src="./assets/img/delete.svg" alt="Clear Formular">
             <img class="icon hover" src="./assets/img/delete_blue.svg" alt="Clear Formular Hover">
@@ -81,7 +83,7 @@ function loadAssigneeBubblesToPrefill(element){
 function taskEditDialogTemplate(taskID, index){
   return `
     <main class="task_detail_edit_wrapper" data-task_detail_information-id="${taskID}">
-      <div class="close_btn_container_task_detail_edit">
+      <div class="close_btn_container_task_detail_edit no_scroll">
         <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeTaskDetailEditDialog('edit')" role="button" aria-label="Schließen">
       </div>
 
