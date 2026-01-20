@@ -184,10 +184,34 @@ function deleteTask(taskID){
  * @function openTaskDetailEditDialog
  * @returns {void} - This function does not return a value.
  */
+// async function openTaskDetailEditDialog(taskID, index) {
+//   document.getElementById('taskDetailDialog').close();
+//   const dialog = document.getElementById('taskDetailEditDialog');
+
+//   if (!dialog.open) {
+//     dialog.showModal();
+//     dialog.innerHTML = taskEditDialogTemplate(taskID, index);
+//     setupDateValidation();
+//     setupDateClickBehavior();
+//     initDialogInputs();
+//     loadEventlistenerForm();
+//     await loadFirebaseData("tasks");
+
+//     const currentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
+//     const currentTask = currentTaskElement.task;
+//     console.log(currentTask);
+//     loadPrefillContent(currentTask);
+
+//     setTimeout(() => {
+//       if (document.activeElement) {
+//         document.activeElement.blur();
+//       }
+//     }, 0);
+//   }
+// }
 async function openTaskDetailEditDialog(taskID, index) {
   document.getElementById('taskDetailDialog').close();
   const dialog = document.getElementById('taskDetailEditDialog');
-
   if (!dialog.open) {
     dialog.showModal();
     dialog.innerHTML = taskEditDialogTemplate(taskID, index);
@@ -195,18 +219,17 @@ async function openTaskDetailEditDialog(taskID, index) {
     setupDateClickBehavior();
     initDialogInputs();
     loadEventlistenerForm();
-    await loadFirebaseData("tasks");
-
-    const currentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
-    const currentTask = currentTaskElement.task;
-    console.log(currentTask);
-    loadPrefillContent(currentTask);
-
-    setTimeout(() => {
-      if (document.activeElement) {
-        document.activeElement.blur();
+    const subtaskInputEdit = document.getElementById("subtasks_edit");
+    subtaskInputEdit?.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addSubtask();
       }
-    }, 0);
+    });
+    await loadFirebaseData("tasks");
+    const currentTaskElement = taskList.find(t => t.id === taskID);
+    loadPrefillContent(currentTaskElement.task);
+    setTimeout(() => document.activeElement?.blur(), 0);
   }
 }
 

@@ -536,6 +536,19 @@ if (subtaskInputEdit) {
 }
 
 
+function initSubtaskEditListeners() {
+  const subtaskInputEdit = document.getElementById("subtasks_edit");
+  if (!subtaskInputEdit) return;
+
+  subtaskInputEdit.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      addSubtask();
+    }
+  });
+}
+
+
 // --------------------------------------------------
 // CREATE TASK BUTTON & REQUIRED FIELDS FUNCTIONS
 // --------------------------------------------------
