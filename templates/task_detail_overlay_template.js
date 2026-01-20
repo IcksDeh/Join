@@ -26,11 +26,11 @@ function taskDetailTemplate(taskContent, taskID, taskIndex){
           </tr>
         </tbody>
       </table>
-      <div id= "assignees_task_details_${taskID}" class="assigned_user">
+      <div id="assignees_task_details_${taskID}" class="assigned_user">
       </div>
 
       <p class="task_detail_description">Subtasks</p>
-      <div id = "subtasks_task_detail_list">
+      <div id="subtasks_task_detail_list">
       </div>
 
       <div class="bottom_area">
@@ -71,11 +71,8 @@ function subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex
 
 function loadAssigneeBubblesToPrefill(element){
   return `
-    <div class="contact_initial_circle assigned_contact"
-      data-assignee-id="${element[1].id}"
-      title="${element[1].name}"
-      style="background-color:${element[1].assigneeColor}">
-      ${element[1].assigneeInitial}
+    <div class="contact_initial_circle assigned_contact" data-assignee-id="${element[1].id}" title="${element[1].name}" style="background-color:${element[1].assigneeColor}">
+    ${element[1].assigneeInitial}
     </div>
   `;
 }
