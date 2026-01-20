@@ -53,7 +53,7 @@ function editContactTemplate(c) {
                     </div>
                     <div class="right_container_wrapper">
                         <div class="avatar-wrapper">
-                            <div class="initals_big" style="background-color: ${c.color};">${getContactInitials(c.name)}</div>
+                            <div class="initals_big" style="background-color:${c.color};">${getContactInitials(c.name)}</div>
                         </div>
                         <div>
                             <div class="input_fields_container">
