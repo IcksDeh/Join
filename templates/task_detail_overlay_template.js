@@ -110,14 +110,17 @@ function taskEditDialogTemplate(taskID, index){
           <section>
             <label class="label_text_edit">Priority</label><br>
             <div class="priority_options_edit">
-              <button type="button" class="urgent_btn_default" id="task_detail_urgent_btn" onclick="checkPriority('urgent','task_detail')">Urgent
-                <img id="task_detail_icon_urgent_task" class="icon hover" src="./assets/img/prio_urgent_red.svg" alt="Priority Urgent">
+              <button type="button" class="urgent_btn_default" id="id_urgent_btn_task_detail" onclick="checkPriority('urgent','task_detail')">
+                Urgent
+                <img id="id_icon_urgent_task_task_detail" class="icon hover" src="./assets/img/prio_urgent_red.svg" alt="Priority Urgent">
               </button>
-              <button type="button" class="medium_btn_filled" id="task_detail_medium_btn" onclick="checkPriority('medium','task_detail')">Medium
-                <img id="task_detail_icon_medium_task" class="icon hover" src="./assets/img/prio_medium_white.svg" alt="Priority Medium Hover">
+              <button type="button" class="medium_btn_filled" id="id_medium_btn_task_detail" onclick="checkPriority('medium','task_detail')">
+                Medium
+                <img id="id_icon_medium_task_task_detail" class="icon hover" src="./assets/img/prio_medium_white.svg" alt="Priority Medium">
               </button>
-              <button type="button" class="low_btn_default" id="task_detail_low_btn" onclick="checkPriority('low','task_detail')">Low
-                <img id="task_detail_icon_low_task" class="icon hover" src="./assets/img/prio_low_green.svg" alt="Priority Low">
+              <button type="button" class="low_btn_default" id="id_low_btn_task_detail" onclick="checkPriority('low','task_detail')">
+                Low
+                <img id="id_icon_low_task_task_detail" class="icon hover" src="./assets/img/prio_low_green.svg" alt="Priority Low">
               </button>
             </div>
 
