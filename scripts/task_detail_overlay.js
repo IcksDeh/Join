@@ -294,20 +294,25 @@ function loadPrefillPriority(currentTask){
  * Prefills the assignees section of the task edit form.
  * @param {Object} currentTask - The task object.
  */
-function loadPrefillAssignee(currentTask){
+function loadPrefillAssignee(currentTask) {
   const assigneeContainer = document.getElementById("assigned_contacts_row_edit");
   assigneeContainer.innerHTML = "";
-  selectedAssigneesEdit =[];
+  selectedAssigneesEdit = [];
+  if (!currentTask.assignees) return; 
+
   let prefillAssignees = currentTask.assignees;
-  Object.entries(prefillAssignees).forEach(([id, contact]) =>{
-  assigneeContainer.innerHTML += loadAssigneeBubblesToPrefill([id, contact]);
-  selectedAssigneesEdit.push({
-    id: id,
-    contact: contact
-  })
-  let contactInList = contactsList.find(c => c.id ===id);
-  if (contactInList) contactsList.isChecked = true;
-  })
+  
+  Object.entries(prefillAssignees).forEach(([id, contact]) => {
+    assigneeContainer.innerHTML += loadAssigneeBubblesToPrefill([id, contact]);
+    selectedAssigneesEdit.push({
+      id: id,
+      contact: {
+        name: contact.assigneeName,
+        color: contact.assigneeColor,     
+        initial: contact.assigneeInitial 
+      }
+    });
+  });
 }
 
 
