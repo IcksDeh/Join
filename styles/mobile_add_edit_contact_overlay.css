@@ -3,7 +3,7 @@
         width: 450px;
         height: 860px;
         background-color: #fff;
-        border-radius: 25px; 
+        border-radius: 25px;
         position: fixed;
         top: 50%;
         left: 50%;
@@ -30,7 +30,7 @@
 
     .contact_left_container {
         width: 450px;
-        height: 360px; 
+        height: 360px;
         padding-left: 30px;
     }
 
@@ -95,7 +95,7 @@
         margin-right: 0px;
         margin-top: 40px;
     }
-    
+
     .contact_btn_area {
         display: flex;
         justify-content: center;
@@ -110,7 +110,7 @@
 
     .dialog_contact_container::after {
         height: 200px;
-        width: 300px;
+        width: 100%;
     }
 
     .close_btn_container_contact_overlay {
@@ -120,8 +120,8 @@
     }
 
     .contact_left_container {
-        width: 300px;
-        height: 200px; 
+        width: fit-content;
+        height: 200px;
         padding-left: 15px;
         padding-bottom: 10px;
     }
@@ -200,8 +200,8 @@
     }
 
     .styled_input {
-        font-size: 18px;    
-        margin-bottom: -8px;       
+        font-size: 18px;
+        margin-bottom: -8px;
     }
 
     .outline_btn,
