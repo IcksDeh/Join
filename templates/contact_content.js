@@ -9,17 +9,21 @@ function loadContactListItem(c) {
                 </div>
             </button>
         </li>
-    `
+    `;
 }
 
+
 function addContactButtonTemplate() {
-    return `<div class="button-container">
-                <button class="contact-btn" id="addNewContactBtn" onclick="openAddContactDialog()">
-                    <span>Add new Contact</span>
-                    <img src="./assets/img/person_add_white.svg" alt="add Person" />
-                </button>
-            </div>`
+    return `
+        <div class="button-container">
+            <button class="contact-btn" id="addNewContactBtn" onclick="openAddContactDialog()">
+                <span>Add new Contact</span>
+                <img src="./assets/img/person_add_white.svg" alt="add Person" />
+            </button>
+        </div>
+    `;
 }
+
 
 function contactHeadlineTemplate() {
     return `
@@ -31,7 +35,7 @@ function contactHeadlineTemplate() {
             <div class="headline-seperator"></div>
             <span>Better with a team</span>
         </div>
-    `
+    `;
 }
 
 
@@ -53,7 +57,7 @@ function contactInitialsTemplate(c) {
                 </div>
             </div>
         </div>
-    `
+    `;
 }
 
 
@@ -72,12 +76,15 @@ function contactInfoTemplate(c) {
                 </div>
             </div>
         </div>
-    `
+    `;
 }
 
+
 function contactSeperatorTemplate(currentLetter) {
-    return `<li>
-                <p class="beginning-letter">${currentLetter}</p>
-                <div class="contact-seperator"></div>
-            </li>`
+    return `
+        <li>
+            <p class="beginning-letter">${currentLetter}</p>
+            <div class="contact-seperator"></div>
+        </li>
+    `;
 }

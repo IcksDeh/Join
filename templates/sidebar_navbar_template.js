@@ -29,6 +29,7 @@ function sidebarLoginTemplate() {
     `;
 }
 
+
 function sidebarLogOffTemplate() {
   return `
         <a  class="sidebar_logo_link" href="index.html"><img class = "logo_invert" src="./assets/img/logo_version2.svg" alt="Join Logo"></a>
@@ -44,6 +45,7 @@ function sidebarLogOffTemplate() {
         </div>
     `;
 }
+
 
 function navbarTemplate(userInitials) {
   return `
@@ -63,6 +65,7 @@ function navbarTemplate(userInitials) {
     `;
 }
 
+
 function navbarLogOffTemplate() {
   return `
         <div class="content_wrapper order_content_navbar">  
@@ -72,6 +75,7 @@ function navbarLogOffTemplate() {
         </div>
     `;
 }
+
 
 function mobileFooterLoginTemplate() {
     return `
@@ -93,6 +97,7 @@ function mobileFooterLoginTemplate() {
         </a>
     `;
 }
+
 
 function mobileFooterLogoffTemplate() {
     return `

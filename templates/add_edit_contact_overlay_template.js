@@ -34,7 +34,7 @@ function addContactTemplate() {
                 </section>
             </form>
         </main>
-    `
+    `;
 }
 
 
@@ -75,5 +75,5 @@ function editContactTemplate(c) {
                 </section>
             </form> 
         </main>
-    `
+    `;
 }

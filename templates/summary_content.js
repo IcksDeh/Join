@@ -49,7 +49,6 @@ function summaryContentTemplate(userName, greeting) {
             </section>
         </div>
 
-       
         <div id="id_summary_greeting_container" class="order_greeting_username">
             <p class="style_greeting_text">${greeting}</p>
             <h1 class="style_username">${userName}</h1>
