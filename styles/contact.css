@@ -15,10 +15,14 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    scrollbar-width: thin;
     padding-right: 40px;
+    transition-property: all;
+    transition-duration: 125ms;
 }
 
 .contact-list-container {
+    min-width: 130px;
     display: flex;
     background-color: white;
     flex-direction: column;
@@ -27,10 +31,8 @@
     box-shadow: 4px 0px 6px 0px #00000014;
     width: 430px;
     height: 100%;
-}
-
-.contact-list::-webkit-scrollbar {
-    width: 24px;
+    transition-property: all;
+    transition-duration: 125ms;
 }
 
 .contact-btn {
@@ -87,7 +89,7 @@
     line-height: 120%;
     letter-spacing: 0%;
     justify-content: left;
-    left: 39px;
+    left: 42px;
 }
 
 .contact-seperator {
@@ -97,19 +99,20 @@
 }
 
 .contact-person {
-
     display: flex;
     flex-direction: row;
     padding-top: 16px;
     padding-bottom: 16px;
-    padding-left: 24px;
+    padding-left: 28px;
     padding-right: 24px;
     gap: 35px;
     border-radius: 10px;
     cursor: pointer;
-    height: auto;
+    height: 74px;
     width: 100%;
     background-color: #ffffff;
+    transition-property: all;
+    transition-duration: 125ms;
 }
 
 .contact-person:active {
@@ -151,6 +154,8 @@
     background-color: #ffa800;
     border: 3.5px solid white;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+    transition-property: all;
+    transition-duration: 125ms;
 }
 
 .small-info {
@@ -180,17 +185,20 @@
     gap: 30px;
     padding-top: 110px;
     align-items: center;
-
+    transition-property: position;
+    transition-duration: 125ms;
 }
 
 .contact-headline h3 {
     font-size: 61px;
     line-height: 120%;
     font-weight: bold;
+
 }
 
 .contact-headline span {
     font-size: 27px;
+
 }
 
 .headline {
@@ -215,6 +223,8 @@
     border-right: 3px solid #29abe2;
     height: 55px;
     margin: 8px;
+    transition-property: all;
+    transition-duration: 125ms;
 }
 
 .contact-info {
@@ -232,8 +242,9 @@
     transform: translateX(200vw);
     display: flex;
     padding-top: 32px;
-    padding-right: 55px;
+    padding-right: 32px;
     gap: 54px;
+    width: fit-content;
 }
 
 .name-big {
@@ -248,16 +259,22 @@
 }
 
 .changebtns {
+    background-color: transparent;
     display: flex;
     flex-direction: row;
     gap: 30px;
-
+    width: fit-content;
 }
 
 #changebtnsPopover {
     display: flex;
     flex-direction: row;
     gap: 30px;
+    width: fit-content;
+    border: 0px solid transparent;
+    box-shadow: 0 4px 4px transparent;
+    transition-property: all;
+    transition-duration: 125ms;
 }
 
 .name-big button {
@@ -329,6 +346,7 @@
     a {
         font-weight: 400;
         font-size: 16px;
+        width: fit-content;
     }
 }
 
@@ -350,5 +368,5 @@
 
 .slideactive {
     transform: translateX(0);
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    transition: transform 0.125s ease, opacity 0.125s ease;
 }

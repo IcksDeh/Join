@@ -133,29 +133,16 @@ function toggleMenu() {
  *  @event click
  *  @returns {void} - This function does not return a value.
  */
-document.querySelectorAll("dialog").forEach(dialog => {
-    dialog.addEventListener("click", event => {
+document.querySelectorAll('dialog').forEach(dialog => {
+    dialog.addEventListener('click', event => {
+
         if (event.target === dialog) {
-        dialog.close();
+            dialog.close();
+            clearContactInputs();
+            clearInputs(HTMLid);
         }
     });
-    
-    dialog.addEventListener("close", () => {
-        const HTMLid = dialog.dataset.htmlid;
-        if (!HTMLid) return;
-        clearInputs(HTMLid);
-    });
 });
-// document.querySelectorAll('dialog').forEach(dialog => {
-//     dialog.addEventListener('click', event => {
-
-//         if (event.target === dialog) {
-//             dialog.close();
-//             clearContactInputs();
-//             clearInputs(HTMLid);
-//         }
-//     });
-// });
 
 
 /**

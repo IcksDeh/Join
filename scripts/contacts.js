@@ -13,13 +13,25 @@ function setContactActive(id, element) {
     }
     if (isActive) {
         cInfo.innerHTML = contactHeadlineTemplate();
+        minimizeContactListon950px(element)
         return;
     }
 
     element.classList.add("active-contact");
+    minimizeContactListon950px()
     renderContactInfo(selectedContact)
     renderMobileClickedContact()
     slideContactInfo()
+}
+
+function minimizeContactListon950px() {
+    const contactList = document.getElementById('contact-list-container')
+    const hasActiveContact = !!document.querySelector('.active-contact')
+    if (getViewportSize() <= 950 && hasActiveContact) {
+        contactList.classList.add('minimized-contact-list')
+    } else if (getViewportSize() > 950 || !hasActiveContact) {
+        contactList.classList.remove('minimized-contact-list')
+    }
 }
 
 function renderContactInfo(selectedContact) {
@@ -53,7 +65,8 @@ function checkForBackBtn() {
     const contactList = document.getElementById('contact-list-container')
     const contactInfo = document.getElementById('contact-info')
     const contacts = document.getElementsByClassName("contact-person")
-    if (getViewportSize() <= 700) {
+    if (getViewportSize() <= 800) {
+        contactList.classList.remove('minimized-contact-list')
         contactList.style.display = "flex"
         contactInfo.style.display = "none"
         for (let i = 0; i < contacts.length; i++) {
@@ -61,15 +74,14 @@ function checkForBackBtn() {
             const cInfo = document.getElementById('contact-info')
             cInfo.innerHTML = contactHeadlineTemplate()
         }
-    } else if (getViewportSize() > 700) {
+    } else if (getViewportSize() > 800) {
         contactList.style.display = "flex"
         contactInfo.style.display = "flex"
     }
 }
 
 function changeBtnsPopover() {
-    const changeContactBtns = document.getElementById('changeContactBtns')
-    const popover = document.getElementById('changebtnsPopover')
+    let changeContactBtns = document.getElementById('changeContactBtns')
     changeContactBtns.addEventListener('click', () => {
         changeContactBtns.classList.toggle('active-popover');
     })
@@ -89,11 +101,15 @@ function renderMobileClickedContact() {
     const contactList = document.getElementById('contact-list-container')
     const contactInfo = document.getElementById('contact-info')
     const button = document.getElementById('addNewContactBtn')
-    contactList.style.display = getViewportSize() <= 700 ? "none" : "flex"
+    contactList.style.display = getViewportSize() <= 800 ? "none" : "flex"
     contactInfo.style.display = "flex"
     changeBtnsPopover()
-
 }
+
+document.body.classList.toggle(
+    'has-active-contact',
+    !!document.querySelector('.active-contact')
+);
 
 function resizeHandler() {
     const contactList = document.getElementById('contact-list-container')
@@ -101,8 +117,9 @@ function resizeHandler() {
 
     const hasActiveContact = !!document.querySelector(".active-contact")
 
-    contactList.style.display = (hasActiveContact && (getViewportSize() <= 700)) ? "none" : "flex"
-    contactInfo.style.display = (!hasActiveContact && (getViewportSize() <= 700)) ? "none" : "flex"
+    contactList.style.display = (hasActiveContact && (getViewportSize() <= 800)) ? "none" : "flex"
+    contactInfo.style.display = (!hasActiveContact && (getViewportSize() <= 800)) ? "none" : "flex"
+    minimizeContactListon950px()
 }
 
 function sortContactsByFirstName(element) {
@@ -114,9 +131,7 @@ function sortContactsByFirstName(element) {
 }
 
 async function getContactListData() {
-
     return await loadFirebaseData('contacts');
-
 }
 
 function renderLocalContactList() {
@@ -204,4 +219,42 @@ async function deleteContactFromFirebase(contactID) {
         method: "DELETE",
     });
 
+}
+
+async function getUsersData() {
+    return await loadFirebaseData('users');
+}
+
+async function getTasksData() {
+    return await loadFirebaseData('tasks');
+}
+
+function findContactInTask(contact) {
+    let task = task.filter(task => task.assignees.includes(contact.id))
+    let taskId = task.map(t => t.id);
+    return taskId
+}
+function updateUserDataInFirebase(updatedUserData) {
+    let userData = fetch(BASE_URL + "users/" + currentUserID + ".json", {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedUserData),
+    });
+}
+
+async function filterTaskByAssignee(contact = "-Oi7RpRCFLeT5zDt6Xhr") {
+    await getTasksData()
+    const matchingTasks = taskList.filter(task =>
+        Object.keys(task.assignees || {}).includes(contact));
+    console.log(matchingTasks);
+    let filteredTaskIds = filteredTasks.map(t => t.id);
+    console.log(filteredTaskIds);
+
+}
+
+async function getTasksData() {
+    await loadFirebaseData('tasks');
+    console.log(taskList);
 }
