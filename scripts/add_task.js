@@ -442,11 +442,17 @@ function cancelSubtask() {
  * @returns {void} This function does not return a value.
  */
 function addSubtask() {
-  const input = subtaskInputEdit?.value.trim()
-    ? subtaskInputEdit
-    : subtaskInput;
+  const inputSubtask = document.getElementById("subtasks");
+  const inputSubtaskEdit = document.getElementById("subtasks_edit") 
+  
+  const subtaskList = document.getElementById("subtaskList");
+  const subtaskListEdit = document.getElementById("subtaskList_edit")
+  
+  const input = inputSubtaskEdit?.value.trim()
+    ? inputSubtaskEdit
+    : inputSubtask;
 
-  const list = input === subtaskInputEdit
+  const list = input === inputSubtaskEdit
     ? subtaskListEdit
     : subtaskList;
 

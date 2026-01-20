@@ -190,7 +190,9 @@ async function openTaskDetailEditDialog(taskID, index) {
 
   if (!dialog.open) {
     dialog.showModal();
+    dialog.innerHTML = taskEditDialogTemplate(taskID, index);
     initDialogInputs();
+    loadEventlistenerForm();
     await loadFirebaseData("tasks");
 
     const currentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
@@ -288,6 +290,7 @@ function loadPrefillAssignee(currentTask){
  * @param {Object} currentTask - The task object.
  */
 function loadPrefillSubtasks(currentTask){
+  const subtaskListEdit = document.getElementById("subtaskList_edit");
   let subtaskElements = currentTask.subtasks;
   let substaskHTML = subtaskListEdit;
   substaskHTML.innerHTML ="";
@@ -309,11 +312,11 @@ function loadPrefillSubtasks(currentTask){
  * @function closeTaskDetailEditDialog
  * @returns {void} - This function does not return a value.
  */
-function closeTaskDetailEditDialog() {
+function closeTaskDetailEditDialog(HTMLid) {
   const dialog = document.getElementById('taskDetailEditDialog');
   if (!dialog) return;
   dialog.close();
-  clearInputs();
+  clearInputs(HTMLid);
 }
 
 
@@ -398,10 +401,13 @@ function highlightRequiredEditFields() {
 
 // SUBMIT BUTTON
 // Needs to be tested when Firebase is added
-const form = document.querySelector('.form_wrapper');
-const submitBtn = document.getElementById('editTaskSubmitBtn');
 
-form.addEventListener('input', () => {
+
+function  loadEventlistenerForm(){
+  const form = document.querySelector('.form_wrapper');
+  const submitBtn = document.getElementById('editTaskSubmitBtn');
+
+  form.addEventListener('input', () => {
   submitBtn.disabled = !areRequiredEditFieldsFilled(form);
 });
 
@@ -414,3 +420,5 @@ form.addEventListener('submit', async (event) => {
   await getAddTaskData();
   closeTaskDetailEditDialog();
 });
+}
+
