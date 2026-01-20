@@ -154,5 +154,5 @@ document.getElementById('signup_btn').addEventListener("click", async function(e
         "color" : userColor,
         "initial": userInitials
         }   
-    await putToStorage("user", userData, elements);
+    await postToStorage("user", userData, elements);
 }

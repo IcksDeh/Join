@@ -92,7 +92,7 @@ function getAssignee() {
  * @param {string} titleTask - The title of the task.
  * @param {string} descriptionTask - The description of the task. */
 
-async function switchTaskData(titleTask = "", descriptionTask = "", dueDateTask = "", priorityTask = "", assignedToTask = "", categoryTask = "", subtasksTask = "", statusTask = "", HTMLid) {
+async function switchTaskData(titleTask = "", descriptionTask = "", dueDateTask = "", priorityTask = "", assignedToTask = "", categoryTask = "", subtasksTask = "", statusTask = "", HTMLid, taskID) {
   let taskData = {
     "title": titleTask,
     "description": descriptionTask,
@@ -103,7 +103,12 @@ async function switchTaskData(titleTask = "", descriptionTask = "", dueDateTask 
     "subtasks": subtasksTask,
     "statusTask": statusTask,
   }
-  await putToStorage("tasks", taskData,elements ='', HTMLid);
+
+  if (HTMLid === 'task_detail'){
+    await putToStorage("tasks", taskData,elements ='', HTMLid, taskID);
+  } else {
+    await postToStorage("tasks", taskData,elements ='', HTMLid);
+  } 
 }
 
 //Contacts
@@ -144,7 +149,7 @@ async function saveChangesTask(taskID,  index, HTMLid){
   let subtasksTask = getSubtaskEditTask();
   let statusTask = taskList[index].task.statusTask;
 
-await switchTaskEditData(titleTask, descriptionTask, dueDateTask, priorityTask, assignedToTask, categoryTask, subtasksTask, statusTask, HTMLid);
+await switchTaskData(titleTask, descriptionTask, dueDateTask, priorityTask, assignedToTask, categoryTask, subtasksTask, statusTask, HTMLid, taskID);
 }
 
 function getSubtaskEditTask(){
@@ -203,7 +208,7 @@ async function switchContactsData(contactName, contactEmail, contactColor, conta
     "color": contactColor,
     "initial": contactInitals,
   }
-  await putToStorage("contacts", contactData, elements)
+  await postToStorage("contacts", contactData, elements)
 }
 
 //USER
