@@ -130,7 +130,7 @@ function taskEditDialogTemplate(taskID, index){
                 <span class="dropdown_text" id="selected_contacts_edit">Select contacts to assign</span>
                 <div class="dropdown_icon"></div>
               </div>
-              <ul class="dropdown_list_contacts" id="contacts_list_task_edit" style="display:none;">
+              <ul class="dropdown_list_contacts dropdown_list_contacts_task_detail_edit" id="contacts_list_task_edit" style="display:none;">
               </ul>
             </div>
             <div class="assigned_contacts_row" id="assigned_contacts_row_edit"></div>

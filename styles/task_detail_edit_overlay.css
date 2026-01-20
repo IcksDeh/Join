@@ -330,7 +330,7 @@ textarea:focus {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-.dropdown_list_contacts {
+.dropdown_list_contacts_task_detail_edit {
     list-style: none;
     padding: 0;
     width: 100%;
