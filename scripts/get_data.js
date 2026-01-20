@@ -141,23 +141,32 @@ async function saveChangesTask(taskID,  index, HTMLid){
   let priorityTask = getPriority(HTMLid);
   let assignedToTask = getAssignee();
   let categoryTask = taskList[index].task.category;
-  let subtasksTask = getSubtaskEditTask(taskID, index);
+  let subtasksTask = getSubtaskEditTask();
   let statusTask = taskList[index].task.statusTask;
 
-await switchTaskData(titleTask, descriptionTask, dueDateTask, priorityTask, assignedToTask, categoryTask, subtasksTask, statusTask, HTMLid);
+await switchTaskEditData(titleTask, descriptionTask, dueDateTask, priorityTask, assignedToTask, categoryTask, subtasksTask, statusTask, HTMLid);
 }
 
-function getSubtaskEditTask(taskID, index){
+function getSubtaskEditTask(){
   let subtasks = {};
     document.querySelectorAll('.list_element').forEach(li => {
+      const subtaskText = li.querySelector('.subtask_text').textContent.trim();
+      const datasetSubtaskID = li.dataset.subtaskId;
+      const datasetSubtaskStatus = li.dataset.subtaskStatus;
       
-      let subtaskId = crypto.randomUUID();
-      let subtastText = li.querySelector('.subtask_text').textContent.trim();
-
-      subtasks[subtaskId] = {
-        text: subtastText,
+      if(datasetSubtaskID){
+        
+        subtasks[datasetSubtaskID] = {
+          text: subtaskText,
+          done: datasetSubtaskStatus === "true",
+        };        
+      } else { 
+        let subtaskId = crypto.randomUUID();
+        subtasks[subtaskId] = {
+        text: subtaskText,
         done: false
       };
+      }  
     });
     if (Object.keys(subtasks).length === 0) {
       subtasks = "";

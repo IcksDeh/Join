@@ -316,9 +316,8 @@ function loadPrefillAssignee(currentTask){
  * @param {Object} currentTask - The task object.
  */
 function loadPrefillSubtasks(currentTask){
-  const subtaskListEdit = document.getElementById("subtaskList_edit");
   let subtaskElements = currentTask.subtasks;
-  let substaskHTML = subtaskListEdit;
+  let substaskHTML = document.getElementById("subtaskList_edit");
   substaskHTML.innerHTML ="";
   console.log(subtaskElements);
   Object.entries(subtaskElements).forEach(element => {
@@ -326,6 +325,8 @@ function loadPrefillSubtasks(currentTask){
     const li = document.createElement("li");
     li.className = "list_element";
     li.innerHTML = listSubtaskTemplate(contentSubtask);
+    li.dataset.subtaskId = element[0];
+    li.dataset.subtaskStatus = element[1].done;
     substaskHTML.appendChild(li);
   })
 }
