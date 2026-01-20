@@ -427,15 +427,15 @@ textarea:focus {
 .scroll_container_edit {
     max-height: 70vh;
     overflow-y: auto;
-    padding-right: 14px;
-    box-sizing: border-box;
-    scrollbar-width: thin;
-    scrollbar-color: #d5d5d5 transparent;
 }
 
 .scroll_container_edit::-webkit-scrollbar {
     width: 8px;
     background: transparent; 
+}
+
+.scroll_container_edit::-webkit-scrollbar-track {
+    border-radius: 4px;
 }
 
 .scroll_container_edit::-webkit-scrollbar-thumb {

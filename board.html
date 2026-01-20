@@ -130,16 +130,16 @@
 
         <!-- Add Task Dialog -->
         <dialog class="dialog_add_task_container overlay_switch" id="addTaskDialog">
-          <main>
-            <form class="add_task_overlay_wrapper content_wrapper" id="addTaskForm" novalidate>
-              <div class="close_btn_container">
+          <main class="dialog_layout">
+            <form class="add_task_overlay_wrapper content_wrapper dialog_form" id="addTaskForm" novalidate>
+              <div class="close_btn_container no_scroll">
                 <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddTaskDialog('overlay')" role="button" aria-label="Close Dialog">
               </div>    
               <div>
                 <h1>Add Task</h1>
               </div>
 
-              <div class="add_task_form_container">
+              <div class="add_task_form_container add_task_form_container_scroll">
                 <section class="formfield_left">
                   <div class="formfield_left_wrapper">
                     <label for="id_title_add_task_overlay" class="label_text">Title<sup>*</sup></label><br>
@@ -219,7 +219,7 @@
                 </section>
               </div>
 
-              <div class="add_task_bottom_area">
+              <div class="add_task_bottom_area no_scroll">
                 <div  class="required-desktop">
                   <p><sup>*</sup>This field is required</p>
                 </div>

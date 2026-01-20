@@ -50,16 +50,39 @@
 
 /* ---------- SCROLL BAR BIG ---------- */
 
-.dialog_add_task_container::-webkit-scrollbar {
+.add_task_form_container_scroll::-webkit-scrollbar {
     width: 8px;
     background: transparent; 
 }
 
-.dialog_add_task_container::-webkit-scrollbar-thumb {
+.add_task_form_container_scroll::-webkit-scrollbar-thumb {
     background: #d5d5d5;
     border-radius: 6px;
 }
 
-.dialog_add_task_container::-webkit-scrollbar-thumb:hover {
+.add_task_form_container_scroll::-webkit-scrollbar-thumb:hover {
     background: #c8c8c8;
+}
+
+.no_scroll {
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.dialog_layout,
+.dialog_form {
+    max-height: 750px;
+    display: flex;
+    flex-direction: column;
+}
+
+.add_task_form_container_scroll {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.dropdown_list {
+    max-height: 250px;
+    overflow-y: auto;
 }
