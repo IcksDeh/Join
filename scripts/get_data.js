@@ -59,10 +59,36 @@ function getAllSubtasks() {
   }
 }
 
-/** Gathers selected assignees from the task form.
+/** Gathers selected assignees from the edit task form.
  * @returns {Object|string} An object containing selected assignees if any exist, otherwise an empty string. */
-
 function getAssignee() {
+  let selectedAssignees = {};
+  document.querySelectorAll('.dropdown_item_user').forEach(listElement => {
+    const validDataChecked = listElement.querySelector('.checkbox_icon');
+    if (validDataChecked.dataset.checked === 'true') {
+      const name = listElement.querySelector('.user_name_assignee_circle').textContent.trim();
+      const initial = listElement.querySelector('.contact_initial_circle').textContent.trim();
+      const color = listElement.querySelector('.contact_initial_circle').style.backgroundColor;
+      const id = listElement.dataset.assigneeId;
+
+      selectedAssignees[id] = {
+        assigneeName: name,
+        assigneeInitial: initial,
+        assigneeColor: color,
+      }
+    }
+  })
+  if (Object.keys(selectedAssignees).length === 0) {
+    selectedAssignees = "";
+    return selectedAssignees;
+  } else {
+    return selectedAssignees;
+  }
+}
+
+/** Gathers selected assignees from the edit task form.
+ * @returns {Object|string} An object containing selected assignees if any exist, otherwise an empty string. */
+function getAssigneeInEdit() {
    if (!selectedAssigneesEdit || selectedAssigneesEdit.length === 0) {
         return "";
     }
@@ -137,7 +163,7 @@ async function saveChangesTask(taskID,  index, HTMLid){
   let descriptionTask = document.getElementById('id_description_task_detail_edit').value;
   let dueDateTask = document.getElementById('id_due_date_task_detail_edit').value;
   let priorityTask = getPriority(HTMLid);
-  let assignedToTask = getAssignee();
+  let assignedToTask = getAssigneeInEdit();
   let categoryTask = taskList[index].task.category;
   let subtasksTask = getSubtaskEditTask();
   let statusTask = taskList[index].task.statusTask;
