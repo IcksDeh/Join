@@ -63,29 +63,22 @@ function getAllSubtasks() {
  * @returns {Object|string} An object containing selected assignees if any exist, otherwise an empty string. */
 
 function getAssignee() {
-  let selectedAssignees = {};
-  document.querySelectorAll('.dropdown_item_user').forEach(listElement => {
-    const validDataChecked = listElement.querySelector('.checkbox_icon');
-    if (validDataChecked.dataset.checked === 'true') {
-      const name = listElement.querySelector('.user_name_assignee_circle').textContent.trim();
-      const initial = listElement.querySelector('.contact_initial_circle').textContent.trim();
-      const color = listElement.querySelector('.contact_initial_circle').style.backgroundColor;
-      const id = listElement.dataset.assigneeId;
-
-      selectedAssignees[id] = {
-        assigneeName: name,
-        assigneeInitial: initial,
-        assigneeColor: color,
-      }
+   if (!selectedAssigneesEdit || selectedAssigneesEdit.length === 0) {
+        return "";
     }
-  })
-  if (Object.keys(selectedAssignees).length === 0) {
-    selectedAssignees = "";
-    return selectedAssignees;
-  } else {
-    return selectedAssignees;
-  }
+    let result = {};
+    selectedAssigneesEdit.forEach(entry => {
+        result[entry.id] = {
+            assigneeName: entry.contact.name,
+            assigneeInitial: entry.contact.initial,
+            assigneeColor: entry.contact.color
+        };
+    });
+    
+    return result;
 }
+
+
 
 //TASK SWITCH DATA
 /** Updates or creates task data in storage.
