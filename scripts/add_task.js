@@ -57,7 +57,6 @@ function openAddTaskDialog(status) {
 function closeAddTaskDialog(HTMLid) {
   const dialog = document.getElementById("addTaskDialog");
   if (!dialog) return;
-
   dialog.close();
   clearInputs(HTMLid);
 }
@@ -87,8 +86,6 @@ function resetInputFields(HTMLid) {
     }
   });
   const categorySpan = document.getElementById("selected_category_" + HTMLid);
-  // categorySpan.innerHTML = "Select task category";
-  // categorySpan.style.color = "";
     if (categorySpan) {
     categorySpan.innerHTML = "Select task category";
     categorySpan.style.color = "";
@@ -97,13 +94,39 @@ function resetInputFields(HTMLid) {
 
 
 /**
+ * Clears all selected assignees in the given dialog.
+ * Resets the assignee array, unchecks all checkboxes, and removes assigned contacts from the UI.
+ *
+ * @param {string} dialogId - The dialog identifier
+ */
+function clearSelectedAssigneesByDialog(HTMLid) {
+  if (HTMLid === "default") {
+    selectedAssignees = [];
+  } else {
+    selectedAssigneesEdit = [];
+  }
+
+  document
+    .querySelectorAll(`#contacts_list_task_${HTMLid} .checkbox_icon`)
+    .forEach(checkbox => {
+      checkbox.dataset.checked = "false";
+      checkbox.src = "./assets/img/checkbox_unchecked.svg";
+    });
+
+  const assignedRow = document.getElementById(
+    "assigned_contacts_row_" + HTMLid
+  );
+  if (assignedRow) assignedRow.innerHTML = "";
+}
+
+
+/**
  * Clears and resets the entire "Add Task" form.
  * Resets input fields, clears assigned contacts and subtasks, closes dropdowns, resets priority, and cancels subtask editing.
  */
 function clearInputs(HTMLid) {
-  clearSelectedAssignees();
+  clearSelectedAssigneesByDialog(HTMLid);
   resetInputFields(HTMLid);
-  // document.getElementById("selected_contacts").innerHTML = "Select contacts to assign";
   document.getElementById("selected_contacts_" + HTMLid).innerHTML = "Select contacts to assign";
   document.getElementById("assigned_contacts_row_" + HTMLid).innerHTML = "";
   closeDropdownLists();
@@ -410,9 +433,6 @@ function selectCategory(element, HTMLid) {
  * @function showSubtaskActions
  * @returns {void} - This function does not return a value.
  */
-// function showSubtaskActions() {
-//   subtaskActions.style.display = "flex";
-// }
 function showSubtaskActions() {
   if (subtaskActions) subtaskActions.style.display = "flex";
 }
@@ -563,12 +583,10 @@ function initSubtaskEditListeners() {
  */
 function loadEventlistener(HTMLid){
   const createBtn = document.getElementById("id_btn_create_task_" + HTMLid);
-    if(createBtn){ // Sicherheit prüfen
+    if(createBtn){
     createBtn.addEventListener("click", async function (event) {
-      event.preventDefault(); // Form nicht standardmäßig submitten
-
+      event.preventDefault();
       const statusTasks = this.dataset.taskParam;
-
       if (areRequiredFieldsFilled(HTMLid)) {
         await getAddTaskData(statusTasks, HTMLid);
         showToast();
@@ -602,7 +620,6 @@ function areRequiredFieldsFilled(HTMLid) {
 
   const isTitleFilled = title.length > 0;
   const isDueDateFilled = dueDateInput.value.length > 0 && dueDateInput.value >= "2026-01-01";
-  
   const isCategoryFilled = category !== 'Select task category';
 
   return isTitleFilled && isDueDateFilled && isCategoryFilled;
@@ -660,7 +677,7 @@ function highlightRequiredFields(HTMLid) {
   }
 
   category.style.color =
-    category.textContent.trim() === "Select task category"
-      ? "#FF3D00"
-      : "";
+  category.textContent.trim() === "Select task category"
+    ? "#FF3D00"
+    : "";
 }

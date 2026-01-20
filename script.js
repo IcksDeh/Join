@@ -133,15 +133,29 @@ function toggleMenu() {
  *  @event click
  *  @returns {void} - This function does not return a value.
  */
-document.querySelectorAll('dialog').forEach(dialog => {
-    dialog.addEventListener('click', event => {
-
+document.querySelectorAll("dialog").forEach(dialog => {
+    dialog.addEventListener("click", event => {
         if (event.target === dialog) {
-            dialog.close();
-            clearContactInputs();
+        dialog.close();
         }
     });
+    
+    dialog.addEventListener("close", () => {
+        const HTMLid = dialog.dataset.htmlid;
+        if (!HTMLid) return;
+        clearInputs(HTMLid);
+    });
 });
+// document.querySelectorAll('dialog').forEach(dialog => {
+//     dialog.addEventListener('click', event => {
+
+//         if (event.target === dialog) {
+//             dialog.close();
+//             clearContactInputs();
+//             clearInputs(HTMLid);
+//         }
+//     });
+// });
 
 
 /**
@@ -201,6 +215,21 @@ function setupDateValidation() {
  * Adds custom click behavior to date input fields.
  * When the user clicks near the right edge of the input (last 45px), this triggers the native date picker if available.
  */
+function setupDateClickBehavior() {
+    const ids = [ 'id_due_date_add_task_default', 'id_due_date_add_task_overlay', 'id_due_date_task_detail_edit' ];
+    ids.forEach(id => {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        input.addEventListener('pointerdown', function(e) {
+            if ((this.offsetWidth - e.offsetX) < 45 && e.isTrusted) {
+                if (!this.disabled && !this.readOnly && this.offsetParent !== null) {
+                    this.showPicker?.();
+                }
+            }
+        });
+    });
+}
 // function setupDateClickBehavior() {
 //     const ids = ['id_due_date_add_task_default','id_due_date_add_task_overlay', 'id_due_date_task_detail_edit'];
 
@@ -217,21 +246,6 @@ function setupDateValidation() {
 //         });
 //     });
 // }
-function setupDateClickBehavior() {
-    const ids = [ 'id_due_date_add_task_default', 'id_due_date_add_task_overlay', 'id_due_date_task_detail_edit' ];
-    ids.forEach(id => {
-        const input = document.getElementById(id);
-        if (!input) return;
-
-        input.addEventListener('pointerdown', function(e) {
-            if ((this.offsetWidth - e.offsetX) < 45 && e.isTrusted) {
-                if (!this.disabled && !this.readOnly && this.offsetParent !== null) {
-                    this.showPicker?.();
-                }
-            }
-        });
-    });
-}
 
 
 /**
