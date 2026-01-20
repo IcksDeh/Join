@@ -184,12 +184,12 @@ function setupDateValidation() {
         const msg = document.querySelector(`.required_message[data-for="${id}"]`);
         const isInvalid = !input.value || input.value < "2026-01-01";
         input.classList.toggle('error', isInvalid);
-        if (msg) {
-            msg.innerText = input.value
-            ? "Date must be 2026 or later"
-            : "This field is required";
-            msg.classList.toggle('active', isInvalid);
-        }
+            if (msg) {
+                msg.innerText = input.value
+                ? "Date must be 2026 or later"
+                : "This field is required";
+                msg.classList.toggle('active', isInvalid);
+            }
         };
         input.addEventListener('input', validate);
         input.addEventListener('blur', validate);

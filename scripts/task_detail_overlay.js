@@ -191,6 +191,8 @@ async function openTaskDetailEditDialog(taskID, index) {
   if (!dialog.open) {
     dialog.showModal();
     dialog.innerHTML = taskEditDialogTemplate(taskID, index);
+    setupDateValidation();
+    setupDateClickBehavior();
     initDialogInputs();
     loadEventlistenerForm();
     await loadFirebaseData("tasks");
