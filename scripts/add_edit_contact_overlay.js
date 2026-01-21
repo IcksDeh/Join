@@ -7,11 +7,9 @@
  */
 function openAddContactDialog() {
   const dialog = document.getElementById('addContactDialog');
-
   if (!dialog.open) {
     dialog.innerHTML = addContactTemplate();
     dialog.showModal();
-
     setTimeout(() => {
       if (document.activeElement) {
         document.activeElement.blur();
@@ -31,7 +29,6 @@ function openAddContactDialog() {
 function closeAddContactDialog() {
   const dialog = document.getElementById('addContactDialog');
   if (!dialog) return;
-
   dialog.close();
   dialog.innerHTML = "";
   renderContactList()
@@ -52,7 +49,6 @@ function openEditContactDialog(id) {
   if (!dialog.open) {
     dialog.innerHTML = editContactTemplate(selectedContact);
     dialog.showModal();
-
     setTimeout(() => {
       if (document.activeElement) {
         document.activeElement.blur();
@@ -61,14 +57,15 @@ function openEditContactDialog(id) {
   }
 }
 
+
 /**
  * Updates a contact in Firebase using a PATCH request.
+ * 
  * @function updateContactInFirebase
  * @param {string} id - The ID of the contact to update.
  * @param {Object} updatedContact - The updated contact data.
  * @returns {Promise<void>} A promise that resolves when the update is complete.
  */
-
 async function updateContactInFirebase(id, updatedContact) {
   singleContact = fetch(BASE_URL + "contacts/" + id + ".json", {
     method: 'PATCH',
@@ -88,13 +85,15 @@ async function updateContactInFirebase(id, updatedContact) {
     })
     .catch(error => {
       console.error("Fehler beim PATCH:", error);
-    });
+  });
 }
+
 
 /**
  * Updates a contact in the local contacts array by ID.
- * @function updateContactById  */
-
+ * 
+ * @function updateContactById
+*/
 function updateContactById(id, updatedContact) {
   let contactData = contactsArray.find(entry => entry.id == id);
   if (contactData) {
@@ -106,14 +105,16 @@ function updateContactById(id, updatedContact) {
   } else {
     console.error("Kontakt nicht gefunden mit ID:", id);
   }
-
 }
-/** * Retrieves updated contact data from input fields and updates the contact in Firebase.
+
+
+/**
+ * Retrieves updated contact data from input fields and updates the contact in Firebase.
+ * 
  * @function getUpdatedContactData
  * @param {string} id - The ID of the contact to update.
- * @returns {Promise<void>} A promise that resolves when the update is complete.
+ * @returns {Promise<void>} - A promise that resolves when the update is complete.
  */
-
 async function getUpdatedContactData(id) {
   const nameInput = document.getElementById('input-name').value;
   const emailInput = document.getElementById('input-email').value;
@@ -125,15 +126,17 @@ async function getUpdatedContactData(id) {
     initial: getContactInitials(nameInput),
   };
   updateContactById(id, updatedContact);
-
   return await updateContactInFirebase(id, updatedContact);
 }
 
-/** * Updates a contact by ID after validating the edit form.
+
+/**
+ * Updates a contact by ID after validating the edit form.
  * Closes the edit dialog, re-renders the contact list and info, and shows a toast notification.
+ * 
  * @function updateContact
  * @param {string} id - The ID of the contact to update.
- * @returns {Promise<void>} A promise that resolves when the update is complete.
+ * @returns {Promise<void>} - A promise that resolves when the update is complete.
  */
 async function updateContact(id) {
   validateEditContactForm();
@@ -144,22 +147,22 @@ async function updateContact(id) {
   if (oldName !== newName) {
     await updateAssigneeInTasksSafe(id, newName);
   }
-
   closeEditContactDialog();
   renderLocalContactList();
   renderLocalContactInfo(id);
   showToastUpdate();
 }
 
-/** * Displays a toast notification indicating a contact has been updated.
+
+/**
+ * Displays a toast notification indicating a contact has been updated.
  * The message is shown for 2 seconds before reverting to the creation message.
+ * 
  * @function showToastUpdate
  */
-
 function showToastUpdate() {
   const msgBox = document.getElementById('msgBox');
   const overlayElement = document.querySelector('dialog[open]');
-
   if (overlayElement) {
     overlayElement.appendChild(msgBox);
   } else {
@@ -173,6 +176,7 @@ function showToastUpdate() {
   }, 2000);
 }
 
+
 /**
  * Closes the "Edit Contact" dialog.
  * Removes its content and resets all contact input fields.
@@ -183,10 +187,8 @@ function showToastUpdate() {
 function closeEditContactDialog() {
   const dialog = document.getElementById('editContactDialog');
   if (!dialog) return;
-
   dialog.close();
   dialog.innerHTML = "";
-
   clearContactInputs();
 }
 
@@ -199,7 +201,6 @@ function closeEditContactDialog() {
  */
 function clearContactInputs() {
   const inputIds = ["name", "email", "phone"];
-
   inputIds.forEach(id => {
     const element = document.getElementById(id);
     if (element) {
@@ -242,15 +243,11 @@ function validateAddContactForm() {
   const email = document.getElementById('id_contact_email')?.value.trim();
   const phone = document.getElementById('id_contact_phone')?.value.trim();
   const button = document.getElementById('createContactBtn');
-
   if (!button) return false;
-
   const isNameValid = name.length >= 2;
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(phone);
-
   const isFormValid = isNameValid && isEmailValid && isPhoneValid;
-
   button.disabled = !isFormValid;
   return isFormValid;
 }
@@ -267,14 +264,11 @@ function validateEditContactForm() {
   const contactEmail = document.getElementById('input-email')?.value.trim();
   const contactPhone = document.getElementById('input-phone')?.value.trim();
   const submitbutton = document.getElementById('saveContactBtn');
-
   if (!submitbutton) return false;
   const isNameValid = contactName.length >= 2;
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail);
   const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(contactPhone);
-
   const isFormValid = isNameValid && isEmailValid && isPhoneValid;
-
   submitbutton.disabled = !isFormValid;
   return isFormValid;
 }
