@@ -60,6 +60,13 @@
     }
 }
 
+@media (max-width: 540px) {
+    .assigned_contacts_row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
 @media (max-width: 420px) {
     .dialog_task_detail_edit_container {
         padding: 20px;   
