@@ -42,7 +42,6 @@ function checkStatusTask(){
  */
 function loadBoardColumn(taskID, taskContent, index, status){
     let columnElement = document.getElementById('board_column_' +status);
-
     if (columnElement.dataset.initialized == "false"){
         columnElement.innerHTML = "";
         columnElement.classList.remove("no_task_available");  
@@ -84,22 +83,16 @@ function loadAssigneesOfTaks(taskContent, taskID) {
     taskAssigneeElement.innerHTML = "";
     let assignees = taskContent.assignees || {};
     let existingContactsIds = contactsList.map(contact => contact.id);
-    
-
     let validAssignees = Object.entries(assignees)
         .filter(([assigneesId]) => existingContactsIds.includes(assigneesId));
-
-    
     Object.entries(assignees).forEach(([assigneeID])=>{
         if (!existingContactsIds.includes(assigneeID)){
             deleteAssigneeInTaskList(assigneeID, 'tasks/', taskID);
         }
     });
-
     renderVisibleAssignees(validAssignees, 2, taskAssigneeElement);
     renderOverflowCounter(validAssignees.length, 2, taskAssigneeElement);
 }
-
 
 
 /**
@@ -111,7 +104,6 @@ function loadAssigneesOfTaks(taskContent, taskID) {
  */
 function renderVisibleAssignees(assigneeList, maxVisible, container) {
     let countToRender = Math.min(assigneeList.length, maxVisible);
-
     for (let i = 0; i < countToRender; i++) {
         let assignee = assigneeList[i];
         let avatar = document.createElement('div');
@@ -236,14 +228,12 @@ function loadCounterDoneSubtasks(taskID, index){
  */
 async function loadProgressbar(index, taskID){
     await loadFirebaseData('tasks');
-        
     let progressbarElement = document.getElementById('progressbar_'+ taskID);
     let sumAllSubtasks = numberAllSubtasks(index);
     let sumDoneSubtasks = numberDoneSubstask(index);
     let calculatesSubtaksProgress = sumDoneSubtasks / sumAllSubtasks;
     let progressPercent = Math.round(calculatesSubtaksProgress * 100);
-    progressbarElement.style.width = progressPercent + '%';
-    
+    progressbarElement.style.width = progressPercent + '%'; 
 }
 
 
@@ -288,11 +278,8 @@ function numberDoneSubstask(index){
 function filterTasks() {
     let searchTerm = document.querySelector('.style_input_searchbar').value.toLowerCase();
     let msgBox = document.getElementById('searchMsg');
-    
     resetBoardHTML();
-
     let matchCount = findAndDisplayTasks(searchTerm);
-
     if (searchTerm.length > 0 && matchCount === 0) {
         msgBox.innerHTML = "No results found";
     } else {
@@ -308,7 +295,6 @@ function filterTasks() {
  */
 function findAndDisplayTasks(searchTerm) {
     let matchCount = 0;
-    
     taskList.forEach((taskItem, index) => {
         let taskContent = taskItem.task;
         let title = taskContent.title.toLowerCase();
@@ -350,8 +336,6 @@ function resetBoardHTML() {
  * Checks if the "Add Task" dialog is currently visible and if the screen width is less than 700 pixels.
  * If both conditions are met, it redirects the user to the "add_task.html" page.
  * This function is triggered on page load and window resize.
- *
- * @function
  */
 function checkOverlayRedirect() {
     const overlay = document.getElementById('addTaskDialog');
