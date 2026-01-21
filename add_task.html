@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="./styles/mobile_footer.css">
     <link rel="stylesheet" href="./styles/toastmessage.css">
     <link rel="stylesheet" href="./styles/mobile_add_task.css">
-
     <script src="script.js" defer></script>
     <script src="./scripts/add_task.js"defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
@@ -28,17 +27,14 @@
     <div class="order_sidebar_main">
         <aside class="sidebar desktop" id="id_sidebar">
         </aside>
-        
         <div class = "nav_main_content">
             <nav class="nav_bar" id="id_navbar">
             </nav>
-
             <main>
                 <form class="add_task_main_content content_wrapper" id="addTaskForm" novalidate>
                     <div>
                         <h1>Add Task</h1>
                     </div>
-
                     <div class="add_task_form_container">
                         <section class="formfield_left">
                             <div class="formfield_left_wrapper">
@@ -46,7 +42,6 @@
                                 <input type="text" class="add_task_input styled_input validate_required" id="id_title_add_task_default" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 30)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
                                 <span class="required_message" data-for="id_title_add_task_default">This field is required</span><br>
                             </div>
-
                             <label for="id_description_add_task_default" class="label_text">Description</label><br>
                             <textarea class="add_task_description styled_input_description" id="id_description_add_task_default" placeholder="Enter a description" oninput="limitInputLength(this, 90)"></textarea><br>
 
@@ -56,9 +51,7 @@
                                 <span class="required_message" data-for="id_due_date_add_task_default">This field is required</span><br>
                             </div>
                         </section>
-
                         <div class="vertical_line"></div>
-
                         <section class="formfield_right">
                             <label class="label_text">Priority</label><br>
                             <div class="priority_options">
@@ -72,7 +65,6 @@
                                     <img  id ="id_icon_low_task_default" src="./assets/img/prio_low_green.svg" alt="Priority Low">
                                 </button>
                             </div>
-
                             <label class="label_text">Assigned to</label><br>
                             <div class="dropdown" data-type="contacts">
                                 <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('contacts', 'default')">
@@ -84,7 +76,6 @@
                             </div>
                             <div class="assigned_contacts_row" id="assigned_contacts_row_default"></div>
                             <div class="input_spacer"></div>
-
                             <label class="label_text">Category<sup>*</sup></label><br>
                             <div class="dropdown" data-type="category">
                                 <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('category', 'default')">
@@ -97,7 +88,6 @@
                                 </ul>
                             </div>
                             <div class="input_spacer"></div>
-
                             <section class="subtask_wrapper">
                                 <label for="subtasks" class="label_text">Subtasks</label><br>
                                 <div class="input_container">
@@ -115,13 +105,10 @@
                                 <ul id="subtaskList"></ul>
                             </section>
                             <p class="required-mobile"><sup>*</sup>This field is required</p> 
-
                         </section>
-
                     </div>
-
                     <div class="add_task_bottom_area">
-                        <div  class="required-desktop">
+                        <div class="required-desktop">
                             <p><sup>*</sup>This field is required</p>
                         </div>
                         <div class="add_task_btn_area">

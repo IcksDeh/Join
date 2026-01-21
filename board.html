@@ -41,11 +41,9 @@
     <div class="order_sidebar_main">
       <aside class="sidebar desktop" id="id_sidebar">    
       </aside>
-
       <div class = "nav_main_content">
         <nav class="nav_bar" id="id_navbar">
         </nav>
-
         <main class="margin_left margin_top content_wrapper_sidebar">
           <section class="order_header_board">
             <div class="board_mobile_header">
@@ -64,7 +62,6 @@
               <button class="btn_add_task_board button" onclick="openAddTaskDialog('todo')">Add Task<img class="icon_add_btn" src="./assets/img/add_white.svg" alt=""></button>
             </div>
           </section> 
-
           <section class="order_board_sections">
             <!-- Board -->
             <!-- To Do -->
@@ -127,7 +124,6 @@
           </section>
         </main>
         <footer id="mobile_footer"></footer>
-
         <!-- Add Task Dialog -->
         <dialog class="dialog_add_task_container overlay_switch" id="addTaskDialog">
           <main class="dialog_layout">
@@ -138,7 +134,6 @@
               <div>
                 <h1>Add Task</h1>
               </div>
-
               <div class="add_task_form_container add_task_form_container_scroll">
                 <section class="formfield_left">
                   <div class="formfield_left_wrapper">
@@ -146,19 +141,15 @@
                     <input type="text" class="add_task_input styled_input validate_required" id="id_title_add_task_overlay" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 30)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
                     <span class="required_message" data-for="id_title_add_task_overlay">This field is required</span><br>
                   </div>
-
                   <label for="id_description_add_task_overlay" class="label_text">Description</label><br>
                   <textarea class="add_task_description styled_input_description" id="id_description_add_task_overlay" placeholder="Enter a description" oninput="limitInputLength(this, 90)"></textarea><br>
-
                   <div class="formfield_left_wrapper">
                     <label for="id_due_date_add_task_overlay" class="label_text">Due Date<sup>*</sup></label><br>
                     <input type="date" class="add_task_input styled_input validate_required" id="id_due_date_add_task_overlay" oninput="handleRequiredMessage(this)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>
                     <span class="required_message" data-for="id_due_date_add_task_overlay">This field is required</span><br>
                   </div>
                 </section>
-
                 <div class="vertical_line"></div>
-
                 <section class="formfield_right">
                   <label class="label_text">Priority</label><br>
                   <div class="priority_options">
@@ -172,7 +163,6 @@
                       <img  id ="id_icon_low_task_overlay" src="./assets/img/prio_low_green.svg" alt="Priority Low">
                     </button>
                   </div>
-
                   <label class="label_text">Assigned to</label><br>
                   <div class="dropdown" data-type="contacts">
                     <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('contacts', 'overlay')">
@@ -184,7 +174,6 @@
                   </div>
                   <div class="assigned_contacts_row" id="assigned_contacts_row_overlay"></div>
                   <div class="input_spacer"></div>
-
                   <label class="label_text">Category<sup>*</sup></label><br>
                   <div class="dropdown" data-type="category">
                     <div class="dropdown_input add_task_input_dropdown styled_input" onclick="toggleListTasks('category', 'overlay')">
@@ -197,7 +186,6 @@
                     </ul>
                   </div>
                   <div class="input_spacer"></div>
-
                   <section class="subtask_wrapper">
                     <label for="subtasks" class="label_text">Subtasks</label><br>
                     <div class="input_container">
@@ -215,10 +203,8 @@
                     <ul id="subtaskList"></ul>
                   </section>
                   <p class="required-mobile"><sup>*</sup>This field is required</p> 
-
                 </section>
               </div>
-
               <div class="add_task_bottom_area no_scroll">
                 <div  class="required-desktop">
                   <p><sup>*</sup>This field is required</p>
@@ -234,10 +220,8 @@
             </form>
           </main>
         </dialog>
-
         <!-- Task Detail Dialog -->
         <dialog class="dialog_task_detail_container" id="taskDetailDialog"></dialog>
-
         <!-- Task Detail Edit Dialog -->
         <dialog class="dialog_task_detail_edit_container" id="taskDetailEditDialog"></dialog>
       </div>

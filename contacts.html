@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,13 +17,10 @@
     <link rel="stylesheet" href="./styles/mobile_add_edit_contact_overlay.css">
     <link rel="stylesheet" href="./styles/mobile_footer.css">
     <link rel="stylesheet" href="./styles/toastmessage.css">
-    <link rel="stylesheet" href="./styles/mobile_add_edit_contact_overlay.css">
-
-
+    <link rel="stylesheet" href="./styles/mobile_add_edit_contact_overlay.css"
     <script src="./scripts/variables.js" defer></script>
     <script src="./scripts/firebase.js" defer></script>
     <script src="./scripts/get_data.js" defer></script>
-
     <script src="./script.js" defer></script>
     <script src="./templates/sidebar_navbar_template.js" defer></script>
     <script src="./templates/add_edit_contact_overlay_template.js" defer></script>
@@ -32,19 +28,15 @@
     <script src="./templates/contact_content.js" defer></script>
     <script src="./scripts/add_edit_contact_overlay.js" defer></script>
     <script src="./scripts/contacts.js" defer></script>
-
     <title>Contacts</title>
 </head>
-
 <body onload="init(), renderContactList()">
     <div class="order_sidebar_main">
         <aside class="sidebar desktop" id="id_sidebar">
         </aside>
-
         <div class="nav_main_content">
             <nav class="nav_bar" id="id_navbar">
             </nav>
-
             <main class="contact-page">
                 <div class="contact-list-container" id="contact-list-container">
                     <div class="button-container">
@@ -54,7 +46,6 @@
                         </button>
                     </div>
                     <ul id="contact-list" class="contact_list">
-
                     </ul>
                 </div>
                 <div class="contact-info" id="contact-info">
@@ -63,17 +54,13 @@
                         <div class="headline-seperator"></div>
                         <span>Better with a team</span>
                     </div>
-
                 </div>
             </main>
             <footer id="mobile_footer"></footer>
-
             <dialog class="dialog_contact_container" id="addContactDialog"></dialog>
-
             <dialog class="dialog_contact_container" id="editContactDialog"></dialog>
         </div>
     </div>
-
     <div id="msgBox" class="toast-message">Contact successfully created</div>
 </body>
 
