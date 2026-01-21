@@ -14,9 +14,8 @@ let selectedAssignees = [];
 let selectedAssigneesEdit = [];
 
 
-// --------------------------------
+
 // OPEN & CLOSE DIALOG FUNCTIONS
-// --------------------------------
 
 /**
  * Opens the "Add Task" dialog if it is not already open and loads the template.
@@ -31,15 +30,12 @@ function openAddTaskDialog(status) {
     window.location.href = "add_task.html";
     return;
   }
-
   const dialog = document.getElementById("addTaskDialog");
   const btn = document.getElementById("id_btn_create_task_overlay");
   btn.dataset.taskParam = status;
-
   if (!dialog.open) {
     dialog.showModal();
     checkPriority("medium", dialog);
-
     setTimeout(() => {
       document.activeElement?.blur();
     }, 0);
@@ -62,9 +58,7 @@ function closeAddTaskDialog(HTMLid) {
 }
 
 
-// --------------------------------
 // RESET & CLEAR INPUT FUNCTIONS
-// --------------------------------
 
 /**
  * Resets all task input fields to their default state.
@@ -105,14 +99,12 @@ function clearSelectedAssigneesByDialog(HTMLid) {
   } else {
     selectedAssigneesEdit = [];
   }
-
   document
     .querySelectorAll(`#contacts_list_task_${HTMLid} .checkbox_icon`)
     .forEach(checkbox => {
       checkbox.dataset.checked = "false";
       checkbox.src = "./assets/img/checkbox_unchecked.svg";
     });
-
   const assignedRow = document.getElementById(
     "assigned_contacts_row_" + HTMLid
   );
@@ -136,9 +128,7 @@ function clearInputs(HTMLid) {
 }
 
 
-// ----------------------------
 // CHECK PRIORITY FUNCTIONS
-// ----------------------------
 
 /**
  * Updates the UI to reflect the currently selected priority.
@@ -164,11 +154,9 @@ function checkPriority(status,suffix, prefix = 'id',) {
 function updatePriorityButton(priority, isActive, color, prefix, suffix) {
   const btn = document.getElementById(`${prefix}_${priority}_btn_${suffix}`);
   const icon = document.getElementById(`${prefix}_icon_${priority}_task_${suffix}`);
-
   if (!btn || !icon) return;
   btn.classList.toggle(`${priority}_btn_filled`, isActive);
   btn.classList.toggle(`${priority}_btn_default`, !isActive);
-
   icon.src = isActive
     ? `./assets/img/prio_${priority}_white.svg`
     : `./assets/img/prio_${priority}_${color}.svg`;
@@ -186,9 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// ---------------------
 // REQUIRED MESSAGES
-// ---------------------
 
 /**
  * Shows or hides a required field message and toggles an error class based on whether the input is empty and focused.
@@ -198,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
 function handleRequiredMessage(input) {
   const message = document.querySelector(`.required_message[data-for="${input.id}"]`);
   if (!message) return;
-
   if (input === document.activeElement && input.value.trim() === "") {
     message.style.display = "block";
     if (input.classList.contains("validate_required")) {
@@ -211,9 +196,7 @@ function handleRequiredMessage(input) {
 }
 
 
-// -----------------------------------
 // TOGGLES & CLOSES DROPDOWN LISTS
-// -----------------------------------
 
 /**
  * Toggles the visibility of a task-related list element.
@@ -225,7 +208,6 @@ function handleRequiredMessage(input) {
  */
 function toggleListTasks(element, HTMLid) {
   let list = document.getElementById(element + "_list_task_" + HTMLid);
-
   if (list.style.display === "none") {
     list.style.display = "block";
     checkContactList(element, HTMLid);
@@ -247,7 +229,6 @@ function closeDropdownLists() {
   if (contactsList) {
     contactsList.style.display = "none";
   }
-
   const categoryList = document.getElementById("category_list_task");
   if (categoryList) {
     categoryList.style.display = "none";
@@ -255,9 +236,7 @@ function closeDropdownLists() {
 }
 
 
-// -----------------------
 // ASSIGNEES FUNCTIONS
-// -----------------------
 
 /**
  * Checks whether the contact list is already loaded and loads it if necessary.
@@ -271,8 +250,8 @@ function closeDropdownLists() {
 async function checkContactList(element, HTMLid){
   if (element == "contacts"){
     if (contactsList.length > 0) {
-        showContactsInTasks(HTMLid); 
-        return;
+      showContactsInTasks(HTMLid); 
+      return;
     }
   await loadFirebaseData("contacts");
    showContactsInTasks(HTMLid);
@@ -292,7 +271,6 @@ function toggleCheckedIcon(imgElement, index, elementId) {
   const contactId = contact.id;
   const isChecked = imgElement.dataset.checked === "true";
   let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
-
   if (isChecked) {
     assigneeList = assigneeList.filter(c => c.id !== contactId);
     imgElement.dataset.checked = "false";
@@ -322,18 +300,17 @@ function renderAssignedContacts(elementId) {
   container.innerHTML = "";
   let assigneeList = elementId === "default" ? selectedAssignees: selectedAssigneesEdit;
   console.log(assigneeList);
-
-   assigneeList.forEach(contact => {
-      container.innerHTML += 
-      `
-        <div class="contact_initial_circle assigned_contact"
-          data-assignee-id="${contact.id}"
-          title="${contact.contact.name}"
-          style="background-color:${contact.contact.color}">
-          ${contact.contact.initial}
-        </div>
-      `;
-    });
+  assigneeList.forEach(contact => {
+    container.innerHTML += 
+    `
+      <div class="contact_initial_circle assigned_contact"
+        data-assignee-id="${contact.id}"
+        title="${contact.contact.name}"
+        style="background-color:${contact.contact.color}">
+        ${contact.contact.initial}
+      </div>
+    `;
+  });
 }
 
 
@@ -346,12 +323,9 @@ function syncDropdownCheckboxes(elementId) {
     const id = item.dataset.assigneeId;
     const checkbox = item.querySelector(".checkbox_icon");
     let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
-
     const checked = assigneeList.some(c => c.id == id);
     checkbox.dataset.checked = checked;
-    checkbox.src = checked
-      ? "./assets/img/checkbox_checked.svg"
-      : "./assets/img/checkbox_unchecked.svg";
+    checkbox.src = checked ? "./assets/img/checkbox_checked.svg" : "./assets/img/checkbox_unchecked.svg";
   });
 }
 
@@ -362,12 +336,10 @@ function syncDropdownCheckboxes(elementId) {
  */
 function clearSelectedAssignees() {
   selectedAssignees = [];
-
   document.querySelectorAll(".checkbox_icon").forEach((checkbox) => {
     checkbox.dataset.checked = "false";
     checkbox.src = "./assets/img/checkbox_unchecked.svg";
   });
-
   const assignedContainer = document.getElementById("assigned_contacts_row");
   if (assignedContainer) {
     assignedContainer.innerHTML = "";
@@ -383,31 +355,21 @@ function clearSelectedAssignees() {
  * @returns {void} - This function does not return a value.
  */
 function showContactsInTasks(HTMLid) {
-  
   let assigneeList = document.getElementById("contacts_list_task_"+HTMLid);
   assigneeList.innerHTML = "";
-
   for (let index = 0; index < contactsList.length; index++) {
-
     isChecked = contactsList[index].isChecked === true;
-    const checkImg = isChecked
-      ? "./assets/img/checkbox_checked_contact_form.svg"
-      : "./assets/img/checkbox_unchecked_contact_form.svg";
-
+    const checkImg = isChecked ? "./assets/img/checkbox_checked_contact_form.svg" : "./assets/img/checkbox_unchecked_contact_form.svg";
     const checkState = isChecked ? "true" : "false";
-
     const listElement = document.createElement("li");
     listElement.className = "dropdown_item";
-
     listElement.innerHTML = listAssigneeTemplate(contactsList, index, checkImg, checkState, HTMLid);
     assigneeList.appendChild(listElement);
   }
 }
 
 
-// -----------------------------------
 // CATEGORY LIST
-// -----------------------------------
 
 /**
  * Selects category element via onclick. Hides the category list after selection.
@@ -423,9 +385,7 @@ function selectCategory(element, HTMLid) {
 }
 
 
-// -----------------------
 // SUBTASK FUNCTIONS
-// -----------------------
 
 /**
  * Shows the subtask action buttons and sets the display style to flex.
@@ -464,18 +424,10 @@ function cancelSubtask() {
 function addSubtask() {
   const inputSubtask = document.getElementById("subtasks");
   const inputSubtaskEdit = document.getElementById("subtasks_edit") 
-  
   const subtaskList = document.getElementById("subtaskList");
   const subtaskListEdit = document.getElementById("subtaskList_edit")
-  
-  const input = inputSubtaskEdit?.value.trim()
-    ? inputSubtaskEdit
-    : inputSubtask;
-
-  const list = input === inputSubtaskEdit
-    ? subtaskListEdit
-    : subtaskList;
-
+  const input = inputSubtaskEdit?.value.trim() ? inputSubtaskEdit : inputSubtask;
+  const list = input === inputSubtaskEdit ? subtaskListEdit : subtaskList;
   if (!input || !list) return;
   const value = input.value.trim();
   if (!value) return;
@@ -556,10 +508,14 @@ if (subtaskInputEdit) {
 }
 
 
+/**
+ * Initializes event listeners for the subtask edit input field.
+ * Listens for the "Enter" key to add a new subtask without submitting the form.
+ * Calls `addSubtask()` when Enter is pressed.
+ */
 function initSubtaskEditListeners() {
   const subtaskInputEdit = document.getElementById("subtasks_edit");
   if (!subtaskInputEdit) return;
-
   subtaskInputEdit.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -569,9 +525,7 @@ function initSubtaskEditListeners() {
 }
 
 
-// --------------------------------------------------
 // CREATE TASK BUTTON & REQUIRED FIELDS FUNCTIONS
-// --------------------------------------------------
 
 /**
  * Handles the click event for the "Create Task" button.
@@ -617,11 +571,9 @@ function areRequiredFieldsFilled(HTMLid) {
   const title = document.getElementById('id_title_add_task_'+ HTMLid).value.trim();
   const dueDateInput = document.getElementById('id_due_date_add_task_' + HTMLid); 
   const category = document.getElementById('selected_category_'+ HTMLid).textContent.trim();
-
   const isTitleFilled = title.length > 0;
   const isDueDateFilled = dueDateInput.value.length > 0 && dueDateInput.value >= "2026-01-01";
   const isCategoryFilled = category !== 'Select task category';
-
   return isTitleFilled && isDueDateFilled && isCategoryFilled;
 }
 
@@ -634,29 +586,23 @@ function highlightRequiredFields(HTMLid) {
   const titleInput = document.getElementById('id_title_add_task_' + HTMLid);
   const dateInput = document.getElementById('id_due_date_add_task_' + HTMLid);
   const category = document.getElementById('selected_category_' + HTMLid);
-
   if (!titleInput || !dateInput || !category) {
     console.warn("Required elements not found for:", HTMLid);
     return;
   }
-
   const titleMsg = document.querySelector(`.required_message[data-for="id_title_add_task_${HTMLid}"]`);
   const dateMsg = document.querySelector(`.required_message[data-for="id_due_date_add_task_${HTMLid}"]`);
   const isTitleEmpty = titleInput.value.trim() === "";
   titleInput.classList.toggle('error', isTitleEmpty);
-
   if (titleMsg) {
     titleMsg.style.display = isTitleEmpty ? "block" : "none";
   }
-
   const isDateError = !dateInput.value || dateInput.value < "2026-01-01";
   dateInput.classList.toggle('error', isDateError);
-
   if (dateMsg) {
     dateMsg.style.display = isDateError ? "block" : "none";
     dateMsg.innerText = dateInput.value ? "Date must be 2026 or later" : "This field is required";
   }
-
   category.style.color =
   category.textContent.trim() === "Select task category" ? "#FF3D00" : "";
 }
