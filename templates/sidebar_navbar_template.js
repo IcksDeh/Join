@@ -68,7 +68,7 @@ function navbarTemplate(userInitials) {
 
 function navbarLogOffTemplate() {
   return `
-        <div class="content_wrapper order_content_navbar">  
+        <div class="content_wrapper order_content_navbar navbar_log_off">  
             <a class="sidebar_logo_link" href="index.html"><img class="mobile_logo" id="header_logo" src="./assets/img/logo_version_1.svg" alt="logo image"/></a>
             <p class="text_navbar desktop">Kanban Projekt Management Tool</p>
             <div class="help_user_icon"></div>

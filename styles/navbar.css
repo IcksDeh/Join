@@ -101,6 +101,10 @@
   margin-left: 20px;
 }
 
+.navbar_log_off {
+  justify-content: flex-start;
+}
+
 /* MOBILE */
 
 @media (max-width: 1350px) {
