@@ -9,7 +9,7 @@ function taskListElementTemplate(taskID, index) {
       <div class="order_progressbar_counter">
         <div class = tooltip width_progressbar_counter_container>
         <div class="style_progress_bar">
-          <div id="progressbar_${taskID}" class="progressbar_filled tooltip" style="width: 0%;"><p class ="tooltiptext"> <span id="tooltip_done_subtasks_${taskID}"></span> out of <span id="tooltip_all_subtasks_${taskID}"></span> Subtasks completed</p></div>
+          <div id="progressbar_${taskID}" class="progressbar_filled tooltip" style="width: 0%;"><p class ="tooltiptext"> <span id="tooltip_done_subtasks_${taskID}"></span> out of <span id="tooltip_all_subtasks_${taskID}"></span> completed</p></div>
         </div>
         </div>
         <div class="order_counter_progress">
