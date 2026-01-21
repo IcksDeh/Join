@@ -119,14 +119,21 @@ function clearSelectedAssigneesByDialog(HTMLid) {
 function clearInputs(HTMLid) {
   clearSelectedAssigneesByDialog(HTMLid);
   resetInputFields(HTMLid);
-  document.getElementById("selected_contacts_" + HTMLid).innerHTML = "Select contacts to assign";
-  document.getElementById("assigned_contacts_row_" + HTMLid).innerHTML = "";
+  const selectedContactsElement = document.getElementById("selected_contacts_" + HTMLid);
+  if (selectedContactsElement) {
+      selectedContactsElement.innerHTML = "Select contacts to assign";
+  }
+  const assignedContactsRow = document.getElementById("assigned_contacts_row_" + HTMLid);
+  if (assignedContactsRow) {
+      assignedContactsRow.innerHTML = "";
+  }
   closeDropdownLists();
-  subtaskList.innerHTML = "";
+  if (typeof subtaskList !== 'undefined' && subtaskList) subtaskList.innerHTML = "";
+  if (typeof subtaskListEdit !== 'undefined' && subtaskListEdit) subtaskListEdit.innerHTML = "";
+
   checkPriority("medium", HTMLid);
   cancelSubtask();
 }
-
 
 // CHECK PRIORITY FUNCTIONS
 

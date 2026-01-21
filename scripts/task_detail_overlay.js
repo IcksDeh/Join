@@ -456,10 +456,15 @@ form.addEventListener('submit', async (event) => {
 });
 }
 
-function loadEventlistenerTaskEditDialog(taskID,  index){
-  const okBtn = document.getElementById('editTaskSubmitBtn')
-  okBtn.addEventListener('click', async function(event) {
-    event.preventDefault();
-    await saveChangesTask(taskID,  index, 'task_detail');
-  })
+function loadEventlistenerTaskEditDialog(taskID, index) {
+    const okBtn = document.getElementById('editTaskSubmitBtn');
+    const newOkBtn = okBtn.cloneNode(true);
+    okBtn.parentNode.replaceChild(newOkBtn, okBtn);
+
+    newOkBtn.addEventListener('click', async function(event) {
+        event.preventDefault(); 
+        await saveChangesTask(taskID, index, 'task_detail');
+        await loadContentBoard();
+        closeTaskDetailEditDialog('task_detail_edit');
+    });
 }
