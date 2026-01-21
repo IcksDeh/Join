@@ -25,7 +25,6 @@
     .headline-seperator {
         display: none;
     }
-
 }
 
 @media (max-width: 1060px) {
@@ -34,7 +33,6 @@
         height: 100px;
         font-size: 40px;
     }
-
 
     .contact-list-container {
         width: 350px;
@@ -76,18 +74,15 @@
         padding-right: 16px;
     }
 
-
     .contact-list-container {
         width: 270px;
         min-width: 130px;
         padding-left: 16px;
 
     }
-
 }
 
 @media (max-width: 800px) {
-
 
     .name-big button {
         width: 100%;
@@ -108,8 +103,6 @@
     .contact-list-container {
         width: 100%;
     }
-
-
 
     .contact-person {
         align-items: center;
@@ -153,10 +146,6 @@
         transform: none;
     }
 
-
-
-
-
     .contact-big {
         gap: 22px;
         padding-top: 8px;
@@ -172,7 +161,6 @@
         gap: 22px;
     }
 
-
     ul li {
         display: unset;
     }
@@ -187,7 +175,6 @@
     #contact-list li:first-child .beginning-letter {
         margin-top: 0;
     }
-
 }
 
 @media (max-width: 700px) {
@@ -237,7 +224,6 @@
         border-radius: 20px 20px 0 20px;
         box-shadow: 0 4px 4px #00000040;
         z-index: 100;
-
     }
 
     #editContactBtn,
@@ -271,11 +257,7 @@
         .contact-person {
             gap: 16px;
         }
-
-
-
     }
-
 }
 
 .minimized-contact-list {
