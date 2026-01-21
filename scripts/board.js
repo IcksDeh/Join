@@ -290,6 +290,7 @@ function filterTasks() {
 
 /**
  * Iterates through the task list and loads matching tasks to the board.
+ * 
  * @param {string} searchTerm - The string to search for.
  * @returns {number} - The count of tasks found.
  */
