@@ -630,23 +630,6 @@ function areRequiredFieldsFilled(HTMLid) {
  * Highlights missing required fields in the task form.
  * Adds error styles and displays validation messages for empty inputs and an unselected category.
  */
-// function highlightRequiredFields(HTMLid) {
-//   const titleInput = document.getElementById('id_title_add_task_'+ HTMLid);
-//   const dateInput = document.getElementById('id_due_date_add_task_'+ HTMLid);
-//   const category = document.getElementById('selected_category_'+ HTMLid);
-//   const dateMsg = document.querySelector('.required_message[data-for="id_due_date_add_task_overlay"]');
-//   const isTitleEmpty = titleInput.value.trim() === "";
-//   titleInput.classList.toggle('error', isTitleEmpty);
-//   document.querySelector('.required_message[data-for="id_title_add_task_overlay"]').style.display = isTitleEmpty ? "block" : "none";
-//   const isDateError = !dateInput.value || dateInput.value < "2026-01-01";
-    
-//   dateInput.classList.toggle('error', isDateError);
-//   if (dateMsg) {
-//     dateMsg.style.display = isDateError ? "block" : "none";
-//     dateMsg.innerText = dateInput.value ? "Date must be 2026 or later" : "This field is required";
-//   }
-//   category.style.color = category.textContent.trim() === "Select task category" ? "#FF3D00" : "";
-// }
 function highlightRequiredFields(HTMLid) {
   const titleInput = document.getElementById('id_title_add_task_' + HTMLid);
   const dateInput = document.getElementById('id_due_date_add_task_' + HTMLid);
@@ -671,13 +654,9 @@ function highlightRequiredFields(HTMLid) {
 
   if (dateMsg) {
     dateMsg.style.display = isDateError ? "block" : "none";
-    dateMsg.innerText = dateInput.value
-      ? "Date must be 2026 or later"
-      : "This field is required";
+    dateMsg.innerText = dateInput.value ? "Date must be 2026 or later" : "This field is required";
   }
 
   category.style.color =
-  category.textContent.trim() === "Select task category"
-    ? "#FF3D00"
-    : "";
+  category.textContent.trim() === "Select task category" ? "#FF3D00" : "";
 }

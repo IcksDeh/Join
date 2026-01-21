@@ -217,22 +217,6 @@ function setupDateClickBehavior() {
         });
     });
 }
-// function setupDateClickBehavior() {
-//     const ids = ['id_due_date_add_task_default','id_due_date_add_task_overlay', 'id_due_date_task_detail_edit'];
-
-//     ids.forEach(id => {
-//         const input = document.getElementById(id);
-//         if (!input) return;
-
-//         input.addEventListener('pointerdown', function (e) {
-//         if ((this.offsetWidth - e.offsetX) < 45) {
-//             if (typeof this.showPicker === "function" && e.isTrusted) {
-//             this.showPicker();
-//             }
-//         }
-//         });
-//     });
-// }
 
 
 /**
