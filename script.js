@@ -133,7 +133,7 @@ document.querySelectorAll('dialog').forEach(dialog => {
         if (event.target === dialog) {
             dialog.close();
             clearContactInputs();
-            clearInputs(HTMLid);
+            // clearInputs(HTMLid);
         }
     });
 });
