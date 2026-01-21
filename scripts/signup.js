@@ -1,7 +1,12 @@
 function goToSignup() { window.location.href = "sign_up.html"; }
 function guestLogin() { window.location.href = "summary.html"; }
 
-// ---------------- Element Selectors ----------------
+
+// ELEMENT SELECTORS
+
+/**
+ * Returns commonly used user-related DOM elements.
+ */
 function getElementsUser() {
   return {
     checkbox: document.querySelector('.checkbox-row input[type="checkbox"]'),
@@ -15,16 +20,28 @@ function getElementsUser() {
 }
 
 
-// ---------------- Password Icon Logic (Visuals Only) ----------------
+// PASSWORD ICON LOGIC (VISUALS)
+
+/**
+ * Toggles the visibility of a password input and updates the icon.
+ * @param {HTMLInputElement} input - The input element (password field).
+ * @param {HTMLImageElement} icon - The icon element to update.
+ */
 function toggleIconState(input, icon) {
   if (input.value.length === 0) return;
-  
   const isPass = input.type === 'password';
   input.type = isPass ? 'text' : 'password';
   icon.src = isPass ? ICONS.ON : ICONS.OFF;
 }
 
 
+/**
+ * Updates the icon based on input value.
+ * Shows lock icon if input is empty. Shows unlock icon if input has text.
+ * 
+ * @param {HTMLInputElement} input - The input element.
+ * @param {HTMLImageElement} icon - The icon element to update.
+ */
 function updateIconOnInput(input, icon) {
   if (input.value.length > 0) {
     if (icon.src.includes('lock_icon')) {
@@ -38,11 +55,15 @@ function updateIconOnInput(input, icon) {
 }
 
 
+/**
+ * Initializes password toggle functionality for a given input and icon.
+ * @param {string} inputId - The ID of the password input.
+ * @param {string} iconId - The ID of the toggle icon.
+ */
 function setupToggle(inputId, iconId) {
   const input = document.getElementById(inputId);
   const icon = document.getElementById(iconId);
   if (!input || !icon) return;
-
   input.addEventListener('input', () => updateIconOnInput(input, icon));
   icon.addEventListener('click', (e) => {
     e.preventDefault();
@@ -51,7 +72,18 @@ function setupToggle(inputId, iconId) {
 }
 
 
-// ---------------- Validation Logic ----------------
+// VALIDATION LOGIC
+
+/**
+ * Checks if all required form fields are valid.
+ * @param {Object} els - Object containing form elements.
+ * @param {HTMLInputElement} els.name - Name input field.
+ * @param {HTMLInputElement} els.email - Email input field.
+ * @param {HTMLInputElement} els.pass - Password input field.
+ * @param {HTMLInputElement} els.confirm - Password confirmation input field.
+ * @param {HTMLInputElement} els.checkbox - Agreement checkbox.
+ * @returns {boolean} True if all fields are valid, false otherwise.
+ */
 function isValid(els) {
   return (
     els.name.value.trim() !== '' &&
@@ -63,10 +95,14 @@ function isValid(els) {
 }
 
 
+/**
+ * Updates the state and style of the submit button based on form validity.
+ * @param {Object} els - Object containing form elements including the button.
+ * @param {HTMLButtonElement} els.btn - The submit button.
+ */
 function updateBtn(els) {
   const valid = isValid(els);
   els.btn.disabled = !valid;
-  
   if (valid) {
     els.btn.style.backgroundColor = '#2a3647';
     els.btn.style.color = 'white';
@@ -79,12 +115,14 @@ function updateBtn(els) {
 }
 
 
+/**
+ * Checks if the password and confirmation match and shows error if not.
+ */
 function handlePasswordMatch(els) {
   const password = els.pass.value;
   const confirm = els.confirm.value;
   const isMatchStarting = password.startsWith(confirm);
   const isFullMatch = password === confirm;
-  
   if (!isMatchStarting || (password.length === confirm.length && !isFullMatch)) {
     if (confirm.length > 0) {
       els.confirm.classList.add('error');
@@ -95,20 +133,26 @@ function handlePasswordMatch(els) {
     els.confirm.classList.remove('error');
     els.errorMsg.style.display = 'none';
   }
-  
   updateBtn(els);
 }
 
 
-// ---------------- Event Listeners ----------------
+// EVENT LISTENERS 
+
+/**
+ * Adds basic input listeners for name, email, and checkbox to update the submit button.
+ */
 function addBasicListeners(els) {
   const check = () => updateBtn(els);
-  
   els.name.addEventListener('input', check);
   els.email.addEventListener('input', check);
   els.checkbox.addEventListener('change', check);
 }
 
+
+/**
+ * Adds input listeners to password and confirmation fields to handle matching logic.
+ */
 function addPasswordListeners(els) {
   els.confirm.addEventListener('input', () => {
     handlePasswordMatch(els);
@@ -119,40 +163,49 @@ function addPasswordListeners(els) {
 }
 
 
-// ---------------- Initialization ----------------
+// INITIALISATION
+
+/**
+ * Initializes the signup form.
+ */
 function initSignupForm() {
   const els = getElementsUser();
   if (!els.btn || !els.pass) return;
-
   setupToggle('auth_password_input', 'toggle_password_icon');
   setupToggle('auth_confirm_password_input', 'toggle_confirm_password_icon');
-  
   addBasicListeners(els);
   addPasswordListeners(els);
-  
-  // Run once on load to check initial state (e.g. browser autofill)
   updateBtn(els);
 }
 
+
+/**
+ * Handles the signup button click:
+ * Prevents default form submission.
+ * Sends user data to storage. Shows a confirmation toast.
+ * Redirects to home page after 2 seconds.
+ */
 initSignupForm();
 document.getElementById('signup_btn').addEventListener("click", async function(event){
-    event.preventDefault();
-    await getUserData();
-    showToast(); 
-    setTimeout(() => {
-        window.location.href = "index.html";
-    }, 2000);
+  event.preventDefault();
+  await getUserData();
+  showToast(); 
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 2000);
 });
 
 
-  // sinnvoll zusammenfassen? 
-  async function switchUserData(userName, userEmail, userColor, elements, userPassword, userInitials){
-   let userData = {
-        "name" : userName,
-        "eMail" : userEmail,
-        "password" : userPassword,
-        "color" : userColor,
-        "initial": userInitials
-        }   
-    await postToStorage("user", userData, elements);
+/**
+ * Stores user data in persistent storage.
+ */
+async function switchUserData(userName, userEmail, userColor, elements, userPassword, userInitials){
+  let userData = {
+    "name" : userName,
+    "eMail" : userEmail,
+    "password" : userPassword,
+    "color" : userColor,
+    "initial": userInitials
+  }   
+  await postToStorage("user", userData, elements);
 }

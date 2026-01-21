@@ -40,20 +40,3 @@ const ICONS = {
 let currentDraggedElementIndex;
 let currentDraggedElementID;
 let prefillAssigneeCheckbox = [];
-
-
-// ADD TASK
-// const subtaskInput = document.getElementById("subtasks");
-// const subtaskInputEdit = document.getElementById("subtasks_edit"); // New
-// const subtaskList = document.getElementById("subtaskList");
-// const subtaskListEdit = document.getElementById("subtaskList_edit"); // New
-// const subtaskActions = document.querySelector(".subtask_actions");
-
-// const priorities = [
-//   { name: "urgent", color: "red" },
-//   { name: "medium", color: "yellow" },
-//   { name: "low", color: "green" },
-// ];
-
-// let selectedAssignees = [];
-// let selectedAssigneesEdit = [];
