@@ -210,6 +210,41 @@ function getContactInitials(contactName) {
   return contactInitials;
 }
 
+
+// Returns all task IDs where the given contact is assigned
+async function getTasksWithAssignee(contactId) {
+  const res = await fetch(BASE_URL + "tasks.json");
+  const tasks = await res.json();
+  if (!tasks) return [];
+
+  return Object.entries(tasks)
+    .filter(([_, task]) =>
+      task.assignees &&
+      typeof task.assignees === "object" &&
+      task.assignees[contactId]
+    )
+    .map(([taskId]) => taskId);
+}
+
+// Updates assignee name and initials in all tasks for the given contact
+async function updateAssigneeInTasksSafe(contactId, newName) {
+  const taskIds = await getTasksWithAssignee(contactId);
+  const newInitials = getContactInitials(newName);
+
+  for (const taskId of taskIds) {
+    await fetch(
+      `${BASE_URL}tasks/${taskId}/assignees/${contactId}.json`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          assigneeName: newName,
+          assigneeInitial: newInitials
+        })
+      }
+    );
+  }
+}
 //CONTACTS SWITCH DATA
 /** Updates or creates contact data in storage.
  * @param {string} contactName - The name of the contact.

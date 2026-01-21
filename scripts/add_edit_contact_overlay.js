@@ -136,10 +136,17 @@ async function getUpdatedContactData(id) {
  * @returns {Promise<void>} A promise that resolves when the update is complete.
  */
 async function updateContact(id) {
-  validateEditContactForm()
+  validateEditContactForm();
+  const contact = contactsArray.find(c => c.id === id);
+  const oldName = contact.name;
+  const newName = document.getElementById('input-name').value.trim();
   await getUpdatedContactData(id);
+  if (oldName !== newName) {
+    await updateAssigneeInTasksSafe(id, newName);
+  }
+
   closeEditContactDialog();
-  renderLocalContactList()
+  renderLocalContactList();
   renderLocalContactInfo(id);
   showToastUpdate();
 }

@@ -66,7 +66,7 @@ function editContactTemplate(c) {
                                     <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                     <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                                 </button>
-                                <button id="saveContactBtn" class="filled_btn" onclick='updateContact("${c.id}")'>Save
+                                <button type="button" id="saveContactBtn" class="filled_btn" onclick='updateContact("${c.id}")'>Save
                                     <img src="./assets/img/check_white.svg" alt="Save Contact">
                                 </button>
                             </div>
