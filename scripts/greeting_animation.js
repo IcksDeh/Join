@@ -8,16 +8,11 @@ let animationTimeout2;
 function runMobileGreetingAnimation() {
     const { metrics, greeting, header } = getSummaryElements();
     if (!metrics || !greeting) return;
-
     setInitialAnimationState(metrics, greeting, header);
-
-    // Step 1: Fade out greeting after 1.5s
     animationTimeout1 = setTimeout(() => {
         greeting.classList.remove('fade_in_animation');
         greeting.classList.add('fade_out_animation');
     }, 1500);
-
-    // Step 2: Show metrics and header after 2.5s
     animationTimeout2 = setTimeout(() => {
         finalizeMobileAnimation(metrics, greeting, header);
     }, 2500);
@@ -42,7 +37,7 @@ function updateLayoutWithoutAnimation() {
 
 
 /**
- * helper: Retrieves the necessary DOM elements.
+ * Helper: Retrieves the necessary DOM elements.
  */
 function getSummaryElements() {
     return {
@@ -54,29 +49,25 @@ function getSummaryElements() {
 
 
 /**
- * helper: Sets the initial state for the animation (hides content, shows greeting).
+ * Helper: Sets the initial state for the animation (hides content, shows greeting).
  */
 function setInitialAnimationState(metrics, greeting, header) {
     metrics.classList.add('d_none');
     if (header) header.classList.add('d_none');
-    
     greeting.classList.add('mobile_greeting_overlay');
     greeting.classList.add('fade_in_animation');
 }
 
 
 /**
- * helper: Finalizes the animation by hiding greeting and showing content.
+ * Helper: Finalizes the animation by hiding greeting and showing content.
  */
 function finalizeMobileAnimation(metrics, greeting, header) {
     greeting.classList.add('d_none');
     greeting.classList.remove('mobile_greeting_overlay', 'fade_out_animation');
-    
     metrics.classList.remove('d_none');
     metrics.classList.add('fade_in_animation');
-    
     document.documentElement.classList.remove('hide-header-initially');
-
     if (header) {
         header.classList.remove('d_none');
         header.classList.add('fade_in_animation');
@@ -86,15 +77,13 @@ function finalizeMobileAnimation(metrics, greeting, header) {
 
 
 /**
- * helper: Clears timeouts and removes animation classes.
+ * Helper: Clears timeouts and removes animation classes.
  */
 function resetAnimationClasses(metrics, greeting, header) {
     clearTimeout(animationTimeout1);
     clearTimeout(animationTimeout2);
-
     greeting.classList.remove('mobile_greeting_overlay', 'fade_in_animation', 'fade_out_animation');
     metrics.classList.remove('fade_in_animation');
-    
     if (header) {
         header.classList.remove('fade_in_animation');
         header.classList.remove('d_none');
@@ -103,7 +92,7 @@ function resetAnimationClasses(metrics, greeting, header) {
 
 
 /**
- * helper: Applies visibility based on screen width (Desktop vs Mobile).
+ * Helper: Applies visibility based on screen width (Desktop vs Mobile).
  */
 function applyResponsiveVisibility(metrics, greeting) {
     if (window.innerWidth > 1220) {
@@ -126,21 +115,18 @@ function handleSummaryView(shouldShowAnimation) {
     } else {
         updateLayoutWithoutAnimation();
     }
-    
     localStorage.removeItem("showMobileGreeting");
     window.addEventListener('resize', updateLayoutWithoutAnimation);
 }
 
 
 /**
- * Helper to prepare the greeting text and username.
+ * Helper: Prepars the greeting text and username.
  */
 function getGreetingData(user) {
     let greeting = getGreeting();
-    
     if (user && user.name !== "Guest") {
         return { userName: user.name, greetingText: greeting + "," };
     }
-    
     return { userName: "", greetingText: greeting + "!" };
 }
