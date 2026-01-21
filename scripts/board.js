@@ -185,13 +185,15 @@ function loadSummarySubtasks(taskID, index){
         return;
     }
     const currentTask = currrentTaskElement.task;
-    const elementAllSubtasks = document.getElementById("counterAllSubtasks_"+ taskID);
+    const allSubtasks = document.getElementById("counterAllSubtasks_"+ taskID);
+    const tooltipAllSubtasks = document.getElementById("tooltip_all_subtasks_"+ taskID)
     let elementSubtasks = currentTask.subtasks;
     let counterAllSubtaks = 0
     Object.entries(elementSubtasks).forEach(eachElement => {
         counterAllSubtaks ++;
     })
-    elementAllSubtasks.innerHTML = counterAllSubtaks;
+    allSubtasks.innerHTML = counterAllSubtaks;
+    tooltipAllSubtasks.innerHTML = counterAllSubtaks;
 }
 
 
@@ -207,7 +209,9 @@ function loadCounterDoneSubtasks(taskID, index){
         return;
     }
     const currentTask = currrentTaskElement.task;
-    const elementAllSubtasks = document.getElementById("counterDoneSubtasks_"+ taskID);
+    const doneSubtasks = document.getElementById("counterDoneSubtasks_"+ taskID);
+    const tooltipDoneSubtasks = document.getElementById("tooltip_done_subtasks_"+ taskID)
+
     let elementSubtasks = currentTask.subtasks;
     let counterDoneSubtasks = 0;
     Object.values(elementSubtasks).forEach(eachElement => {
@@ -215,7 +219,8 @@ function loadCounterDoneSubtasks(taskID, index){
             counterDoneSubtasks ++;
         }
     })
-    elementAllSubtasks.innerHTML = counterDoneSubtasks;
+        doneSubtasks.innerHTML = counterDoneSubtasks;
+        tooltipDoneSubtasks.innerHTML = counterDoneSubtasks;
 }
 
 
@@ -226,8 +231,7 @@ function loadCounterDoneSubtasks(taskID, index){
  * @param {number} index - The index of the task in the task list.
  * @param {string} taskID - The unique ID of the task, used to find the progress bar element.
  */
-async function loadProgressbar(index, taskID){
-    await loadFirebaseData('tasks');
+function loadProgressbar(index, taskID){
     let progressbarElement = document.getElementById('progressbar_'+ taskID);
     let sumAllSubtasks = numberAllSubtasks(index);
     let sumDoneSubtasks = numberDoneSubstask(index);

@@ -85,7 +85,8 @@ function loadAssigneesTaskDetails(taskContent, taskID){
 function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
   let subtaskListElement = document.getElementById("subtasks_task_detail_list");
   let subtaskList = taskContent.subtasks;
-  Object.entries(subtaskList).forEach(subtaskElement =>{
+  if(subtaskList !== ""){
+    Object.entries(subtaskList).forEach(subtaskElement =>{
     console.log(subtaskElement);
     let subtaskID = subtaskElement[0];
     let subtaskContent = subtaskElement[1];
@@ -95,6 +96,7 @@ function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
     subtaskListElement.appendChild(subtaskHTMLElement);
     checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent);
   })
+  }
 }
 
 

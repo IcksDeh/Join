@@ -30,7 +30,7 @@ function taskDetailTemplate(taskContent, taskID, taskIndex){
         <div id="assignees_task_details_${taskID}" class="assigned_user">
         </div>
 
-        <p class="task_detail_description">Subtasks</p>
+        <p class="task_detail_description">Subtasks:</p>
         <div id="subtasks_task_detail_list">
         </div>
       </div>
