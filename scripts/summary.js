@@ -7,22 +7,26 @@ async function loadNumberofTasks(){
     loadSumOfEachTask();
     loadUrgentTasks();
     loadEarliestDueDate();
-    
 }
 
-/** Loads and displays the total number of tasks. */
+
+/**
+ * Loads and displays the total number of tasks.
+ */
 function loadSumAllTasks(){
     let allTaskSummaryElement = document.getElementById('id_summary_allTasks');
     let sumAllTasks = taskList.length;
     allTaskSummaryElement.innerHTML = sumAllTasks;
 }
 
-/** Loads and displays the number of tasks for each status category. */
 
+/**
+ * Loads and displays the number of tasks for each status category.
+ */
 function loadSumOfEachTask(){
 let status = ['todo', 'done', 'inProgress', 'awaitFeedback'];
     console.log(taskList);
-    status.forEach(statusElement =>{
+    status.forEach(statusElement => {
         let numberStatusTask = 0;
         taskList.forEach(taskElement => {
             if(statusElement == taskElement.task.statusTask)
@@ -34,11 +38,13 @@ let status = ['todo', 'done', 'inProgress', 'awaitFeedback'];
     })
 }
 
-/** Loads and displays the number of urgent tasks. */
 
+/**
+ * Loads and displays the number of urgent tasks.
+ */
 function loadUrgentTasks(){
     let sumUrgentTasks = 0;
-    taskList.forEach(taskElement =>{
+    taskList.forEach(taskElement => {
         if (taskElement.task.priority.name == 'urgent')
             sumUrgentTasks++
     })
@@ -46,7 +52,10 @@ function loadUrgentTasks(){
     taskHTMLElement.innerHTML = sumUrgentTasks;
 }
 
-/** Loads and displays the earliest due date among urgent tasks. */
+
+/**
+ * Loads and displays the earliest due date among urgent tasks.
+ */
 function loadEarliestDueDate(){
     let dueDateHTMLElement = document.getElementById("id_summary_dueDate");
     let now = new Date();
@@ -58,9 +67,7 @@ function loadEarliestDueDate(){
         return;
     }
     const earliestDueDate = urgentDueDates.reduce((closest, current) => {
-        return Math.abs(current - now) < Math.abs(closest - now)
-            ? current
-            : closest;
+        return Math.abs(current - now) < Math.abs(closest - now) ? current : closest;
     });
     dueDateHTMLElement.innerHTML =earliestDueDate.toISOString().split("T")[0];
 }

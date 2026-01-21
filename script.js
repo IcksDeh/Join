@@ -16,7 +16,6 @@ function loadSidebar() {
     const sidebar = document.getElementById('id_sidebar');
     sidebar.innerHTML = "";
     let user = JSON.parse(localStorage.getItem('activeUser'));
-
     if (user) {
         sidebar.innerHTML = sidebarLoginTemplate();
     } else {
@@ -35,7 +34,6 @@ function loadNavbar() {
     const navbar = document.getElementById('id_navbar');
     navbar.innerHTML = "";
     let user = JSON.parse(localStorage.getItem('activeUser'));
-    
     if (user) {
         navbar.innerHTML = navbarTemplate(user.initials);
     } else {
@@ -54,7 +52,6 @@ function loadMobileFooter() {
     const footer = document.getElementById('mobile_footer');
     if (!footer) return;
     footer.innerHTML = "";
-    
     let user = JSON.parse(localStorage.getItem('activeUser'));
     if (user) {
         footer.innerHTML = mobileFooterLoginTemplate();
@@ -74,7 +71,6 @@ function loadSummary() {
     let user = JSON.parse(localStorage.getItem('activeUser'));
     let greetingText = getGreeting(); 
     let userName = "";
-
     if (user && user.name !== "Guest") {
         greetingText = greetingText + ","; 
         userName = user.name;
@@ -82,7 +78,6 @@ function loadSummary() {
         greetingText = greetingText + "!";
         userName = ""; 
     }
-
     const summaryContent = document.getElementById('id_content_summary');
     summaryContent.innerHTML = summaryContentTemplate(userName, greetingText);
     const shouldShowAnimation = localStorage.getItem("showMobileGreeting") === "true";
@@ -135,7 +130,6 @@ function toggleMenu() {
  */
 document.querySelectorAll('dialog').forEach(dialog => {
     dialog.addEventListener('click', event => {
-
         if (event.target === dialog) {
             dialog.close();
             clearContactInputs();
@@ -175,20 +169,16 @@ function getRandomColor(){
  */
 function setupDateValidation() {
     const ids = ['id_due_date_add_task_default','id_due_date_add_task_overlay', 'id_due_date_task_detail_edit'];
-
     ids.forEach(id => {
         const input = document.getElementById(id);
         if (!input) return;
         input.min = "2026-01-01"; input.max = "2030-12-31";
-
         const validate = () => {
         const msg = document.querySelector(`.required_message[data-for="${id}"]`);
         const isInvalid = !input.value || input.value < "2026-01-01";
         input.classList.toggle('error', isInvalid);
             if (msg) {
-                msg.innerText = input.value
-                ? "Date must be 2026 or later"
-                : "This field is required";
+                msg.innerText = input.value ? "Date must be 2026 or later" : "This field is required";
                 msg.classList.toggle('active', isInvalid);
             }
         };
@@ -207,7 +197,6 @@ function setupDateClickBehavior() {
     ids.forEach(id => {
         const input = document.getElementById(id);
         if (!input) return;
-
         input.addEventListener('pointerdown', function(e) {
             if ((this.offsetWidth - e.offsetX) < 45 && e.isTrusted) {
                 if (!this.disabled && !this.readOnly && this.offsetParent !== null) {
@@ -236,14 +225,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function highlightActiveLink() {
     const links = document.querySelectorAll('.link_active');
     const currentPath = window.location.pathname;
-
     links.forEach(link => {
         const linkPath = link.getAttribute('href').replace('./', '');
         const icon = link.querySelector('.icon_sidebar, .mobile_link_icon'); 
-
         if (currentPath.includes(linkPath)) {
             link.classList.add('active');
-            
             if (icon) { 
                 if (linkPath === 'summary.html') {
                     icon.src = './assets/img/navbar_summary_white_mobile.svg';
@@ -270,7 +256,6 @@ function highlightActiveLink() {
 function showToast() {
     const msgBox = document.getElementById('msgBox');
     const overlayElement = document.querySelector('dialog[open]'); 
-
     if (overlayElement) {
         overlayElement.appendChild(msgBox);
     } else {
@@ -315,7 +300,6 @@ function goToBoardPage() {
  */
 document.addEventListener('click', function (event) {
     const dropdowns = document.querySelectorAll('.dropdown');
-
     dropdowns.forEach(dropdown => {
         if (!dropdown.contains(event.target)) {
             const list = dropdown.querySelector('ul');
