@@ -1,4 +1,4 @@
-/* ---------- FORM AREA ---------- */
+/* FORM AREA */
 
 .add_task_main_content {
     padding-top: 100px;
@@ -178,7 +178,7 @@ input[type="date"]:-ms-input-placeholder {
     padding-top: 8px;
 }
 
-/* ---------- DROPDOWN INPUTS ---------- */
+/* DROPDOWN INPUTS */
 
 .dropdown {
     width: 100%; 
@@ -291,7 +291,7 @@ textarea:focus {
     content: url("../assets/img/checkbox_checked_contact_form.svg");
 }
 
-/* ---------- SCROLL BAR ---------- */
+/* SCROLL BAR */
 
 .dropdown_list_contacts::-webkit-scrollbar {
     width: 8px;
@@ -311,7 +311,7 @@ textarea:focus {
     background: #c8c8c8;
 }
 
-/* ---------- PRIORITY BOTTON AREA ---------- */
+/* PRIORITY BOTTON AREA */
 
 .priority_options {
     display: flex;
@@ -387,7 +387,7 @@ textarea:focus {
     gap: 8px;
 }
 
-/* ---------- ASSIGNED TO DROP-DOWN ---------- */
+/* ASSIGNED TO DROP-DOWN */
 
 .contact_initial_circle {
     display: flex;
@@ -408,7 +408,7 @@ textarea:focus {
     font-size: 20px;
 }
 
-/* ---------- SUBTASK AREA AND BUTTON ---------- */
+/* SUBTASK AREA AND BUTTON */
 
 .subtask_wrapper {
     position: relative;
@@ -560,7 +560,7 @@ textarea:focus {
     cursor: pointer;
 }
 
-/* ---------- BOTTOM AREA ---------- */
+/* BOTTOM AREA */
 
 .add_task_bottom_area {
     display: flex;

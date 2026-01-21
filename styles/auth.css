@@ -1,15 +1,11 @@
-/* =========================================
-  BASE STYLES
-========================================= */
+/* BASE STYLES */
 
 .auth_body {
   display: block;
   width: 100%;
 }
 
-/* =========================================
-  HEADER
-========================================= */
+/* HEADER */
 
 #auth_header {
   max-width: 1440px;
@@ -43,9 +39,7 @@
   margin-top: 16px;
 }
 
-/* =========================================
-  BUTTONS
-========================================= */
+/* BUTTONS */
 
 .signup_btn {
   width: 91px;
@@ -86,9 +80,7 @@
   border-color: #29abe2;
 }
 
-/* =========================================
-  MAIN CONTENT
-========================================= */
+/* MAIN CONTENT */
 
 .auth_main {
   max-width: 1440px;
@@ -136,9 +128,7 @@
   font-weight: 600;
 }
 
-/* =========================================
-  INPUTS
-========================================= */
+/* INPUTS */
 
 .input-wrapper {
   position: relative;
@@ -234,9 +224,7 @@
   animation: fadeIn 0.5s forwards 1.5s;
 }
 
-/* =========================================
-  FOOTER
-========================================= */
+/* FOOTER */
 
 .auth_footer {
   display: flex;
@@ -253,19 +241,17 @@
   padding-top: 150px;
 }
 
-
-
 .auth_mobile {
   display: none;
 }
 
-/* =========================================
- MEDIA QUERIES
-========================================= */
+/* MOBILE */
+
 @media (max-width: 700px) {
   .auth_title {
     padding-top: 32px;
   }
+
   .auth_mobile {
     display: flex;
     padding-top: 87px;
@@ -331,11 +317,11 @@
   }
 }
   
-
 @media (max-width: 360px) {
   .auth_main_content {
     width: 300px;
   }
+
   .input-wrapper,
   .password-input-wrapper {
     width: 260px;

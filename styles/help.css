@@ -46,10 +46,13 @@
   margin-right: 40px;
 }
 
+/* MOBILE */
+
 @media (max-width: 700px) {
   .style_content_help {
     margin-top: 50px;
   }
+  
   .help_margin_right {
     margin-right: 16px;
   }

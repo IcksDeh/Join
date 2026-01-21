@@ -211,7 +211,7 @@ input[type="date"]:-ms-input-placeholder {
     padding-top: 8px;
 }
 
-/* ---------- PRIORITY BOTTON AREA ---------- */
+/* PRIORITY BOTTON AREA */
 
 .priority_options_edit {
     display: flex;
@@ -288,7 +288,7 @@ input[type="date"]:-ms-input-placeholder {
     gap: 8px;
 }
 
-/* ---------- DROPDOWN INPUTS ---------- */
+/* DROPDOWN INPUTS */
 
 .dropdown {
     width: 100%; 
@@ -402,7 +402,7 @@ textarea:focus {
     padding-left: 12px;
 }
 
-/* ---------- SCROLL BAR SMALL ---------- */
+/* SCROLL BAR SMALL */
 
 .dropdown_list_contacts_task_detail_edit::-webkit-scrollbar {
     width: 8px;
@@ -422,7 +422,7 @@ textarea:focus {
     background: #c8c8c8;
 }
 
-/* ---------- SCROLL BAR BIG ---------- */
+/* SCROLL BAR BIG */
 
 .no_scroll {
     flex-shrink: 0;
@@ -452,7 +452,7 @@ textarea:focus {
     background: #c8c8c8;
 }
 
-/* ---------- BUTTON AREA ---------- */
+/* BUTTON AREA */
 
 .task_detail_edit_btn {
     display: flex;

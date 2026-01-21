@@ -1,4 +1,4 @@
-/* ---------- FORM AREA ---------- */
+/* FORM AREA */
 
 .dialog_add_task_container {
     width: 1200px;
@@ -48,7 +48,7 @@
     content: url("../assets/img/x_hover.svg");
 }
 
-/* ---------- SCROLL BAR BIG ---------- */
+/* SCROLL BAR BIG */
 
 .add_task_form_container_scroll::-webkit-scrollbar {
     width: 8px;

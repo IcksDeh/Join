@@ -1,4 +1,4 @@
-/* ---------- TASK DETAIL OVERLAY ---------- */
+/* TASK DETAIL OVERLAY */
 
 @media (max-width: 500px) {
     .dialog_task_detail_container {
@@ -52,7 +52,7 @@
     }
 }
 
-/* ---------- TASK DETAIL EDIT OVERLAY ---------- */
+/* TASK DETAIL EDIT OVERLAY */
 
 @media (max-width: 1000px) {
     .list_icon_element {

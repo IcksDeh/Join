@@ -53,6 +53,8 @@
   padding-left: 10px;
 }
 
+/* MOBILE */
+
 @media (max-width: 700px) {
   #mobile_footer {
     display: flex;

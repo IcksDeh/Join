@@ -103,6 +103,8 @@
   display: flex;
 }
 
+/* MOBILE */
+
 @media(max-width: 1350px) {
   .style_login_icon_text {
     padding-left: 42px;

@@ -1,6 +1,4 @@
-/* -----------------------------
-  Text & Typography
-------------------------------*/
+/* TEXT & TYPOGRAPHY */
 
 .legal_privacy_p {
   margin-bottom: 24px;
@@ -42,9 +40,7 @@ h3 {
   font-size: 16px;
 }
 
-/* -----------------------------
-  Lists
-------------------------------*/
+/* LISTS */
 
 .pp_ul {
   padding-left: 20px;
@@ -59,9 +55,7 @@ h3 {
   color: #2a3647;
 }
 
-/* -----------------------------
-  Page Titles / Headers
-------------------------------*/
+/* HEADERS */
 
 .legal_privacy_title {
   padding-bottom: 30px;
@@ -93,12 +87,13 @@ h3 {
   width: 300px;
 }
 
-/* -----------------------------
-  Page Layout / Containers
-------------------------------*/
+/* PAIGE LAYOUT */
+
 .pp_content {
   padding-bottom: 50px;
 }
+
+/* MOBILE */
 
 @media (max-width: 1350px) {
   .design_privacy_legal {
@@ -106,22 +101,22 @@ h3 {
   }
 
   .legal_privacy_main {
- margin-left: 50px;
- }
+    margin-left: 50px;
+  }
 
- .link_active.active {
-  width: 200px;
-}
+  .link_active.active {
+    width: 200px;
+  }
 }
 
 @media (max-width:1000px) {
- .legal_privacy_main {
-  margin-left: 30px;
- }
+  .legal_privacy_main {
+    margin-left: 30px;
+  }
 }
 
 @media (max-width:700px) {
- .legal_privacy_main {
-  margin: 50px 16px 10px 16px;
- }
+  .legal_privacy_main {
+    margin: 50px 16px 10px 16px;
+  }
 }

@@ -1,4 +1,4 @@
-/* ---------- FORM AREA ---------- */
+/* FORM AREA */
 
 .dialog_contact_container {
     width: 1150px;
@@ -63,7 +63,7 @@
     opacity: 1;
 }
 
-/* ---------- LEFT CONTAINER ---------- */
+/* LEFT CONTAINER */
 
 .contact_left_container {
     width: 400px;
@@ -104,7 +104,7 @@
     width: 80px;
 }
 
-/* ---------- RIGHT CONTAINER ---------- */
+/* RIGHT CONTAINER */
 
 .contact_right_container {
     margin-left: 80px;
@@ -155,7 +155,7 @@
     box-shadow: 0 0 4px rgba(0,0,0,0.15);
 }
 
-/* ---------- INPUT AREA ---------- */
+/* INPUT AREA */
 
 .input_fields_container {
     display: flex;
@@ -220,7 +220,7 @@ textarea:focus {
     background-color: white;
 }
 
-/* ---------- BOTTOM BOTTON AREA ---------- */
+/* BOTTOM BOTTON AREA */
 
 .contact_btn_area {
     display: flex;

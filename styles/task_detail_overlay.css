@@ -36,7 +36,7 @@
     opacity: 1;
 }
 
-/* ---------- CONTENT AREA ---------- */
+/* CONTENT AREA */
 
 .close_btn_container_task_detail {
     position: absolute;
@@ -167,7 +167,7 @@
     content: url("../assets/img/checkbox_checked_contact_form.svg");
 }
 
-/* ---------- SCROLL BAR BIG ---------- */
+/* SCROLL BAR BIG */
 
 .no_scroll {
     flex-shrink: 0;
@@ -197,7 +197,7 @@
     background: #c8c8c8;
 }
 
-/* ---------- BOTTOM BOTTON AREA ---------- */
+/* BOTTOM BOTTON AREA */
 
 .bottom_area {
     display: flex;

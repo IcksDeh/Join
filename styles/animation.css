@@ -1,6 +1,4 @@
-/* =========================================
-  SPLASH SCREEN & ANIMATIONS
-========================================= */
+/* SPLASH SCREEN & ANIMATIONS */
 
 #splash {
   position: fixed;
@@ -28,9 +26,7 @@
   animation: fadeIn 0.5s forwards 1.1s;
 }
 
-/* =========================================
-  KEYFRAMES
-========================================= */
+/* KEYFRAMES */
 
 @keyframes logoMove {
   0% {
@@ -64,9 +60,8 @@
   }
 }
 
-/* =========================================
-  MOBILE (< 600px) 
-========================================= */
+/* MOBILE */
+
 @media (max-width: 700px) {
   #splash {
     background-color: #2a3647;
