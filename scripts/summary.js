@@ -25,7 +25,7 @@ function loadSumAllTasks(){
  */
 function loadSumOfEachTask(){
 let status = ['todo', 'done', 'inProgress', 'awaitFeedback'];
-    console.log(taskList);
+    // console.log(taskList);
     status.forEach(statusElement => {
         let numberStatusTask = 0;
         taskList.forEach(taskElement => {

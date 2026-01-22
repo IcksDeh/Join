@@ -126,7 +126,7 @@ function loadPrefillSubtasks(currentTask){
   let subtaskElements = currentTask.subtasks;
   let substaskHTML = document.getElementById("subtaskList_edit");
   substaskHTML.innerHTML ="";
-  console.log(subtaskElements);
+  // console.log(subtaskElements);
   Object.entries(subtaskElements).forEach(element => {
     let contentSubtask = element[1].text;
     const li = document.createElement("li");

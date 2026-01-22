@@ -181,7 +181,7 @@ function loadCategoryLabelColor(taskContent, taskID){
 function loadSummarySubtasks(taskID, index){
     const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
     if (!currrentTaskElement) {
-        console.error("Task mit ID nicht gefunden:", taskID);
+        // console.error("Task mit ID nicht gefunden:", taskID);
         return;
     }
     const currentTask = currrentTaskElement.task;
@@ -205,7 +205,7 @@ function loadSummarySubtasks(taskID, index){
 function loadCounterDoneSubtasks(taskID, index){
     const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
     if (!currrentTaskElement) {
-        console.error("Task mit ID nicht gefunden:", taskID);
+        // console.error("Task mit ID nicht gefunden:", taskID);
         return;
     }
     const currentTask = currrentTaskElement.task;

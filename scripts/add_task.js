@@ -306,7 +306,7 @@ function renderAssignedContacts(elementId) {
   const container = document.getElementById("assigned_contacts_row_" + elementId);
   container.innerHTML = "";
   let assigneeList = elementId === "default" ? selectedAssignees: selectedAssigneesEdit;
-  console.log(assigneeList);
+  // console.log(assigneeList);
   assigneeList.forEach(contact => {
     container.innerHTML += 
     `
@@ -563,7 +563,7 @@ function loadEventlistener(HTMLid){
       }
     });
   } else {
-    console.warn("Button 'id_btn_create_task_default' nicht gefunden");   
+    // console.warn("Button 'id_btn_create_task_default' nicht gefunden");   
   }
 }
 
@@ -594,7 +594,7 @@ function highlightRequiredFields(HTMLid) {
   const dateInput = document.getElementById('id_due_date_add_task_' + HTMLid);
   const category = document.getElementById('selected_category_' + HTMLid);
   if (!titleInput || !dateInput || !category) {
-    console.warn("Required elements not found for:", HTMLid);
+    // console.warn("Required elements not found for:", HTMLid);
     return;
   }
   const titleMsg = document.querySelector(`.required_message[data-for="id_title_add_task_${HTMLid}"]`);

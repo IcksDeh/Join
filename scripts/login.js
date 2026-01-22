@@ -120,7 +120,7 @@ async function login() {
   try {
     await processLogin(email, password);
   } catch (error) {
-    console.error("An error occurred during login.", error);
+    // console.error("An error occurred during login.", error);
   }
 }
 
@@ -137,7 +137,7 @@ async function login() {
 async function processLogin(email, password) {
   let usersResponse = await fetchUsers();
   if (!usersResponse) {
-    console.log("Database error: No users found.");
+    // console.log("Database error: No users found.");
     return;
   }
   let user = findUserByCredentials(usersResponse, email, password);

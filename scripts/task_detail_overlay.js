@@ -11,7 +11,7 @@ async function openTaskDetailDialog(taskID, taskIndex) {
   await loadFirebaseData("tasks");
   const currrentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
   if (!currrentTaskElement) {
-    console.error("Task mit ID nicht gefunden:", taskID);
+    // console.error("Task mit ID nicht gefunden:", taskID);
     return;
   }
   const currentTask = currrentTaskElement.task;
@@ -58,8 +58,8 @@ function loadAssigneesTaskDetails(taskContent, taskID){
   let taskAssigneeElement = document.getElementById("assignees_task_details_" + taskID);
   let assigneeList = taskContent.assignees;
   Object.values(assigneeList)
-    .forEach(assignee => {
-      console.log(assignee)
+  .forEach(assignee => {
+    // console.log(assignee)
     let assigneeHTMLElement = document.createElement('div');
     assigneeHTMLElement.className = "user_info";
     assigneeHTMLElement.innerHTML = AssigneesTaskDetailsTemplate(assignee);
@@ -81,7 +81,7 @@ function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
   let subtaskList = taskContent.subtasks;
   if(subtaskList !== ""){
     Object.entries(subtaskList).forEach(subtaskElement =>{
-    console.log(subtaskElement);
+    // console.log(subtaskElement);
     let subtaskID = subtaskElement[0];
     let subtaskContent = subtaskElement[1];
     let subtaskHTMLElement = document.createElement('div');
@@ -159,7 +159,7 @@ async function toggleCheckedIconSubtasks(img, subtaskId, taskID, taskIndex) {
  */
 function deleteTask(taskID){
   Object.values(taskList).forEach(taskElement =>{
-    console.log(taskElement.id);
+    // console.log(taskElement.id);
     if(taskElement.id == taskID){
       deleteTaskFromFirebase(taskID, "tasks/");
     }
