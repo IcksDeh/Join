@@ -176,10 +176,10 @@
   font-family: "latin_400";
   font-weight: 400;
   font-size: 16px;
-   overflow-wrap: break-word; /* Σπάει τις λέξεις για να μην βγουν έξω */
-  word-wrap: break-word;     /* Για συμβατότητα */
-  word-break: break-word;    /* Εξασφαλίζει ότι σπάει ακόμα και πολύ μεγάλες λέξεις */
-  hyphens: auto;             /* Προσθέτει παύλες αν χρειαστεί */
+   overflow-wrap: break-word; 
+  word-wrap: break-word;     
+  word-break: break-word;    
+  hyphens: auto;             
 }
 
 .order_progressbar_counter {
