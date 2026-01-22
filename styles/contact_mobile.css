@@ -197,7 +197,7 @@
         border-radius: 56px;
         box-shadow: 0 4px 4px #00000040;
         transition-property: background-color, border-color, box-shadow;
-        transition-duration: 2100ms;
+        transition-duration: 125ms;
     }
 
     .changebtns:hover {
