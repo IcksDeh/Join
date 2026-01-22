@@ -1,4 +1,4 @@
-@media (min-width: 1003px) and (max-width: 1350px) {
+@media (min-width: 1200px) and (max-width: 1350px) {
   .order_board_sections {
     gap: 10px;
   }
@@ -37,8 +37,6 @@
   }
 }
 
-
-
 @media (max-width: 1200px) {
   .style_progress_bar {
     width: 48px;
@@ -51,11 +49,10 @@
   }
 }
 
-@media (max-width: 1002px) {
+@media (max-width: 1199px) {
  .style_progress_bar{
     width: 100px;
   }
-
 
   [id^="board_column_"] {
     display: flex !important;
