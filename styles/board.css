@@ -176,7 +176,7 @@
   font-family: "latin_400";
   font-weight: 400;
   font-size: 16px;
-   overflow-wrap: break-word; 
+  overflow-wrap: break-word; 
   word-wrap: break-word;     
   word-break: break-word;    
   hyphens: auto;             
@@ -283,7 +283,6 @@
 .drag_area_highlight {
   border: 2px dashed #a8a8a8;
   border-radius: 30px;
-
   background-color: rgba(0, 0, 0, 0.05);
 }
 
@@ -328,8 +327,6 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
-
-
 }
 
 .tooltiptext{
@@ -349,4 +346,3 @@
 .tooltip:hover .tooltiptext{
   visibility: visible;
 }
-
