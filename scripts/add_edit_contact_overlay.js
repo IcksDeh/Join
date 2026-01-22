@@ -157,6 +157,7 @@ async function updateContact(id) {
   renderLocalContactInfo(id);
   showToastUpdate();
   updateLocalStorage(newName, newMail)
+  checkActiveUser()
 }
 
 
