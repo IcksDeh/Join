@@ -175,6 +175,7 @@
 }
 
 .scroll_container {
+    min-height: 350px;
     max-height: 70vh;
     overflow-y: auto;
 }
