@@ -1,6 +1,7 @@
 window.addEventListener("resize", resizeHandler)
 
 const contactsArray = [];
+const usersArray = [];
 
 function setContactActive(id, element) {
     const isActive = element.classList.contains("active-contact");
@@ -152,6 +153,64 @@ function renderLocalContactList() {
 
 }
 
+async function updateUserFromContact(id, userData) {
+    singleContact = fetch(BASE_URL + "user/" + id + ".json", {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+    });
+    singleContact.then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP Fehler! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+        .then(data => {
+            console.log("Erfolgreich geupdatet:", data);
+        })
+        .catch(error => {
+            console.error("Fehler beim PATCH:", error);
+        });
+}
+
+
+async function checkContactInUser(oldName, oldMail, newName, newMail) {
+    await getUsersData()
+    console.log(userList);
+    let userInContact = userList.find(entry => entry.user.eMail == oldMail || entry.user.name == oldName)
+    let userId = userInContact.id
+    const userData = {
+        eMail: contactsArray.find(entry => entry.eMail === newMail).eMail,
+        name: contactsArray.find(entry => entry.name === newName).name,
+        initial: getContactInitials(contactsArray.find(entry => entry.name === newName).name)
+    }
+    console.log(userData);
+
+    await updateUserFromContact(userId, userData)
+}
+
+
+function updateLocalStorage(newName, newMail) {
+    let updatedData = { "name": newName, "email": newMail, "initials": getContactInitials(newName) }
+    localStorage.setItem("activeUser", JSON.stringify(updatedData));
+    loadNavbar()
+}
+
+
+function checkActiveUser() {
+    let user = JSON.parse(localStorage.getItem('activeUser'));
+    let contact = contactsArray.find(entry => entry.eMail == user.email)
+
+    if (user.name == contact.name) {
+        let contactListItem = document.getElementById("name-" + contact.id)
+        contactListItem.innerText += " (Ich)"
+        contactListItem.style.fontStyle = "italic"
+    }
+}
+
+
 async function renderContactList() {
     contactsArray.length = 0;
     await getContactListData();
@@ -159,9 +218,8 @@ async function renderContactList() {
     container.innerHTML = "";
 
     let currentLetter = "";
-    setTimeout(pushToLocalContacts(), 5000);
 
-    console.log(contactsArray);
+    pushToLocalContacts();
 
     for (let i = 0; i < contactsArray.length; i++) {
         const firstName = contactsArray[i].name.split(" ")[0];
@@ -174,7 +232,7 @@ async function renderContactList() {
 
         container.innerHTML += loadContactListItem(contactsArray[i]);
     }
-
+    checkActiveUser()
 }
 
 function pushToLocalContacts() {
@@ -191,6 +249,7 @@ function pushToLocalContacts() {
     // Sort Contacts by first name
 
     contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+
     console.log(contactsArray);
 }
 
@@ -214,6 +273,7 @@ async function deleteContact(ident) {
     }
 }
 
+
 async function deleteContactFromFirebase(contactID) {
     let userStorage = await fetch(BASE_URL + "contacts/" + contactID + ".json", {
         method: "DELETE",
@@ -221,40 +281,20 @@ async function deleteContactFromFirebase(contactID) {
 
 }
 
+
 async function getUsersData() {
-    return await loadFirebaseData('users');
+    return await loadFirebaseData('user');
 }
+
 
 async function getTasksData() {
     return await loadFirebaseData('tasks');
 }
+
 
 function findContactInTask(contact) {
     let task = task.filter(task => task.assignees.includes(contact.id))
     let taskId = task.map(t => t.id);
     return taskId
 }
-function updateUserDataInFirebase(updatedUserData) {
-    let userData = fetch(BASE_URL + "users/" + currentUserID + ".json", {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedUserData),
-    });
-}
 
-async function filterTaskByAssignee(contact = "-Oi7RpRCFLeT5zDt6Xhr") {
-    await getTasksData()
-    const matchingTasks = taskList.filter(task =>
-        Object.keys(task.assignees || {}).includes(contact));
-    console.log(matchingTasks);
-    let filteredTaskIds = filteredTasks.map(t => t.id);
-    console.log(filteredTaskIds);
-
-}
-
-async function getTasksData() {
-    await loadFirebaseData('tasks');
-    console.log(taskList);
-}

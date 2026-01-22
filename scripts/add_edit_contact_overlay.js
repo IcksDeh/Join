@@ -85,7 +85,7 @@ async function updateContactInFirebase(id, updatedContact) {
     })
     .catch(error => {
       console.error("Fehler beim PATCH:", error);
-  });
+    });
 }
 
 
@@ -142,15 +142,21 @@ async function updateContact(id) {
   validateEditContactForm();
   const contact = contactsArray.find(c => c.id === id);
   const oldName = contact.name;
+  const oldMail = contact.eMail;
   const newName = document.getElementById('input-name').value.trim();
+  const newMail = document.getElementById('input-email').value.trim();
   await getUpdatedContactData(id);
   if (oldName !== newName) {
     await updateAssigneeInTasksSafe(id, newName);
+  }
+  if (oldMail !== newMail || oldName !== newName) {
+    await checkContactInUser(oldName, oldMail, newName, newMail)
   }
   closeEditContactDialog();
   renderLocalContactList();
   renderLocalContactInfo(id);
   showToastUpdate();
+  updateLocalStorage(newName, newMail)
 }
 
 

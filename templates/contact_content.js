@@ -4,7 +4,7 @@ function loadContactListItem(c) {
             <button class="contact-person" onclick="setContactActive('${c.id}', this)" id="${c.id}">
                 <span class="initals" style="background-color: ${c.color};">${getContactInitials(c.name)}</span>
                 <div class="small-info">
-                    <h3>${c.name}</h3>
+                    <h3 id="name-${c.id}">${c.name}</h3>
                     <a href="mailto:${c.eMail}">${c.eMail}</a>
                 </div>
             </button>
