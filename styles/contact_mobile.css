@@ -27,7 +27,6 @@
     }
 }
 
-
 @media (max-width: 1060px) {
     .initials_big {
         width: 100px;
@@ -53,7 +52,6 @@
 
     }
 }
-
 
 @media (max-width: 950px) {
     #changebtnsPopover {
@@ -83,7 +81,6 @@
 
     }
 }
-
 
 @media (max-width: 800px) {
 
@@ -181,7 +178,6 @@
     }
 }
 
-
 @media (max-width: 700px) {
     .contact_page {
         margin-bottom: 80px;
@@ -259,13 +255,11 @@
     }
 }
 
-
 @media (max-width: 380px) {
     .contact_person {
         gap: 16px;
     }
 }
-
 
 .minimized_contact_list {
     width: 120px;
