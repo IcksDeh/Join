@@ -81,10 +81,10 @@ async function updateContactInFirebase(id, updatedContact) {
     return response.json();
   })
     .then(data => {
-      console.log("Erfolgreich geupdatet:", data);
+      // console.log("Erfolgreich geupdatet:", data);
     })
     .catch(error => {
-      console.error("Fehler beim PATCH:", error);
+      // console.error("Fehler beim PATCH:", error);
     });
 }
 
@@ -101,9 +101,9 @@ function updateContactById(id, updatedContact) {
     contactData.eMail = updatedContact.eMail;
     contactData.phoneNumber = updatedContact.phoneNumber;
     contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-    console.log("Lokale Daten aktualisiert:", contactData);
+    // console.log("Lokale Daten aktualisiert:", contactData);
   } else {
-    console.error("Kontakt nicht gefunden mit ID:", id);
+    // console.error("Kontakt nicht gefunden mit ID:", id);
   }
 }
 
@@ -149,14 +149,14 @@ async function updateContact(id) {
   if (oldName !== newName) {
     await updateAssigneeInTasksSafe(id, newName);
   }
-  if (oldMail !== newMail || oldName !== newName) {
+  if (oldMail !== newMail || oldName !== newName && document.querySelector('myActiveUser') != null) {
     await checkContactInUser(oldName, oldMail, newName, newMail)
   }
+
   closeEditContactDialog();
   renderLocalContactList();
   renderLocalContactInfo(id);
   showToastUpdate();
-  updateLocalStorage(newName, newMail)
   checkActiveUser()
 }
 
