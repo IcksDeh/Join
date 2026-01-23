@@ -4,7 +4,6 @@ const contactsArray = [];
 const usersArray = [];
 
 
-
 /**
  * Handles the activation and display of a selected contact in the contact list UI.
  * Toggles the "active_contact" class, updates the contact info panel, and manages responsive behavior.
@@ -79,7 +78,6 @@ function renderLocalContactInfo(id) {
  * Uses requestAnimationFrame to ensure the DOM updates are rendered smoothly.
  */
 function slideContactInfo() {
-
     requestAnimationFrame(() => {
         const bigContact = document.getElementById('contact_big')
         const bigContactInfo = document.getElementById('contact_big_information')
@@ -124,7 +122,6 @@ function changeBtnsPopover() {
     changeContactBtns.addEventListener('click', () => {
         changeContactBtns.classList.toggle('active_popover');
     })
-
     document.addEventListener('mouseup', function (e) {
         if (!changeContactBtns.contains(e.target)) {
             changeContactBtns.classList.remove('active_popover');
@@ -165,13 +162,12 @@ function renderMobileClickedContact() {
 function resizeHandler() {
     const contactList = document.getElementById('contact_list_container')
     const contactInfo = document.getElementById('contact_info')
-
     const hasActiveContact = !!document.querySelector(".active_contact")
-
     contactList.style.display = (hasActiveContact && (getViewportSize() <= 800)) ? "none" : "flex"
     contactInfo.style.display = (!hasActiveContact && (getViewportSize() <= 800)) ? "none" : "flex"
     minimizeContactListon950px()
 }
+
 
 /**
  * Sorts an array of contact objects by their first name in alphabetical order.
@@ -213,10 +209,8 @@ function renderLocalContactList() {
             currentLetter = firstLetter;
             container.innerHTML += contactSeperatorTemplate(currentLetter);
         }
-
         container.innerHTML += loadContactListItem(contactsArray[i]);
     }
-
 }
 
 
@@ -310,26 +304,20 @@ async function renderContactList() {
     await getContactListData();
     const container = document.getElementById('contact_list');
     container.innerHTML = "";
-
     let currentLetter = "";
-
     pushToLocalContacts();
-
     for (let i = 0; i < contactsArray.length; i++) {
         const firstName = contactsArray[i].name.split(" ")[0];
         const firstLetter = firstName[0].toUpperCase();
-
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
             container.innerHTML += contactSeperatorTemplate(currentLetter);
         }
-
         container.innerHTML += loadContactListItem(contactsArray[i]);
     }
     if (checkActiveUser() != false) {
         return
     }
-
 }
 
 
@@ -348,10 +336,7 @@ function pushToLocalContacts() {
         }
         contactsArray.push(obj);
     })
-    // Sort Contacts by first name
-
     contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-
 }
 
 
@@ -363,12 +348,10 @@ async function deleteContact(ident) {
     const idContactStorage = contactsArray.find(entry => entry.id == ident);
     const contactsListStorage = contactsList.find(entry => entry.id == idContactStorage.id);
     const indexInContactsArray = contactsArray.findIndex(entry => entry.id == ident);
-
     if (idContactStorage.id === contactsListStorage.id) {
         contactsArray.splice(indexInContactsArray, 1);
         deleteContactFromFirebase(contactsListStorage.id)
         await renderLocalContactList()
-
         const cInfo = document.getElementById('contact_info')
         cInfo.innerHTML = contactHeadlineTemplate()
     }
@@ -383,7 +366,6 @@ async function deleteContactFromFirebase(contactID) {
     let userStorage = await fetch(BASE_URL + "contacts/" + contactID + ".json", {
         method: "DELETE",
     });
-
 }
 
 
