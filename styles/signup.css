@@ -59,14 +59,14 @@
 
 /* CUSTOM CHECKBOX STYLING */
 
-.checkbox-row {
+.checkbox_row {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
 }
 
-.checkbox-row input[type="checkbox"] {
+.checkbox_row input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -79,11 +79,11 @@
   background-image: url("../assets/img/checkbox_unchecked.svg");
 }
 
-.checkbox-row input[type="checkbox"]:checked {
+.checkbox_row input[type="checkbox"]:checked {
   background-image: url("../assets/img/checkbox_checked.svg");
 }
 
-.checkbox-row input[type="checkbox"]:hover {
+.checkbox_row input[type="checkbox"]:hover {
   transform: scale(1.05);
   transition: transform 0.1s ease-in-out;
 }

@@ -271,7 +271,7 @@
   position: relative;
 }
 
-.search-error-message {
+.search_error_message {
   position: absolute;
   top: 48px;
   left: 0;
@@ -302,7 +302,7 @@
   margin: 5px;
 }
 
-.mobile-drag-clone {
+.mobile_drag_clone {
   position: fixed;
   z-index: 9999;
   pointer-events: none;
@@ -312,7 +312,7 @@
   transition: none;
 }
 
-.mobile-drag-active-original {
+.mobile_drag_active_original {
   opacity: 0.4;
   background-color: #f0f0f0;
 }
@@ -323,13 +323,13 @@
   touch-action: manipulation;
 }
 
-.tooltip{
+.tooltip {
   position: relative;
   display: inline-block;
   cursor: pointer;
 }
 
-.tooltiptext{
+.tooltiptext {
   visibility: hidden;
   width: 150px;
   bottom: 200%;

@@ -1,4 +1,4 @@
-.toast-message {
+.toast_message {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -25,13 +25,13 @@
     text-align: center;
 }
 
-.toast-message.show {
+.toast_message.show {
     top: 50%;
     opacity: 1;
     visibility: visible;
 }
 
-.toast-message-board {
+.toast_message_board {
     display: flex;
     justify-content: space-between;
     align-items: center;

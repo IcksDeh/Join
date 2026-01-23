@@ -140,7 +140,7 @@ function startMobileDrag(e, card) {
     currentDraggedElementID = match[2];
   }
   createMobileClone(card);
-  card.classList.add("mobile-drag-active-original");
+  card.classList.add("mobile_drag_active_original");
 }
 
 
@@ -158,7 +158,7 @@ function createMobileClone(original) {
   mobileDragClone.style.height = `${rect.height}px`;
   mobileDragClone.style.left = `${rect.left}px`;
   mobileDragClone.style.top = `${rect.top}px`;
-  mobileDragClone.classList.add("mobile-drag-clone");
+  mobileDragClone.classList.add("mobile_drag_clone");
   document.body.appendChild(mobileDragClone);
 }
 
@@ -214,7 +214,7 @@ async function finishMobileDrop() {
   autoScrollSpeed = 0;
   if (autoScrollFrame) cancelAnimationFrame(autoScrollFrame), autoScrollFrame = null;
   mobileDragClone?.remove();
-  mobileDragElement?.classList.remove("mobile-drag-active-original");
+  mobileDragElement?.classList.remove("mobile_drag_active_original");
   removeHighlight("todo", "inProgress", "awaitFeedback", "done");
   if (currentTouchTargetColumn) await drop(currentTouchTargetColumn);
   isMobileDragging = false;
