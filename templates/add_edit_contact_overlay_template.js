@@ -13,7 +13,7 @@ function addContactTemplate() {
                         <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeAddContactDialog()" role="button" aria-label="Close Dialog">
                     </div>
                     <div class="right_container_wrapper">
-                        <div class="avatar-wrapper">
+                        <div class="avatar_wrapper">
                             <img class="contact_user_icon" src="./assets/img/person_grey_circle.svg" alt="User Icon">
                         </div>
                         <div>
@@ -52,7 +52,7 @@ function editContactTemplate(c) {
                         <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeEditContactDialog()" role="button" aria-label="Close Dialog">
                     </div>
                     <div class="right_container_wrapper">
-                        <div class="avatar-wrapper">
+                        <div class="avatar_wrapper">
                             <div class="initals_big" style="background-color:${c.color};">${getContactInitials(c.name)}</div>
                         </div>
                         <div>

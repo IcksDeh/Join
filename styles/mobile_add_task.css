@@ -49,11 +49,11 @@
     overflow-x: hidden;
   }
 
-  .required-mobile {
+  .required_mobile {
     display: block;
   }
 
-  .required-desktop {
+  .required_desktop {
     display: none;
   }
 

@@ -36,17 +36,13 @@
 }
 
 .close_btn_container_task_detail_edit {
-    position: absolute;
-    z-index: 999;
-    top: 28px;
-    right: 32px;
-    height: 30px;
     display: flex;
     justify-content: flex-end;
-    width: 20%;
+    width: 100%;
     padding-left: 0px;
-    margin-top: 16px;
+    margin-bottom: 16px;
     height: 30px;
+    background-color: white;
 }
 
 .form_content {
@@ -55,8 +51,9 @@
     height: auto;
 }
 
-.form_wrapper {
+.form_wrapper_edit {
     width: 100%;
+    padding-top: 0px;
 }
 
 .label_text_edit {
@@ -424,7 +421,7 @@ textarea:focus {
 
 /* SCROLL BAR BIG */
 
-.no_scroll {
+.no_scroll_edit {
     flex-shrink: 0;
     z-index: 2;
 }

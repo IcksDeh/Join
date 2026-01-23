@@ -83,13 +83,13 @@ function loadAssigneeBubblesToPrefill(element){
 function taskEditDialogTemplate(taskID, index){
   return `
     <main class="task_detail_edit_wrapper" data-task_detail_information-id="${taskID}">
-      <div class="close_btn_container_task_detail_edit no_scroll">
+      <div class="close_btn_container_task_detail_edit no_scroll_edit">
         <img class="close_btn" src="./assets/img/x.svg" alt="Close Button" onclick="closeTaskDetailEditDialog('edit')" role="button" aria-label="Schließen">
       </div>
 
       <form class="form_content" id="taskDetailEditForm" novalidate>
         <div class="scroll_container_edit">
-          <section class="form_wrapper">
+          <section class="form_wrapper_edit">
             <div class="form_required_wrapper edit_wrapper">
               <label for="id_title_task_detail_edit" class="label_text_edit">Title<sup>*</sup></label><br>
               <input type="text" class="task_detail_edit_input styled_input_edit validate_edit_required" id="id_title_task_detail_edit" placeholder="Enter a title" oninput="handleRequiredMessage(this); limitInputLength(this, 30)" onfocus="handleRequiredMessage(this)" onblur="handleRequiredMessage(this)"><br>

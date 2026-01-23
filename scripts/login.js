@@ -220,8 +220,8 @@ function handleLoginFail() {
   let emailInput = document.getElementById("auth_input_mail");
   let passwordInput = document.getElementById("auth_password_input");
   let errorMessage = document.getElementById("login_error_message");
-  emailInput.classList.add("input-error");
-  passwordInput.classList.add("input-error");
+  emailInput.classList.add("input_error");
+  passwordInput.classList.add("input_error");
   errorMessage.style.display = "block";
 }
 
@@ -237,11 +237,11 @@ function resetLoginError() {
   let errorMessage = document.getElementById("login_error_message");
 
   if (
-    emailInput.classList.contains("input-error") ||
-    passwordInput.classList.contains("input-error")
+    emailInput.classList.contains("input_error") ||
+    passwordInput.classList.contains("input_error")
   ) {
-    emailInput.classList.remove("input-error");
-    passwordInput.classList.remove("input-error");
+    emailInput.classList.remove("input_error");
+    passwordInput.classList.remove("input_error");
     errorMessage.style.display = "none";
   }
 }
