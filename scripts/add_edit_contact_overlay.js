@@ -174,11 +174,11 @@ function showToastUpdate() {
     overlayElement.appendChild(msgBox);
   } else {
     document.body.appendChild(msgBox);
-    msgBox.innerHTML = "Contact updated successfully!";
+    msgBox.innerHTML = "Contact updated successfully";
   }
   msgBox.classList.add('show');
   setTimeout(() => {
-    msgBox.innerHTML = "Contact successfully created!";
+    msgBox.innerHTML = "Contact successfully created";
     msgBox.classList.remove('show');
   }, 2000);
 }
