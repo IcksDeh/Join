@@ -9,7 +9,7 @@ function guestLogin() { window.location.href = "summary.html"; }
  */
 function getElementsUser() {
   return {
-    checkbox: document.querySelector('.checkbox-row input[type="checkbox"]'),
+    checkbox: document.querySelector('.checkbox_row input[type="checkbox"]'),
     btn: document.getElementById('signup_btn'),
     name: document.getElementById('auth_input_name'),
     email: document.getElementById('auth_input_mail'),
