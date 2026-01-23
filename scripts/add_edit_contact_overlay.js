@@ -279,33 +279,3 @@ function validateEditContactForm() {
   submitbutton.disabled = !isFormValid;
   return isFormValid;
 }
-
-
-/**
- * Handles form submission and runs the corresponding form validator.
- * Prevents submission if validation fails.
- */
-// document.addEventListener('submit', function (event) {
-//   if (event.target && event.target.id === 'editContactForm') {
-//     const formValidators = {
-//       addContactForm: validateAddContactForm(),
-//       editContactForm: validateEditContactForm()
-//     };
-//     console.log(formValidators);
-
-//     const validator = formValidators[event.target.id];
-
-//     if (!validator) {
-//       event.preventDefault();
-//     }
-//   }
-// });
-
-
-/**
- * Runs initial validation on page load to set correct button states.
- */
-// setTimeout(() => {
-//   document.getElementById('addContactForm') && validateAddContactForm();
-//   document.getElementById('editContactForm') && validateEditContactForm();
-// }, 0);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,6 +32,7 @@
     <script src="./scripts/contacts.js" defer></script>
     <title>Contacts</title>
 </head>
+
 <body onload="init(), renderContactList()">
     <div class="order_sidebar_main">
         <aside class="sidebar desktop" id="id_sidebar">
@@ -38,21 +40,21 @@
         <div class="nav_main_content">
             <nav class="nav_bar" id="id_navbar">
             </nav>
-            <main class="contact-page">
-                <div class="contact-list-container" id="contact-list-container">
-                    <div class="button-container">
-                        <button class="contact-btn" id="addNewContactBtn" onclick="openAddContactDialog()">
+            <main class="contact_page">
+                <div class="contact_list_container" id="contact_list_container">
+                    <div class="button_container">
+                        <button class="contact_btn" id="addNewContactBtn" onclick="openAddContactDialog()">
                             <span>Add new Contact</span>
                             <img src="./assets/img/person_add_white.svg" alt="add Person" />
                         </button>
                     </div>
-                    <ul id="contact-list" class="contact_list">
+                    <ul id="contact_list" class="contact_list">
                     </ul>
                 </div>
-                <div class="contact-info" id="contact-info">
-                    <div class="contact-headline">
+                <div class="contact_info" id="contact_info">
+                    <div class="contact_headline">
                         <h3>Contacts</h3>
-                        <div class="headline-seperator"></div>
+                        <div class="headline_seperator"></div>
                         <span>Better with a team</span>
                     </div>
                 </div>
