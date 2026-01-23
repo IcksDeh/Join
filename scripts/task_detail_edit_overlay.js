@@ -215,7 +215,7 @@ function highlightRequiredEditFields() {
  * Prevents default form submission. Saves the task and closes the edit dialog when validation passes.
  */
 function  loadEventlistenerForm(){
-  const form = document.querySelector('.form_wrapper');
+  const form = document.querySelector('.form_wrapper_edit');
   const submitBtn = document.getElementById('editTaskSubmitBtn');
   form.addEventListener('input', () => {
   submitBtn.disabled = !areRequiredEditFieldsFilled(form);
