@@ -178,6 +178,16 @@
     }
 }
 
+@media (max-height: 667px) {
+    .contact_headline {
+        padding-top: 16px;
+    }
+
+    .headline button {
+        top: 88px;
+    }
+}
+
 @media (max-width: 700px) {
     .contact_page {
         margin-bottom: 80px;
