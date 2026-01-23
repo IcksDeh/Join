@@ -1,4 +1,18 @@
+/**
+ *  Check if an active user is set, if not then redirect to login
+ *
+ *  @function isActiveUserSet
+ *  @returns {void} - This function does not return a value.
+ */
+function isActiveUserSet() {
+    const activeUser = localStorage.getItem("activeUser");
+    if (!activeUser) window.location.href = "index.html"
+}
+
 function init() {
+    /** Redirect user if not logged in */
+    isActiveUserSet()
+
     loadSidebar();
     loadNavbar();
     loadMobileFooter();
@@ -69,14 +83,14 @@ function loadMobileFooter() {
  */
 function loadSummary() {
     let user = JSON.parse(localStorage.getItem('activeUser'));
-    let greetingText = getGreeting(); 
+    let greetingText = getGreeting();
     let userName = "";
     if (user && user.name !== "Guest") {
-        greetingText = greetingText + ","; 
+        greetingText = greetingText + ",";
         userName = user.name;
     } else {
         greetingText = greetingText + "!";
-        userName = ""; 
+        userName = "";
     }
     const summaryContent = document.getElementById('id_content_summary');
     summaryContent.innerHTML = summaryContentTemplate(userName, greetingText);
@@ -157,7 +171,7 @@ function goBack() {
  *  @function getRandomColor
  *  @returns {string} - A color value from the colors array.
  */
-function getRandomColor(){
+function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
 }
@@ -168,15 +182,15 @@ function getRandomColor(){
  * Limits dates to a minimum of "2026-01-01" and a maximum of "2030-12-31".
  */
 function setupDateValidation() {
-    const ids = ['id_due_date_add_task_default','id_due_date_add_task_overlay', 'id_due_date_task_detail_edit'];
+    const ids = ['id_due_date_add_task_default', 'id_due_date_add_task_overlay', 'id_due_date_task_detail_edit'];
     ids.forEach(id => {
         const input = document.getElementById(id);
         if (!input) return;
         input.min = "2026-01-01"; input.max = "2030-12-31";
         const validate = () => {
-        const msg = document.querySelector(`.required_message[data-for="${id}"]`);
-        const isInvalid = !input.value || input.value < "2026-01-01";
-        input.classList.toggle('error', isInvalid);
+            const msg = document.querySelector(`.required_message[data-for="${id}"]`);
+            const isInvalid = !input.value || input.value < "2026-01-01";
+            input.classList.toggle('error', isInvalid);
             if (msg) {
                 msg.innerText = input.value ? "Date must be 2026 or later" : "This field is required";
                 msg.classList.toggle('active', isInvalid);
@@ -193,11 +207,11 @@ function setupDateValidation() {
  * When the user clicks near the right edge of the input (last 45px), this triggers the native date picker if available.
  */
 function setupDateClickBehavior() {
-    const ids = [ 'id_due_date_add_task_default', 'id_due_date_add_task_overlay', 'id_due_date_task_detail_edit' ];
+    const ids = ['id_due_date_add_task_default', 'id_due_date_add_task_overlay', 'id_due_date_task_detail_edit'];
     ids.forEach(id => {
         const input = document.getElementById(id);
         if (!input) return;
-        input.addEventListener('pointerdown', function(e) {
+        input.addEventListener('pointerdown', function (e) {
             if ((this.offsetWidth - e.offsetX) < 45 && e.isTrusted) {
                 if (!this.disabled && !this.readOnly && this.offsetParent !== null) {
                     this.showPicker?.();
@@ -227,10 +241,10 @@ function highlightActiveLink() {
     const currentPath = window.location.pathname;
     links.forEach(link => {
         const linkPath = link.getAttribute('href').replace('./', '');
-        const icon = link.querySelector('.icon_sidebar, .mobile_link_icon'); 
+        const icon = link.querySelector('.icon_sidebar, .mobile_link_icon');
         if (currentPath.includes(linkPath)) {
             link.classList.add('active');
-            if (icon) { 
+            if (icon) {
                 if (linkPath === 'summary.html') {
                     icon.src = './assets/img/navbar_summary_white_mobile.svg';
                 } else if (linkPath === 'add_task.html') {
@@ -255,7 +269,7 @@ function highlightActiveLink() {
  */
 function showToast() {
     const msgBox = document.getElementById('msgBox');
-    const overlayElement = document.querySelector('dialog[open]'); 
+    const overlayElement = document.querySelector('dialog[open]');
     if (overlayElement) {
         overlayElement.appendChild(msgBox);
     } else {
@@ -264,7 +278,7 @@ function showToast() {
     msgBox.classList.add('show');
     setTimeout(() => {
         msgBox.classList.remove('show');
-    }, 2000); 
+    }, 2000);
 }
 
 
