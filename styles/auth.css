@@ -1,16 +1,22 @@
 /* BASE STYLES */
-
 .auth_body {
-  display: block;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(246, 247, 248);
+  font-family: "Inter", sans-serif;
   width: 100%;
+  min-height: 100vh;
 }
 
 /* HEADER */
-
 #auth_header {
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 77px;
+  box-sizing: border-box;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,9 +46,9 @@
 }
 
 /* BUTTONS */
-
 .signup_btn {
   width: 91px;
+  font-size: 16px;
   background-color: #2a3647;
   color: white;
 }
@@ -58,7 +64,7 @@
 
 .auth_btn {
   width: 110px;
-  font-size: 20px;
+  font-size: 21px;
   background-color: #2a3647;
   color: white;
 }
@@ -69,7 +75,7 @@
 
 .guest_log_in_btn {
   width: 180px;
-  font-size: 20px;
+  font-size: 21px;
   background: white;
   color: #2a3647;
   border: 2px solid #2a3647;
@@ -81,17 +87,14 @@
 }
 
 /* MAIN CONTENT */
-
 .auth_main {
-  max-width: 1440px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 80px;
+  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px 16px;
+  padding: 20px;
 }
 
 .auth_main_content {
@@ -129,7 +132,6 @@
 }
 
 /* INPUTS */
-
 .input_wrapper {
   position: relative;
   width: 422px;
@@ -197,14 +199,14 @@
 }
 
 #login_error_message {
-  position: absolute;   
-  bottom: -20px;        
+  position: absolute;
+  bottom: -20px;
   left: 0;
   width: 100%;
-  text-align: left;     
+  text-align: left;
   color: #ff3d00;
-  font-size: 14px;      
-  display: none;       
+  font-size: 14px;
+  display: none;
 }
 
 .input_wrapper input.error {
@@ -225,20 +227,18 @@
 }
 
 /* FOOTER */
+.login_footer {
+  padding-top: 0;
+  padding-bottom: 30px;
+}
 
 .auth_footer {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  width: 100%;
-  margin-top: auto;
   padding-bottom: 30px;
-  padding-top: 50px;
-}
-
-.login_footer {
-  padding-top: 150px;
 }
 
 .auth_mobile {
@@ -246,7 +246,6 @@
 }
 
 /* MOBILE */
-
 @media (max-width: 700px) {
   .auth_title {
     padding-top: 32px;
@@ -258,12 +257,12 @@
   }
 
   .auth_main {
-    margin-top: 65px;
-    padding: 65px 16px;
+    margin-top: 30px;
+    padding: 0 16px 65px 16px;
   }
 
   #auth_header {
-    padding-left: 20px;  
+    padding-left: 20px;
     padding-right: 20px;
   }
 
@@ -316,7 +315,7 @@
     gap: 20px;
   }
 }
-  
+
 @media (max-width: 360px) {
   .auth_main_content {
     width: 300px;
