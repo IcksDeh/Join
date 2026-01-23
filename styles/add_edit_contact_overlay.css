@@ -4,7 +4,7 @@
     width: 1150px;
     height: 520px;
     background-color: #fff;
-    border-radius: 25px; 
+    border-radius: 25px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -36,8 +36,8 @@
 #addContactDialog {
     position: fixed;
     top: 50%;
-    left: 50%; 
-    transform: translate(calc(100vw + 50%), -50%);  
+    left: 50%;
+    transform: translate(calc(100vw + 50%), -50%);
     opacity: 0;
     transition: transform 0.5s ease, opacity 0.5s ease;
     border: none;
@@ -51,8 +51,8 @@
 #editContactDialog {
     position: fixed;
     top: 50%;
-    left: 50%; 
-    transform: translate(calc(100vw + 50%), -50%);  
+    left: 50%;
+    transform: translate(calc(100vw + 50%), -50%);
     opacity: 0;
     transition: transform 0.5s ease, opacity 0.5s ease;
     border: none;
@@ -67,7 +67,7 @@
 
 .contact_left_container {
     width: 400px;
-    height: 500px; 
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -97,7 +97,7 @@
 }
 
 .hr_overlay {
-    border: none;           
+    border: none;
     height: 3px;
     background-color: #29abe2;
     margin: 16px 0;
@@ -138,7 +138,7 @@
     height: 120px;
     object-fit: contain;
     border-radius: 50%;
-    box-shadow: 0 0 4px rgba(0,0,0,0.15);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
 }
 
 .initals_big {
@@ -152,10 +152,22 @@
     color: white;
     background-color: orange;
     border: 3.5px solid white;
-    box-shadow: 0 0 4px rgba(0,0,0,0.15);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
 }
 
 /* INPUT AREA */
+
+.error_message {
+    position: relative;
+    top: -10px;
+    padding: 0;
+    font-size: 14px;
+    color: red;
+}
+
+.error_border {
+    border: 1px solid #ff3d00 !important;
+}
 
 .input_fields_container {
     display: flex;
@@ -186,7 +198,7 @@
 }
 
 .user_input::placeholder {
-    color: #2a3647; 
+    color: #2a3647;
     font-size: 20px;
     font-family: "latin_400", sans-serif;
     font-weight: 400;
@@ -194,15 +206,15 @@
 
 .styled_input {
     font-family: "latin_400", sans-serif;
-    font-size: 20px;           
-    color: #2a3647;            
+    font-size: 20px;
+    color: #2a3647;
     padding-left: 20px;
 }
 
 input:focus,
 textarea:focus {
-  outline: none;
-  border: 2px solid #29abe2;
+    outline: none;
+    border: 2px solid #29abe2;
 }
 
 #name {
@@ -245,8 +257,8 @@ textarea:focus {
 }
 
 .outline_btn .icon {
-    width: 24px;  
-    height: 24px;  
+    width: 24px;
+    height: 24px;
     object-fit: contain;
 }
 
@@ -275,9 +287,9 @@ textarea:focus {
     background-color: #2a3647;
     font-size: 21px;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
-    gap: 6px; 
+    gap: 6px;
 }
 
 .filled_btn:hover {
@@ -289,6 +301,6 @@ textarea:focus {
 .show_btn {
     display: block;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
 }

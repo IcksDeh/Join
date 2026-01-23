@@ -103,6 +103,10 @@
 }
 
 @media (max-width: 495px) {
+    .error_message {
+        align-self: flex-start;
+    }
+
     .dialog_contact_container {
         height: 580px;
         width: 300px;

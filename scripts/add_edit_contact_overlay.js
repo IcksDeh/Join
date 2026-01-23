@@ -255,6 +255,7 @@ function validateAddContactForm() {
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(phone);
   const isFormValid = isNameValid && isEmailValid && isPhoneValid;
+  handleInputError(isNameValid, isEmailValid, isPhoneValid)
   button.disabled = !isFormValid;
   return isFormValid;
 }
@@ -276,6 +277,28 @@ function validateEditContactForm() {
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail);
   const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(contactPhone);
   const isFormValid = isNameValid && isEmailValid && isPhoneValid;
+  handleInputError(isNameValid, isEmailValid, isPhoneValid)
   submitbutton.disabled = !isFormValid;
   return isFormValid;
+}
+
+
+function handleInputError(nameinput, mailinput, phoneinput) {
+  const addContactName = document.getElementById('id_contact_name')
+  const addContactPhone = document.getElementById('id_contact_phone')
+  const addContactEmail = document.getElementById('id_contact_email')
+  const editContactName = document.getElementById('input-name')
+  const editContactEmail = document.getElementById('input-email')
+  const editContactPhone = document.getElementById('input-phone')
+
+  const errorClass = "error_border"
+
+  if (addContactName) addContactName.classList[nameinput ? "remove" : "add"](errorClass)
+  if (editContactName) editContactName.classList[nameinput ? "remove" : "add"](errorClass)
+
+  if (addContactEmail) addContactEmail.classList[mailinput ? "remove" : "add"](errorClass)
+  if (editContactEmail) editContactEmail.classList[mailinput ? "remove" : "add"](errorClass)
+
+  if (addContactPhone) addContactPhone.classList[phoneinput ? "remove" : "add"](errorClass)
+  if (editContactPhone) editContactPhone.classList[phoneinput ? "remove" : "add"](errorClass)
 }
