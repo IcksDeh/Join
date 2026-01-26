@@ -163,10 +163,14 @@ function handlePasswordMatch(els) {
  */
 function addBasicListeners(els) {
   const check = () => updateBtn(els);
-  
   els.name.addEventListener('input', check);
   els.checkbox.addEventListener('change', check);
   els.email.addEventListener('input', () => {
+    els.email.classList.remove('input_error');
+    els.emailError.style.display = 'none';     
+    updateBtn(els);                            
+  });
+  els.email.addEventListener('blur', () => {
     handleEmailValidation(els);
   });
 }
