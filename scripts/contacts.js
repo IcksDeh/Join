@@ -360,6 +360,11 @@ async function deleteContact(ident) {
 }
 
 
+/**
+ * Adjusts the contact list and contact info visibility based on the viewport size.
+ * On mobile viewports (800px or smaller), the contact info section is hidden, and the contact list is shown in full size. On larger screens, the contact info section is displayed normally.
+ * This function also ensures that the contact list is not minimized.
+ */
 function deleteOnMobile() {
     const contactList = document.getElementById('contact_list_container')
     const contactInfo = document.getElementById('contact_info')
