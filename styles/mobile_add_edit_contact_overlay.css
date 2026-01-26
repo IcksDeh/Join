@@ -103,7 +103,8 @@
 }
 
 @media (max-width: 495px) {
-    .error_message {
+    .error_text {
+        top: -10px;
         align-self: flex-start;
     }
 

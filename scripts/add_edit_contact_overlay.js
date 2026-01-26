@@ -261,6 +261,7 @@ function validateAddContactForm() {
   const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(phone);
   const isFormValid = isNameValid && isEmailValid && isPhoneValid;
   handleInputError(isNameValid, isEmailValid, isPhoneValid)
+  handleInputErrorMessages(isNameValid, isEmailValid, isPhoneValid)
   return isFormValid;
 }
 
@@ -280,7 +281,23 @@ function validateEditContactForm() {
   const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(contactPhone);
   const isFormValid = isNameValid && isEmailValid && isPhoneValid;
   handleInputError(isNameValid, isEmailValid, isPhoneValid)
+  handleInputErrorMessages(isNameValid, isEmailValid, isPhoneValid)
   return isFormValid;
+}
+
+
+/**
+ * Handles the display of input error messages for contact form fields.
+ * Shows error messages for empty fields and hides them for valid fields.
+ */
+function handleInputErrorMessages(name, mail, phone) {
+  const nameError = document.getElementById('error_name')
+  const emailError = document.getElementById('error_email')
+  const phoneError = document.getElementById('error_phone')
+
+  nameError.style.display = !name ? "block" : "none"
+  emailError.style.display = !mail ? "block" : "none"
+  phoneError.style.display = !phone ? "block" : "none"
 }
 
 
