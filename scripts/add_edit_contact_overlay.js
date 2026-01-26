@@ -295,9 +295,9 @@ function handleInputErrorMessages(name, mail, phone) {
   const emailError = document.getElementById('error_email')
   const phoneError = document.getElementById('error_phone')
 
-  nameError.style.display = !name ? "block" : "none"
-  emailError.style.display = !mail ? "block" : "none"
-  phoneError.style.display = !phone ? "block" : "none"
+  nameError.style.visibility = !name ? "visible" : "hidden"
+  emailError.style.visibility = !mail ? "visible" : "hidden"
+  phoneError.style.visibility = !phone ? "visible" : "hidden"
 }
 
 

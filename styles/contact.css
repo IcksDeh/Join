@@ -380,5 +380,5 @@
     color: red;
     height: 12px;
     font-size: 12px;
-    display: none;
+    visibility: hidden;
 }
