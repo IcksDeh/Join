@@ -23,6 +23,8 @@
     height: 75px;        
     white-space: nowrap; 
     text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .toast_message.show {
