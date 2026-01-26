@@ -72,6 +72,15 @@ function setupToggle(inputId, iconId) {
   });
 }
 
+/**
+ * Checks if the email format matches pattern: something@domain.tld
+ * Requires a dot and at least 2 characters at the end (e.g., .de, .com)
+ */
+function checkEmailFormat(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+}
+
 
 // VALIDATION LOGIC
 
@@ -88,7 +97,7 @@ function setupToggle(inputId, iconId) {
 function isValid(els) {
   return (
     els.name.value.trim() !== '' &&
-    els.email.validity.valid &&
+    checkEmailFormat(els.email.value) &&  // <--- Hier die Änderung
     els.pass.value.length > 0 &&
     els.pass.value === els.confirm.value &&
     els.checkbox.checked
@@ -121,8 +130,9 @@ function updateBtn(els) {
  */
 function handleEmailValidation(els) {
   const emailValue = els.email.value;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (emailValue.length > 0 && !emailRegex.test(emailValue)) {
+  
+  // Wenn etwas eingetippt wurde, aber das Format falsch ist (kein .de/.com etc.)
+  if (emailValue.length > 0 && !checkEmailFormat(emailValue)) {
     els.email.classList.add('input_error'); 
     els.emailError.style.display = 'block';
   } else {
@@ -132,7 +142,6 @@ function handleEmailValidation(els) {
   
   updateBtn(els);
 }
-
 
 /**
  * Checks if the password and confirmation match and shows error if not.
