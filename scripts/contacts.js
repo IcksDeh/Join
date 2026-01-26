@@ -351,11 +351,21 @@ async function deleteContact(ident) {
     if (idContactStorage.id === contactsListStorage.id) {
         contactsArray.splice(indexInContactsArray, 1);
         deleteContactFromFirebase(contactsListStorage.id)
+        deleteOnMobile()
         await renderLocalContactList()
         const cInfo = document.getElementById('contact_info')
         cInfo.innerHTML = contactHeadlineTemplate()
         closeEditContactDialog()
     }
+}
+
+
+function deleteOnMobile() {
+    const contactList = document.getElementById('contact_list_container')
+    const contactInfo = document.getElementById('contact_info')
+    contactInfo.style.display = getViewportSize() <= 800 ? "none" : "flex"
+    contactList.classList.remove('minimized_contact_list')
+    contactList.style.display = "flex"
 }
 
 
