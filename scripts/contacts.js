@@ -354,6 +354,7 @@ async function deleteContact(ident) {
         await renderLocalContactList()
         const cInfo = document.getElementById('contact_info')
         cInfo.innerHTML = contactHeadlineTemplate()
+        closeEditContactDialog()
     }
 }
 
