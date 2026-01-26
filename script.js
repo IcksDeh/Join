@@ -6,7 +6,15 @@
  */
 function isActiveUserSet() {
     const activeUser = localStorage.getItem("activeUser");
-    if (!activeUser) window.location.href = "index.html"
+    let pagenow = window.location.href
+    let bool = false
+    // Check if page is legal_notice or privacy_policy
+    if (pagenow.includes("legal_notice") || pagenow.includes("privacy_policy")) bool = true
+
+    if (!activeUser && bool == false) {
+        pagenow = "index.html"
+        window.location.href = pagenow
+    }
 }
 
 function init() {
