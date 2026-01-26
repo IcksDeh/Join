@@ -13,6 +13,13 @@
     <script src="./scripts/variables.js" defer></script>
   </head>
   <body class="auth_body">
+    <script>
+        if (sessionStorage.getItem("introAnimationPlayed")) {
+            document.body.classList.add("no-animation");
+        } else {
+            sessionStorage.setItem("introAnimationPlayed", "true");
+        }
+    </script>
     <!-- Splash logo -->
     <div id="splash">
       <img id="splash_logo" src="./assets/img/logo_version_1.svg" alt="logo" />
