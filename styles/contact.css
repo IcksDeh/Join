@@ -172,11 +172,13 @@
     white-space: nowrap;
 }
 
-.small_info a {
+.small_info span {
     color: #29ABE2;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    font-weight: 400;
+    font-size: 16px;
 }
 
 .contact_headline {
@@ -197,7 +199,6 @@
 
 .contact_headline span {
     font-size: 27px;
-
 }
 
 .headline {
