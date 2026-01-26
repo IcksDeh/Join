@@ -224,16 +224,16 @@ function setupDateClickBehavior() {
     ids.forEach(id => {
         const input = document.getElementById(id);
         if (!input) return;
-        input.addEventListener('pointerdown', function (e) {
+        input.addEventListener('click', function (e) {
             if ((this.offsetWidth - e.offsetX) < 45 && e.isTrusted) {
                 if (!this.disabled && !this.readOnly && this.offsetParent !== null) {
+                    e.preventDefault();
                     this.showPicker?.();
                 }
             }
         });
     });
 }
-
 
 /**
  * Initializes date input behavior on page load.
