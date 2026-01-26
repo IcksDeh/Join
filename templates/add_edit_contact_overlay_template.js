@@ -18,16 +18,16 @@ function addContactTemplate() {
                         </div>
                         <div>
                             <div class="input_fields_container">
-                                <input type="text" id="id_contact_name" class="contact_input styled_input" placeholder="Name" required oninput="limitInputLength(this, 20); validateAddContactForm()"><br>
-                                <input type="email" id="id_contact_email" class="contact_input styled_input" placeholder="Email" required oninput="limitInputLength(this, 20); validateAddContactForm()"><br>
-                                <input type="tel" id="id_contact_phone" class="contact_input styled_input" placeholder="Phone" required oninput="limitInputLength(this, 17); validateAddContactForm()"><br>
+                                <input type="text" id="id_contact_name" class="contact_input styled_input" placeholder="Name" required oninput="limitInputLength(this, 20)"><br>
+                                <input type="email" id="id_contact_email" class="contact_input styled_input" placeholder="Email" required oninput="limitInputLength(this, 20)"><br>
+                                <input type="tel" id="id_contact_phone" class="contact_input styled_input" placeholder="Phone" required oninput="limitInputLength(this, 17)"><br>
                             </div>
                             <div class="contact_btn_area">
                                 <button type="button" class="outline_btn show_btn" onclick="closeAddContactDialog()">Cancel
                                     <img class="icon default" src="./assets/img/close.svg" alt="Clear Formular">
                                     <img class="icon hover" src="./assets/img/close_blue.svg" alt="Clear Formular Hover">
                                 </button>
-                                <button type="submit" id="createContactBtn" class="filled_btn" disabled>Create Contact<img src="./assets/img/check_white.svg" alt="Create Contact"></button>
+                                <button type="button" id="createContactBtn" class="filled_btn" onclick="createContact()">Create Contact<img src="./assets/img/check_white.svg" alt="Create Contact"></button>
                             </div>
                         </div>
                     </div>    
@@ -57,9 +57,9 @@ function editContactTemplate(c) {
                         </div>
                         <div>
                             <div class="input_fields_container">
-                                <input type="text" id="input-name" class="user_input styled_input" placeholder="Name" value="${c.name}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
-                                <input type="email" id="input-email" class="user_input styled_input" placeholder="Email" value="${c.eMail}" required oninput="limitInputLength(this, 20); validateEditContactForm()"><br>
-                                <input type="tel" id="input-phone" class="user_input styled_input" placeholder="Phone Number" value="${c.phoneNumber}" required oninput="limitInputLength(this, 17); validateEditContactForm()"><br>
+                                <input type="text" id="input-name" class="user_input styled_input" placeholder="Name" value="${c.name}" required oninput="limitInputLength(this, 20)"><br>
+                                <input type="email" id="input-email" class="user_input styled_input" placeholder="Email" value="${c.eMail}" required oninput="limitInputLength(this, 20)"><br>
+                                <input type="tel" id="input-phone" class="user_input styled_input" placeholder="Phone Number" value="${c.phoneNumber}" required oninput="limitInputLength(this, 17)"><br>
                             </div>
                             <div class="contact_btn_area">
                                 <button type="button" class="outline_btn" onclick="deleteContact('${c.id}')">Delete

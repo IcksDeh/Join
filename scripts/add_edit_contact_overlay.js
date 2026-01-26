@@ -139,25 +139,27 @@ async function getUpdatedContactData(id) {
  * @returns {Promise<void>} - A promise that resolves when the update is complete.
  */
 async function updateContact(id) {
-  validateEditContactForm();
-  const contact = contactsArray.find(c => c.id === id);
-  const oldName = contact.name;
-  const oldMail = contact.eMail;
-  const newName = document.getElementById('input-name').value.trim();
-  const newMail = document.getElementById('input-email').value.trim();
-  await getUpdatedContactData(id);
-  if (oldName !== newName) {
-    await updateAssigneeInTasksSafe(id, newName);
-  }
-  if (oldMail !== newMail || oldName !== newName && document.querySelector('myActiveUser') != null) {
-    await checkContactInUser(oldName, oldMail, newName, newMail)
-  }
+  if (validateEditContactForm()) {
+    validateEditContactForm()
+    const contact = contactsArray.find(c => c.id === id);
+    const oldName = contact.name;
+    const oldMail = contact.eMail;
+    const newName = document.getElementById('input-name').value.trim();
+    const newMail = document.getElementById('input-email').value.trim();
+    await getUpdatedContactData(id);
+    if (oldName !== newName) {
+      await updateAssigneeInTasksSafe(id, newName);
+    }
+    if (oldMail !== newMail || oldName !== newName && document.querySelector('myActiveUser') != null) {
+      await checkContactInUser(oldName, oldMail, newName, newMail)
+    }
 
-  closeEditContactDialog();
-  renderLocalContactList();
-  renderLocalContactInfo(id);
-  showToastUpdate();
-  checkActiveUser()
+    closeEditContactDialog();
+    renderLocalContactList();
+    renderLocalContactInfo(id);
+    showToastUpdate();
+    checkActiveUser()
+  }
 }
 
 
@@ -222,21 +224,26 @@ function clearContactInputs() {
 
 
 /**
- * Listens for submit events and handles the submission of the contact creation form.
- * Prevents the default form submission behavior and processes the form data asynchronously when the submitted form has the ID "addContactForm".
- *
- * @event submit
- * @param {SubmitEvent} event - The submit event triggered by a form.
- * @async
+ * Creates a new contact after validating the form input.
  */
-document.addEventListener("submit", async function (event) {
-  if (event.target && event.target.id === "addContactForm") {
-    event.preventDefault();
+async function createContact() {
+  if (validateAddContactForm()) {
+    validateAddContactForm()
     await getContactData();
+    await showNewContact()
     closeAddContactDialog();
     showToast();
   }
-});
+}
+
+
+async function showNewContact() {
+  await renderContactList()
+  const lastContact = contactsList[contactsList.length - 1];
+  const element = document.getElementById(lastContact.id)
+  setContactActive(lastContact.id, element)
+
+}
 
 
 /**
@@ -249,14 +256,11 @@ function validateAddContactForm() {
   const name = document.getElementById('id_contact_name')?.value.trim();
   const email = document.getElementById('id_contact_email')?.value.trim();
   const phone = document.getElementById('id_contact_phone')?.value.trim();
-  const button = document.getElementById('createContactBtn');
-  if (!button) return false;
   const isNameValid = name.length >= 2;
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(phone);
   const isFormValid = isNameValid && isEmailValid && isPhoneValid;
   handleInputError(isNameValid, isEmailValid, isPhoneValid)
-  button.disabled = !isFormValid;
   return isFormValid;
 }
 
@@ -271,18 +275,19 @@ function validateEditContactForm() {
   const contactName = document.getElementById('input-name')?.value.trim();
   const contactEmail = document.getElementById('input-email')?.value.trim();
   const contactPhone = document.getElementById('input-phone')?.value.trim();
-  const submitbutton = document.getElementById('saveContactBtn');
-  if (!submitbutton) return false;
   const isNameValid = contactName.length >= 2;
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail);
   const isPhoneValid = /^[0-9+\s()-]{5,}$/.test(contactPhone);
   const isFormValid = isNameValid && isEmailValid && isPhoneValid;
   handleInputError(isNameValid, isEmailValid, isPhoneValid)
-  submitbutton.disabled = !isFormValid;
   return isFormValid;
 }
 
 
+/**
+ * Handles input validation errors by adding or removing error styling from contact form fields.
+ * Applies error border styling to both add and edit contact form inputs based on validation state.
+ */
 function handleInputError(nameinput, mailinput, phoneinput) {
   const addContactName = document.getElementById('id_contact_name')
   const addContactPhone = document.getElementById('id_contact_phone')
