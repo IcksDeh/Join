@@ -18,7 +18,7 @@ function taskDetailTemplate(taskContent, taskID, taskIndex){
             </tr>
             <tr>
             <th scope="row" class="task_detail_description table_spacer">Priority:</th>
-            <td class="task_detail_description table_spacer icon_gap">${taskContent.priority.name}
+            <td class="task_detail_description table_spacer_prio icon_gap">${taskContent.priority.name.charAt(0).toUpperCase() + taskContent.priority.name.slice(1)}
               <img src="./assets/img/prio_${taskContent.priority.name}_${taskContent.priority.color}.svg" alt="Prio Urgent">
             </td>
             </tr>
@@ -66,7 +66,7 @@ function AssigneesTaskDetailsTemplate(assignee){
 function subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex){
   return` 
     <img id="checkbox_subtask_task_detail_${subtaskID}" onclick="toggleCheckedIconSubtasks(this, '${subtaskID}', '${taskID}', '${taskIndex}')" class="checkbox_icon" data-checked="${subtaskContent.done}" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
-    <p class="task_detail_description">${subtaskContent.text}</p>
+    <p class="task_detail_description_subtasks">${subtaskContent.text}</p>
   `;
 }  
 
