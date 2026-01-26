@@ -15,7 +15,8 @@ function getElementsUser() {
     email: document.getElementById('auth_input_mail'),
     pass: document.getElementById('auth_password_input'),
     confirm: document.getElementById('auth_confirm_password_input'),
-    errorMsg: document.getElementById('confirm_password_error')
+    errorMsg: document.getElementById('confirm_password_error'),
+     emailError: document.getElementById('email_error') 
   };
 }
 
@@ -116,6 +117,24 @@ function updateBtn(els) {
 
 
 /**
+  * Checks email validity and displays an error message if necessary.
+ */
+function handleEmailValidation(els) {
+  const emailValue = els.email.value;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (emailValue.length > 0 && !emailRegex.test(emailValue)) {
+    els.email.classList.add('input_error'); 
+    els.emailError.style.display = 'block';
+  } else {
+    els.email.classList.remove('input_error'); 
+    els.emailError.style.display = 'none'; 
+  }
+  
+  updateBtn(els);
+}
+
+
+/**
  * Checks if the password and confirmation match and shows error if not.
  */
 function handlePasswordMatch(els) {
@@ -144,9 +163,12 @@ function handlePasswordMatch(els) {
  */
 function addBasicListeners(els) {
   const check = () => updateBtn(els);
+  
   els.name.addEventListener('input', check);
-  els.email.addEventListener('input', check);
   els.checkbox.addEventListener('change', check);
+  els.email.addEventListener('input', () => {
+    handleEmailValidation(els);
+  });
 }
 
 

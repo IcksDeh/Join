@@ -196,6 +196,7 @@
   font-size: 0.85rem;
   margin-top: 4px;
   display: none;
+  position: absolute;
 }
 
 #login_error_message {
