@@ -1,4 +1,21 @@
 /**
+ * Initializes the application on page load.
+ *
+ * Verifies whether an active user session exists and redirects if not.
+ * Loads and renders shared UI components (sidebar, navbar, mobile footer).
+ * Highlights the currently active navigation link.
+ */
+function init() {
+    /** Redirects a user if not logged in */
+    isActiveUserSet()
+    loadSidebar();
+    loadNavbar();
+    loadMobileFooter();
+    highlightActiveLink();
+}
+
+
+/**
  *  Check if an active user is set, if not then redirect to login
  *
  *  @function isActiveUserSet
@@ -8,23 +25,11 @@ function isActiveUserSet() {
     const activeUser = localStorage.getItem("activeUser");
     let pagenow = window.location.href
     let bool = false
-    // Check if page is legal_notice or privacy_policy
     if (pagenow.includes("legal_notice") || pagenow.includes("privacy_policy")) bool = true
-
     if (!activeUser && bool == false) {
         pagenow = "index.html"
         window.location.href = pagenow
     }
-}
-
-function init() {
-    /** Redirect user if not logged in */
-    isActiveUserSet()
-
-    loadSidebar();
-    loadNavbar();
-    loadMobileFooter();
-    highlightActiveLink();
 }
 
 
