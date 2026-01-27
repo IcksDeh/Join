@@ -99,14 +99,13 @@ function loadPrefillPriority(currentTask){
 function loadPrefillAssignee(currentTask) {
   const assigneeContainer = document.getElementById("assigned_contacts_row_edit");
   assigneeContainer.innerHTML = "";
-  selectedAssigneesEdit = [];
+  selectedAssigneesEdit = []; 
+
   if (!currentTask.assignees) return; 
 
   let prefillAssignees = currentTask.assignees;
-  
   Object.entries(prefillAssignees).forEach(([id, contact]) => {
-    assigneeContainer.innerHTML += loadAssigneeBubblesToPrefill([id, contact]);
-    selectedAssigneesEdit.push({
+      selectedAssigneesEdit.push({
       id: id,
       contact: {
         name: contact.assigneeName,
@@ -115,6 +114,8 @@ function loadPrefillAssignee(currentTask) {
       }
     });
   });
+
+  renderAssignedContacts('edit');
 }
 
 

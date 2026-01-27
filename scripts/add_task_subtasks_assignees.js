@@ -64,17 +64,33 @@ function toggleCheckedIcon(imgElement, index, elementId) {
 
 
 /**
- * Renders all selected assignees into the assigned contacts container.
- * Each assignee is displayed with an initial and a background color corresponding to their profile.
+ * Main function to prepare data and container for rendering assignees.
+ * Selects the correct list and clears the container before rendering.
  */
 function renderAssignedContacts(elementId) {
   const container = document.getElementById("assigned_contacts_row_" + elementId);
   container.innerHTML = "";
-  let assigneeList = elementId === "default" ? selectedAssignees: selectedAssigneesEdit;
-  // console.log(assigneeList);
-  assigneeList.forEach(contact => {
-    container.innerHTML += 
-    `
+  
+  let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
+
+  renderAssigneeBubbles(container, assigneeList);
+}
+
+
+/**
+ * Renders the visible assignee bubbles and the overflow counter if necessary.
+ * Limits the display to 5 contacts.
+ * 
+ * @param {HTMLElement} container - The DOM element to append bubbles to.
+ * @param {Array} assigneeList - The list of selected assignees.
+ */
+function renderAssigneeBubbles(container, assigneeList) {
+  const maxVisible = 5;
+  const totalAssignees = assigneeList.length;
+  const renderCount = Math.min(totalAssignees, maxVisible);
+  for (let i = 0; i < renderCount; i++) {
+    const contact = assigneeList[i];
+    container.innerHTML += `
       <div class="contact_initial_circle assigned_contact"
         data-assignee-id="${contact.id}"
         title="${contact.contact.name}"
@@ -82,9 +98,17 @@ function renderAssignedContacts(elementId) {
         ${contact.contact.initial}
       </div>
     `;
-  });
+  }
+  if (totalAssignees > maxVisible) {
+    const extraCount = totalAssignees - maxVisible;
+    container.innerHTML += `
+      <div class="contact_initial_circle assigned_contact"
+           style="background-color: #29abe2; color: white;">
+        +${extraCount}
+      </div>
+    `;
+  }
 }
-
 
 /**
  * Synchronizes the checkbox icons in the dropdown list with the current selection.
