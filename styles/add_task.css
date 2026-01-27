@@ -42,6 +42,10 @@ sup {
     color: #FF3D00;
 }
 
+.hidden_sup {
+    visibility: hidden;
+}
+
 .formfield_left_wrapper {
     position: relative;
 }
@@ -57,7 +61,7 @@ sup {
 .required_message {
     position: absolute;
     left: 0;
-    bottom: 18px; 
+    bottom: 18px;
     display: none;
     color: #FF3D00;
     font-size: 12pt;
@@ -126,16 +130,16 @@ sup {
 
 .styled_input {
     font-family: "latin_400", sans-serif;
-    font-size: 20px;           
-    color: #2a3647;            
+    font-size: 20px;
+    color: #2a3647;
     padding-left: 20px;
     cursor: pointer;
 }
 
 .styled_input_description {
     font-family: "latin_400", sans-serif;
-    font-size: 20px;           
-    color: #2a3647;            
+    font-size: 20px;
+    color: #2a3647;
     padding-left: 20px;
     padding-top: 8px;
 }
@@ -182,7 +186,7 @@ input[type="date"]:-ms-input-placeholder {
 
 .dropdown_list_contacts::-webkit-scrollbar {
     width: 8px;
-    background: transparent; 
+    background: transparent;
 }
 
 .dropdown_list_contacts::-webkit-scrollbar-track {
@@ -206,7 +210,7 @@ input[type="date"]:-ms-input-placeholder {
     margin-bottom: 24px;
 }
 
-.priority_options button + button {
+.priority_options button+button {
     margin-left: 8px;
 }
 
@@ -304,8 +308,8 @@ input[type="date"]:-ms-input-placeholder {
 }
 
 .clear_btn .icon {
-    width: 24px;  
-    height: 24px;  
+    width: 24px;
+    height: 24px;
     object-fit: contain;
 }
 
@@ -334,10 +338,10 @@ input[type="date"]:-ms-input-placeholder {
     background-color: #2a3647;
     font-size: 21px;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
-    gap: 6px; 
-    white-space: nowrap; 
+    gap: 6px;
+    white-space: nowrap;
 }
 
 .create_task_btn:hover {
@@ -348,6 +352,6 @@ input[type="date"]:-ms-input-placeholder {
 
 .required_mobile {
     display: none;
-    font-size: 16px; 
+    font-size: 16px;
     color: #000000;
 }
