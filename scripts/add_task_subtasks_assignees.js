@@ -86,7 +86,7 @@ function renderAssignedContacts(elementId) {
  * @param {Array} assigneeList - The list of selected assignees.
  */
 function renderAssigneeBubbles(container, assigneeList) {
-  const maxVisible = 5;
+  const maxVisible = 4;
   const totalAssignees = assigneeList.length;
   const renderCount = Math.min(totalAssignees, maxVisible);
   for (let i = 0; i < renderCount; i++) {
