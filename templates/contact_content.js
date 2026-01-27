@@ -5,7 +5,7 @@ function loadContactListItem(c) {
                 <span class="initals" style="background-color: ${c.color};">${getContactInitials(c.name)}</span>
                 <div class="small_info">
                     <h3 id="name-${c.id}">${c.name}</h3>
-                    <span href="${c.eMail}">${c.eMail}</span>
+                    <span>${c.eMail}</span>
                 </div>
             </button>
         </li>
