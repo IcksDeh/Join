@@ -1,9 +1,9 @@
 .dialog_task_detail_container {
     width: 500px;
     background-color: #fff;
-    border-radius: 25px; 
+    border-radius: 25px;
     border: none;
-    padding: 35px;      
+    padding: 35px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -24,7 +24,7 @@
 #taskDetailDialog {
     position: fixed;
     top: 50%;
-    left: 50%; 
+    left: 50%;
     transform: translate(calc(100vw + 50%), -50%);
     opacity: 0;
     transition: transform 0.5s ease, opacity 0.5s ease;
@@ -65,7 +65,7 @@
     height: 120px;
     object-fit: contain;
     border-radius: 50%;
-    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
 
 .story_task_btn {
@@ -81,7 +81,7 @@
 .task_detail_title {
     color: #000;
     font-family: "latin_700", sans-serif;
-    font-size: 50px;
+    font-size: clamp(36px, calc(43/1440 * 100vw), 50px);
     font-weight: 700;
     margin-bottom: 30px;
 }
@@ -107,7 +107,7 @@
     text-align: left;
     margin: 0;
     line-height: 1;
-    margin-top: 1px; 
+    margin-top: 1px;
 }
 
 .icon_gap {
@@ -166,7 +166,7 @@
     border-radius: 10px;
 }
 
-.subtasks_container > * {
+.subtasks_container>* {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -196,11 +196,12 @@
     min-height: 350px;
     max-height: 70vh;
     overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 .scroll_container::-webkit-scrollbar {
     width: 8px;
-    background: transparent; 
+    background: transparent;
 }
 
 .scroll_container::-webkit-scrollbar-track {
@@ -249,8 +250,8 @@
 }
 
 .delete_edit_btn .icon {
-    width: 24px;  
-    height: 24px;  
+    width: 24px;
+    height: 24px;
     object-fit: contain;
 }
 
@@ -273,7 +274,7 @@
 }
 
 .bottom_divider {
-    width: 2px;          
+    width: 2px;
     height: 35px;
-    background-color: #e0e0e0; 
+    background-color: #e0e0e0;
 }
