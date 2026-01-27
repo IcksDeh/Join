@@ -268,9 +268,10 @@ function loadEventlistener(HTMLid) {
       const statusTasks = this.dataset.taskParam;
       if (areRequiredFieldsFilled(HTMLid)) {
         await getAddTaskData(statusTasks, HTMLid);
-        showToast();
+
         setTimeout(() => {
           closeAddTaskDialog('overlay');
+          showToast();
           if (HTMLid === "overlay") {
             loadContentBoard();
           }
