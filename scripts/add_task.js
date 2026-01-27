@@ -269,14 +269,15 @@ function loadEventlistener(HTMLid) {
       if (areRequiredFieldsFilled(HTMLid)) {
         await getAddTaskData(statusTasks, HTMLid);
 
-        setTimeout(() => {
-          closeAddTaskDialog('overlay');
-          showToast();
-          if (HTMLid === "overlay") {
-            loadContentBoard();
-          }
 
-        }, 1000);
+        closeAddTaskDialog('overlay');
+        showToast();
+        if (HTMLid === "overlay") {
+          loadContentBoard();
+        }
+
+
+
       } else {
         highlightRequiredFields(HTMLid);
       }
