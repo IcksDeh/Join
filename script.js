@@ -149,6 +149,21 @@ function toggleMenu() {
 
 
 /**
+ * Schließt das Navbar-Menü, wenn der Nutzer außerhalb des Menüs klickt.
+ */
+window.addEventListener('click', function(e) {
+    let menu = document.getElementById("menu_navbar");
+    if (menu && !menu.classList.contains("d_none")) {
+        let clickInsideMenu = menu.contains(e.target);
+        let clickOnToggle = e.target.closest("[onclick*='toggleMenu']");
+        if (!clickInsideMenu && !clickOnToggle) {
+            menu.classList.add("d_none");
+        }
+    }
+});
+
+
+/**
  *  Adds a click listener to all <dialog> elements on the page.
  *  Closes the dialog when the user clicks on the dialog backdrop (outside the dialog content) and clears all contact input fields.
  *
