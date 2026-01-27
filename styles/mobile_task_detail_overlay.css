@@ -155,4 +155,20 @@
     .user_name_assignee_circle_taks_detail_edit {
         font-size: 14px;
     }
+
+    .dialog_task_detail_container {
+        max-height: 85vh; 
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .scroll_container {
+        flex: 1;            
+        overflow-y: auto;  
+        max-height: unset;  
+        min-height: 0;      
+        padding-right: 5px; 
+    }
+
 }
