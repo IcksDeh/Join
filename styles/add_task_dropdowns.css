@@ -1,10 +1,9 @@
-
 /* DROPDOWN INPUTS */
 
 .dropdown {
-    width: 100%; 
+    width: 100%;
 }
- 
+
 .dropdown_input {
     display: flex;
     justify-content: space-between;
@@ -23,8 +22,8 @@
 
 input:focus,
 textarea:focus {
-  outline: none;
-  border: 2px solid #29abe2;
+    outline: none;
+    border: 2px solid #29abe2;
 }
 
 .dropdown_input:hover .dropdown_icon {
@@ -128,8 +127,8 @@ textarea:focus {
     transition: opacity 0.2s ease;
     font-size: 15px;
 }
- 
-.user_name_assignee_circle{
+
+.user_name_assignee_circle {
     font-size: 20px;
 }
 
@@ -165,7 +164,7 @@ textarea:focus {
     background-color: none;
 }
 
-.subtask_divider{
+.subtask_divider {
     border-right: 1.5px solid #d1d1d1;
     height: 27px;
     position: absolute;
@@ -174,7 +173,7 @@ textarea:focus {
     transform: translateY(-50%);
 }
 
-.add_task_input:focus + .subtask_actions {
+.add_task_input:focus+.subtask_actions {
     opacity: 1;
 }
 
@@ -192,8 +191,8 @@ textarea:focus {
 }
 
 .new_subtask {
-    color: #2a3647;   
-    font-weight: 400;  
+    color: #2a3647;
+    font-weight: 400;
     font-size: 20px;
     margin-bottom: 5px;
 }
@@ -202,6 +201,10 @@ textarea:focus {
     list-style: none;
     padding: 0;
     margin-left: 20px;
+    max-height: 70px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scroll-snap-type: mandatory;
 }
 
 .edit_subtask:hover {
@@ -228,7 +231,8 @@ textarea:focus {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-    margin-right: 16px;
+    margin-right: 12px;
+
 }
 
 .edit_container {
@@ -255,10 +259,10 @@ textarea:focus {
 }
 
 .edit_input {
-  flex: 1;
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+    flex: 1;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
 
 .subtask_edit_input {
