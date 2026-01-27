@@ -226,19 +226,23 @@ function loadCounterDoneSubtasks(taskID, index) {
 
 
 /**
- * Loads the progress bar for a specific task by calculating the percentage of completed subtasks and updating the corresponding progress bar element.
- *
- * @async
- * @param {number} index - The index of the task in the task list.
- * @param {string} taskID - The unique ID of the task, used to find the progress bar element.
+ * Loads the progress bar for a specific task.
+ * Hides the progress container if no subtasks are completed.
  */
 function loadProgressbar(index, taskID) {
     let progressbarElement = document.getElementById('progressbar_' + taskID);
+    let progressContainer = document.getElementById('progress_container_' + taskID); // Zugriff auf den Container
     let sumAllSubtasks = numberAllSubtasks(index);
     let sumDoneSubtasks = numberDoneSubstask(index);
-    let calculatesSubtaksProgress = sumDoneSubtasks / sumAllSubtasks;
-    let progressPercent = Math.round(calculatesSubtaksProgress * 100);
-    progressbarElement.style.width = progressPercent + '%';
+
+    if (sumDoneSubtasks > 0) {
+        progressContainer.style.display = 'flex';
+        let calculatesSubtaksProgress = sumDoneSubtasks / sumAllSubtasks;
+        let progressPercent = Math.round(calculatesSubtaksProgress * 100);
+        progressbarElement.style.width = progressPercent + '%';
+    } else {
+        progressContainer.style.display = 'none';
+    }
 }
 
 
@@ -328,7 +332,6 @@ function resetBoardHTML() {
     ];
     columns.forEach(col => {
         let columnElement = document.getElementById('board_column_' + col.id);
-        // Επαναφέρουμε το default μήνυμα (π.χ. "No tasks in To Do")
         let message = `No tasks in ${col.text}`;
 
         columnElement.innerHTML = `<div class="no_task_message">${message}</div>`;
