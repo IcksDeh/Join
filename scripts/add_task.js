@@ -329,6 +329,5 @@ function highlightRequiredFields(HTMLid) {
     dateMsg.style.display = isDateError ? "block" : "none";
     dateMsg.innerText = dateInput.value ? "Date must be 2026 or later" : "This field is required";
   }
-  category.style.color =
-    category.textContent.trim() === "Select task category" ? "#FF3D00" : "";
+  category.style.color = category.innerText === "Select task category" ? "#FF3D00" : "";
 }
