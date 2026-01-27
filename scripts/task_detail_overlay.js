@@ -54,17 +54,17 @@ function closeTaskDetailDialog() {
  * @param {Object} taskContent - The task data object.
  * @param {string|number} taskID - The unique ID of the task.
  */
-function loadAssigneesTaskDetails(taskContent, taskID){
+function loadAssigneesTaskDetails(taskContent, taskID) {
   let taskAssigneeElement = document.getElementById("assignees_task_details_" + taskID);
   let assigneeList = taskContent.assignees;
   Object.values(assigneeList)
-  .forEach(assignee => {
-    // console.log(assignee)
-    let assigneeHTMLElement = document.createElement('div');
-    assigneeHTMLElement.className = "user_info";
-    assigneeHTMLElement.innerHTML = AssigneesTaskDetailsTemplate(assignee);
-    taskAssigneeElement.appendChild(assigneeHTMLElement);
-  })
+    .forEach(assignee => {
+      // console.log(assignee)
+      let assigneeHTMLElement = document.createElement('div');
+      assigneeHTMLElement.className = "user_info";
+      assigneeHTMLElement.innerHTML = AssigneesTaskDetailsTemplate(assignee);
+      taskAssigneeElement.appendChild(assigneeHTMLElement);
+    })
 }
 
 
@@ -76,20 +76,20 @@ function loadAssigneesTaskDetails(taskContent, taskID){
  * @param {string|number} taskID - The unique ID of the task.
  * @param {number} taskIndex - The index of the task in the task list.
  */
-function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
+function loadSubtaksTaskDetails(taskContent, taskID, taskIndex) {
   let subtaskListElement = document.getElementById("subtasks_task_detail_list");
   let subtaskList = taskContent.subtasks;
-  if(subtaskList !== ""){
-    Object.entries(subtaskList).forEach(subtaskElement =>{
-    // console.log(subtaskElement);
-    let subtaskID = subtaskElement[0];
-    let subtaskContent = subtaskElement[1];
-    let subtaskHTMLElement = document.createElement('div');
-    subtaskHTMLElement.className = "subtasks_container"
-    subtaskHTMLElement.innerHTML = subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex);
-    subtaskListElement.appendChild(subtaskHTMLElement);
-    checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent);
-  })
+  if (subtaskList !== "") {
+    Object.entries(subtaskList).forEach(subtaskElement => {
+      // console.log(subtaskElement);
+      let subtaskID = subtaskElement[0];
+      let subtaskContent = subtaskElement[1];
+      let subtaskHTMLElement = document.createElement('div');
+      subtaskHTMLElement.className = "subtasks_container"
+      subtaskHTMLElement.innerHTML = subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex);
+      subtaskListElement.appendChild(subtaskHTMLElement);
+      checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent);
+    })
   }
 }
 
@@ -100,12 +100,12 @@ function loadSubtaksTaskDetails(taskContent, taskID, taskIndex){
  * @param {string|number} subtaskID - The unique ID of the subtask.
  * @param {Object} subtaskContent - The subtask data object.
  */
-function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
+function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent) {
   let subtaskCheckboxElement = document.getElementById("checkbox_subtask_task_detail_" + subtaskID);
-  if(subtaskContent.done == "false"){
+  if (subtaskContent.done == "false") {
     subtaskCheckboxElement.src = "./assets/img/checkbox_unchecked_contact_form.svg";
   } else {
-    subtaskCheckboxElement.src ="./assets/img/checkbox_checked_contact_form.svg";
+    subtaskCheckboxElement.src = "./assets/img/checkbox_checked_contact_form.svg";
   }
 }
 
@@ -117,11 +117,11 @@ function checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent){
  * @param {Object} taskContent - The task data object.
  * @param {string|number} taskID - The unique ID of the task.
  */
-function colorLabelTaskDetails (taskContent, taskID){
+function colorLabelTaskDetails(taskContent, taskID) {
   let labelElement = document.getElementById("category_label_task_details_" + taskID)
-  if (taskContent.category === "Technical Task"){
+  if (taskContent.category === "Technical Task") {
     labelElement.style.backgroundColor = '#0038FF';
-  } else if( taskContent.category === "User Story"){
+  } else if (taskContent.category === "User Story") {
     labelElement.style.backgroundColor = '#1FD7C1';
   } else {
     labelElement.style.backgroundColor = '#ff00d9';
@@ -157,11 +157,20 @@ async function toggleCheckedIconSubtasks(img, subtaskId, taskID, taskIndex) {
  *
  * @param {string|number} taskID - The ID of the task to delete.
  */
-function deleteTask(taskID){
-  Object.values(taskList).forEach(taskElement =>{
+function deleteTask(taskID) {
+  Object.values(taskList).forEach(taskElement => {
     // console.log(taskElement.id);
-    if(taskElement.id == taskID){
+    if (taskElement.id == taskID) {
       deleteTaskFromFirebase(taskID, "tasks/");
+      deleteTaskLocally(taskID)
     }
   })
+}
+
+function deleteTaskLocally(taskID) {
+  const task = taskList.find(task => task.id === taskID)
+  const index = taskList.indexOf(task)
+  taskList.splice(index, 1)
+  resetBoardHTML()
+  checkStatusTask()
 }

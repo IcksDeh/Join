@@ -70,7 +70,7 @@ function resetInputFields(HTMLid) {
     }
   });
   const categorySpan = document.getElementById("selected_category_" + HTMLid);
-    if (categorySpan) {
+  if (categorySpan) {
     categorySpan.innerHTML = "Select task category";
     categorySpan.style.color = "";
   }
@@ -111,11 +111,11 @@ function clearInputs(HTMLid) {
   resetInputFields(HTMLid);
   const selectedContactsElement = document.getElementById("selected_contacts_" + HTMLid);
   if (selectedContactsElement) {
-      selectedContactsElement.innerHTML = "Select contacts to assign";
+    selectedContactsElement.innerHTML = "Select contacts to assign";
   }
   const assignedContactsRow = document.getElementById("assigned_contacts_row_" + HTMLid);
   if (assignedContactsRow) {
-      assignedContactsRow.innerHTML = "";
+    assignedContactsRow.innerHTML = "";
   }
   closeDropdownLists();
   if (typeof subtaskList !== 'undefined' && subtaskList) subtaskList.innerHTML = "";
@@ -134,7 +134,7 @@ function clearInputs(HTMLid) {
  *
  * @param {string} status - The currently selected priority name.
  */
-function checkPriority(status,suffix, prefix = 'id',) {
+function checkPriority(status, suffix, prefix = 'id',) {
   priorities.forEach(({ name, color }) => {
     updatePriorityButton(name, name === status, color, prefix, suffix);
   });
@@ -246,7 +246,7 @@ function selectCategory(element, HTMLid) {
   const categorySpan = document.getElementById("selected_category_" + HTMLid);
   categorySpan.innerHTML = element.innerHTML;
   document.getElementById("category_list_task_" + HTMLid).style.display = "none";
-  categorySpan.style.color = ""; 
+  categorySpan.style.color = "";
 }
 
 
@@ -260,9 +260,9 @@ function selectCategory(element, HTMLid) {
  * @listens HTMLButtonElement#click
  * @returns {Promise<void>} - A promise that resolves when the task data has been processed.
  */
-function loadEventlistener(HTMLid){
+function loadEventlistener(HTMLid) {
   const createBtn = document.getElementById("id_btn_create_task_" + HTMLid);
-    if(createBtn){
+  if (createBtn) {
     createBtn.addEventListener("click", async function (event) {
       event.preventDefault();
       const statusTasks = this.dataset.taskParam;
@@ -271,10 +271,10 @@ function loadEventlistener(HTMLid){
         showToast();
         setTimeout(() => {
           closeAddTaskDialog('overlay');
-          if (HTMLid === "overlay"){
+          if (HTMLid === "overlay") {
             loadContentBoard();
           }
-          window.location.href = "board.html";
+
         }, 1000);
       } else {
         highlightRequiredFields(HTMLid);
@@ -293,9 +293,9 @@ function loadEventlistener(HTMLid){
  * @returns {boolean} True if all required fields are filled, otherwise false.
  */
 function areRequiredFieldsFilled(HTMLid) {
-  const title = document.getElementById('id_title_add_task_'+ HTMLid).value.trim();
-  const dueDateInput = document.getElementById('id_due_date_add_task_' + HTMLid); 
-  const category = document.getElementById('selected_category_'+ HTMLid).textContent.trim();
+  const title = document.getElementById('id_title_add_task_' + HTMLid).value.trim();
+  const dueDateInput = document.getElementById('id_due_date_add_task_' + HTMLid);
+  const category = document.getElementById('selected_category_' + HTMLid).textContent.trim();
   const isTitleFilled = title.length > 0;
   const isDueDateFilled = dueDateInput.value.length > 0 && dueDateInput.value >= "2026-01-01";
   const isCategoryFilled = category !== 'Select task category';
@@ -329,5 +329,5 @@ function highlightRequiredFields(HTMLid) {
     dateMsg.innerText = dateInput.value ? "Date must be 2026 or later" : "This field is required";
   }
   category.style.color =
-  category.textContent.trim() === "Select task category" ? "#FF3D00" : "";
+    category.textContent.trim() === "Select task category" ? "#FF3D00" : "";
 }

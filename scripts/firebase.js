@@ -167,7 +167,6 @@ async function deleteTaskFromFirebase(taskID, path) {
         method: "DELETE",
     });
     closeTaskDetailDialog();
-    location.reload();
 }
 
 

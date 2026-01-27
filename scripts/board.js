@@ -3,28 +3,29 @@
  * Clears the board, fetches the latest tasks from Firebase, and populates each column based on task status.
  */
 async function loadContentBoard() {
-    resetBoardHTML(); 
+    resetBoardHTML();
+    taskList = []
     await loadFirebaseData('tasks');
     await loadFirebaseData('contacts');
     checkStatusTask();
-    initMobileDragAndDrop(); 
+    initMobileDragAndDrop();
 }
 
 
 /**
  * Iterates through all tasks and calls loadBoardColumn to place each task in the correct column based on its status.
  */
-function checkStatusTask(){
-    Object.entries(taskList).forEach((taskElementofColumn, index) =>{
+function checkStatusTask() {
+    Object.entries(taskList).forEach((taskElementofColumn, index) => {
         taskID = taskElementofColumn[1].id;
         taskContent = taskElementofColumn[1].task;
-        if(taskContent.statusTask =="todo"){
+        if (taskContent.statusTask == "todo") {
             loadBoardColumn(taskID, taskContent, index, "todo");
-        } else if (taskContent.statusTask =="inProgress"){
+        } else if (taskContent.statusTask == "inProgress") {
             loadBoardColumn(taskID, taskContent, index, "inProgress");
-        } else if (taskContent.statusTask =="awaitFeedback"){
+        } else if (taskContent.statusTask == "awaitFeedback") {
             loadBoardColumn(taskID, taskContent, index, "awaitFeedback");
-        } else if (taskContent.statusTask =="done"){
+        } else if (taskContent.statusTask == "done") {
             loadBoardColumn(taskID, taskContent, index, "done");
         }
     })
@@ -40,12 +41,12 @@ function checkStatusTask(){
  * @param {number} index - Index of the task in taskList.
  * @param {string} status - The status of the column.
  */
-function loadBoardColumn(taskID, taskContent, index, status){
-    let columnElement = document.getElementById('board_column_' +status);
-    if (columnElement.dataset.initialized == "false"){
+function loadBoardColumn(taskID, taskContent, index, status) {
+    let columnElement = document.getElementById('board_column_' + status);
+    if (columnElement.dataset.initialized == "false") {
         columnElement.innerHTML = "";
-        columnElement.classList.remove("no_task_available");  
-        columnElement.dataset.initialized = "true"; 
+        columnElement.classList.remove("no_task_available");
+        columnElement.dataset.initialized = "true";
     }
     loadTaskElementinColumn(taskID, taskContent, index, status);
     loadAssigneesOfTaks(taskContent, taskID);
@@ -64,8 +65,8 @@ function loadBoardColumn(taskID, taskContent, index, status){
  * @param {number} index - Index of the task in the task list.
  * @param {string} status - The status of the column.
  */
-function loadTaskElementinColumn(taskID, taskContent, index, status){
-    let columnElement = document.getElementById('board_column_' +status);
+function loadTaskElementinColumn(taskID, taskContent, index, status) {
+    let columnElement = document.getElementById('board_column_' + status);
     let taskElementofColumnList = document.createElement('div');
     taskElementofColumnList.innerHTML = taskListElementTemplate(taskID, index);
     columnElement.appendChild(taskElementofColumnList);
@@ -85,8 +86,8 @@ function loadAssigneesOfTaks(taskContent, taskID) {
     let existingContactsIds = contactsList.map(contact => contact.id);
     let validAssignees = Object.entries(assignees)
         .filter(([assigneesId]) => existingContactsIds.includes(assigneesId));
-    Object.entries(assignees).forEach(([assigneeID])=>{
-        if (!existingContactsIds.includes(assigneeID)){
+    Object.entries(assignees).forEach(([assigneeID]) => {
+        if (!existingContactsIds.includes(assigneeID)) {
             deleteAssigneeInTaskList(assigneeID, 'tasks/', taskID);
         }
     });
@@ -126,12 +127,12 @@ function renderOverflowCounter(totalAssignees, maxVisible, container) {
     if (totalAssignees > maxVisible) {
         let remaining = totalAssignees - maxVisible;
         let overflowCircle = document.createElement('div');
-        
+
         overflowCircle.className = "user_circle_task_card";
-        overflowCircle.style.backgroundColor ="#29abe2"  
+        overflowCircle.style.backgroundColor = "#29abe2"
         overflowCircle.style.color = 'white';
         overflowCircle.innerHTML = `+${remaining}`;
-        
+
         container.appendChild(overflowCircle);
     }
 }
@@ -143,13 +144,13 @@ function renderOverflowCounter(totalAssignees, maxVisible, container) {
  * @param {Object} taskContent - The task data object containing priority information.
  * @param {string} taskID - The unique ID of the task.
  */
-function loadPriorityIcon(taskContent, taskID){
-    let iconPriorityElement = document.getElementById("icon_priority_"+taskID);
-    if (taskContent.priority.name === "low"){
+function loadPriorityIcon(taskContent, taskID) {
+    let iconPriorityElement = document.getElementById("icon_priority_" + taskID);
+    if (taskContent.priority.name === "low") {
         iconPriorityElement.src = "./assets/img/prio_low_green.svg";
-    } else if (taskContent.priority.name === "medium"){
+    } else if (taskContent.priority.name === "medium") {
         iconPriorityElement.src = "./assets/img/prio_medium_yellow.svg";
-    } else{
+    } else {
         iconPriorityElement.src = "./assets/img/prio_urgent_red.svg";
     }
 }
@@ -161,11 +162,11 @@ function loadPriorityIcon(taskContent, taskID){
  * @param {Object} taskContent - The task data object containing category information.
  * @param {string} taskID - The unique ID of the task.
  */
-function loadCategoryLabelColor(taskContent, taskID){
-    let categoryLabel = document.getElementById("category_label_"+taskID);
-    if (taskContent.category === "Technical Task"){
+function loadCategoryLabelColor(taskContent, taskID) {
+    let categoryLabel = document.getElementById("category_label_" + taskID);
+    if (taskContent.category === "Technical Task") {
         categoryLabel.style.backgroundColor = '#0038FF';
-    } else if(taskContent.category === "User Story"){
+    } else if (taskContent.category === "User Story") {
         categoryLabel.style.backgroundColor = '#1FD7C1';
     } else {
         categoryLabel.style.backgroundColor = '#ff5eb3';
@@ -178,19 +179,19 @@ function loadCategoryLabelColor(taskContent, taskID){
  *
  * @param {string} taskID - The unique ID of the task.
  */
-function loadSummarySubtasks(taskID, index){
-    const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
+function loadSummarySubtasks(taskID, index) {
+    const currrentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
     if (!currrentTaskElement) {
         // console.error("Task mit ID nicht gefunden:", taskID);
         return;
     }
     const currentTask = currrentTaskElement.task;
-    const allSubtasks = document.getElementById("counterAllSubtasks_"+ taskID);
-    const tooltipAllSubtasks = document.getElementById("tooltip_all_subtasks_"+ taskID)
+    const allSubtasks = document.getElementById("counterAllSubtasks_" + taskID);
+    const tooltipAllSubtasks = document.getElementById("tooltip_all_subtasks_" + taskID)
     let elementSubtasks = currentTask.subtasks;
     let counterAllSubtaks = 0
     Object.entries(elementSubtasks).forEach(eachElement => {
-        counterAllSubtaks ++;
+        counterAllSubtaks++;
     })
     allSubtasks.innerHTML = counterAllSubtaks;
     tooltipAllSubtasks.innerHTML = counterAllSubtaks;
@@ -202,25 +203,25 @@ function loadSummarySubtasks(taskID, index){
  *
  * @param {string} taskID - The unique ID of the task.
  */
-function loadCounterDoneSubtasks(taskID, index){
-    const currrentTaskElement = taskList.find(taskElement => taskElement.id ===taskID);
+function loadCounterDoneSubtasks(taskID, index) {
+    const currrentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
     if (!currrentTaskElement) {
         // console.error("Task mit ID nicht gefunden:", taskID);
         return;
     }
     const currentTask = currrentTaskElement.task;
-    const doneSubtasks = document.getElementById("counterDoneSubtasks_"+ taskID);
-    const tooltipDoneSubtasks = document.getElementById("tooltip_done_subtasks_"+ taskID)
+    const doneSubtasks = document.getElementById("counterDoneSubtasks_" + taskID);
+    const tooltipDoneSubtasks = document.getElementById("tooltip_done_subtasks_" + taskID)
 
     let elementSubtasks = currentTask.subtasks;
     let counterDoneSubtasks = 0;
     Object.values(elementSubtasks).forEach(eachElement => {
-        if(eachElement.done == true){
-            counterDoneSubtasks ++;
+        if (eachElement.done == true) {
+            counterDoneSubtasks++;
         }
     })
-        doneSubtasks.innerHTML = counterDoneSubtasks;
-        tooltipDoneSubtasks.innerHTML = counterDoneSubtasks;
+    doneSubtasks.innerHTML = counterDoneSubtasks;
+    tooltipDoneSubtasks.innerHTML = counterDoneSubtasks;
 }
 
 
@@ -231,13 +232,13 @@ function loadCounterDoneSubtasks(taskID, index){
  * @param {number} index - The index of the task in the task list.
  * @param {string} taskID - The unique ID of the task, used to find the progress bar element.
  */
-function loadProgressbar(index, taskID){
-    let progressbarElement = document.getElementById('progressbar_'+ taskID);
+function loadProgressbar(index, taskID) {
+    let progressbarElement = document.getElementById('progressbar_' + taskID);
     let sumAllSubtasks = numberAllSubtasks(index);
     let sumDoneSubtasks = numberDoneSubstask(index);
     let calculatesSubtaksProgress = sumDoneSubtasks / sumAllSubtasks;
     let progressPercent = Math.round(calculatesSubtaksProgress * 100);
-    progressbarElement.style.width = progressPercent + '%'; 
+    progressbarElement.style.width = progressPercent + '%';
 }
 
 
@@ -247,11 +248,11 @@ function loadProgressbar(index, taskID){
  * @param {number} index - The index of the task in the task list.
  * @returns {number} - The total number of subtasks.
  */
-function numberAllSubtasks(index){
+function numberAllSubtasks(index) {
     let numberAllSubtasks = 0;
     let taskElement = taskList[index].task.subtasks;
-    Object.keys(taskElement).forEach(element =>{
-        numberAllSubtasks ++;
+    Object.keys(taskElement).forEach(element => {
+        numberAllSubtasks++;
     })
     return numberAllSubtasks;
 }
@@ -263,12 +264,12 @@ function numberAllSubtasks(index){
  * @param {number} index - The index of the task in the task list.
  * @returns {number} - The number of completed subtasks.
  */
-function numberDoneSubstask(index){
+function numberDoneSubstask(index) {
     let doneSubtasks = 0;
     let taskElement = taskList[index].task.subtasks;
-    Object.values(taskElement).forEach(element =>{
-        if(element.done == true){
-            doneSubtasks ++;
+    Object.values(taskElement).forEach(element => {
+        if (element.done == true) {
+            doneSubtasks++;
         }
     })
     return doneSubtasks;
@@ -344,7 +345,7 @@ function resetBoardHTML() {
  */
 function checkOverlayRedirect() {
     const overlay = document.getElementById('addTaskDialog');
-    
+
     if (!overlay) return;
     const style = window.getComputedStyle(overlay);
     if (style.display === 'none' || style.visibility === 'hidden') return;
