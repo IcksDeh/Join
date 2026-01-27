@@ -19,14 +19,14 @@ let selectedAssigneesEdit = [];
  * @param {string} element - The element identifier used to determine which list to check.
  * @returns {Promise<void>} - A promise that resolves when the contact list has been checked and rendered.
  */
-async function checkContactList(element, HTMLid){
-  if (element == "contacts"){
+async function checkContactList(element, HTMLid) {
+  if (element == "contacts") {
     if (contactsList.length > 0) {
-      showContactsInTasks(HTMLid); 
+      showContactsInTasks(HTMLid);
       return;
     }
-  await loadFirebaseData("contacts");
-   showContactsInTasks(HTMLid);
+    await loadFirebaseData("contacts");
+    showContactsInTasks(HTMLid);
   }
 }
 
@@ -41,18 +41,19 @@ async function checkContactList(element, HTMLid){
 function toggleCheckedIcon(imgElement, index, elementId) {
   const contact = contactsList[index];
   const contactId = contact.id;
-  const isChecked = imgElement.dataset.checked === "true";
+  const arrayOfElements = Array.from(imgElement)
+  const isChecked = arrayOfElements[0].children[1].dataset.checked === "true";
   let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
   if (isChecked) {
     assigneeList = assigneeList.filter(c => c.id !== contactId);
-    imgElement.dataset.checked = "false";
-    imgElement.src = "./assets/img/checkbox_unchecked.svg";
+    arrayOfElements[0].children[1].dataset.checked = "false";
+    arrayOfElements[0].children[1].src = "./assets/img/checkbox_unchecked.svg";
   } else {
     if (!assigneeList.some(c => c.id === contactId)) {
       assigneeList.push(contact);
     }
-    imgElement.dataset.checked = "true";
-    imgElement.src = "./assets/img/checkbox_checked.svg";
+    arrayOfElements[0].children[1].dataset.checked = "true";
+    arrayOfElements[0].children[1].src = "./assets/img/checkbox_checked.svg";
   }
   if (elementId === "default") {
     selectedAssignees = assigneeList;
@@ -70,7 +71,7 @@ function toggleCheckedIcon(imgElement, index, elementId) {
 function renderAssignedContacts(elementId) {
   const container = document.getElementById("assigned_contacts_row_" + elementId);
   container.innerHTML = "";
-  
+
   let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
 
   renderAssigneeBubbles(container, assigneeList);
@@ -151,7 +152,7 @@ function clearSelectedAssignees() {
  * @returns {void} - This function does not return a value.
  */
 function showContactsInTasks(HTMLid) {
-  let assigneeList = document.getElementById("contacts_list_task_"+HTMLid);
+  let assigneeList = document.getElementById("contacts_list_task_" + HTMLid);
   assigneeList.innerHTML = "";
   for (let index = 0; index < contactsList.length; index++) {
     isChecked = contactsList[index].isChecked === true;
@@ -159,6 +160,7 @@ function showContactsInTasks(HTMLid) {
     const checkState = isChecked ? "true" : "false";
     const listElement = document.createElement("li");
     listElement.className = "dropdown_item";
+    listElement.onclick = function () { toggleCheckedIcon(this.children, index, HTMLid) }
     listElement.innerHTML = listAssigneeTemplate(contactsList, index, checkImg, checkState, HTMLid);
     assigneeList.appendChild(listElement);
   }
@@ -203,7 +205,7 @@ function cancelSubtask() {
  */
 function addSubtask() {
   const inputSubtask = document.getElementById("subtasks");
-  const inputSubtaskEdit = document.getElementById("subtasks_edit") 
+  const inputSubtaskEdit = document.getElementById("subtasks_edit")
   const subtaskList = document.getElementById("subtaskList");
   const subtaskListEdit = document.getElementById("subtaskList_edit")
   const input = inputSubtaskEdit?.value.trim() ? inputSubtaskEdit : inputSubtask;
@@ -296,7 +298,7 @@ if (subtaskInputEdit) {
 function initSubtaskEditListeners() {
   const subtaskInputEdit = document.getElementById("subtasks_edit");
   if (!subtaskInputEdit) return;
-  subtaskInputEdit.addEventListener("keydown", function(event) {
+  subtaskInputEdit.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
       addSubtask();

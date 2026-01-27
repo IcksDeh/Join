@@ -1,4 +1,4 @@
-function taskDetailTemplate(taskContent, taskID, taskIndex){
+function taskDetailTemplate(taskContent, taskID, taskIndex) {
   return `
     <main class="task_detail_wrapper" data-task_detail_information-id="${taskID}">
       <div class="close_btn_container_task_detail no_scroll">
@@ -55,7 +55,7 @@ function taskDetailTemplate(taskContent, taskID, taskIndex){
 }
 
 
-function AssigneesTaskDetailsTemplate(assignee){
+function AssigneesTaskDetailsTemplate(assignee) {
   return `
     <div class="contact_initial_circle" style="background-color: ${assignee.assigneeColor};">${assignee.assigneeInitial}</div>
     <p>${assignee.assigneeName}</p>
@@ -63,15 +63,15 @@ function AssigneesTaskDetailsTemplate(assignee){
 }
 
 
-function subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex){
-  return` 
-    <img id="checkbox_subtask_task_detail_${subtaskID}" onclick="toggleCheckedIconSubtasks(this, '${subtaskID}', '${taskID}', '${taskIndex}')" class="checkbox_icon" data-checked="${subtaskContent.done}" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
+function subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex) {
+  return ` 
+    <img id="checkbox_subtask_task_detail_${subtaskID}" class="checkbox_icon" data-checked="${subtaskContent.done}" src="./assets/img/checkbox_unchecked_contact_form.svg" alt="Checkbox Button">
     <p class="task_detail_description_subtasks">${subtaskContent.text}</p>
   `;
-}  
+}
 
 
-function loadAssigneeBubblesToPrefill(element){
+function loadAssigneeBubblesToPrefill(element) {
   return `
     <div class="contact_initial_circle assigned_contact" data-assignee-id="${element[1].id}" title="${element[1].name}" style="background-color:${element[1].assigneeColor}">
     ${element[1].assigneeInitial}
@@ -80,7 +80,7 @@ function loadAssigneeBubblesToPrefill(element){
 }
 
 
-function taskEditDialogTemplate(taskID, index){
+function taskEditDialogTemplate(taskID, index) {
   return `
     <main class="task_detail_edit_wrapper" data-task_detail_information-id="${taskID}">
       <div class="close_btn_container_task_detail_edit no_scroll_edit">

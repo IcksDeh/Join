@@ -86,6 +86,7 @@ function loadSubtaksTaskDetails(taskContent, taskID, taskIndex) {
       let subtaskContent = subtaskElement[1];
       let subtaskHTMLElement = document.createElement('div');
       subtaskHTMLElement.className = "subtasks_container"
+      subtaskHTMLElement.onclick = function () { toggleCheckedIconSubtasks(this, subtaskID, taskID, taskIndex) }
       subtaskHTMLElement.innerHTML = subtaskTaskDetailsTemplate(subtaskID, subtaskContent, taskID, taskIndex);
       subtaskListElement.appendChild(subtaskHTMLElement);
       checkCheckboxSubtaskTaskDetail(subtaskID, subtaskContent);
@@ -136,7 +137,8 @@ function colorLabelTaskDetails(taskContent, taskID) {
  * The image element representing the checkbox icon.
  * Must contain a 'data-checked' attribute ('true' or 'false').
  */
-async function toggleCheckedIconSubtasks(img, subtaskId, taskID, taskIndex) {
+async function toggleCheckedIconSubtasks(clickedItem, subtaskId, taskID, taskIndex) {
+  const img = clickedItem.children[0]
   const checked = img.dataset.checked === "true";
   img.dataset.checked = !checked;
   img.src = checked
