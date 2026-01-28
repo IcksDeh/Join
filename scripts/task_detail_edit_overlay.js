@@ -1,5 +1,3 @@
-// OPEN & CLOSE FUNCTIONS
-
 /**
  * Opens the "User Story" dialog if it is not already open and loads the template.
  * setTimeout removes focus from any active element.
@@ -100,9 +98,7 @@ function loadPrefillAssignee(currentTask) {
   const assigneeContainer = document.getElementById("assigned_contacts_row_edit");
   assigneeContainer.innerHTML = "";
   selectedAssigneesEdit = []; 
-
   if (!currentTask.assignees) return; 
-
   let prefillAssignees = currentTask.assignees;
   Object.entries(prefillAssignees).forEach(([id, contact]) => {
       selectedAssigneesEdit.push({
@@ -114,7 +110,6 @@ function loadPrefillAssignee(currentTask) {
       }
     });
   });
-
   renderAssignedContacts('edit');
 }
 
@@ -127,7 +122,6 @@ function loadPrefillSubtasks(currentTask){
   let subtaskElements = currentTask.subtasks;
   let substaskHTML = document.getElementById("subtaskList_edit");
   substaskHTML.innerHTML ="";
-  // console.log(subtaskElements);
   Object.entries(subtaskElements).forEach(element => {
     let contentSubtask = element[1].text;
     const li = document.createElement("li");
@@ -169,8 +163,6 @@ function initDialogInputs() {
   });
 }
 
-
-// SUBMIT BUTTON & REQUIRED FIELDS
 
 /**
  * Checks whether all required task fields are filled.

@@ -81,7 +81,6 @@ function slideContactInfo() {
     requestAnimationFrame(() => {
         const bigContact = document.getElementById('contact_big')
         const bigContactInfo = document.getElementById('contact_big_information')
-
         bigContact.classList.toggle('slideactive')
         bigContactInfo.classList.toggle('slideactive')
     })
@@ -132,6 +131,7 @@ function changeBtnsPopover() {
 
 /**
  * Returns the current width of the viewport in pixels.
+ * 
  * @returns {number} The width of the viewport.
  */
 function getViewportSize() {
@@ -156,6 +156,7 @@ function renderMobileClickedContact() {
 
 /**
  * Handles responsive layout adjustments for the contact list and contact info panels.
+ * 
  * @function resizeHandler
  * @returns {void}
  */
@@ -274,8 +275,7 @@ function updateLocalStorage(newName, newMail) {
  * and verifies that the user's name matches the contact's name. If a match is found,
  * appends "(Ich)" to the contact's list item and applies a CSS class for styling.
  * 
- * @returns {boolean|undefined} Appends " (Ich)" to the contact's list item and applies a CSS 
- *                              class for styling if the contact is found and name matches.
+ * @returns {boolean|undefined} Appends " (Ich)" to the contact's list item and applies a CSS class for styling if the contact is found and name matches.
  */
 function checkActiveUser() {
     let user = JSON.parse(localStorage.getItem('activeUser'));

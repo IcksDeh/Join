@@ -1,5 +1,3 @@
-// OPEN & CLOSE FUNCTIONS
-
 /**
  * Opens the "Task Detail" dialog if it is not already open and loads the template.
  * setTimeout removes focus from any active element.
@@ -11,7 +9,6 @@ async function openTaskDetailDialog(taskID, taskIndex) {
   await loadFirebaseData("tasks");
   const currrentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
   if (!currrentTaskElement) {
-    // console.error("Task mit ID nicht gefunden:", taskID);
     return;
   }
   const currentTask = currrentTaskElement.task;
@@ -45,8 +42,6 @@ function closeTaskDetailDialog() {
 }
 
 
-// TASK CONTENT FUNCTIONS
-
 /**
  * Loads and renders all assignees for a task in the task details view.
  * Creates and appends assignee UI elements based on the task content.
@@ -59,7 +54,6 @@ function loadAssigneesTaskDetails(taskContent, taskID) {
   let assigneeList = taskContent.assignees;
   Object.values(assigneeList)
     .forEach(assignee => {
-      // console.log(assignee)
       let assigneeHTMLElement = document.createElement('div');
       assigneeHTMLElement.className = "user_info";
       assigneeHTMLElement.innerHTML = AssigneesTaskDetailsTemplate(assignee);
@@ -81,7 +75,6 @@ function loadSubtaksTaskDetails(taskContent, taskID, taskIndex) {
   let subtaskList = taskContent.subtasks;
   if (subtaskList !== "") {
     Object.entries(subtaskList).forEach(subtaskElement => {
-      // console.log(subtaskElement);
       let subtaskID = subtaskElement[0];
       let subtaskContent = subtaskElement[1];
       let subtaskHTMLElement = document.createElement('div');
@@ -144,7 +137,6 @@ async function toggleCheckedIconSubtasks(clickedItem, subtaskId, taskID, taskInd
   img.src = checked
     ? "./assets/img/checkbox_unchecked_contact_form.svg"
     : "./assets/img/checkbox_checked_contact_form.svg";
-
   await updateSubtaskStatus(subtaskId, taskID, !checked, taskIndex);
   await loadFirebaseData("tasks");
   loadSummarySubtasks(taskID, taskIndex);
@@ -161,7 +153,6 @@ async function toggleCheckedIconSubtasks(clickedItem, subtaskId, taskID, taskInd
  */
 function deleteTask(taskID) {
   Object.values(taskList).forEach(taskElement => {
-    // console.log(taskElement.id);
     if (taskElement.id == taskID) {
       deleteTaskFromFirebase(taskID, "tasks/");
       deleteTaskLocally(taskID)
@@ -169,6 +160,13 @@ function deleteTask(taskID) {
   })
 }
 
+
+/**
+ * Removes a task from the local task list by its ID
+ * and updates the board and task status.
+ *
+ * @param {number|string} taskID - The unique ID of the task to delete.
+ */
 function deleteTaskLocally(taskID) {
   const task = taskList.find(task => task.id === taskID)
   const index = taskList.indexOf(task)

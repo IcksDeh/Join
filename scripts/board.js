@@ -127,12 +127,10 @@ function renderOverflowCounter(totalAssignees, maxVisible, container) {
     if (totalAssignees > maxVisible) {
         let remaining = totalAssignees - maxVisible;
         let overflowCircle = document.createElement('div');
-
         overflowCircle.className = "user_circle_task_card";
         overflowCircle.style.backgroundColor = "#29abe2"
         overflowCircle.style.color = 'white';
         overflowCircle.innerHTML = `+${remaining}`;
-
         container.appendChild(overflowCircle);
     }
 }
@@ -182,7 +180,6 @@ function loadCategoryLabelColor(taskContent, taskID) {
 function loadSummarySubtasks(taskID, index) {
     const currrentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
     if (!currrentTaskElement) {
-        // console.error("Task mit ID nicht gefunden:", taskID);
         return;
     }
     const currentTask = currrentTaskElement.task;
@@ -206,7 +203,6 @@ function loadSummarySubtasks(taskID, index) {
 function loadCounterDoneSubtasks(taskID, index) {
     const currrentTaskElement = taskList.find(taskElement => taskElement.id === taskID);
     if (!currrentTaskElement) {
-        // console.error("Task mit ID nicht gefunden:", taskID);
         return;
     }
     const currentTask = currrentTaskElement.task;
@@ -234,7 +230,6 @@ function loadProgressbar(index, taskID) {
     let progressContainer = document.getElementById('progress_container_' + taskID); // Zugriff auf den Container
     let sumAllSubtasks = numberAllSubtasks(index);
     let sumDoneSubtasks = numberDoneSubstask(index);
-
     if (sumDoneSubtasks > 0) {
         progressContainer.style.display = 'flex';
         let calculatesSubtaksProgress = sumDoneSubtasks / sumAllSubtasks;
@@ -348,11 +343,9 @@ function resetBoardHTML() {
  */
 function checkOverlayRedirect() {
     const overlay = document.getElementById('addTaskDialog');
-
     if (!overlay) return;
     const style = window.getComputedStyle(overlay);
     if (style.display === 'none' || style.visibility === 'hidden') return;
-
     if (window.innerWidth < 700) {
         window.location.href = "add_task.html";
     }

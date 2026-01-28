@@ -101,9 +101,6 @@ function updateContactById(id, updatedContact) {
     contactData.eMail = updatedContact.eMail;
     contactData.phoneNumber = updatedContact.phoneNumber;
     contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-    // console.log("Lokale Daten aktualisiert:", contactData);
-  } else {
-    // console.error("Kontakt nicht gefunden mit ID:", id);
   }
 }
 
@@ -153,7 +150,6 @@ async function updateContact(id) {
     if (oldMail !== newMail || oldName !== newName && document.querySelector('myActiveUser') != null) {
       await checkContactInUser(oldName, oldMail, newName, newMail)
     }
-
     closeEditContactDialog();
     renderLocalContactList();
     renderLocalContactInfo(id);
@@ -237,12 +233,17 @@ async function createContact() {
 }
 
 
+/**
+ * Renders the contact list and activates the most recently added contact.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function showNewContact() {
   await renderContactList()
   const lastContact = contactsList[contactsList.length - 1];
   const element = document.getElementById(lastContact.id)
   setContactActive(lastContact.id, element)
-
 }
 
 
@@ -294,7 +295,6 @@ function handleInputErrorMessages(name, mail, phone) {
   const nameError = document.getElementById('error_name')
   const emailError = document.getElementById('error_email')
   const phoneError = document.getElementById('error_phone')
-
   nameError.style.visibility = !name ? "visible" : "hidden"
   emailError.style.visibility = !mail ? "visible" : "hidden"
   phoneError.style.visibility = !phone ? "visible" : "hidden"
@@ -312,15 +312,11 @@ function handleInputError(nameinput, mailinput, phoneinput) {
   const editContactName = document.getElementById('input-name')
   const editContactEmail = document.getElementById('input-email')
   const editContactPhone = document.getElementById('input-phone')
-
   const errorClass = "error_border"
-
   if (addContactName) addContactName.classList[nameinput ? "remove" : "add"](errorClass)
   if (editContactName) editContactName.classList[nameinput ? "remove" : "add"](errorClass)
-
   if (addContactEmail) addContactEmail.classList[mailinput ? "remove" : "add"](errorClass)
   if (editContactEmail) editContactEmail.classList[mailinput ? "remove" : "add"](errorClass)
-
   if (addContactPhone) addContactPhone.classList[phoneinput ? "remove" : "add"](errorClass)
   if (editContactPhone) editContactPhone.classList[phoneinput ? "remove" : "add"](errorClass)
 }

@@ -5,8 +5,6 @@ const priorities = [
 ];
 
 
-// OPEN & CLOSE DIALOG FUNCTIONS
-
 /**
  * Opens the "Add Task" dialog if it is not already open and loads the template.
  * Checks the window width to determine whether to redirect to a mobile page.
@@ -47,8 +45,6 @@ function closeAddTaskDialog(HTMLid) {
   clearInputs(HTMLid);
 }
 
-
-// RESET & CLEAR INPUT FUNCTIONS
 
 /**
  * Resets all task input fields to their default state.
@@ -120,13 +116,10 @@ function clearInputs(HTMLid) {
   closeDropdownLists();
   if (typeof subtaskList !== 'undefined' && subtaskList) subtaskList.innerHTML = "";
   if (typeof subtaskListEdit !== 'undefined' && subtaskListEdit) subtaskListEdit.innerHTML = "";
-
   checkPriority("medium", HTMLid);
   cancelSubtask();
 }
 
-
-// CHECK PRIORITY FUNCTIONS
 
 /**
  * Updates the UI to reflect the currently selected priority.
@@ -172,8 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// REQUIRED MESSAGES
-
 /**
  * Shows or hides a required field message and toggles an error class based on whether the input is empty and focused.
  *
@@ -193,8 +184,6 @@ function handleRequiredMessage(input) {
   }
 }
 
-
-// TOGGLES & CLOSES DROPDOWN LISTS
 
 /**
  * Toggles the visibility of a task-related list element.
@@ -234,8 +223,6 @@ function closeDropdownLists() {
 }
 
 
-// CATEGORY LIST
-
 /**
  * Selects category element via onclick. Hides the category list after selection.
  *
@@ -249,8 +236,6 @@ function selectCategory(element, HTMLid) {
   categorySpan.style.color = "";
 }
 
-
-// CREATE TASK BUTTON & REQUIRED FIELDS FUNCTIONS
 
 /**
  * Handles the click event for the "Create Task" button.
@@ -268,22 +253,15 @@ function loadEventlistener(HTMLid) {
       const statusTasks = this.dataset.taskParam;
       if (areRequiredFieldsFilled(HTMLid)) {
         await getAddTaskData(statusTasks, HTMLid);
-
-
         closeAddTaskDialog('overlay');
         showToast();
         if (HTMLid === "overlay") {
           loadContentBoard();
         }
-
-
-
       } else {
         highlightRequiredFields(HTMLid);
       }
     });
-  } else {
-    // console.warn("Button 'id_btn_create_task_default' nicht gefunden");   
   }
 }
 
@@ -314,7 +292,6 @@ function highlightRequiredFields(HTMLid) {
   const dateInput = document.getElementById('id_due_date_add_task_' + HTMLid);
   const category = document.getElementById('selected_category_' + HTMLid);
   if (!titleInput || !dateInput || !category) {
-    // console.warn("Required elements not found for:", HTMLid);
     return;
   }
   const titleMsg = document.querySelector(`.required_message[data-for="id_title_add_task_${HTMLid}"]`);

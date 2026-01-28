@@ -1,5 +1,3 @@
-// TASK
-
 /**
  * Collects all input data for creating a new task and saves it.
  * Reads task title, description, due date, priority, assignees, category, and subtasks from the DOM.
@@ -132,8 +130,6 @@ function getAssigneeInEdit() {
 }
 
 
-//TASK SWITCH DATA
-
 /**
  * Saves or updates a task in Firebase and optionally updates the UI.
  * If `HTMLid` is "task_detail", it updates an existing task using PUT.
@@ -192,8 +188,6 @@ async function getContactData() {
   await switchContactsData(contactName, contactEmail, contactColor, contactInitals, elements, contactPhonenumber,)
 }
 
-
-// TASK EDIT
 
 /**
  * Saves the changes made to a task in the task detail edit form.
@@ -312,8 +306,6 @@ async function updateAssigneeInTasksSafe(contactId, newName) {
 }
 
 
-// CONTACTS SWITCH DATA
-
 /** 
  * Updates or creates contact data in storage.
  * 
@@ -335,8 +327,6 @@ async function switchContactsData(contactName, contactEmail, contactColor, conta
   await postToStorage("contacts", contactData, elements)
 }
 
-
-// USER
 
 /** 
  * Gathers data from the "User" form and prepares it for storage.

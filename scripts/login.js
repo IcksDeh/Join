@@ -1,10 +1,7 @@
-// PASSWORD ICON PATH
 const lockIconPath = "./assets/img/lock_icon.svg";
 const noVisibilityIconPath = "./assets/img/visibility_off.svg";
 const visibilityIconPath = "./assets/img/visibility.svg";
 
-
-// NAVIGATION FUNCTIONS
 
 /**
  * Redirects the user to the signup page.
@@ -31,8 +28,6 @@ function guestLogin() {
   window.location.href = "summary.html";
 }
 
-
-// PASSWORD FUNCTIONS
 
 /**
  * Toggles the visibility of a password input field and updates the associated icon. Does nothing if the input is empty.
@@ -102,8 +97,6 @@ setupPasswordToggle(
 );
 
 
-// LOGIN FUNCTIONS
-
 /**
  * Handles user login.
  * Retrieves email and password from input fields.
@@ -120,7 +113,6 @@ async function login() {
   try {
     await processLogin(email, password);
   } catch (error) {
-    // console.error("An error occurred during login.", error);
   }
 }
 
@@ -137,7 +129,6 @@ async function login() {
 async function processLogin(email, password) {
   let usersResponse = await fetchUsers();
   if (!usersResponse) {
-    // console.log("Database error: No users found.");
     return;
   }
   let user = findUserByCredentials(usersResponse, email, password);
@@ -235,10 +226,8 @@ function resetLoginError() {
   let emailInput = document.getElementById("auth_input_mail");
   let passwordInput = document.getElementById("auth_password_input");
   let errorMessage = document.getElementById("login_error_message");
-
   if (
-    emailInput.classList.contains("input_error") ||
-    passwordInput.classList.contains("input_error")
+    emailInput.classList.contains("input_error") || passwordInput.classList.contains("input_error")
   ) {
     emailInput.classList.remove("input_error");
     passwordInput.classList.remove("input_error");

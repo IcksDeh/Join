@@ -1,5 +1,3 @@
-// FIREBASE BASE URL
-
 /**
  * Sends data to the backend using a POST request.
  * Creates a new entry at the specified path. Optionally clears or updates HTML elements after posting.

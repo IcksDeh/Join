@@ -8,8 +8,6 @@ let selectedAssignees = [];
 let selectedAssigneesEdit = [];
 
 
-// ASSIGNEES FUNCTIONS
-
 /**
  * Checks whether the contact list is already loaded and loads it if necessary.
  * If the contacts are not yet available, data is fetched from Firebase before displaying the contacts in the task view.
@@ -71,9 +69,7 @@ function toggleCheckedIcon(imgElement, index, elementId) {
 function renderAssignedContacts(elementId) {
   const container = document.getElementById("assigned_contacts_row_" + elementId);
   container.innerHTML = "";
-
   let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
-
   renderAssigneeBubbles(container, assigneeList);
 }
 
@@ -110,6 +106,7 @@ function renderAssigneeBubbles(container, assigneeList) {
     `;
   }
 }
+
 
 /**
  * Synchronizes the checkbox icons in the dropdown list with the current selection.
@@ -166,8 +163,6 @@ function showContactsInTasks(HTMLid) {
   }
 }
 
-
-// SUBTASK FUNCTIONS
 
 /**
  * Shows the subtask action buttons and sets the display style to flex.

@@ -2,8 +2,6 @@ function goToSignup() { window.location.href = "sign_up.html"; }
 function guestLogin() { window.location.href = "summary.html"; }
 
 
-// ELEMENT SELECTORS
-
 /**
  * Returns commonly used user-related DOM elements.
  */
@@ -20,8 +18,6 @@ function getElementsUser() {
   };
 }
 
-
-// PASSWORD ICON LOGIC (VISUALS)
 
 /**
  * Toggles the visibility of a password input and updates the icon.
@@ -72,6 +68,7 @@ function setupToggle(inputId, iconId) {
   });
 }
 
+
 /**
  * Checks if the email format matches pattern: something@domain.tld
  * Requires a dot and at least 2 characters at the end (e.g., .de, .com)
@@ -81,8 +78,6 @@ function checkEmailFormat(email) {
   return emailRegex.test(email);
 }
 
-
-// VALIDATION LOGIC
 
 /**
  * Checks if all required form fields are valid.
@@ -130,8 +125,6 @@ function updateBtn(els) {
  */
 function handleEmailValidation(els) {
   const emailValue = els.email.value;
-  
-  // Wenn etwas eingetippt wurde, aber das Format falsch ist (kein .de/.com etc.)
   if (emailValue.length > 0 && !checkEmailFormat(emailValue)) {
     els.email.classList.add('input_error'); 
     els.emailError.style.display = 'block';
@@ -139,9 +132,9 @@ function handleEmailValidation(els) {
     els.email.classList.remove('input_error'); 
     els.emailError.style.display = 'none'; 
   }
-  
   updateBtn(els);
 }
+
 
 /**
  * Checks if the password and confirmation match and shows error if not.
@@ -164,8 +157,6 @@ function handlePasswordMatch(els) {
   updateBtn(els);
 }
 
-
-// EVENT LISTENERS 
 
 /**
  * Adds basic input listeners for name, email, and checkbox to update the submit button.
@@ -197,8 +188,6 @@ function addPasswordListeners(els) {
   });
 }
 
-
-// INITIALISATION
 
 /**
  * Initializes the signup form.
