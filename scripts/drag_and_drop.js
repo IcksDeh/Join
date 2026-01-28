@@ -51,7 +51,7 @@ function processAutoScroll() {
  * @param {TouchEvent} e - The touchstart event.
  */
 function handleTouchStart(e) {
-  if (e.touches.length > 1) return; // Ignore multi-touch
+  if (e.touches.length > 1) return;
   const card = e.target.closest(".style_task_card");
   if (!card) return;
   dragTimer = setTimeout(() => {
@@ -112,7 +112,7 @@ function calculateScrollSpeed(y) {
  * @param {TouchEvent} e - The touchend event.
  */
 async function handleTouchEnd(e) {
-  clearTimeout(dragTimer); 
+  clearTimeout(dragTimer);
   if (isMobileDragging) {
     e.preventDefault();
     await finishMobileDrop();
@@ -198,7 +198,7 @@ function detectDropZone(x, y) {
   removeHighlight("todo", "inProgress", "awaitFeedback", "done");
   if (column) {
     let status = column.id.replace("board_column_", "");
-    highlight(status); 
+    highlight(status);
     currentTouchTargetColumn = status;
   } else {
     currentTouchTargetColumn = null;
@@ -294,7 +294,7 @@ function highlight(...ids) {
   ids.forEach((id) => {
     let element = document.getElementById("board_column_" + id);
     if (element) {
-      element.classList.add("drag_area_highlight"); 
+      element.classList.add("drag_area_highlight");
     }
   });
 }

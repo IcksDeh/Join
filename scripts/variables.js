@@ -13,22 +13,19 @@ const colors = [
   "#7Ae229",
   "#ffdc2f",
   "#ff3d00",
-  "#ffa800", 
+  "#ffa800",
 ]
 
 let colorIndex = 0;
 
 
-// FIREBASE
 const BASE_URL = "https://join-f5da0-default-rtdb.europe-west1.firebasedatabase.app/";
 
 
-// GET DATA
 let contactsList = [];
 let taskList = [];
 
 
-// SIGN UP
 const ICONS = {
   LOCK: './assets/img/lock_icon.svg',
   OFF: './assets/img/visibility_off.svg',
@@ -36,7 +33,6 @@ const ICONS = {
 };
 
 
-// BOARD
 let currentDraggedElementIndex;
 let currentDraggedElementID;
 let prefillAssigneeCheckbox = [];

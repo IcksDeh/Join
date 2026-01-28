@@ -9,7 +9,7 @@ const usersArray = [];
  */
 function initContacts() {
     init(),
-    renderContactList()
+        renderContactList()
 }
 
 
@@ -387,9 +387,14 @@ function deleteOnMobile() {
  * @param {string} contactID - The unique identifier of the contact to delete.
  */
 async function deleteContactFromFirebase(contactID) {
-    let userStorage = await fetch(BASE_URL + "contacts/" + contactID + ".json", {
-        method: "DELETE",
-    });
+    try {
+        let userStorage = await fetch(BASE_URL + "contacts/" + contactID + ".json", {
+            method: "DELETE",
+        });
+
+    } catch (error) {
+        console.error("Fehler beim Updaten:", error);
+    }
 }
 
 

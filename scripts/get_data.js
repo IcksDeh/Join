@@ -154,8 +154,6 @@ async function switchTaskData(titleTask = "", descriptionTask = "", dueDateTask 
 }
 
 
-// Contacts
-
 /**
  * Retrieves the contact input elements from the DOM.
  * 

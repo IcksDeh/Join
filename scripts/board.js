@@ -4,8 +4,8 @@
  */
 function initBoard() {
     init(),
-    loadContentBoard(), 
-    loadEventlistener('overlay')
+        loadContentBoard(),
+        loadEventlistener('overlay')
 }
 
 
@@ -237,7 +237,7 @@ function loadCounterDoneSubtasks(taskID, index) {
  */
 function loadProgressbar(index, taskID) {
     let progressbarElement = document.getElementById('progressbar_' + taskID);
-    let progressContainer = document.getElementById('progress_container_' + taskID); // Zugriff auf den Container
+    let progressContainer = document.getElementById('progress_container_' + taskID);
     let sumAllSubtasks = numberAllSubtasks(index);
     let sumDoneSubtasks = numberDoneSubstask(index);
     if (sumDoneSubtasks > 0) {

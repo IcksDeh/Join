@@ -14,7 +14,7 @@ function getElementsUser() {
     pass: document.getElementById('auth_password_input'),
     confirm: document.getElementById('auth_confirm_password_input'),
     errorMsg: document.getElementById('confirm_password_error'),
-     emailError: document.getElementById('email_error') 
+    emailError: document.getElementById('email_error')
   };
 }
 
@@ -92,7 +92,7 @@ function checkEmailFormat(email) {
 function isValid(els) {
   return (
     els.name.value.trim() !== '' &&
-    checkEmailFormat(els.email.value) &&  // <--- Hier die Änderung
+    checkEmailFormat(els.email.value) &&
     els.pass.value.length > 0 &&
     els.pass.value === els.confirm.value &&
     els.checkbox.checked
@@ -126,11 +126,11 @@ function updateBtn(els) {
 function handleEmailValidation(els) {
   const emailValue = els.email.value;
   if (emailValue.length > 0 && !checkEmailFormat(emailValue)) {
-    els.email.classList.add('input_error'); 
+    els.email.classList.add('input_error');
     els.emailError.style.display = 'block';
   } else {
-    els.email.classList.remove('input_error'); 
-    els.emailError.style.display = 'none'; 
+    els.email.classList.remove('input_error');
+    els.emailError.style.display = 'none';
   }
   updateBtn(els);
 }
@@ -167,8 +167,8 @@ function addBasicListeners(els) {
   els.checkbox.addEventListener('change', check);
   els.email.addEventListener('input', () => {
     els.email.classList.remove('input_error');
-    els.emailError.style.display = 'none';     
-    updateBtn(els);                            
+    els.emailError.style.display = 'none';
+    updateBtn(els);
   });
   els.email.addEventListener('blur', () => {
     handleEmailValidation(els);
@@ -210,10 +210,10 @@ function initSignupForm() {
  * Redirects to home page after 2 seconds.
  */
 initSignupForm();
-document.getElementById('signup_btn').addEventListener("click", async function(event){
+document.getElementById('signup_btn').addEventListener("click", async function (event) {
   event.preventDefault();
   await getUserData();
-  showToast(); 
+  showToast();
   setTimeout(() => {
     window.location.href = "index.html";
   }, 2000);
@@ -223,13 +223,13 @@ document.getElementById('signup_btn').addEventListener("click", async function(e
 /**
  * Stores user data in persistent storage.
  */
-async function switchUserData(userName, userEmail, userColor, elements, userPassword, userInitials){
+async function switchUserData(userName, userEmail, userColor, elements, userPassword, userInitials) {
   let userData = {
-    "name" : userName,
-    "eMail" : userEmail,
-    "password" : userPassword,
-    "color" : userColor,
+    "name": userName,
+    "eMail": userEmail,
+    "password": userPassword,
+    "color": userColor,
     "initial": userInitials
-  }   
+  }
   await postToStorage("user", userData, elements);
 }
