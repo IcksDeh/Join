@@ -42,11 +42,8 @@ function loadSidebar() {
     const sidebar = document.getElementById('id_sidebar');
     sidebar.innerHTML = "";
     let user = JSON.parse(localStorage.getItem('activeUser'));
-    if (user) {
-        sidebar.innerHTML = sidebarLoginTemplate();
-    } else {
-        sidebar.innerHTML = sidebarLogOffTemplate();
-    }
+
+    sidebar.innerHTML = user ? sidebarLoginTemplate() : sidebarLogOffTemplate();
 }
 
 
@@ -60,11 +57,8 @@ function loadNavbar() {
     const navbar = document.getElementById('id_navbar');
     navbar.innerHTML = "";
     let user = JSON.parse(localStorage.getItem('activeUser'));
-    if (user) {
-        navbar.innerHTML = navbarTemplate(user.initials);
-    } else {
-        navbar.innerHTML = navbarLogOffTemplate();
-    }
+
+    navbar.innerHTML = user ? navbarTemplate(user.initials) : navbarLogOffTemplate()
 }
 
 
@@ -77,13 +71,12 @@ function loadNavbar() {
 function loadMobileFooter() {
     const footer = document.getElementById('mobile_footer');
     if (!footer) return;
+
     footer.innerHTML = "";
     let user = JSON.parse(localStorage.getItem('activeUser'));
-    if (user) {
-        footer.innerHTML = mobileFooterLoginTemplate();
-    } else {
-        footer.innerHTML = mobileFooterLogoffTemplate();
-    }
+
+    footer.innerHTML = user ? mobileFooterLoginTemplate() : mobileFooterLogoffTemplate()
+
 }
 
 
@@ -150,7 +143,7 @@ function toggleMenu() {
 /**
  * Schließt das Navbar-Menü, wenn der Nutzer außerhalb des Menüs klickt.
  */
-window.addEventListener('click', function(e) {
+window.addEventListener('click', function (e) {
     let menu = document.getElementById("menu_navbar");
     if (menu && !menu.classList.contains("d_none")) {
         let clickInsideMenu = menu.contains(e.target);
@@ -268,22 +261,8 @@ function highlightActiveLink() {
     const currentPath = window.location.pathname;
     links.forEach(link => {
         const linkPath = link.getAttribute('href').replace('./', '');
-        const icon = link.querySelector('.icon_sidebar, .mobile_link_icon');
-        if (currentPath.includes(linkPath)) {
-            link.classList.add('active');
-            if (icon) {
-                if (linkPath === 'summary.html') {
-                    icon.src = './assets/img/navbar_summary_white_mobile.svg';
-                } else if (linkPath === 'add_task.html') {
-                    icon.src = './assets/img/add_task_white.svg';
-                } else if (linkPath === 'board.html') {
-                    icon.src = './assets/img/navbar_board_white_mobile.svg';
-                } else if (linkPath === 'contacts.html') {
-                    icon.src = './assets/img/navbar_contacts_white_mobile.svg';
-                }
-            }
-        }
-    });
+        if (currentPath.includes(linkPath)) link.classList.add('active')
+    })
 }
 
 
@@ -344,9 +323,7 @@ document.addEventListener('click', function (event) {
     dropdowns.forEach(dropdown => {
         if (!dropdown.contains(event.target)) {
             const list = dropdown.querySelector('ul');
-            if (list) {
-                list.style.display = 'none';
-            }
+            if (list) list.style.display = 'none';
         }
     });
 });
