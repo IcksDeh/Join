@@ -6,6 +6,15 @@ const priorities = [
 
 
 /**
+ * Initializes the "Add Task" view.
+ */
+function initAddTask() {
+  init(),
+  loadEventlistener('default')
+}
+
+
+/**
  * Opens the "Add Task" dialog if it is not already open and loads the template.
  * Checks the window width to determine whether to redirect to a mobile page.
  * setTimeout removes focus from any active element.

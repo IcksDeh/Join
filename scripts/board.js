@@ -1,3 +1,13 @@
+
+/**
+ * Initializes the "Board" view.
+ */
+function initBoard() {
+    init(),
+    loadContentBoard(), 
+    loadEventlistener('overlay')
+}
+
 /**
  * Loads the entire content board.
  * Clears the board, fetches the latest tasks from Firebase, and populates each column based on task status.

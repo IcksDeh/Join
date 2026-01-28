@@ -1,3 +1,14 @@
+
+/**
+ * Initializes the "Add Task" view.
+ */
+function initSummary() {
+ init(),
+ loadSummary(), 
+ loadNumberofTasks()
+}
+
+
 /**
  * Loads and displays various task summaries on the summary page.
  */
