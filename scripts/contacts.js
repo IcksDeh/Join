@@ -205,7 +205,6 @@ function renderLocalContactList() {
     for (let i = 0; i < contactsArray.length; i++) {
         const firstName = contactsArray[i].name.split(" ")[0];
         const firstLetter = firstName[0].toUpperCase();
-
         if (firstLetter !== currentLetter) {
             currentLetter = firstLetter;
             container.innerHTML += contactSeperatorTemplate(currentLetter);

@@ -14,8 +14,7 @@ async function postToStorage(path, Data, elements = "", HTMLid) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(Data),
-    }
-    );
+    });
     checkClearElements(path, elements, HTMLid)
 }
 
@@ -36,8 +35,7 @@ async function putToStorage(path, Data, elements = '', HTMLid, taskID) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(Data),
-    }
-    );
+    });
 }
 
 
@@ -65,7 +63,7 @@ function checkClearElements(path, elements, HTMLid) {
 function clearElements(elements) {
     Object.values(elements).forEach(element => {
         element.value = ""
-    })
+    });
 }
 
 
@@ -178,7 +176,7 @@ async function deleteTaskFromFirebase(taskID, path) {
 async function deleteAssigneeInTaskList(assigneeID, path, taskID) {
     let userstorage = await fetch(BASE_URL + path + taskID + "/assignees/" + assigneeID + ".json", {
         method: "DELETE",
-    })
+    });
 }
 
 

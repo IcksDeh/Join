@@ -208,7 +208,6 @@ function loadCounterDoneSubtasks(taskID, index) {
     const currentTask = currrentTaskElement.task;
     const doneSubtasks = document.getElementById("counterDoneSubtasks_" + taskID);
     const tooltipDoneSubtasks = document.getElementById("tooltip_done_subtasks_" + taskID)
-
     let elementSubtasks = currentTask.subtasks;
     let counterDoneSubtasks = 0;
     Object.values(elementSubtasks).forEach(eachElement => {
@@ -328,7 +327,6 @@ function resetBoardHTML() {
     columns.forEach(col => {
         let columnElement = document.getElementById('board_column_' + col.id);
         let message = `No tasks in ${col.text}`;
-
         columnElement.innerHTML = `<div class="no_task_message">${message}</div>`;
         columnElement.classList.add("no_task_available");
         columnElement.dataset.initialized = "false";

@@ -88,21 +88,13 @@ function renderAssigneeBubbles(container, assigneeList) {
   for (let i = 0; i < renderCount; i++) {
     const contact = assigneeList[i];
     container.innerHTML += `
-      <div class="contact_initial_circle assigned_contact"
-        data-assignee-id="${contact.id}"
-        title="${contact.contact.name}"
-        style="background-color:${contact.contact.color}">
-        ${contact.contact.initial}
-      </div>
+      <div class="contact_initial_circle assigned_contact" data-assignee-id="${contact.id}" title="${contact.contact.name}" style="background-color:${contact.contact.color}">${contact.contact.initial}</div>
     `;
   }
   if (totalAssignees > maxVisible) {
     const extraCount = totalAssignees - maxVisible;
     container.innerHTML += `
-      <div class="contact_initial_circle assigned_contact"
-           style="background-color: #29abe2; color: white;">
-        +${extraCount}
-      </div>
+      <div class="contact_initial_circle assigned_contact" style="background-color: #29abe2; color: white;">+${extraCount}</div>
     `;
   }
 }
