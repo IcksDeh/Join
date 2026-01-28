@@ -18,15 +18,14 @@ let selectedAssigneesEdit = [];
  * @returns {Promise<void>} - A promise that resolves when the contact list has been checked and rendered.
  */
 async function checkContactList(element, HTMLid) {
-  if (element == "contacts") {
-    if (contactsList.length > 0) {
-      showContactsInTasks(HTMLid);
-      return;
-    }
-    await loadFirebaseData("contacts");
+  if (element == "contacts" && contactsList.length > 0) {
     showContactsInTasks(HTMLid);
+    return;
   }
+  await loadFirebaseData("contacts");
+  showContactsInTasks(HTMLid);
 }
+
 
 
 /**
