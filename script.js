@@ -6,7 +6,6 @@
  * Highlights the currently active navigation link.
  */
 function init() {
-    /** Redirects a user if not logged in */
     isActiveUserSet()
     loadSidebar();
     loadNavbar();
@@ -175,7 +174,6 @@ document.querySelectorAll('dialog').forEach(dialog => {
         if (event.target === dialog) {
             dialog.close();
             clearContactInputs();
-            // clearInputs(HTMLid);
         }
     });
 });
@@ -249,6 +247,7 @@ function setupDateClickBehavior() {
         });
     });
 }
+
 
 /**
  * Initializes date input behavior on page load.
