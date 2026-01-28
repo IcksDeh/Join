@@ -11,7 +11,7 @@
 async function getAddTaskData(status = "todo", HTMLid) {
   let titleTask = document.getElementById('id_title_add_task_' + HTMLid).value;
   let descriptionTask = document.getElementById('id_description_add_task_' + HTMLid).value;
-  let dueDateTask = document.getElementById('id_due_date_add_task_'+ HTMLid).value;
+  let dueDateTask = document.getElementById('id_due_date_add_task_' + HTMLid).value;
   let priorityTask = getPriority(HTMLid);
   let assignedToTask = getAssignee();
   let categoryTask = getTaskCategory(HTMLid);
@@ -29,7 +29,7 @@ async function getAddTaskData(status = "todo", HTMLid) {
 */
 function getPriority(HTMLid) {
   return priorities.find(({ name }) => {
-    const priorityElement = document.getElementById('id_' + name + '_btn_'+ HTMLid);
+    const priorityElement = document.getElementById('id_' + name + '_btn_' + HTMLid);
     return priorityElement?.classList.contains(name + '_btn_filled');
   }) || null;
 }
@@ -42,7 +42,7 @@ function getPriority(HTMLid) {
  * @returns {string} The category name of the task.
  */
 function getTaskCategory(HTMLid) {
-  const categoryElement = document.getElementById('selected_category_'+HTMLid);
+  const categoryElement = document.getElementById('selected_category_' + HTMLid);
   let categoryContent = categoryElement.textContent;
   return categoryContent;
 }
@@ -146,11 +146,11 @@ async function switchTaskData(titleTask = "", descriptionTask = "", dueDateTask 
     "subtasks": subtasksTask,
     "statusTask": statusTask,
   }
-  if (HTMLid === 'task_detail'){
-    await putToStorage("tasks", taskData,elements ='', HTMLid, taskID);
+  if (HTMLid === 'task_detail') {
+    await putToStorage("tasks", taskData, elements = '', HTMLid, taskID);
   } else {
-    await postToStorage("tasks", taskData,elements ='', HTMLid);
-  } 
+    await postToStorage("tasks", taskData, elements = '', HTMLid);
+  }
 }
 
 
@@ -200,7 +200,7 @@ async function getContactData() {
  * @param {number} index - The index of the task in the local task array.
  * @param {string} HTMLid - The HTML container ID for the task (used for UI updates).
  */
-async function saveChangesTask(taskID,  index, HTMLid){
+async function saveChangesTask(taskID, index, HTMLid) {
   let titleTask = document.getElementById('id_title_task_detail_edit').value;
   let descriptionTask = document.getElementById('id_description_task_detail_edit').value;
   let dueDateTask = document.getElementById('id_due_date_task_detail_edit').value;
@@ -221,24 +221,24 @@ async function saveChangesTask(taskID,  index, HTMLid){
  * 
  * @returns {Object|string} The structured subtasks object or empty string if no subtasks.
  */
-function getSubtaskEditTask(){
+function getSubtaskEditTask() {
   let subtasks = {};
   document.querySelectorAll('.list_element').forEach(li => {
     const subtaskText = li.querySelector('.subtask_text').textContent.trim();
     const datasetSubtaskID = li.dataset.subtaskId;
     const datasetSubtaskStatus = li.dataset.subtaskStatus;
-    if(datasetSubtaskID){
+    if (datasetSubtaskID) {
       subtasks[datasetSubtaskID] = {
         text: subtaskText,
         done: datasetSubtaskStatus === "true",
-      };        
-    } else { 
-        let subtaskId = crypto.randomUUID();
-        subtasks[subtaskId] = {
+      };
+    } else {
+      let subtaskId = crypto.randomUUID();
+      subtasks[subtaskId] = {
         text: subtaskText,
         done: false
       };
-    }  
+    }
   });
   if (Object.keys(subtasks).length === 0) {
     subtasks = "";
@@ -267,16 +267,21 @@ function getContactInitials(contactName) {
  * @returns {Promise<string[]>} An array of task IDs where the contact is assigned.
  */
 async function getTasksWithAssignee(contactId) {
-  const res = await fetch(BASE_URL + "tasks.json");
-  const tasks = await res.json();
-  if (!tasks) return [];
-  return Object.entries(tasks)
-    .filter(([_, task]) =>
-      task.assignees &&
-      typeof task.assignees === "object" &&
-      task.assignees[contactId]
-    )
-    .map(([taskId]) => taskId);
+  try {
+    const res = await fetch(BASE_URL + "tasks.json");
+    const tasks = await res.json();
+    if (!tasks) return [];
+    return Object.entries(tasks)
+      .filter(([_, task]) =>
+        task.assignees &&
+        typeof task.assignees === "object" &&
+        task.assignees[contactId]
+      )
+      .map(([taskId]) => taskId);
+
+  } catch (error) {
+    console.error("Fehler beim Updaten:", error);
+  }
 }
 
 
@@ -291,17 +296,20 @@ async function updateAssigneeInTasksSafe(contactId, newName) {
   const taskIds = await getTasksWithAssignee(contactId);
   const newInitials = getContactInitials(newName);
   for (const taskId of taskIds) {
-    await fetch(
-      `${BASE_URL}tasks/${taskId}/assignees/${contactId}.json`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          assigneeName: newName,
-          assigneeInitial: newInitials
-        })
-      }
-    );
+    try {
+      await fetch(
+        `${BASE_URL}tasks/${taskId}/assignees/${contactId}.json`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            assigneeName: newName,
+            assigneeInitial: newInitials
+          })
+        });
+    } catch (error) {
+      console.error("Fehler beim Updaten:", error);
+    }
   }
 }
 

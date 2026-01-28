@@ -8,13 +8,17 @@
  * @param {string} [HTMLid] - Optional ID of an HTML element for UI updates.
  */
 async function postToStorage(path, Data, elements = "", HTMLid) {
-    let userStorage = await fetch(BASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(Data),
-    });
+    try {
+        let userStorage = await fetch(BASE_URL + path + ".json", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(Data),
+        });
+    } catch (error) {
+        console.error("Fehler beim Updaten:", error);
+    }
     checkClearElements(path, elements, HTMLid)
 }
 
@@ -29,13 +33,17 @@ async function postToStorage(path, Data, elements = "", HTMLid) {
  * @param {string|number} taskID - The unique ID of the item to update.
  */
 async function putToStorage(path, Data, elements = '', HTMLid, taskID) {
-    let userStorage = await fetch(BASE_URL + path + "/" + taskID + ".json", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(Data),
-    });
+    try {
+        let userStorage = await fetch(BASE_URL + path + "/" + taskID + ".json", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(Data),
+        });
+    } catch (error) {
+        console.error("Fehler beim Updaten:", error);
+    }
 }
 
 
@@ -73,10 +81,14 @@ function clearElements(elements) {
  * @param {string} path - The backend path to fetch data from.
  */
 async function loadFirebaseData(path) {
-    let responseFirebaseData = await fetch(BASE_URL + path + ".json");
-    let responseFirebaseDataToJSON = await responseFirebaseData.json();
-    let firebaseKeys = Object.keys(responseFirebaseDataToJSON);
-    await checkPushToArray(firebaseKeys, responseFirebaseDataToJSON, path);
+    try {
+        let responseFirebaseData = await fetch(BASE_URL + path + ".json");
+        let responseFirebaseDataToJSON = await responseFirebaseData.json();
+        let firebaseKeys = Object.keys(responseFirebaseDataToJSON);
+        await checkPushToArray(firebaseKeys, responseFirebaseDataToJSON, path);
+    } catch (error) {
+        console.error("Fehler beim Updaten:", error);
+    }
 }
 
 
@@ -159,9 +171,13 @@ async function pushToUserArray(firebaseKeys, responseFirebaseDataToJSON) {
  * @param {string} path - The Firebase path where the task is stored.
  */
 async function deleteTaskFromFirebase(taskID, path) {
-    let userStorage = await fetch(BASE_URL + path + taskID + ".json", {
-        method: "DELETE",
-    });
+    try {
+        let userStorage = await fetch(BASE_URL + path + taskID + ".json", {
+            method: "DELETE",
+        });
+    } catch (error) {
+        console.error("Fehler beim Updaten:", error);
+    }
     closeTaskDetailDialog();
 }
 
@@ -174,9 +190,13 @@ async function deleteTaskFromFirebase(taskID, path) {
  * @param {string|number} taskID - The ID of the task from which the assignee should be removed.
  */
 async function deleteAssigneeInTaskList(assigneeID, path, taskID) {
-    let userstorage = await fetch(BASE_URL + path + taskID + "/assignees/" + assigneeID + ".json", {
-        method: "DELETE",
-    });
+    try {
+        let userstorage = await fetch(BASE_URL + path + taskID + "/assignees/" + assigneeID + ".json", {
+            method: "DELETE",
+        });
+    } catch (error) {
+        console.error("Fehler beim Updaten:", error);
+    }
 }
 
 
@@ -192,13 +212,18 @@ async function deleteAssigneeInTaskList(assigneeID, path, taskID) {
  * @param {Object} taskContent - The content of the task (optional, for UI update).
  */
 async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex, taskContent) {
-    let userStorage = await fetch(BASE_URL + "tasks/" + taskID + "/" + "subtasks/" + subtaskId + "/done.json", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(statusSubtask),
-    });
+    try {
+        let userStorage = await fetch(BASE_URL + "tasks/" + taskID + "/" + "subtasks/" + subtaskId + "/done.json", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(statusSubtask),
+        });
+    } catch (error) {
+        console.error("Fehler beim Updaten:", error);
+    }
+
     loadSummarySubtasks(taskID, taskIndex);
     loadCounterDoneSubtasks(taskID, taskIndex);
 }
@@ -210,11 +235,17 @@ async function updateSubtaskStatus(subtaskId, taskID, statusSubtask, taskIndex, 
  * @param {string} category - The new status/category to set for the task.
  */
 async function updateTaskStatus(category) {
-    let taskElement = await fetch(BASE_URL + "tasks/" + currentDraggedElementID + "/statusTask.json", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(category),
-    });
+    try {
+        let taskElement = await fetch(BASE_URL + "tasks/" + currentDraggedElementID + "/statusTask.json", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(category),
+        });
+    } catch (error) {
+        console.error("Fehler beim Updaten:", error);
+    }
+
+
 }

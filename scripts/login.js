@@ -24,7 +24,7 @@ function guestLogin() {
     initials: "G",
   };
   localStorage.setItem("activeUser", JSON.stringify(guestUser));
-  localStorage.setItem("showMobileGreeting", "true"); 
+  localStorage.setItem("showMobileGreeting", "true");
   window.location.href = "summary.html";
 }
 
@@ -107,7 +107,7 @@ setupPasswordToggle(
 async function login() {
   let { email, password } = getLoginInputs();
   if (!email || !password) {
-     handleLoginFail();
+    handleLoginFail();
     return;
   }
   try {
@@ -160,8 +160,12 @@ function getLoginInputs() {
  * @returns {Promise<Object|null>} A JSON object containing all users, or null if the fetch fails.
  */
 async function fetchUsers() {
-  let response = await fetch(BASE_URL + "user.json");
-  return await response.json();
+  try {
+    let response = await fetch(BASE_URL + "user.json");
+    return await response.json();
+  } catch (error) {
+    console.error("Fehler beim Updaten:", error);
+  }
 }
 
 
@@ -198,7 +202,7 @@ function handleLoginSuccess(user) {
     color: user.color,
   };
   localStorage.setItem("activeUser", JSON.stringify(activeUser));
-  localStorage.setItem("showMobileGreeting", "true"); 
+  localStorage.setItem("showMobileGreeting", "true");
   window.location.href = "summary.html";
 }
 

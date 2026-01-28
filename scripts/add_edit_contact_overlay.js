@@ -67,25 +67,17 @@ function openEditContactDialog(id) {
  * @returns {Promise<void>} A promise that resolves when the update is complete.
  */
 async function updateContactInFirebase(id, updatedContact) {
-  singleContact = fetch(BASE_URL + "contacts/" + id + ".json", {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(updatedContact),
-  });
-  singleContact.then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP Fehler! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-    .then(data => {
-      // console.log("Erfolgreich geupdatet:", data);
-    })
-    .catch(error => {
-      // console.error("Fehler beim PATCH:", error);
+  try {
+    singleContact = fetch(BASE_URL + "contacts/" + id + ".json", {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedContact),
     });
+  } catch (error) {
+    console.error("Fehler beim Updaten:", error);
+  }
 }
 
 
@@ -295,6 +287,7 @@ function handleInputErrorMessages(name, mail, phone) {
   const nameError = document.getElementById('error_name')
   const emailError = document.getElementById('error_email')
   const phoneError = document.getElementById('error_phone')
+
   nameError.style.visibility = !name ? "visible" : "hidden"
   emailError.style.visibility = !mail ? "visible" : "hidden"
   phoneError.style.visibility = !phone ? "visible" : "hidden"
@@ -306,17 +299,12 @@ function handleInputErrorMessages(name, mail, phone) {
  * Applies error border styling to both add and edit contact form inputs based on validation state.
  */
 function handleInputError(nameinput, mailinput, phoneinput) {
-  const addContactName = document.getElementById('id_contact_name')
-  const addContactPhone = document.getElementById('id_contact_phone')
-  const addContactEmail = document.getElementById('id_contact_email')
-  const editContactName = document.getElementById('input-name')
-  const editContactEmail = document.getElementById('input-email')
-  const editContactPhone = document.getElementById('input-phone')
+  const addContactName = document.getElementById('id_contact_name') || document.getElementById('input-name')
+  const addContactPhone = document.getElementById('id_contact_phone') || document.getElementById('input-phone')
+  const addContactEmail = document.getElementById('id_contact_email') || document.getElementById('input-email')
   const errorClass = "error_border"
+
   if (addContactName) addContactName.classList[nameinput ? "remove" : "add"](errorClass)
-  if (editContactName) editContactName.classList[nameinput ? "remove" : "add"](errorClass)
   if (addContactEmail) addContactEmail.classList[mailinput ? "remove" : "add"](errorClass)
-  if (editContactEmail) editContactEmail.classList[mailinput ? "remove" : "add"](errorClass)
   if (addContactPhone) addContactPhone.classList[phoneinput ? "remove" : "add"](errorClass)
-  if (editContactPhone) editContactPhone.classList[phoneinput ? "remove" : "add"](errorClass)
 }
