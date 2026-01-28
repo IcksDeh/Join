@@ -12,6 +12,7 @@ function initContacts() {
     renderContactList()
 }
 
+
 /**
  * Handles the activation and display of a selected contact in the contact list UI.
  * Toggles the "active_contact" class, updates the contact info panel, and manages responsive behavior.
