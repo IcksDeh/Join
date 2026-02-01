@@ -40,8 +40,8 @@ function toggleCheckedIcon(imgElement, index, elementId) {
   const contactId = contact.id;
   const arrayOfElements = Array.from(imgElement)
   const isChecked = arrayOfElements[0].children[1].dataset.checked === "true";
-  let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
-  if (isChecked) {
+ let assigneeList = (elementId === "edit" || elementId === "task_detail_edit") ? selectedAssigneesEdit : selectedAssignees;
+  if (isChecked) {  
     assigneeList = assigneeList.filter(c => c.id !== contactId);
     arrayOfElements[0].children[1].dataset.checked = "false";
     arrayOfElements[0].children[1].src = "./assets/img/checkbox_unchecked.svg";
@@ -52,11 +52,11 @@ function toggleCheckedIcon(imgElement, index, elementId) {
     arrayOfElements[0].children[1].dataset.checked = "true";
     arrayOfElements[0].children[1].src = "./assets/img/checkbox_checked.svg";
   }
-  if (elementId === "default") {
-    selectedAssignees = assigneeList;
-  } else {
-    selectedAssigneesEdit = assigneeList;
-  }
+ if (elementId === "edit" || elementId === "task_detail_edit") {
+  selectedAssigneesEdit = assigneeList;
+} else {
+  selectedAssignees = assigneeList;
+}
   renderAssignedContacts(elementId);
 }
 
@@ -68,10 +68,9 @@ function toggleCheckedIcon(imgElement, index, elementId) {
 function renderAssignedContacts(elementId) {
   const container = document.getElementById("assigned_contacts_row_" + elementId);
   container.innerHTML = "";
-  let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
+  let assigneeList = (elementId === "edit" || elementId === "task_detail_edit") ? selectedAssigneesEdit : selectedAssignees;
   renderAssigneeBubbles(container, assigneeList);
 }
-
 
 /**
  * Renders the visible assignee bubbles and the overflow counter if necessary.
@@ -107,7 +106,9 @@ function syncDropdownCheckboxes(elementId) {
   document.querySelectorAll(".dropdown_item_user").forEach(item => {
     const id = item.dataset.assigneeId;
     const checkbox = item.querySelector(".checkbox_icon");
-    let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
+    // Διόρθωση εδώ:
+    let assigneeList = (elementId === "edit" || elementId === "task_detail_edit") ? selectedAssigneesEdit : selectedAssignees;
+    
     const checked = assigneeList.some(c => c.id == id);
     checkbox.dataset.checked = checked;
     checkbox.src = checked ? "./assets/img/checkbox_checked.svg" : "./assets/img/checkbox_unchecked.svg";
