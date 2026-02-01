@@ -38,9 +38,11 @@ async function checkContactList(element, HTMLid) {
 function toggleCheckedIcon(imgElement, index, elementId) {
   const contact = contactsList[index];
   const contactId = contact.id;
-  const arrayOfElements = Array.from(imgElement)
+  const arrayOfElements = Array.from(imgElement);
   const isChecked = arrayOfElements[0].children[1].dataset.checked === "true";
-  let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
+  let isCreationMode = (elementId === "default" || elementId === "overlay");
+  let assigneeList = isCreationMode ? selectedAssignees : selectedAssigneesEdit;
+
   if (isChecked) {
     assigneeList = assigneeList.filter(c => c.id !== contactId);
     arrayOfElements[0].children[1].dataset.checked = "false";
@@ -52,7 +54,7 @@ function toggleCheckedIcon(imgElement, index, elementId) {
     arrayOfElements[0].children[1].dataset.checked = "true";
     arrayOfElements[0].children[1].src = "./assets/img/checkbox_checked.svg";
   }
-  if (elementId === "default") {
+  if (isCreationMode) {
     selectedAssignees = assigneeList;
   } else {
     selectedAssigneesEdit = assigneeList;
@@ -68,7 +70,9 @@ function toggleCheckedIcon(imgElement, index, elementId) {
 function renderAssignedContacts(elementId) {
   const container = document.getElementById("assigned_contacts_row_" + elementId);
   container.innerHTML = "";
-  let assigneeList = elementId === "default" ? selectedAssignees : selectedAssigneesEdit;
+  let isCreationMode = (elementId === "default" || elementId === "overlay");
+  let assigneeList = isCreationMode ? selectedAssignees : selectedAssigneesEdit;
+  
   renderAssigneeBubbles(container, assigneeList);
 }
 
