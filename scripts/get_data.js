@@ -83,14 +83,11 @@ function getAllSubtasks() {
  * @returns {Object|string} The selected assignees object or "" if no assignees are selected.
  */
 function getAssignee() {
-  // Ελέγχουμε αν η λίστα είναι άδεια
+
   if (selectedAssignees.length === 0) {
     return "";
   }
-
   let assigneesToSave = {};
-
-  // Διατρέχουμε τον πίνακα selectedAssignees που ενημερώνεται στο toggleCheckedIcon
   selectedAssignees.forEach((item) => {
     assigneesToSave[item.id] = {
       assigneeName: item.contact.name,
